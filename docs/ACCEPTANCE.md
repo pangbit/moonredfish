@@ -40,7 +40,7 @@ and keys exist only in an automatically cleaned temporary directory.
 | Systems, Chassis, Managers / 三类资产清单 | Synthetic collections and resource GETs / 合成集合与资源读取 |
 | Safe pagination / 安全分页 | Next links, duplicate suppression, cycles, page limits, unsafe URI rejection / 下一页、去重、循环、上限与危险 URI 拒绝 |
 | Verified HTTPS / HTTPS 验证 | Untrusted certificate rejection, custom CA success, hostname mismatch rejection / 不可信证书拒绝、自定义 CA 成功、主机名不匹配拒绝 |
-| Authentication lifecycle / 认证生命周期 | Login errors, token use, logout, authenticated executable cleanup after success and failure / 登录错误、令牌使用、退出及示例成功/失败清理 |
+| Authentication lifecycle / 认证生命周期 | Login errors, discovery, token use, scoped cancellation cleanup, logout retry/expiry and lifecycle overlap rejection / 登录错误、发现、令牌、取消清理、退出重试/过期及并发拒绝 |
 | Bounded requests / 有限请求 | Timeout, body limit, no redirect following / 超时、正文限制、不跟随重定向 |
 | Output minimization / 输出最小化 | Example prints counts; tests exclude synthetic passwords, tokens and private response bodies / 示例仅打印数量，测试排除合成密码、令牌与私密响应正文 |
 

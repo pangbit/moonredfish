@@ -34,3 +34,21 @@ async fn Client::discover_session_collection(self : Client) -> String {
   }
   session_collection_link(decode_json(data)).unwrap_or(fallback)
 }
+
+///|
+/// Log in, run one body, then attempt logout even on error or cancellation.
+/// Cleanup is cancellation-protected but still request-timeout-bounded. If both
+/// body and cleanup fail, the cleanup error takes precedence. A failed logout
+/// retains local session state so the caller can explicitly retry `logout`.
+/// Do not change sessions or concurrently share this client inside the body.
+/// An ambiguous login failure cannot be cleaned up without a validated Location.
+pub async fn[T] Client::with_session(
+  self : Client,
+  username : String,
+  password : String,
+  body : async (Client) -> T,
+) -> T {
+  self.login(username, password)
+  defer @async.protect_from_cancel(async fn() { self.logout() })
+  body(self)
+}

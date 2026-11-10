@@ -16,18 +16,18 @@ async fn main {
   }
   let ca_file = @env.get_env_var("REDFISH_CA_FILE")
   let client = @moonredfish.Client::new(args[1], ca_file?)
-  client.login(username, password)
-  defer @async.protect_from_cancel(async fn() { client.logout() })
-  let (systems, chassis, managers) = (
-    client.systems(),
-    client.chassis(),
-    client.managers(),
-  ) catch {
-    @moonredfish.HttpStatus(status) =>
-      fail("Redfish inventory request failed with HTTP \{status}")
-    error => raise error
-  }
-  println(
-    "inventory: systems=\{systems.length()}, chassis=\{chassis.length()}, managers=\{managers.length()}",
-  )
+  client.with_session(username, password, async fn(client) {
+    let (systems, chassis, managers) = (
+      client.systems(),
+      client.chassis(),
+      client.managers(),
+    ) catch {
+      @moonredfish.HttpStatus(status) =>
+        fail("Redfish inventory request failed with HTTP \{status}")
+      error => raise error
+    }
+    println(
+      "inventory: systems=\{systems.length()}, chassis=\{chassis.length()}, managers=\{managers.length()}",
+    )
+  })
 }

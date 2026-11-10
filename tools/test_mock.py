@@ -12,7 +12,7 @@ from pathlib import Path
 
 ROOT = "/redfish/v1"
 TOKEN = "synthetic-token-not-a-secret"
-STATE = {"login": 0, "logout": 0, "authenticated": 0, "unexpected": [], "fail_systems": False, "require_auth": False}
+STATE = {"login": 0, "logout": 0, "authenticated": 0, "unexpected": [], "fail_systems": False, "require_auth": False, "logout_retries": 0}
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -51,15 +51,23 @@ class Handler(BaseHTTPRequestHandler):
         credentials = json.loads(data)
         if credentials.get("Password") == "synthetic-wrong":
             return self.respond(401, {})
-        assert credentials == {"UserName": "synthetic-user", "Password": "synthetic-password"}
+        assert credentials.get("Password") == "synthetic-password"
+        username = credentials.get("UserName")
+        assert username in ("synthetic-user", "synthetic-retry", "synthetic-expired", "synthetic-slow")
+        ident = {"synthetic-retry": "retry", "synthetic-expired": "expired", "synthetic-slow": "slow"}.get(username, "1")
         STATE["login"] += 1
-        self.respond(201, {}, X_Auth_Token=TOKEN, Location=collection + "/1")
+        if ident == "slow":
+            time.sleep(0.08)
+        self.respond(201, {}, X_Auth_Token=TOKEN, Location=collection + "/" + ident)
 
     def do_DELETE(self):
-        assert self.path in (ROOT + "/SessionService/Sessions/1", ROOT + "/Sessions/1")
+        assert self.path in [ROOT + prefix + ident for prefix in ("/SessionService/Sessions/", "/Sessions/") for ident in ("1", "retry", "expired", "slow")]
         assert self.headers.get("X-Auth-Token") == TOKEN
+        if self.path.endswith("/retry") and STATE["logout_retries"] == 0:
+            STATE["logout_retries"] += 1
+            return self.respond(503, {})
         STATE["logout"] += 1
-        self.respond(204, b"")
+        self.respond(404 if self.path.endswith("/expired") else 204, b"")
 
     def do_GET(self):
         assert self.headers.get("Accept") == "application/json"
@@ -139,7 +147,7 @@ def main():
                 combined = success.stdout + success.stderr + failure.stdout + failure.stderr
                 for secret in ("synthetic-password", TOKEN, "synthetic private body"):
                     assert secret not in combined, "application output leaked sensitive input"
-                assert STATE["login"] == STATE["logout"] == 3, STATE
+                assert STATE["login"] == STATE["logout"] == 9, STATE
                 assert STATE["authenticated"] > 0, STATE
                 assert not STATE["unexpected"], STATE
                 print("mock server: authenticated example, success/error cleanup, redaction and expected paths verified")

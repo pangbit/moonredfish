@@ -58,8 +58,16 @@ the inventory methods fetch the corresponding resources sequentially.
 moon run examples/inventory --target native -- https://authorized-bmc.example.invalid
 ```
 
-Authenticated applications call `login(username, password)` before reads and `logout()`
-afterward, including their own error/cancellation cleanup path. There is no background
+Authenticated applications can use `with_session(username, password, body)` for a
+scoped session: it returns the body's result only after attempting logout on normal
+return, error or cancellation. Cleanup is cancellation-protected but still bounded by
+`timeout_ms`. If body and cleanup both fail, the cleanup error takes precedence; failed
+logout keeps the local session for an explicit retry. Never change session state or
+share the client concurrently inside the body. Overlapping login/logout calls are
+rejected with `SessionBusy`, instead of issuing duplicate lifecycle requests.
+
+For manual control, call `login(username, password)` before reads and `logout()`
+afterward, including your own error/cancellation cleanup path. There is no background
 re-login or automatic logout in the basic login/logout methods. Login reads
 ServiceRoot `Links.Sessions` without traversing SessionService. If that link is absent,
 or root access returns 401/403, it uses `/redfish/v1/SessionService/Sessions`. An unsafe
@@ -72,7 +80,7 @@ it; inspect session state through authorized management tooling.
 The current checkout also provides `examples/session_inventory` (not included in the
 published 0.1.0 example set). It reads `REDFISH_USERNAME`, `REDFISH_PASSWORD` and optional
 `REDFISH_CA_FILE` from the application environment, performs HTTPS inventory reads,
-prints counts only, and attempts logout on success, failure or cancellation. The cleanup
+prints counts only, and uses `with_session` to attempt logout on success, failure or cancellation. The cleanup
 request still has a timeout and can fail. A logout failure makes the example fail rather
 than claiming cleanup succeeded. Environment variables avoid command-line arguments,
 but are not a secret vault: protect the launching process and never commit a `.env` file.

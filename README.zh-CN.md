@@ -46,8 +46,14 @@ native 异步应用创建 `Client::new("https://bmc.example.invalid")`，再调�
 moon run examples/inventory --target native -- https://authorized-bmc.example.invalid
 ```
 
-需要认证时，由应用提供凭据调用 `login(username, password)`，读取完成后调用
-`logout()`，并在应用自己的异常与取消清理路径中处理会话退出。库不后台重新登录，
+认证应用可以使用 `with_session(username, password, body)`：正常返回、异常或取消时
+都会尝试退出，完成清理后才返回 body 结果。清理屏蔽异步取消，但仍受 `timeout_ms`
+限制。body 与清理同时失败时，清理错误优先；退出失败会保留本地会话，供调用方明确重试。
+不要在 body 中修改会话，也不要并发共享该客户端。重叠的登录/退出调用会返回
+`SessionBusy`，避免重复发起生命周期请求。
+
+需要手动控制时，由应用提供凭据调用 `login(username, password)`，读取后调用
+`logout()`，并自行处理异常与取消清理。库不后台重新登录，
 基础登录/退出方法也不会自动退出会话。登录从 ServiceRoot 的 `Links.Sessions` 发现集合，
 不必访问 SessionService；缺少该链接或根访问返回 401/403 时才使用标准路径
 `/redfish/v1/SessionService/Sessions`。不安全或格式错误的已声明链接会被拒绝，不会
@@ -58,7 +64,7 @@ moon run examples/inventory --target native -- https://authorized-bmc.example.in
 当前源码还提供 `examples/session_inventory`（不包含在已发布的 0.1.0 示例集合中）。
 该示例从应用环境读取 `REDFISH_USERNAME`、`REDFISH_PASSWORD` 和可选的
 `REDFISH_CA_FILE`，通过 HTTPS 获取清单，只打印数量，并在成功、失败或取消时尝试退出
-会话。清理请求仍受超时限制且可能失败；退出失败会令示例报错，不会宣称清理成功。
+会话（通过 `with_session`）。清理请求仍受超时限制且可能失败；退出失败会令示例报错，不会宣称清理成功。
 环境变量可避免把密码放在命令行参数中，但不是密钥保险库：应保护启动进程，且不要提交
 `.env` 文件。
 

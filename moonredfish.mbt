@@ -16,6 +16,7 @@ pub suberror RedfishError {
   TotalResponseTooLarge
   OperationTimeout
   SessionAlreadyActive
+  SessionBusy
   NoSession
 }
 
@@ -198,6 +199,7 @@ struct Client {
   trust : @tls.TrustedRoot
   mut token : String?
   mut session_uri : String?
+  mut session_changing : Bool
 }
 
 ///|
@@ -242,6 +244,7 @@ pub fn Client::new(
     },
     token: None,
     session_uri: None,
+    session_changing: false,
   }
 }
 
@@ -415,8 +418,15 @@ pub async fn Client::login(
   username : String,
   password : String,
 ) -> Unit {
+  if self.session_changing {
+    raise SessionBusy
+  }
   if self.token is Some(_) {
     raise SessionAlreadyActive
+  }
+  self.session_changing = true
+  defer {
+    self.session_changing = false
   }
   let collection = self.discover_session_collection()
   let (response, data) = self.request(Post, collection, body={
@@ -446,7 +456,14 @@ pub async fn Client::login(
 /// Deletes only this client's session. On transport failure it remains active
 /// locally, allowing the caller to retry logout. A 401/404 means it already expired.
 pub async fn Client::logout(self : Client) -> Unit {
+  if self.session_changing {
+    raise SessionBusy
+  }
   guard self.session_uri is Some(path) else { raise NoSession }
+  self.session_changing = true
+  defer {
+    self.session_changing = false
+  }
   let (response, data) = self.request(Delete, path)
   if response.code != 200 &&
     response.code != 204 &&

@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Add cancellation-safe scoped sessions, lifecycle overlap protection and explicit logout retry/expiry tests.
+- 新增取消安全的作用域会话、生命周期并发保护，以及退出重试/过期验证。
+
 - Discover the login collection through ServiceRoot Links.Sessions and validate logout against that collection.
 - 从 ServiceRoot Links.Sessions 发现会话集合，并据此约束退出目标。
 

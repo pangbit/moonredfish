@@ -3,6 +3,7 @@ import {
   "moonbitlang/core/env",
   "moonbitlang/async",
   "moonbitlang/async/tls",
+  "moonbitlang/async/cond_var",
 }
 
 pkgtype(kind: "executable")

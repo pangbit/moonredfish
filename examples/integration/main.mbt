@@ -174,6 +174,90 @@ async fn main {
     _ => false
   }
   assert_true(logged_out)
+  let scoped = @moonredfish.Client::new(endpoint, allow_loopback_http=true)
+  let count = scoped.with_session("synthetic-user", "synthetic-password", async fn(
+    client,
+  ) {
+    client.systems().length()
+  })
+  assert_eq(count, 2)
+  let body_failed = try {
+    scoped.with_session("synthetic-user", "synthetic-password", async fn(
+      client,
+    ) {
+      ignore(client.get("/redfish/v1/Forbidden"))
+    })
+    false
+  } catch {
+    @moonredfish.HttpStatus(403) => true
+    _ => false
+  }
+  assert_true(body_failed)
+  let cleanup_failed = try {
+    ignore(
+      scoped.with_session("synthetic-retry", "synthetic-password", fn(_) { 42 }),
+    )
+    false
+  } catch {
+    @moonredfish.HttpStatus(503) => true
+    _ => false
+  }
+  assert_true(cleanup_failed)
+  scoped.logout()
+  scoped.login("synthetic-expired", "synthetic-password")
+  scoped.logout()
+  let expired_cleared = try {
+    scoped.logout()
+    false
+  } catch {
+    @moonredfish.NoSession => true
+    _ => false
+  }
+  assert_true(expired_cleared)
+  let ready = @cond_var.Cond()
+  let mut entered = false
+  @async.with_task_group(async fn(group) {
+    let task = group.spawn(async fn() {
+      @async.handle_cancellation(async fn() {
+        scoped.with_session("synthetic-user", "synthetic-password", async fn(
+          _,
+        ) {
+          entered = true
+          ready.signal()
+          @async.sleep(10000)
+        })
+      })
+    })
+    while !entered {
+      ready.wait()
+    }
+    task.cancel()
+    assert_eq(task.wait(), None)
+  })
+  let cancelled_cleared = try {
+    scoped.logout()
+    false
+  } catch {
+    @moonredfish.NoSession => true
+    _ => false
+  }
+  assert_true(cancelled_cleared)
+  @async.with_task_group(async fn(group) {
+    let task = group.spawn(async fn() {
+      scoped.login("synthetic-slow", "synthetic-password")
+    })
+    @async.sleep(10)
+    let busy = try {
+      scoped.login("synthetic-user", "synthetic-password")
+      false
+    } catch {
+      @moonredfish.SessionBusy => true
+      _ => false
+    }
+    assert_true(busy)
+    task.wait()
+  })
+  scoped.logout()
   let untrusted = @moonredfish.Client::new(args[2])
   let rejected = try {
     ignore(untrusted.service_root())
