@@ -33,8 +33,8 @@ From a checkout, run the default example without any network access:
 moon run examples/offline --target native
 ```
 
-After a registry release is available, use `moon add pangbit/moonredfish`. Until then,
-use a local MoonBit workspace dependency. Import `pangbit/moonredfish` in `moon.pkg`.
+Install version 0.1.0 with `moon add pangbit/moonredfish@0.1.0`, then import
+`pangbit/moonredfish` in the consuming package's `moon.pkg`.
 
 ```mbt check
 ///|

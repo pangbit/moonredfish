@@ -1,6 +1,6 @@
 # Changelog / 变更记录
 
-## Unreleased
+## 0.1.0 — 2026-11-10
 
 - Native read-only Redfish inventory, safe link handling and bounded pagination.
 - Session lifecycle, verified TLS, per-request timeout and body-size limits.
@@ -8,4 +8,4 @@
 - English and Simplified Chinese documentation.
 
 原生只读清单、安全链接和有限分页；会话生命周期、TLS 验证、请求超时及正文限制；
-离线与 HTTPS 示例、合成 HTTP/HTTPS 集成测试；中英双语文档。尚未宣称正式发布。
+离线与 HTTPS 示例、合成 HTTP/HTTPS 集成测试；中英双语文档。该初版仅覆盖只读清单与会话生命周期，不宣称真实 BMC 兼容。

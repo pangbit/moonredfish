@@ -32,8 +32,8 @@ Linux CI 需要 OpenSSL 与 zlib 开发包，平台依赖见
 moon run examples/offline --target native
 ```
 
-正式发布到 registry 后可执行 `moon add pangbit/moonredfish`；发布前请通过 MoonBit
-本地 workspace 依赖使用。在调用方 `moon.pkg` 中导入 `pangbit/moonredfish`。
+使用 `moon add pangbit/moonredfish@0.1.0` 安装 0.1.0，在调用方的 `moon.pkg` 中
+导入 `pangbit/moonredfish`。
 英文文档包含编译检查过的最小解析示例。
 
 native 异步应用创建 `Client::new("https://bmc.example.invalid")`，再调用
