@@ -35,6 +35,24 @@ async fn main {
     _ => false
   }
   assert_true(forbidden)
+  let diagnostic_client = @moonredfish.Client::new(
+    endpoint,
+    allow_loopback_http=true,
+    detailed_errors=true,
+  )
+  let diagnostic = try {
+    ignore(diagnostic_client.get("/redfish/v1/Forbidden"))
+    false
+  } catch {
+    @moonredfish.DetailedHttpStatus(info) => {
+      assert_eq(info.status, 403)
+      assert_eq(info.code, Some("Base.1.0.GeneralError"))
+      assert_eq(info.message_ids, ["Base.1.0.InsufficientPrivilege"])
+      true
+    }
+    _ => false
+  }
+  assert_true(diagnostic)
   let redirect = try {
     ignore(c.get("/redfish/v1/Redirect"))
     false

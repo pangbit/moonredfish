@@ -79,8 +79,12 @@ moon run examples/session_inventory --target native -- https://authorized-bmc.ex
 - 默认单次请求 10 秒超时、正文最多 4 MiB、集合最多 100 页。每次请求后关闭连接，
   无连接池和缓存。
 - GET 非 2xx 状态返回 `HttpStatus(status)`，不会在错误中包含响应正文。
-  JSON 必须是合法 UTF-8，且不可含重复键。暂不解码完整 Redfish 错误消息注册表；
-  网络与 TLS 错误保留官方 async 库的错误类型。
+  显式设置 `detailed_errors=true` 可获得 `DetailedHttpStatus(info)`，包含状态码、
+  标准 `error.code` 及最多 16 个去重的 ExtendedInfo `MessageId`。每个标识最多保留
+  256 个 ASCII 标识字符，不保留自由文本消息、参数、解决建议、响应头或正文。
+  标识仍来自服务端，不保证可安全公开。默认的 `HttpStatus` 行为不变；这不是完整的
+  消息注册表解码器。JSON 必须是合法 UTF-8 且不可含重复键；网络与 TLS 错误保持
+  官方 async 库的错误类型。
 - 缺失属性保持缺失，不编造默认值。原始 `Resource.json` 可能包含私密资产信息，
   应用在记录或分享前必须脱敏。不要提交真实凭据、令牌、硬件标识、内网主机名或抓包。
 

@@ -1,5 +1,6 @@
 ///|
-/// Errors never embed response bodies, passwords, or session tokens.
+/// Errors never retain raw response bodies or free-form server messages.
+/// Opt-in diagnostic identifiers remain untrusted server data.
 #derive(@debug.Debug)
 pub suberror RedfishError {
   InvalidEndpoint
@@ -7,6 +8,7 @@ pub suberror RedfishError {
   InvalidOptions
   InvalidResponse(String)
   HttpStatus(Int32)
+  DetailedHttpStatus(HttpDiagnostic)
   ResponseTooLarge
   PageLimit
   PaginationCycle
@@ -186,6 +188,7 @@ struct Client {
   timeout_ms : Int32
   max_response_bytes : Int32
   max_pages : Int32
+  detailed_errors : Bool
   trust : @tls.TrustedRoot
   mut token : String?
   mut session_uri : String?
@@ -200,6 +203,7 @@ pub fn Client::new(
   timeout_ms~ : Int32 = 10000,
   max_response_bytes~ : Int32 = 4194304,
   max_pages~ : Int32 = 100,
+  detailed_errors~ : Bool = false,
 ) -> Client raise RedfishError {
   validate_endpoint(endpoint, allow_loopback_http)
   if timeout_ms <= 0 ||
@@ -214,6 +218,7 @@ pub fn Client::new(
     timeout_ms,
     max_response_bytes,
     max_pages,
+    detailed_errors,
     trust: match ca_file {
       Some(path) => @tls.CustomPemFile(path)
       None => @tls.SystemRoot
@@ -272,11 +277,12 @@ fn decode_json(data : Bytes) -> Json raise RedfishError {
 }
 
 ///|
-/// GET only; non-2xx responses (including redirects) produce HttpStatus.
+/// GET only; non-2xx responses (including redirects) produce HttpStatus, or
+/// DetailedHttpStatus when detailed_errors is explicitly enabled.
 pub async fn Client::get(self : Client, path : String) -> Resource {
   let (response, data) = self.request(Get, path)
   if response.code < 200 || response.code >= 300 {
-    raise HttpStatus(response.code)
+    self.raise_http_status(response.code, data)
   }
   parse_resource(path, decode_json(data))
 }
@@ -355,13 +361,13 @@ pub async fn Client::login(
   if self.token is Some(_) {
     raise SessionAlreadyActive
   }
-  let (response, _) = self.request(
+  let (response, data) = self.request(
     Post,
     "/redfish/v1/SessionService/Sessions",
     body={ "UserName": username, "Password": password },
   )
   if response.code != 201 {
-    raise HttpStatus(response.code)
+    self.raise_http_status(response.code, data)
   }
   guard response.headers.get("X-Auth-Token") is Some(token) && !token.is_empty() else {
     raise InvalidResponse("session token unavailable")
@@ -384,12 +390,12 @@ pub async fn Client::login(
 /// locally, allowing the caller to retry logout. A 401/404 means it already expired.
 pub async fn Client::logout(self : Client) -> Unit {
   guard self.session_uri is Some(path) else { raise NoSession }
-  let (response, _) = self.request(Delete, path)
+  let (response, data) = self.request(Delete, path)
   if response.code != 200 &&
     response.code != 204 &&
     response.code != 401 &&
     response.code != 404 {
-    raise HttpStatus(response.code)
+    self.raise_http_status(response.code, data)
   }
   self.token = None
   self.session_uri = None

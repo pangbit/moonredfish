@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Add opt-in bounded Redfish error codes and MessageId diagnostics without retaining free-form bodies.
+- 新增可选的有限 Redfish 错误代码与 MessageId 诊断，不保留自由文本正文。
+
 - Add an authenticated HTTPS inventory example with bounded session cleanup on exit.
 - Exercise the example's success/error cleanup and output redaction with synthetic TLS fixtures.
 - Add explicit hostname-mismatch rejection to the TLS integration test.

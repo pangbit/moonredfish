@@ -95,8 +95,14 @@ is needed to review the authenticated workflow.
 - Defaults: 10-second per-request timeout, 4 MiB per response body, 100 collection pages.
   Each request closes its connection. No connection pool or cache is maintained.
 - Non-2xx GET responses produce `HttpStatus(status)` without echoing response bodies.
-  JSON must be valid UTF-8 without duplicate keys. No full Redfish error-message registry
-  decoder is provided. Transport/TLS errors remain async-library errors.
+  Enable `detailed_errors=true` to receive `DetailedHttpStatus(info)` with status,
+  the standard `error.code`, and at most 16 distinct ExtendedInfo `MessageId` values.
+  Identifiers are limited to 256 ASCII identifier characters; free-form messages,
+  arguments, resolutions, headers and bodies are not retained. These identifiers are
+  still server-provided data, not safe-to-publish guarantees. The default `HttpStatus`
+  behavior is unchanged. This is not a full message-registry decoder.
+  JSON must be valid UTF-8 without duplicate keys. Transport/TLS errors remain
+  async-library errors.
 - Missing properties remain optional. Raw `Resource.json` may contain private inventory;
   redact it before logging or sharing. Never commit credentials, tokens, private hosts,
   actual hardware identifiers or raw captures.

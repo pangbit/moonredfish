@@ -80,7 +80,7 @@ class Handler(BaseHTTPRequestHandler):
         if p in [ROOT + "/" + kind + "/" + ident for kind in ("Systems", "Chassis", "Managers") for ident in ("1", "2")]:
             return self.respond(200, {"Id": p.rsplit("/", 1)[1], "Name": "Synthetic resource"})
         if p == ROOT + "/Forbidden":
-            return self.respond(403, {"error": {"code": "Base.1.0.InsufficientPrivilege", "message": "synthetic private body"}})
+            return self.respond(403, {"error": {"code": "Base.1.0.GeneralError", "message": "synthetic private body", "@Message.ExtendedInfo": [{"MessageId": "Base.1.0.InsufficientPrivilege", "MessageArgs": ["synthetic-password"]}]}})
         if p == ROOT + "/Redirect":
             return self.respond(302, {}, Location="https://example.invalid/never-follow")
         if p == ROOT + "/Invalid":
