@@ -146,7 +146,7 @@ pagination/deduplication, unsafe-link and redirect rejection, malformed JSON, HT
 body/page/time limits, untrusted certificate and hostname-mismatch rejection, and
 successful custom-CA HTTPS. It also checks the authenticated example's success/error
 cleanup and verifies that its output excludes credentials, tokens and response bodies.
-All data is synthetic. It never uses a real BMC or external test service. Launch it via
+All data in this runner is synthetic. It never uses a real BMC or external test service. Launch it via
 Python rather than directly running `examples/integration`.
 
 CI is configured for Linux x86_64 and macOS arm64. A workflow file is not evidence that
@@ -166,6 +166,11 @@ remain unverified until separately tested.
 The smallest useful boundary is safely retrieving inventory. Preserving JSON makes the
 project maintainable by one person without generating thousands of schema types. Add
 typed helpers only when a concrete, tested use case requires them.
+
+For an independent shape check, run `python3 tools/test_reference.py`. It downloads
+seven SHA-256-pinned public DMTF mockup files and serves them on loopback. It is an
+optional networked check locally and runs in Linux CI. Scope and copyright attribution
+are documented in [docs/REFERENCE.md](docs/REFERENCE.md); it is not real-device testing.
 
 For a concise reproducible review, see [docs/ACCEPTANCE.md](docs/ACCEPTANCE.md).
 

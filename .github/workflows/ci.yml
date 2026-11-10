@@ -27,6 +27,9 @@ jobs:
       - run: moon build --target native --release --deny-warn
       - run: moon run examples/offline --target native
       - run: python3 tools/test_mock.py
+      - name: Check pinned independent DMTF mockups
+        if: runner.os == 'Linux'
+        run: python3 tools/test_reference.py
       - run: moon info --target native
       - run: moon fmt --check
       - run: git diff --exit-code

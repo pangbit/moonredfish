@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Add a hash-pinned independent DMTF mockup check without vendoring third-party documents.
+- 新增固定哈希的独立 DMTF mockup 检查，不在项目中分发第三方原始文档。
+
 - Add cancellation-safe scoped sessions, lifecycle overlap protection and explicit logout retry/expiry tests.
 - 新增取消安全的作用域会话、生命周期并发保护，以及退出重试/过期验证。
 

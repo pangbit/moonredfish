@@ -119,7 +119,7 @@ moon package --list
 自签名证书。覆盖登录/退出、发现、分页去重、不安全链接及重定向拒绝、非法 JSON、
 HTTP 错误、正文/页数/时间限制、不可信证书、主机名不匹配的拒绝与指定 CA 的 HTTPS 成功路径；同时检查认证示例的
 成功/失败退出流程，并断言其输出不包含凭据、令牌或响应正文。
-所有凭据与设备信息均为合成数据。脚本不访问真实设备或外部测试服务。
+该脚本的所有凭据与设备信息均为合成数据。脚本不访问真实设备或外部测试服务。
 请通过 Python 脚本运行，不要单独启动 `examples/integration`。
 
 CI 配置面向 Linux x86_64 与 macOS arm64；配置文件存在不代表远端运行已通过。
@@ -136,6 +136,10 @@ CI 配置面向 Linux x86_64 与 macOS arm64；配置文件存在不代表远端
 
 最小有用范围是安全获取清单。保留 JSON 使个人维护者不必生成和维护数千个 schema 类型。
 只有明确、可测试的使用需求出现时才添加类型化辅助方法。
+
+独立格式检查可运行 `python3 tools/test_reference.py`：下载 7 个 SHA-256 固定的
+DMTF 公开 mockup，在本机回环服务上测试。该步骤本地可选、需要联网，Linux CI 会运行。
+范围与版权归属见 [docs/REFERENCE.md](docs/REFERENCE.md)，不代表真实设备验证。
 
 精简的可复现审阅步骤见 [docs/ACCEPTANCE.md](docs/ACCEPTANCE.md)。
 

@@ -40,8 +40,9 @@ and keys exist only in an automatically cleaned temporary directory.
 | Systems, Chassis, Managers / 三类资产清单 | Synthetic collections and resource GETs / 合成集合与资源读取 |
 | Safe pagination / 安全分页 | Next links, duplicate suppression, cycles, page limits, unsafe URI rejection / 下一页、去重、循环、上限与危险 URI 拒绝 |
 | Verified HTTPS / HTTPS 验证 | Untrusted certificate rejection, custom CA success, hostname mismatch rejection / 不可信证书拒绝、自定义 CA 成功、主机名不匹配拒绝 |
+| Error diagnostics / 错误诊断 | Default status preserved; opt-in codes and MessageId with bounded fields / 默认状态保留，可选且字段受限的代码与 MessageId |
 | Authentication lifecycle / 认证生命周期 | Login errors, discovery, token use, scoped cancellation cleanup, logout retry/expiry and lifecycle overlap rejection / 登录错误、发现、令牌、取消清理、退出重试/过期及并发拒绝 |
-| Bounded requests / 有限请求 | Timeout, body limit, no redirect following / 超时、正文限制、不跟随重定向 |
+| Bounded requests / 有限请求 | Per-request and operation deadlines, per-response and total body limits, unique-member cap, no redirects / 请求及操作总时限、单次及累计正文限制、唯一成员上限、不跟随重定向 |
 | Output minimization / 输出最小化 | Example prints counts; tests exclude synthetic passwords, tokens and private response bodies / 示例仅打印数量，测试排除合成密码、令牌与私密响应正文 |
 
 The GitHub Actions workflow repeats these checks on Linux x86_64 and macOS arm64.
@@ -49,6 +50,18 @@ Inspect the workflow result for the exact commit under review, not just the pres
 a workflow file. `moon package --list` is packaging, not registry publication.
 GitHub Actions 在 Linux x86_64 与 macOS arm64 重复这些检查。请查看待审提交对应的实际结果，
 不能只看工作流文件是否存在。`moon package --list` 仅打包，不发布到 registry。
+
+## Independent sample check / 独立样例检查
+
+```sh
+python3 tools/test_reference.py
+```
+
+This optional local check downloads seven pinned DMTF public mockups, verifies SHA-256,
+and serves them only on loopback. Linux CI also runs it. See [REFERENCE.md](REFERENCE.md)
+for provenance, copyright and the narrow interoperability claim.
+本地可选步骤会下载 7 个固定的 DMTF 公开样例，校验 SHA-256，仅在回环服务上使用。
+Linux CI 同样运行；来源、版权与有限互通结论见上述说明。
 
 ## Boundaries / 边界
 
