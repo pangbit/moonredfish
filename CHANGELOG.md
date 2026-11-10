@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Reject session discovery targets outside an explicit Sessions collection before sending credentials.
+- 发送认证请求前拒绝不明确指向 Sessions 集合的发现链接。
+
 - Add a hash-pinned independent DMTF mockup check without vendoring third-party documents.
 - 新增固定哈希的独立 DMTF mockup 检查，不在项目中分发第三方原始文档。
 

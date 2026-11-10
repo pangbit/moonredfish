@@ -18,6 +18,8 @@ test "session collection discovery follows only safe advertised links" {
     },
     { "Links": { "Sessions": { "@odata.id": "/redfish/v1/Sessions?x=1" } } },
     { "Links": false },
+    { "Links": { "Sessions": { "@odata.id": "/redfish/v1/Systems" } } },
+    { "Links": { "Sessions": { "@odata.id": "/redfish/v1/" } } },
   ]
   for root in invalid {
     assert_true(

@@ -12,7 +12,7 @@ from pathlib import Path
 
 ROOT = "/redfish/v1"
 TOKEN = "synthetic-token-not-a-secret"
-STATE = {"login": 0, "logout": 0, "authenticated": 0, "unexpected": [], "fail_systems": False, "require_auth": False, "logout_retries": 0}
+STATE = {"login": 0, "logout": 0, "authenticated": 0, "unexpected": [], "fail_systems": False, "require_auth": False, "logout_retries": 0, "unsafe_session_target": False}
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -77,7 +77,7 @@ class Handler(BaseHTTPRequestHandler):
             STATE["authenticated"] += 1
         p = self.path
         if p == ROOT + "/":
-            return self.respond(200, {**{kind: {"@odata.id": ROOT + "/" + kind} for kind in ("Systems", "Chassis", "Managers")}, "Links": {"Sessions": {"@odata.id": ROOT + "/Sessions"}}})
+            return self.respond(200, {**{kind: {"@odata.id": ROOT + "/" + kind} for kind in ("Systems", "Chassis", "Managers")}, "Links": {"Sessions": {"@odata.id": ROOT + ("/Systems" if STATE["unsafe_session_target"] else "/Sessions")}}})
         if p == ROOT + "/Systems" and STATE["fail_systems"]:
             return self.respond(403, {"error": {"message": "synthetic private body"}})
         if p == ROOT + "/Systems":
@@ -147,6 +147,14 @@ def main():
                 combined = success.stdout + success.stderr + failure.stdout + failure.stderr
                 for secret in ("synthetic-password", TOKEN, "synthetic private body"):
                     assert secret not in combined, "application output leaked sensitive input"
+                before_login = STATE["login"]
+                STATE["unsafe_session_target"] = True
+                try:
+                    blocked = subprocess.run(command, cwd=Path(__file__).resolve().parents[1], env=environment, capture_output=True, text=True, timeout=120)
+                finally:
+                    STATE["unsafe_session_target"] = False
+                assert blocked.returncode != 0 and "InvalidResponse" in blocked.stderr + blocked.stdout
+                assert STATE["login"] == before_login, "unsafe session discovery sent a POST"
                 assert STATE["login"] == STATE["logout"] == 9, STATE
                 assert STATE["authenticated"] > 0, STATE
                 assert not STATE["unexpected"], STATE

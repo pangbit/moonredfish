@@ -72,7 +72,10 @@ re-login or automatic logout in the basic login/logout methods. Login reads
 ServiceRoot `Links.Sessions` without traversing SessionService. If that link is absent,
 or root access returns 401/403, it uses `/redfish/v1/SessionService/Sessions`. An unsafe
 or malformed advertised link is rejected, not silently replaced. The resulting session
-Location must be one direct child of the selected collection. Serialize login/logout on each client,
+Location must be one direct child of the selected collection. Discovery accepts only
+paths ending in `/Sessions` (optionally followed by `/`), so a mistaken link to Systems
+or another non-session collection cannot redirect login or logout there. This is a
+deliberate compatibility restriction; unconventional collection names are rejected. Serialize login/logout on each client,
 and do not overlap lifecycle changes with other requests on the same client. A failed
 or cancelled login may already have created a remote session. Do not automatically retry
 it; inspect session state through authorized management tooling.

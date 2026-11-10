@@ -57,7 +57,9 @@ moon run examples/inventory --target native -- https://authorized-bmc.example.in
 基础登录/退出方法也不会自动退出会话。登录从 ServiceRoot 的 `Links.Sessions` 发现集合，
 不必访问 SessionService；缺少该链接或根访问返回 401/403 时才使用标准路径
 `/redfish/v1/SessionService/Sessions`。不安全或格式错误的已声明链接会被拒绝，不会
-静默替换。登录响应的 Location 必须是所选集合的直接成员。同一客户端的登录/退出必须串行，且不可与该客户端其他请求重叠。
+静默替换。登录响应的 Location 必须是所选集合的直接成员。发现路径还必须以 `/Sessions`
+结尾（可有尾随 `/`），避免错误链接将登录或退出指向 Systems 等非会话集合。
+这是刻意保留的兼容性限制，不常规的集合名称会被拒绝。同一客户端的登录/退出必须串行，且不可与该客户端其他请求重叠。
 登录失败或取消时，远端可能已经创建会话，只是响应尚未返回。不要自动重试；应通过
 已授权的管理工具检查会话状态。
 

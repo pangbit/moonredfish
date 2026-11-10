@@ -15,6 +15,9 @@ fn session_collection_link(root : Json) -> String? raise RedfishError {
           if uri.contains("?") {
             raise InvalidResponse("session collection query unsupported")
           }
+          if !uri.has_suffix("/Sessions") && !uri.has_suffix("/Sessions/") {
+            raise InvalidResponse("expected an explicit Sessions collection")
+          }
           Some(uri)
         }
       }
