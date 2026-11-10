@@ -2,6 +2,11 @@
 
 [简体中文](README.zh-CN.md)
 
+**Release status:** Mooncakes currently provides 0.1.0. This README also describes
+Unreleased APIs and examples available only in the GitHub checkout; installing 0.1.0
+does not provide those additions. See [CHANGELOG.md](CHANGELOG.md). Subsequent registry
+releases are published manually by the maintainer.
+
 A small Redfish inventory client for **MoonBit native** applications. An independent,
 personally maintained Apache-2.0 project, not a DMTF certification or a GoFish port.
 

@@ -2,6 +2,10 @@
 
 [English](README.mbt.md)
 
+**版本状态：** Mooncakes 当前版本仍为 0.1.0。本文也介绍仅存在于 GitHub 当前源码的
+Unreleased 新 API 与示例；安装 0.1.0 不会获得这些新增内容，具体见
+[CHANGELOG.md](CHANGELOG.md)。后续 registry 版本仅由维护者手动发布。
+
 面向 **MoonBit native** 应用的小型 Redfish 资产清单客户端。个人维护，Apache-2.0
 许可；不是 DMTF 认证产品，也不是 GoFish 的移植版。
 
