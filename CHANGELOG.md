@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Discover the login collection through ServiceRoot Links.Sessions and validate logout against that collection.
+- 从 ServiceRoot Links.Sessions 发现会话集合，并据此约束退出目标。
+
 - Bound complete collection/inventory operations by deadline, unique members and total response bytes.
 - 为完整集合/清单操作增加总时限、唯一成员数和累计响应正文上限。
 

@@ -46,16 +46,17 @@ class Handler(BaseHTTPRequestHandler):
             data = b"".join(chunks)
         else:
             data = self.rfile.read(int(self.headers.get("Content-Length", "0")))
-        assert self.path == ROOT + "/SessionService/Sessions"
+        collection = ROOT + ("/SessionService/Sessions" if STATE["require_auth"] else "/Sessions")
+        assert self.path == collection
         credentials = json.loads(data)
         if credentials.get("Password") == "synthetic-wrong":
             return self.respond(401, {})
         assert credentials == {"UserName": "synthetic-user", "Password": "synthetic-password"}
         STATE["login"] += 1
-        self.respond(201, {}, X_Auth_Token=TOKEN, Location=ROOT + "/SessionService/Sessions/1")
+        self.respond(201, {}, X_Auth_Token=TOKEN, Location=collection + "/1")
 
     def do_DELETE(self):
-        assert self.path == ROOT + "/SessionService/Sessions/1"
+        assert self.path in (ROOT + "/SessionService/Sessions/1", ROOT + "/Sessions/1")
         assert self.headers.get("X-Auth-Token") == TOKEN
         STATE["logout"] += 1
         self.respond(204, b"")
@@ -68,7 +69,7 @@ class Handler(BaseHTTPRequestHandler):
             STATE["authenticated"] += 1
         p = self.path
         if p == ROOT + "/":
-            return self.respond(200, {kind: {"@odata.id": ROOT + "/" + kind} for kind in ("Systems", "Chassis", "Managers")})
+            return self.respond(200, {**{kind: {"@odata.id": ROOT + "/" + kind} for kind in ("Systems", "Chassis", "Managers")}, "Links": {"Sessions": {"@odata.id": ROOT + "/Sessions"}}})
         if p == ROOT + "/Systems" and STATE["fail_systems"]:
             return self.respond(403, {"error": {"message": "synthetic private body"}})
         if p == ROOT + "/Systems":

@@ -408,8 +408,8 @@ pub async fn Client::managers(self : Client) -> Array[Resource] {
 ///|
 /// Creates one Redfish session. This is the only POST API. The token is held only
 /// in memory; credentials are not stored. No retries are made for ambiguous POSTs.
-/// Uses the standard Sessions endpoint; some services require authentication to
-/// discover SessionService, so login deliberately does not perform discovery.
+/// Discovers the session collection from ServiceRoot Links.Sessions, using the
+/// standard endpoint only if absent or root access returns 401/403.
 pub async fn Client::login(
   self : Client,
   username : String,
@@ -418,11 +418,11 @@ pub async fn Client::login(
   if self.token is Some(_) {
     raise SessionAlreadyActive
   }
-  let (response, data) = self.request(
-    Post,
-    "/redfish/v1/SessionService/Sessions",
-    body={ "UserName": username, "Password": password },
-  )
+  let collection = self.discover_session_collection()
+  let (response, data) = self.request(Post, collection, body={
+    "UserName": username,
+    "Password": password,
+  })
   if response.code != 201 {
     self.raise_http_status(response.code, data)
   }
@@ -437,7 +437,7 @@ pub async fn Client::login(
   guard response.headers.get("Location") is Some(uri) else {
     raise InvalidResponse("session location unavailable")
   }
-  validate_session_location(uri)
+  validate_session_location(uri, collection~)
   self.token = Some(token)
   self.session_uri = Some(uri)
 }
@@ -462,9 +462,16 @@ pub async fn Client::logout(self : Client) -> Unit {
 pub extend RedfishError with @debug.Debug::{to_repr}
 
 ///|
-fn validate_session_location(uri : String) -> Unit raise RedfishError {
+fn validate_session_location(
+  uri : String,
+  collection~ : String = "/redfish/v1/SessionService/Sessions",
+) -> Unit raise RedfishError {
   validate_path(uri)
-  let prefix = "/redfish/v1/SessionService/Sessions/"
+  let prefix = if collection.has_suffix("/") {
+    collection
+  } else {
+    collection + "/"
+  }
   if !uri.has_prefix(prefix) || uri.contains("?") {
     raise InvalidResponse("unexpected session location")
   }
