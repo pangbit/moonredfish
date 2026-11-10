@@ -144,8 +144,14 @@ CI 配置面向 Linux x86_64 与 macOS arm64；配置文件存在不代表远端
 只有明确、可测试的使用需求出现时才添加类型化辅助方法。
 
 独立格式检查可运行 `python3 tools/test_reference.py`：下载 7 个 SHA-256 固定的
-DMTF 公开 mockup，在本机回环服务上测试。该步骤本地可选、需要联网，Linux CI 会运行。
+DMTF 公开 mockup，在本机回环服务上测试。该步骤本地可选、需要联网；Linux CI 通过
+下方 GoFish 对照验证同一批输入。
 范围与版权归属见 [docs/REFERENCE.md](docs/REFERENCE.md)，不代表真实设备验证。
+
+小范围同场对照可运行 `python3 tools/test_gofish.py`，需要 Go 1.21+（已验证 Go 1.24.0）。
+它将选定资产字段同时对照 GoFish v0.27.0 和固定原始样例，再在合成回环服务上验证共同的
+分页、错误、会话与 TLS 行为。GoFish 仅是测试依赖，不是 MoonBit 库的运行时依赖。
+Linux CI 运行该检查；结果、刻意保留的差异和局限见 [docs/COMPARISON.md](docs/COMPARISON.md)。
 
 精简的可复现审阅步骤见 [docs/ACCEPTANCE.md](docs/ACCEPTANCE.md)。
 

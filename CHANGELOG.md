@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Add a pinned GoFish comparison for selected DMTF inventory fields and shared synthetic HTTPS/session/error behavior.
+- 新增固定版本 GoFish 同场对照，验证选定 DMTF 清单字段和共同的合成 HTTPS、会话及错误行为。
+
 - Reject session discovery targets outside an explicit Sessions collection before sending credentials.
 - 发送认证请求前拒绝不明确指向 Sessions 集合的发现链接。
 

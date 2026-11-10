@@ -1,0 +1,11 @@
+import {
+  "pangbit/moonredfish",
+  "moonbitlang/core/env",
+  "moonbitlang/core/json",
+  "moonbitlang/async",
+  "moonbitlang/async/tls",
+}
+
+pkgtype(kind: "executable")
+
+supported_targets = "native"

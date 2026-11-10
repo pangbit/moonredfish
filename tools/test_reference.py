@@ -26,7 +26,8 @@ FILES = {
 }
 
 
-def main():
+def load_routes():
+    """Load unchanged hash-checked inputs for either independent client check."""
     routes = {}
     for name, digest in FILES.items():
         with urllib.request.urlopen(BASE + name, timeout=20) as response:
@@ -35,6 +36,11 @@ def main():
             raise RuntimeError(f"pinned mockup integrity check failed: {name}")
         suffix = name.removesuffix("index.json").rstrip("/")
         routes["/redfish/v1/" + suffix if suffix else "/redfish/v1/"] = data
+    return routes
+
+
+def main():
+    routes = load_routes()
     visited = set()
     unexpected = []
 

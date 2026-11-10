@@ -58,10 +58,22 @@ python3 tools/test_reference.py
 ```
 
 This optional local check downloads seven pinned DMTF public mockups, verifies SHA-256,
-and serves them only on loopback. Linux CI also runs it. See [REFERENCE.md](REFERENCE.md)
+and serves them only on loopback. Linux CI covers the same fixtures through the comparison
+below. See [REFERENCE.md](REFERENCE.md)
 for provenance, copyright and the narrow interoperability claim.
 本地可选步骤会下载 7 个固定的 DMTF 公开样例，校验 SHA-256，仅在回环服务上使用。
-Linux CI 同样运行；来源、版权与有限互通结论见上述说明。
+Linux CI 通过下方对照覆盖同一批样例；来源、版权与有限互通结论见上述说明。
+
+## GoFish comparison / GoFish 对照
+
+With Go 1.21+ installed, run `python3 tools/test_gofish.py`. Linux CI also runs it.
+This checks the common read-only subset, not full feature parity. The runner verifies
+each client's selected output against pinned inputs and explicit synthetic expectations;
+it does not treat either client as the sole oracle. See [COMPARISON.md](COMPARISON.md).
+
+安装 Go 1.21+ 后运行上述命令；Linux CI 也会执行。仅验证共同的只读子集，不追求全量
+功能对等。两个客户端的选定输出分别对照固定输入与明确的合成预期，不以任一客户端
+作为唯一正确性标准，详细边界见对照说明。
 
 ## Boundaries / 边界
 

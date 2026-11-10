@@ -177,8 +177,16 @@ typed helpers only when a concrete, tested use case requires them.
 
 For an independent shape check, run `python3 tools/test_reference.py`. It downloads
 seven SHA-256-pinned public DMTF mockup files and serves them on loopback. It is an
-optional networked check locally and runs in Linux CI. Scope and copyright attribution
+optional networked check locally. Linux CI checks these same inputs through the GoFish
+comparison below. Scope and copyright attribution
 are documented in [docs/REFERENCE.md](docs/REFERENCE.md); it is not real-device testing.
+
+For a small side-by-side check, run `python3 tools/test_gofish.py` with Go 1.21+ installed
+(verified with Go 1.24.0). It compares selected inventory fields against GoFish v0.27.0
+and the pinned source data, then checks shared pagination, error, session and TLS behavior
+on a synthetic loopback service. GoFish is a test-only dependency, not part of the MoonBit
+library. Linux CI runs this comparison. See [docs/COMPARISON.md](docs/COMPARISON.md) for
+the result, intentional differences and limitations.
 
 For a concise reproducible review, see [docs/ACCEPTANCE.md](docs/ACCEPTANCE.md).
 
