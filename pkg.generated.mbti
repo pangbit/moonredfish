@@ -1,0 +1,59 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "pangbit/moonredfish"
+
+import {
+  "moonbitlang/core/debug",
+  "moonbitlang/core/json",
+}
+
+// Values
+pub fn parse_collection(@json.Json) -> Collection raise RedfishError
+
+pub fn parse_resource(String, @json.Json) -> Resource raise RedfishError
+
+// Errors
+#derive(@debug.Debug)
+pub suberror RedfishError {
+  InvalidEndpoint
+  InvalidPath
+  InvalidOptions
+  InvalidResponse(String)
+  HttpStatus(Int32)
+  ResponseTooLarge
+  PageLimit
+  PaginationCycle
+  SessionAlreadyActive
+  NoSession
+}
+pub fn RedfishError::to_repr(Self) -> @debug.Repr
+
+// Types and methods
+type Client
+pub async fn Client::chassis(Self) -> Array[Resource]
+pub async fn Client::get(Self, String) -> Resource
+pub async fn Client::login(Self, String, String) -> Unit
+pub async fn Client::logout(Self) -> Unit
+pub async fn Client::managers(Self) -> Array[Resource]
+pub async fn Client::members(Self, String) -> Array[String]
+pub fn Client::new(String, ca_file? : String, allow_loopback_http? : Bool, timeout_ms? : Int32, max_response_bytes? : Int32, max_pages? : Int32) -> Self raise RedfishError
+pub async fn Client::service_root(Self) -> Resource
+pub async fn Client::systems(Self) -> Array[Resource]
+
+pub struct Collection {
+  members : Array[String]
+  next_link : String?
+}
+
+pub struct Resource {
+  uri : String
+  id : String?
+  name : String?
+  resource_type : String?
+  json : @json.Json
+}
+pub fn Resource::link(Self, String) -> String? raise RedfishError
+pub fn Resource::string(Self, String) -> String?
+
+// Type aliases
+
+// Traits

@@ -1,0 +1,125 @@
+#!/usr/bin/env python3
+"""Local synthetic HTTP integration. No BMC, network inventory, or real credentials."""
+import json
+import os
+import ssl
+import subprocess
+import tempfile
+import threading
+import time
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from pathlib import Path
+
+ROOT = "/redfish/v1"
+TOKEN = "synthetic-token-not-a-secret"
+STATE = {"login": 0, "logout": 0, "authenticated": 0, "unexpected": []}
+
+
+class Handler(BaseHTTPRequestHandler):
+    def log_message(self, *_args):
+        pass
+
+    def respond(self, code, data, **headers):
+        payload = data if isinstance(data, bytes) else json.dumps(data).encode()
+        self.send_response(code)
+        self.send_header("Content-Type", "application/json")
+        self.send_header("Content-Length", str(len(payload)))
+        for key, value in headers.items():
+            self.send_header(key.replace("_", "-"), value)
+        self.end_headers()
+        try:
+            self.wfile.write(payload)
+        except (BrokenPipeError, ConnectionResetError):
+            pass
+
+    def do_POST(self):
+        # The official HTTP client streams JSON using chunked transfer encoding.
+        if self.headers.get("Transfer-Encoding", "").lower() == "chunked":
+            chunks = []
+            while True:
+                size = int(self.rfile.readline().strip(), 16)
+                if not size:
+                    self.rfile.readline()
+                    break
+                chunks.append(self.rfile.read(size))
+                self.rfile.read(2)
+            data = b"".join(chunks)
+        else:
+            data = self.rfile.read(int(self.headers.get("Content-Length", "0")))
+        assert self.path == ROOT + "/SessionService/Sessions"
+        credentials = json.loads(data)
+        if credentials.get("Password") == "synthetic-wrong":
+            return self.respond(401, {})
+        assert credentials == {"UserName": "synthetic-user", "Password": "synthetic-password"}
+        STATE["login"] += 1
+        self.respond(201, {}, X_Auth_Token=TOKEN, Location=ROOT + "/SessionService/Sessions/1")
+
+    def do_DELETE(self):
+        assert self.path == ROOT + "/SessionService/Sessions/1"
+        assert self.headers.get("X-Auth-Token") == TOKEN
+        STATE["logout"] += 1
+        self.respond(204, b"")
+
+    def do_GET(self):
+        assert self.headers.get("Accept") == "application/json"
+        if self.headers.get("X-Auth-Token") == TOKEN:
+            STATE["authenticated"] += 1
+        p = self.path
+        if p == ROOT + "/":
+            return self.respond(200, {kind: {"@odata.id": ROOT + "/" + kind} for kind in ("Systems", "Chassis", "Managers")})
+        if p == ROOT + "/Systems":
+            return self.respond(200, {"Members": [{"@odata.id": ROOT + "/Systems/1"}], "Members@odata.nextLink": ROOT + "/Systems?$skip=1"})
+        if p == ROOT + "/Systems?$skip=1":
+            return self.respond(200, {"Members": [{"@odata.id": ROOT + "/Systems/1"}, {"@odata.id": ROOT + "/Systems/2"}]})
+        if p in (ROOT + "/Chassis", ROOT + "/Managers"):
+            return self.respond(200, {"Members": [{"@odata.id": p + "/1"}]})
+        if p in [ROOT + "/" + kind + "/" + ident for kind in ("Systems", "Chassis", "Managers") for ident in ("1", "2")]:
+            return self.respond(200, {"Id": p.rsplit("/", 1)[1], "Name": "Synthetic resource"})
+        if p == ROOT + "/Forbidden":
+            return self.respond(403, {"error": {"code": "Base.1.0.InsufficientPrivilege", "message": "synthetic private body"}})
+        if p == ROOT + "/Redirect":
+            return self.respond(302, {}, Location="https://example.invalid/never-follow")
+        if p == ROOT + "/Invalid":
+            return self.respond(200, b"not JSON")
+        if p == ROOT + "/Cycle":
+            return self.respond(200, {"Members": [], "Members@odata.nextLink": p})
+        if p == ROOT + "/Unsafe":
+            return self.respond(200, {"Members": [{"@odata.id": "https://example.invalid/never-follow"}]})
+        if p == ROOT + "/Slow":
+            time.sleep(0.15)
+            return self.respond(200, {})
+        STATE["unexpected"].append(p)
+        self.respond(404, {})
+
+
+def main():
+    server = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
+    threading.Thread(target=server.serve_forever, daemon=True).start()
+    try:
+        with tempfile.TemporaryDirectory(prefix="moonredfish-test-") as tmp:
+            cert = Path(tmp) / "cert.pem"
+            key = Path(tmp) / "key.pem"
+            config = Path(tmp) / "openssl.cnf"
+            config.write_text("[req]\ndistinguished_name=dn\nx509_extensions=ext\nprompt=no\n[dn]\nCN=localhost\n[ext]\nsubjectAltName=IP:127.0.0.1\nbasicConstraints=critical,CA:TRUE\n")
+            subprocess.run(["openssl", "req", "-x509", "-newkey", "rsa:2048", "-nodes", "-days", "1", "-config", str(config), "-keyout", str(key), "-out", str(cert)], check=True, capture_output=True)
+            tls_server = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
+            context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+            context.load_cert_chain(cert, key)
+            tls_server.socket = context.wrap_socket(tls_server.socket, server_side=True)
+            threading.Thread(target=tls_server.serve_forever, daemon=True).start()
+            try:
+                subprocess.run(["moon", "run", "examples/integration", "--target", "native", "--", f"http://127.0.0.1:{server.server_port}", f"https://127.0.0.1:{tls_server.server_port}", str(cert)], cwd=Path(__file__).resolve().parents[1], env={**os.environ, "RUST_LOG": "error"}, check=True, timeout=120)
+                assert STATE["login"] == STATE["logout"] == 1, STATE
+                assert STATE["authenticated"] > 0, STATE
+                assert not STATE["unexpected"], STATE
+                print("mock server: session lifecycle and no unexpected paths verified")
+            finally:
+                tls_server.shutdown()
+                tls_server.server_close()
+    finally:
+        server.shutdown()
+        server.server_close()
+
+
+if __name__ == "__main__":
+    main()
