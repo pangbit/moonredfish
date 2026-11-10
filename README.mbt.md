@@ -94,6 +94,15 @@ is needed to review the authenticated workflow.
   valid vendor URIs.
 - Defaults: 10-second per-request timeout, 4 MiB per response body, 100 collection pages.
   Each request closes its connection. No connection pool or cache is maintained.
+  `members`, `systems`, `chassis` and `managers` additionally share a per-operation
+  60-second deadline (`operation_timeout_ms`), a 10,000-unique-member limit
+  (`max_members`), and a 16 MiB aggregate response-body budget
+  (`max_total_response_bytes`). These are transfer budgets, not exact heap-size limits.
+  Limits raise `OperationTimeout`, `MemberLimit` or `TotalResponseTooLarge`, with no
+  partial result returned. Inventory budgets include root discovery, every collection
+  page and all member GETs. Each call has its own budget. A paged collection is not a
+  snapshot: changes on the service can still cause omissions; nextLink queries remain
+  opaque and duplicate suppression does not guarantee snapshot consistency.
 - Non-2xx GET responses produce `HttpStatus(status)` without echoing response bodies.
   Enable `detailed_errors=true` to receive `DetailedHttpStatus(info)` with status,
   the standard `error.code`, and at most 16 distinct ExtendedInfo `MessageId` values.

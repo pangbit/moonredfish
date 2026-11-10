@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Bound complete collection/inventory operations by deadline, unique members and total response bytes.
+- 为完整集合/清单操作增加总时限、唯一成员数和累计响应正文上限。
+
 - Add opt-in bounded Redfish error codes and MessageId diagnostics without retaining free-form bodies.
 - 新增可选的有限 Redfish 错误代码与 MessageId 诊断，不保留自由文本正文。
 

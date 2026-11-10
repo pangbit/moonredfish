@@ -89,6 +89,13 @@ class Handler(BaseHTTPRequestHandler):
             return self.respond(200, {"Members": [], "Members@odata.nextLink": p})
         if p == ROOT + "/Unsafe":
             return self.respond(200, {"Members": [{"@odata.id": "https://example.invalid/never-follow"}]})
+        if p.startswith(ROOT + "/SlowPages?page="):
+            page = int(p.rsplit("=", 1)[1])
+            time.sleep(0.06)
+            body = {"Members": []}
+            if page < 3:
+                body["Members@odata.nextLink"] = ROOT + f"/SlowPages?page={page + 1}"
+            return self.respond(200, body)
         if p == ROOT + "/Slow":
             time.sleep(0.15)
             return self.respond(200, {})

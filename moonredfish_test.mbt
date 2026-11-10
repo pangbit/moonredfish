@@ -139,3 +139,32 @@ test "client rejects unbounded options" {
   }
   assert_true(rejected)
 }
+
+///|
+test "aggregate limits reject invalid settings without connecting" {
+  let endpoint = "https://example.invalid"
+  assert_true(
+    try {
+      ignore(@moonredfish.Client::new(endpoint, max_members=0))
+      false
+    } catch {
+      _ => true
+    },
+  )
+  assert_true(
+    try {
+      ignore(@moonredfish.Client::new(endpoint, max_total_response_bytes=0))
+      false
+    } catch {
+      _ => true
+    },
+  )
+  assert_true(
+    try {
+      ignore(@moonredfish.Client::new(endpoint, operation_timeout_ms=0))
+      false
+    } catch {
+      _ => true
+    },
+  )
+}

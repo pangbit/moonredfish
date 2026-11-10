@@ -98,6 +98,47 @@ async fn main {
     _ => false
   }
   assert_true(pages)
+  let member_limited = @moonredfish.Client::new(
+    endpoint,
+    allow_loopback_http=true,
+    max_members=1,
+  )
+  let member_limit = try {
+    ignore(member_limited.members("/redfish/v1/Systems"))
+    false
+  } catch {
+    @moonredfish.MemberLimit => true
+    _ => false
+  }
+  assert_true(member_limit)
+  let byte_limited = @moonredfish.Client::new(
+    endpoint,
+    allow_loopback_http=true,
+    max_total_response_bytes=150,
+  )
+  let byte_limit = try {
+    ignore(byte_limited.members("/redfish/v1/Systems"))
+    false
+  } catch {
+    @moonredfish.TotalResponseTooLarge => true
+    _ => false
+  }
+  assert_true(byte_limit)
+  ignore(byte_limited.get("/redfish/v1/Systems"))
+  let operation_limited = @moonredfish.Client::new(
+    endpoint,
+    allow_loopback_http=true,
+    timeout_ms=1000,
+    operation_timeout_ms=100,
+  )
+  let operation_timeout = try {
+    ignore(operation_limited.members("/redfish/v1/SlowPages?page=1"))
+    false
+  } catch {
+    @moonredfish.OperationTimeout => true
+    _ => false
+  }
+  assert_true(operation_timeout)
   let bounded = @moonredfish.Client::new(
     endpoint,
     allow_loopback_http=true,

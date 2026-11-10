@@ -12,6 +12,9 @@ pub suberror RedfishError {
   ResponseTooLarge
   PageLimit
   PaginationCycle
+  MemberLimit
+  TotalResponseTooLarge
+  OperationTimeout
   SessionAlreadyActive
   NoSession
 }
@@ -189,6 +192,9 @@ struct Client {
   max_response_bytes : Int32
   max_pages : Int32
   detailed_errors : Bool
+  max_members : Int32
+  max_total_response_bytes : Int32
+  operation_timeout_ms : Int32
   trust : @tls.TrustedRoot
   mut token : String?
   mut session_uri : String?
@@ -204,13 +210,21 @@ pub fn Client::new(
   max_response_bytes~ : Int32 = 4194304,
   max_pages~ : Int32 = 100,
   detailed_errors~ : Bool = false,
+  max_members~ : Int32 = 10000,
+  max_total_response_bytes~ : Int32 = 16777216,
+  operation_timeout_ms~ : Int32 = 60000,
 ) -> Client raise RedfishError {
   validate_endpoint(endpoint, allow_loopback_http)
   if timeout_ms <= 0 ||
     max_response_bytes <= 0 ||
     max_response_bytes > 67108864 ||
     max_pages <= 0 ||
-    max_pages > 10000 {
+    max_pages > 10000 ||
+    max_members <= 0 ||
+    max_members > 100000 ||
+    max_total_response_bytes <= 0 ||
+    max_total_response_bytes > 268435456 ||
+    operation_timeout_ms <= 0 {
     raise InvalidOptions
   }
   {
@@ -219,6 +233,9 @@ pub fn Client::new(
     max_response_bytes,
     max_pages,
     detailed_errors,
+    max_members,
+    max_total_response_bytes,
+    operation_timeout_ms,
     trust: match ca_file {
       Some(path) => @tls.CustomPemFile(path)
       None => @tls.SystemRoot
@@ -234,6 +251,7 @@ async fn Client::request(
   meth : @http.RequestMethod,
   path : String,
   body? : Json,
+  budget? : ReadBudget,
 ) -> (@http.Response, Bytes) {
   validate_path(path)
   @async.with_timeout(self.timeout_ms, async fn() {
@@ -263,6 +281,12 @@ async fn Client::request(
       if chunk.length() > self.max_response_bytes - data.length() {
         raise ResponseTooLarge
       }
+      if budget is Some(budget) {
+        if chunk.length() > budget.remaining {
+          raise TotalResponseTooLarge
+        }
+        budget.remaining -= chunk.length()
+      }
       data.write_bytes(chunk)
     }
     (response, data.to_bytes())
@@ -280,7 +304,16 @@ fn decode_json(data : Bytes) -> Json raise RedfishError {
 /// GET only; non-2xx responses (including redirects) produce HttpStatus, or
 /// DetailedHttpStatus when detailed_errors is explicitly enabled.
 pub async fn Client::get(self : Client, path : String) -> Resource {
-  let (response, data) = self.request(Get, path)
+  self.read_resource(path)
+}
+
+///|
+async fn Client::read_resource(
+  self : Client,
+  path : String,
+  budget? : ReadBudget,
+) -> Resource {
+  let (response, data) = self.request(Get, path, budget?)
   if response.code < 200 || response.code >= 300 {
     self.raise_http_status(response.code, data)
   }
@@ -296,6 +329,20 @@ pub async fn Client::service_root(self : Client) -> Resource {
 /// Traverses collection pages with a cycle guard and a page limit.
 /// No resource GETs are performed; duplicate links are returned only once.
 pub async fn Client::members(self : Client, path : String) -> Array[String] {
+  let budget = ReadBudget::{ remaining: self.max_total_response_bytes, }
+  @async.with_timeout(
+    self.operation_timeout_ms,
+    async fn() { self.read_members(path, budget) },
+    error=OperationTimeout,
+  )
+}
+
+///|
+async fn Client::read_members(
+  self : Client,
+  path : String,
+  budget : ReadBudget,
+) -> Array[String] {
   let visited : Map[String, Bool] = Map([])
   let seen : Map[String, Bool] = Map([])
   let result = []
@@ -308,9 +355,12 @@ pub async fn Client::members(self : Client, path : String) -> Array[String] {
       raise PageLimit
     }
     visited[uri] = true
-    let page = parse_collection(self.get(uri).json)
+    let page = parse_collection(self.read_resource(uri, budget~).json)
     for item in page.members {
       if !seen.contains(item) {
+        if result.length() >= self.max_members {
+          raise MemberLimit
+        }
         seen[item] = true
         result.push(item)
       }
@@ -322,15 +372,22 @@ pub async fn Client::members(self : Client, path : String) -> Array[String] {
 
 ///|
 async fn Client::inventory(self : Client, kind : String) -> Array[Resource] {
-  let root = self.service_root()
-  guard root.link(kind) is Some(path) else {
-    raise InvalidResponse("service root link unavailable")
-  }
-  let result = []
-  for uri in self.members(path) {
-    result.push(self.get(uri))
-  }
-  result
+  let budget = ReadBudget::{ remaining: self.max_total_response_bytes, }
+  @async.with_timeout(
+    self.operation_timeout_ms,
+    async fn() {
+      let root = self.read_resource("/redfish/v1/", budget~)
+      guard root.link(kind) is Some(path) else {
+        raise InvalidResponse("service root link unavailable")
+      }
+      let result = []
+      for uri in self.read_members(path, budget) {
+        result.push(self.read_resource(uri, budget~))
+      }
+      result
+    },
+    error=OperationTimeout,
+  )
 }
 
 ///|
@@ -415,4 +472,9 @@ fn validate_session_location(uri : String) -> Unit raise RedfishError {
   if suffix.is_empty() || suffix.contains("/") {
     raise InvalidResponse("expected one session member")
   }
+}
+
+///|
+priv struct ReadBudget {
+  mut remaining : Int32
 }

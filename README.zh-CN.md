@@ -77,7 +77,13 @@ moon run examples/session_inventory --target native -- https://authorized-bmc.ex
   路径穿越、片段标记、反斜杠和控制字符；查询串允许百分号编码。
   这是有意选择的严格子集，可能拒绝部分厂商返回的合法但不受支持的 URI。
 - 默认单次请求 10 秒超时、正文最多 4 MiB、集合最多 100 页。每次请求后关闭连接，
-  无连接池和缓存。
+  无连接池和缓存。`members`、`systems`、`chassis`、`managers` 还为整个操作共享
+  60 秒截止时间（`operation_timeout_ms`）、10,000 个唯一成员上限（`max_members`）
+  和 16 MiB 累计响应正文预算（`max_total_response_bytes`）。这是传输量限制，
+  不是精确堆内存限制。超限分别返回 `OperationTimeout`、`MemberLimit` 或
+  `TotalResponseTooLarge`，不返回部分结果。清单预算包含根发现、所有分页和成员 GET，
+  每次调用独立计量。分页不是快照：服务端变化仍可能造成遗漏；nextLink 查询串保持不透明，
+  去重不等于保证快照一致性。
 - GET 非 2xx 状态返回 `HttpStatus(status)`，不会在错误中包含响应正文。
   显式设置 `detailed_errors=true` 可获得 `DetailedHttpStatus(info)`，包含状态码、
   标准 `error.code` 及最多 16 个去重的 ExtendedInfo `MessageId`。每个标识最多保留
