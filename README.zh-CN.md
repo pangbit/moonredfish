@@ -72,6 +72,7 @@ moon run examples/inventory --target native -- https://authorized-bmc.example.in
 ## 验证
 
 ```sh
+moon update
 moon check --target native --deny-warn
 moon test --target native --deny-warn
 moon run examples/offline --target native

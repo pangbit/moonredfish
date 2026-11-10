@@ -87,6 +87,7 @@ it; inspect session state through authorized management tooling.
 ## Verification
 
 ```sh
+moon update
 moon check --target native --deny-warn
 moon test --target native --deny-warn
 moon run examples/offline --target native

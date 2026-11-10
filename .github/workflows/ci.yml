@@ -20,6 +20,8 @@ jobs:
         run: curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash -s -- '0.10.20+65efd5b93'
       - run: echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
       - run: moon version --all
+      - name: Initialize registry index on a fresh runner
+        run: moon update
       - run: moon check --target native --deny-warn
       - run: moon test --target native --deny-warn
       - run: moon build --target native --release --deny-warn

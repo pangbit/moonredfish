@@ -12,6 +12,7 @@ an actual supported use case. Open an issue before proposing device-mutating API
 Before a pull request / 提交前运行：
 
 ```sh
+moon update
 moon check --target native --deny-warn
 moon test --target native --deny-warn
 python3 tools/test_mock.py
