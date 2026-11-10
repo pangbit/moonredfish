@@ -12,7 +12,7 @@ from pathlib import Path
 
 ROOT = "/redfish/v1"
 TOKEN = "synthetic-token-not-a-secret"
-STATE = {"login": 0, "logout": 0, "authenticated": 0, "unexpected": []}
+STATE = {"login": 0, "logout": 0, "authenticated": 0, "unexpected": [], "fail_systems": False, "require_auth": False}
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -62,11 +62,15 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         assert self.headers.get("Accept") == "application/json"
+        if STATE["require_auth"] and self.headers.get("X-Auth-Token") != TOKEN:
+            return self.respond(401, {})
         if self.headers.get("X-Auth-Token") == TOKEN:
             STATE["authenticated"] += 1
         p = self.path
         if p == ROOT + "/":
             return self.respond(200, {kind: {"@odata.id": ROOT + "/" + kind} for kind in ("Systems", "Chassis", "Managers")})
+        if p == ROOT + "/Systems" and STATE["fail_systems"]:
+            return self.respond(403, {"error": {"message": "synthetic private body"}})
         if p == ROOT + "/Systems":
             return self.respond(200, {"Members": [{"@odata.id": ROOT + "/Systems/1"}], "Members@odata.nextLink": ROOT + "/Systems?$skip=1"})
         if p == ROOT + "/Systems?$skip=1":
@@ -100,7 +104,7 @@ def main():
             cert = Path(tmp) / "cert.pem"
             key = Path(tmp) / "key.pem"
             config = Path(tmp) / "openssl.cnf"
-            config.write_text("[req]\ndistinguished_name=dn\nx509_extensions=ext\nprompt=no\n[dn]\nCN=localhost\n[ext]\nsubjectAltName=IP:127.0.0.1\nbasicConstraints=critical,CA:TRUE\n")
+            config.write_text("[req]\ndistinguished_name=dn\nx509_extensions=ext\nprompt=no\n[dn]\nCN=not-localhost.example.invalid\n[ext]\nsubjectAltName=IP:127.0.0.1\nbasicConstraints=critical,CA:TRUE\n")
             subprocess.run(["openssl", "req", "-x509", "-newkey", "rsa:2048", "-nodes", "-days", "1", "-config", str(config), "-keyout", str(key), "-out", str(cert)], check=True, capture_output=True)
             tls_server = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
             context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
@@ -108,11 +112,29 @@ def main():
             tls_server.socket = context.wrap_socket(tls_server.socket, server_side=True)
             threading.Thread(target=tls_server.serve_forever, daemon=True).start()
             try:
-                subprocess.run(["moon", "run", "examples/integration", "--target", "native", "--", f"http://127.0.0.1:{server.server_port}", f"https://127.0.0.1:{tls_server.server_port}", str(cert)], cwd=Path(__file__).resolve().parents[1], env={**os.environ, "RUST_LOG": "error"}, check=True, timeout=120)
-                assert STATE["login"] == STATE["logout"] == 1, STATE
+                subprocess.run(["moon", "run", "examples/integration", "--target", "native", "--", f"http://127.0.0.1:{server.server_port}", f"https://127.0.0.1:{tls_server.server_port}", str(cert), f"https://localhost:{tls_server.server_port}"], cwd=Path(__file__).resolve().parents[1], env={**os.environ, "RUST_LOG": "error"}, check=True, timeout=120)
+                # Exercise the actual authenticated application, including error cleanup.
+                command = ["moon", "run", "examples/session_inventory", "--target", "native", "--", f"https://127.0.0.1:{tls_server.server_port}"]
+                environment = {**os.environ, "RUST_LOG": "error", "REDFISH_USERNAME": "synthetic-user", "REDFISH_PASSWORD": "synthetic-password", "REDFISH_CA_FILE": str(cert)}
+                STATE["require_auth"] = True
+                success = subprocess.run(command, cwd=Path(__file__).resolve().parents[1], env=environment, capture_output=True, text=True, timeout=120)
+                assert success.returncode == 0, success.stderr
+                assert "inventory: systems=2, chassis=1, managers=1" in success.stdout
+                STATE["fail_systems"] = True
+                try:
+                    failure = subprocess.run(command, cwd=Path(__file__).resolve().parents[1], env=environment, capture_output=True, text=True, timeout=120)
+                finally:
+                    STATE["fail_systems"] = False
+                    STATE["require_auth"] = False
+                assert failure.returncode != 0, "expected the inventory read to fail"
+                assert "HTTP 403" in failure.stdout + failure.stderr, "expected an HTTP permission failure"
+                combined = success.stdout + success.stderr + failure.stdout + failure.stderr
+                for secret in ("synthetic-password", TOKEN, "synthetic private body"):
+                    assert secret not in combined, "application output leaked sensitive input"
+                assert STATE["login"] == STATE["logout"] == 3, STATE
                 assert STATE["authenticated"] > 0, STATE
                 assert not STATE["unexpected"], STATE
-                print("mock server: session lifecycle and no unexpected paths verified")
+                print("mock server: authenticated example, success/error cleanup, redaction and expected paths verified")
             finally:
                 tls_server.shutdown()
                 tls_server.server_close()

@@ -66,6 +66,23 @@ and do not overlap lifecycle changes with other requests on the same client. A f
 or cancelled login may already have created a remote session. Do not automatically retry
 it; inspect session state through authorized management tooling.
 
+The current checkout also provides `examples/session_inventory` (not included in the
+published 0.1.0 example set). It reads `REDFISH_USERNAME`, `REDFISH_PASSWORD` and optional
+`REDFISH_CA_FILE` from the application environment, performs HTTPS inventory reads,
+prints counts only, and attempts logout on success, failure or cancellation. The cleanup
+request still has a timeout and can fail. A logout failure makes the example fail rather
+than claiming cleanup succeeded. Environment variables avoid command-line arguments,
+but are not a secret vault: protect the launching process and never commit a `.env` file.
+
+```sh
+# Supply the environment through your trusted launcher. Do not paste passwords here.
+moon run examples/session_inventory --target native -- https://authorized-bmc.example.invalid
+```
+
+The mock runner below tests this actual executable with synthetic credentials and a
+local TLS server, including logout after a failed inventory request. No device access
+is needed to review the authenticated workflow.
+
 ## Safety and limits
 
 - Construction performs no I/O. HTTPS is required except for explicitly enabled loopback
@@ -100,7 +117,9 @@ moon package --list
 The integration script needs Python 3 and OpenSSL. It starts loopback servers on dynamic
 ports, generates a temporary certificate, and verifies session lifecycle, discovery,
 pagination/deduplication, unsafe-link and redirect rejection, malformed JSON, HTTP errors,
-body/page/time limits, untrusted certificate rejection and successful custom-CA HTTPS.
+body/page/time limits, untrusted certificate and hostname-mismatch rejection, and
+successful custom-CA HTTPS. It also checks the authenticated example's success/error
+cleanup and verifies that its output excludes credentials, tokens and response bodies.
 All data is synthetic. It never uses a real BMC or external test service. Launch it via
 Python rather than directly running `examples/integration`.
 
@@ -121,5 +140,7 @@ remain unverified until separately tested.
 The smallest useful boundary is safely retrieving inventory. Preserving JSON makes the
 project maintainable by one person without generating thousands of schema types. Add
 typed helpers only when a concrete, tested use case requires them.
+
+For a concise reproducible review, see [docs/ACCEPTANCE.md](docs/ACCEPTANCE.md).
 
 See [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md) and [LICENSE](LICENSE).

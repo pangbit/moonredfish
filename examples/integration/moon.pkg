@@ -2,6 +2,7 @@ import {
   "pangbit/moonredfish",
   "moonbitlang/core/env",
   "moonbitlang/async",
+  "moonbitlang/async/tls",
 }
 
 pkgtype(kind: "executable")

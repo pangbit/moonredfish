@@ -53,6 +53,21 @@ moon run examples/inventory --target native -- https://authorized-bmc.example.in
 登录失败或取消时，远端可能已经创建会话，只是响应尚未返回。不要自动重试；应通过
 已授权的管理工具检查会话状态。
 
+当前源码还提供 `examples/session_inventory`（不包含在已发布的 0.1.0 示例集合中）。
+该示例从应用环境读取 `REDFISH_USERNAME`、`REDFISH_PASSWORD` 和可选的
+`REDFISH_CA_FILE`，通过 HTTPS 获取清单，只打印数量，并在成功、失败或取消时尝试退出
+会话。清理请求仍受超时限制且可能失败；退出失败会令示例报错，不会宣称清理成功。
+环境变量可避免把密码放在命令行参数中，但不是密钥保险库：应保护启动进程，且不要提交
+`.env` 文件。
+
+```sh
+# 由可信启动器提供环境变量，不要在此处粘贴密码。
+moon run examples/session_inventory --target native -- https://authorized-bmc.example.invalid
+```
+
+下方 mock 脚本会使用合成凭据和本地 TLS 服务运行这个真实示例入口，覆盖清单读取失败
+后的退出路径。审阅认证流程不需要连接真实设备。
+
 ## 安全默认值与限制
 
 - 构造客户端不会发起连接。默认只允许 HTTPS；只有显式设置
@@ -84,7 +99,8 @@ moon package --list
 
 集成脚本需要 Python 3 和 OpenSSL，只在动态分配的回环端口启动合成服务，并临时生成
 自签名证书。覆盖登录/退出、发现、分页去重、不安全链接及重定向拒绝、非法 JSON、
-HTTP 错误、正文/页数/时间限制、不可信证书拒绝与指定 CA 的 HTTPS 成功路径。
+HTTP 错误、正文/页数/时间限制、不可信证书、主机名不匹配的拒绝与指定 CA 的 HTTPS 成功路径；同时检查认证示例的
+成功/失败退出流程，并断言其输出不包含凭据、令牌或响应正文。
 所有凭据与设备信息均为合成数据。脚本不访问真实设备或外部测试服务。
 请通过 Python 脚本运行，不要单独启动 `examples/integration`。
 
@@ -102,6 +118,8 @@ CI 配置面向 Linux x86_64 与 macOS arm64；配置文件存在不代表远端
 
 最小有用范围是安全获取清单。保留 JSON 使个人维护者不必生成和维护数千个 schema 类型。
 只有明确、可测试的使用需求出现时才添加类型化辅助方法。
+
+精简的可复现审阅步骤见 [docs/ACCEPTANCE.md](docs/ACCEPTANCE.md)。
 
 贡献说明、安全政策见 [CONTRIBUTING.md](CONTRIBUTING.md)、[SECURITY.md](SECURITY.md)，
 许可全文见 [LICENSE](LICENSE)。

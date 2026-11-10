@@ -1,7 +1,7 @@
 ///|
 async fn main {
   let args = @env.args()
-  guard args.length() == 4 else { fail("run via python3 tools/test_mock.py") }
+  guard args.length() == 5 else { fail("run via python3 tools/test_mock.py") }
   let endpoint = args[1]
   let c = @moonredfish.Client::new(endpoint, allow_loopback_http=true)
   let wrong_password = try {
@@ -125,5 +125,14 @@ async fn main {
   assert_true(rejected)
   let trusted = @moonredfish.Client::new(args[2], ca_file=args[3])
   ignore(trusted.service_root())
+  let wrong_hostname = @moonredfish.Client::new(args[4], ca_file=args[3])
+  let hostname_rejected = try {
+    ignore(wrong_hostname.service_root())
+    false
+  } catch {
+    @tls.TlsError(_) => true
+    _ => false
+  }
+  assert_true(hostname_rejected)
   println("mock integration: HTTP, session, pagination, limits, and TLS passed")
 }

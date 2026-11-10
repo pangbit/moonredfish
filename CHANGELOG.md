@@ -1,5 +1,15 @@
 # Changelog / 变更记录
 
+## Unreleased
+
+- Add an authenticated HTTPS inventory example with bounded session cleanup on exit.
+- Exercise the example's success/error cleanup and output redaction with synthetic TLS fixtures.
+- Add explicit hostname-mismatch rejection to the TLS integration test.
+- Add concise bilingual acceptance instructions; registry releases remain maintainer-operated.
+
+新增带会话清理的认证 HTTPS 清单示例，验证成功/失败清理和输出脱敏，补充 TLS 主机名
+不匹配拒绝测试及精简双语验收说明。此部分尚未发布，Mooncakes 发布由维护者手动执行。
+
 ## 0.1.0 — 2026-11-10
 
 - Native read-only Redfish inventory, safe link handling and bounded pagination.

@@ -29,3 +29,13 @@ Contributions are distributed under Apache-2.0. Be respectful; there is no promi
 只使用合成测试数据。检查暂存 diff 和打包文件清单，确保无密码、令牌、内部地址、本机路径、
 硬件标识和无关文件。禁止提交设备原始抓包、环境文件、私钥、构建产物或私人代理笔记。
 贡献按 Apache-2.0 分发。请保持友善；个人项目不承诺响应时限。
+
+## Releases / 发布
+
+Registry publication is a manual maintainer action. CI checks and packages the source,
+but never publishes to Mooncakes. Contributors and automation must not run publication
+commands on the maintainer's behalf. The existing 0.1.0 release remains available;
+changes listed as Unreleased are source-only until the maintainer publishes a new version.
+
+Mooncakes 发布由维护者手动执行。CI 仅检查与打包，不执行发布；贡献者与自动化不得代替
+维护者执行发布命令。现有 0.1.0 保留，Unreleased 改动在维护者发布新版本前仅存在于源码。
