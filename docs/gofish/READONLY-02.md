@@ -72,7 +72,7 @@ All 37 native tests passed locally, including raw-data retention, nested presenc
 malformed-field regressions. The differential suite has 40 cases: one fully supplied
 configuration projection agrees, 28 both reject with their own error types, and 11 expose
 known differences. This is evidence for specific read behavior, not a completion percentage.
-29 previously unmapped declarations now have candidate mappings: **263 P / 11,317 U / 0 V**.
+At this batch's commit, 29 previously unmapped declarations gained candidate mappings: **263 P / 11,317 U / 0 V**.
 
 本地 37 项 native 测试通过。40 个差分场景中，完整有值配置投影相同，28 个两端拒绝但错误
 类型不同，11 个存在已知差异。这些结果说明具体读取行为，不表示一致性百分比；29 个声明

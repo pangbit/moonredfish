@@ -148,6 +148,14 @@ EthernetInterface or API-shape equivalence.
 该命令验证新增网络配置读取，包括真实 owner→集合→接口调用路径及新增字段值。
 证据 02 给出明确输入、两端表现、影响和建议；不会把候选映射或测试数量当成完整一致。
 
+## PCIe implementation / PCIe 实现
+
+`python3 tools/test_pcie.py` exercises typed device/function/interface reads and five
+explicit topology APIs. It verifies collection/legacy priorities, source order, pagination,
+prevalidation and partial-failure differences, plus GoFish's vendor lane conversions.
+See [batch 03](gofish/READONLY-03.md) and the [consolidated decision review](gofish/DECISIONS.md).
+PCIe 模型与导航的实际对照保留默认值、严格解码、重复和部分结果差异，不以用例数表示完整一致。
+
 ## Open differences / 待解决差异
 
 GoFish is the pinned behavior reference for the full-parity goal; DMTF remains the protocol specification. Its error strings can

@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Add selected read-only PCIeDevice/PCIeFunction/PCIeInterface views and five explicit
+  system/chassis/device/function navigation APIs. Reuse bounded link-array traversal;
+  verify reference source priorities and record vendor numeric/partial-result differences.
+- 新增 PCIe 设备、功能和接口选定视图及五条显式导航 API，复用有界链接数组遍历；
+  对照固定参考的来源优先级，保留厂商数值转换、默认值及部分结果差异并合并审阅建议。
+
 - Add typed read-only Ethernet DHCPv4/DHCPv6, SLAAC, DNS and interface policy fields,
   nested raw-JSON retention and owner-link differential verification. Keep unresolved
   default/null-element behavior explicit; no configuration writes or full-parity claim.

@@ -12,7 +12,8 @@ Unreleased 新 API 与示例；安装 0.1.0 不会获得这些新增内容，具
 GoFish 完整对齐的[计划与逐项矩阵](docs/GOFISH_PARITY.md)已形成待审核草案；
 只读差分正在推进，见 [39 项证据与具体决策](docs/gofish/READONLY-01.md)。API 和安全取舍仍待明确，
 当前子集支持不代表已与 GoFish 完整一致。新增 [DHCP/DNS/SLAAC 与接口策略读取](docs/gofish/READONLY-02.md)，
-沿用现有 Field API，不应用网络配置。
+沿用现有 Field API，不应用网络配置。新增 [PCIe 设备/功能及显式拓扑读取](docs/gofish/READONLY-03.md)，
+默认值、严格解码等差异统一汇入[合并决策审阅](docs/gofish/DECISIONS.md)。
 
 ## 类型化硬件清单（Unreleased）
 

@@ -115,35 +115,8 @@ pub async fn Client::drives(
   self : Client,
   storage : Resource,
 ) -> Field[Array[Drive]] {
-  match read_array(storage.json, "Drives", link_uri) {
-    Missing => Missing
-    Null => Null
-    Value(paths) => {
-      let seen : Map[String, Bool] = Map([])
-      let unique = []
-      for path in paths {
-        if !seen.contains(path) {
-          if unique.length() >= self.max_members {
-            raise MemberLimit
-          }
-          seen[path] = true
-          unique.push(path)
-        }
-      }
-      let budget = ReadBudget::{ remaining: self.max_total_response_bytes, }
-      Value(
-        @async.with_timeout(
-          self.operation_timeout_ms,
-          async fn() {
-            let result = []
-            for path in unique {
-              result.push(self.read_resource(path, budget~).drive())
-            }
-            result
-          },
-          error=OperationTimeout,
-        ),
-      )
-    }
-  }
+  self.read_link_array(
+    read_array(storage.json, "Drives", link_uri),
+    Resource::drive,
+  )
 }

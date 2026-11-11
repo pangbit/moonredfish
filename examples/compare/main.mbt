@@ -110,6 +110,7 @@ async fn main {
     "extended" => extended(c)
     "parity" => parity(c)
     "network-config" => network_config(c)
+    "pcie" => pcie(c)
     "protocol" => protocol(c)
     "reject_tls" => {
       let rejected = try {

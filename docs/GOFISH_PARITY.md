@@ -6,7 +6,9 @@
 [Read-only batch 01 / 只读证据 01](gofish/READONLY-01.md): 39 measured cases,
 22 known differences, one integer-validation defect fixed.
 [Read-only batch 02 / 只读实现 02](gofish/READONLY-02.md) adds DHCP/DNS/SLAAC/policy
-read fields. Current mappings: 263 P / 11,317 U / 0 V; no fully verified items.
+read fields. Current mappings after [PCIe batch 03](gofish/READONLY-03.md):
+311 P / 11,269 U / 0 V. [Consolidated decisions](gofish/DECISIONS.md) collect the open
+default, strict-decoder, vendor-coercion, collection and safety choices.
 
 The target is every public capability of the fixed GoFish version, including Redfish,
 Swordfish, OEM extensions and support APIs. Current moonredfish is a selected read-only
@@ -92,7 +94,7 @@ or mapping candidate; `V` = verified under an approved contract. Initial invento
 234 `P` and 11,346 `U` rows, including embeds, and **zero `V`**. A `P` field may have a
 selected-value test, but is not equivalent across null/default/error/serialization cases.
 Initial statuses refer to the subject baseline; later candidate mappings are versioned
-by the evidence batches. Current totals are 263 P / 11,317 U / 0 V after batch 02.
+by the evidence batches. Current totals are 311 P / 11,269 U / 0 V after batch 03.
 They are not a claim about untested behavior or future work.
 
 `U` 是未映射差距/未验证，`P` 是已有子集或映射候选，`V` 才表示按已批准契约验证。
@@ -106,7 +108,7 @@ They are not a claim about untested behavior or future work.
 | Auth / 认证 | Anonymous, Basic, session create/delete, imported session/token, session retrieval and clone | Anonymous and own session only; token opaque; discovery, validation and cleanup differ | P1; newly stateful work gated |
 | Query and entity / 查询与对象 | `$expand`/levels/fallback, skip/top helpers, embedded resolution, collection concurrency/partial errors, ETag/304 Reload/Refresh, update diff/allowed fields | Pagination/deduplication and bounded link traversal; no query/ETag cache API; raw JSON is not equivalent | P1, P4 |
 | Current inventory families / 已有模型 | Full ComputerSystem/Chassis/Manager, Processor/Memory, Thermal/Power, Sensor/Fan/PowerSupply, Storage/Drive/Volume, network, logs, firmware and Bios types/links/actions | Selected fields and selected reads only; remaining properties, links, enums, serialization and actions are gaps | P2, P4/P5 |
-| Remaining Redfish / 其余 Redfish | PCIe/CXL/NVMe, fabrics/ports/zones, memory domains, processors/metrics, facilities/cooling/power distribution, batteries, assembly, OS/containers/VM, aggregation/composition/automation, all remaining listed files | No corresponding typed API | P3; actions P4/P5 |
+| Remaining Redfish / 其余 Redfish | PCIe/CXL/NVMe, fabrics/ports/zones, memory domains, processors/metrics, facilities/cooling/power distribution, batteries, assembly, OS/containers/VM, aggregation/composition/automation, all remaining listed files | Selected PCIeDevice/PCIeFunction/PCIeInterface reads now exist; all remaining fields/models/actions remain gaps | P3; actions P4/P5 |
 | Schema/registry/security / 模型注册表与安全 | JSON schemas, message/attribute/privilege/feature registries, accounts/roles/external providers, certificates/enrollment, secure boot, keys, licenses, component integrity | Raw access only; no complete typed or control contract | P3, P5 |
 | Tasks/jobs/events/telemetry / 任务、作业、事件、遥测 | Task monitor and Retry-After, asynchronous results/channels, job lifecycle, subscriptions and event models, reports/definitions/triggers | Not implemented | P3 reads; P4/P5 mutations |
 | BIOS/boot/media / BIOS、启动、介质 | Settings/apply times, password/reset operations, boot updates, virtual-media insert/eject | Current BIOS attributes only | P4/P5 |

@@ -203,3 +203,43 @@ pub async fn Client::power_supplies(
     Value(items) => Value(items.map(Resource::power_supply))
   }
 }
+
+///|
+/// Validated link arrays share member/byte/time limits and first-occurrence order.
+async fn[T] Client::read_link_array(
+  self : Client,
+  paths : Field[Array[String]],
+  decode : (Resource) -> T raise RedfishError,
+) -> Field[Array[T]] {
+  match paths {
+    Missing => Missing
+    Null => Null
+    Value(paths) => {
+      let seen : Map[String, Bool] = Map([])
+      let unique = []
+      for path in paths {
+        if !seen.contains(path) {
+          if unique.length() >= self.max_members {
+            raise MemberLimit
+          }
+          seen[path] = true
+          unique.push(path)
+        }
+      }
+      let budget = ReadBudget::{ remaining: self.max_total_response_bytes, }
+      Value(
+        @async.with_timeout(
+          self.operation_timeout_ms,
+          async fn() {
+            let result = []
+            for path in unique {
+              result.push(decode(self.read_resource(path, budget~)))
+            }
+            result
+          },
+          error=OperationTimeout,
+        ),
+      )
+    }
+  }
+}

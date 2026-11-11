@@ -5,7 +5,8 @@ signature, source line, initial state and acceptance template is in [the item ma
 This table aggregates all 253 scanned files; it is not a table of passed tests.
 [Read-only batch 01](READONLY-01.md) attaches measured cases to item IDs.
 [Batch 02](READONLY-02.md) adds 29 candidate mappings for implemented network reads.
-Current totals: 263 P / 11,317 U / 0 V; candidate mapping is not verified equivalence.
+[Batch 03](READONLY-03.md) adds 48 PCIe candidates. Current totals:
+311 P / 11,269 U / 0 V; candidate mapping is not verified equivalence.
 待审核；逐项矩阵列出全部公开声明、签名、源码行、初始状态与验收模板。本表按 253 个文件汇总，不表示测试通过。
 
 `P` = overlapping subset/candidate; `U` = unmapped gap/unverified. No `V` (verified parity) rows exist.
@@ -180,8 +181,8 @@ Phase is model/read/support allocation; all mutations require the P4/P5/P6 gate,
 | [schemas/outboundconnection.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/outboundconnection.go) | Redfish | 4 | 7 | 22 | 1 | U | P3 |
 | [schemas/outlet.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/outlet.go) | Redfish | 4 | 10 | 52 | 1 | U | P3 |
 | [schemas/outletgroup.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/outletgroup.go) | Redfish | 2 | 8 | 21 | 1 | U | P3 |
-| [schemas/pciedevice.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/pciedevice.go) | Redfish | 16 | 13 | 109 | 1 | U | P3 |
-| [schemas/pciefunction.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/pciefunction.go) | Redfish | 4 | 12 | 49 | 1 | U | P3 |
+| [schemas/pciedevice.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/pciedevice.go) | Redfish | 16 | 13 | 109 | 1 | P | P3 |
+| [schemas/pciefunction.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/pciefunction.go) | Redfish | 4 | 12 | 49 | 1 | P | P3 |
 | [schemas/pcieslots.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/pcieslots.go) | Redfish | 4 | 5 | 24 | 1 | U | P3 |
 | [schemas/physicalcontext.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/physicalcontext.go) | Redfish | 3 | 0 | 62 | 0 | U | P3 |
 | [schemas/port.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/port.go) | Redfish | 34 | 23 | 228 | 1 | U | P3 |

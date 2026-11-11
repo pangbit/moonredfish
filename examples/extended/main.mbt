@@ -77,6 +77,13 @@ async fn main {
     println(
       "offline synthetic drive: capacity=\{presence(drive.capacity_bytes)}, failure_predicted=\{presence(drive.failure_predicted)}",
     )
+    let pcie = @moonredfish.parse_resource("/redfish/v1/PCIeDevices/demo", {
+      "PCIeInterface": { "LanesInUse": 4 },
+      "ReadyToRemove": false,
+    }).pcie_device()
+    println(
+      "offline synthetic PCIe: interface=\{presence(pcie.pcie_interface)}",
+    )
     let interface = @moonredfish.parse_resource(
       "/redfish/v1/EthernetInterfaces/demo",
       { "DHCPv4": { "DHCPEnabled": false }, "NameServers": [] },

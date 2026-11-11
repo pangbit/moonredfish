@@ -296,3 +296,19 @@ Missing/null/defaults and null DNS members still differ from GoFish. This is not
 EthernetInterface/address/VLAN/update support; those gaps remain in the item matrix.
 详见字段清单与差分证据；缺失/null/默认值及 DNS null 成员仍有差异，地址/VLAN/写入等
 能力继续保留在矩阵中，未冒称完整 EthernetInterface 一致。
+
+
+## PCIe inventory (Unreleased) / PCIe 清单（未发布）
+
+Use `resource.pcie_device()` / `.pcie_function()` for typed device/function metadata.
+`client.system_pcie_devices(system)` and `system_pcie_functions(system)` read the system's
+explicit top-level arrays. `client.chassis_pcie_devices(chassis)` prefers the collection
+then legacy links; `client.pcie_functions(device.resource)` prefers nonempty legacy links
+then the collection. `client.pcie_function_device(function.resource)` reads the advertised
+parent only. No path is guessed or topology automatically recursed.
+
+设备/功能视图包含选定资产、PCI 标识、总线位置字符串、功能类型/协议、健康和接口代际。
+五条入口按显式数组/集合/单链接读取；机箱与设备的来源优先级不同，详见
+[PCIe 范围、实测及限制](gofish/READONLY-03.md)。不猜路径、不自动递归，不把 ReadyToRemove
+等状态当作操作授权。lane 和 FunctionId 使用既有非负 Int32，默认值与厂商宽松转换差异
+汇入[集中决策](gofish/DECISIONS.md)，不宣称完整 PCIe/GoFish 一致。
