@@ -109,6 +109,7 @@ async fn main {
     "hardware" => hardware(c)
     "extended" => extended(c)
     "parity" => parity(c)
+    "network-config" => network_config(c)
     "protocol" => protocol(c)
     "reject_tls" => {
       let rejected = try {

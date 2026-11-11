@@ -41,6 +41,7 @@ jobs:
           python3 tools/test_gofish.py
           python3 tools/test_extended.py
           python3 tools/test_parity.py
+          python3 tools/test_network_config.py
       - run: moon info --target native
       - run: moon fmt --check
       - run: git diff --exit-code

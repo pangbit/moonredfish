@@ -77,6 +77,13 @@ async fn main {
     println(
       "offline synthetic drive: capacity=\{presence(drive.capacity_bytes)}, failure_predicted=\{presence(drive.failure_predicted)}",
     )
+    let interface = @moonredfish.parse_resource(
+      "/redfish/v1/EthernetInterfaces/demo",
+      { "DHCPv4": { "DHCPEnabled": false }, "NameServers": [] },
+    ).ethernet_interface()
+    println(
+      "offline synthetic network: DHCPv4=\{presence(interface.dhcpv4)}, DNS servers=\{count(interface.name_servers)}",
+    )
     let bios = @moonredfish.parse_resource("/redfish/v1/Systems/demo/Bios", {
       "Attributes": null,
     }).bios()

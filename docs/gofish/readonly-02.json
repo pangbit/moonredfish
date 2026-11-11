@@ -1,0 +1,2928 @@
+{
+  "reference": {
+    "module": "github.com/stmcginnis/gofish",
+    "version": "v0.27.0",
+    "commit": "4cc897fb5c172996e8f34a31a5d1012b45a287a7",
+    "module_sum": "h1:jyM2BlBhULXtHnayY+/wnkZYXKjIO0ZdR3oBXKl1VYs=",
+    "source_url_prefix": "https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/"
+  },
+  "subject_base_commit": "c2920269d82095611951591394c2cc936e74f836",
+  "environment": {
+    "os": "Darwin",
+    "arch": "arm64",
+    "go": "go version go1.24.0 darwin/arm64",
+    "moon": "moon 0.1.20261104 (940aa18 2026-11-04) ~/.moon/bin/moon\nmoonc v0.10.20+65efd5b93 (2026-11-05) ~/.moon/bin/moonc\nmoonrun 0.1.20261104 (940aa18 2026-11-04) ~/.moon/bin/moonrun\n\nFeature flags enabled: rr_moon_mod,rr_moon_pkg"
+  },
+  "scope": "New read-only network configuration fields under existing Field API; no config mutation, complete EthernetInterface parity, approved API translation or physical BMC claim.",
+  "summary": {
+    "same_selected_observation": 1,
+    "known_difference": 11,
+    "both_reject": 28
+  },
+  "cases": [
+    {
+      "id": "defined_configuration",
+      "uri": "/redfish/v1/NetworkConfig/Cases/defined_configuration",
+      "kind": "collection",
+      "input": {
+        "AutoNeg": false,
+        "EthernetInterfaceType": "Physical",
+        "IPv6DefaultGateway": "2001:db8::1",
+        "IPv6Enabled": true,
+        "RoutingScope": "HostOnly",
+        "TeamMode": "ActiveBackup",
+        "UefiDevicePath": "synthetic-path",
+        "NameServers": [
+          "192.0.2.2",
+          "2001:db8::53",
+          "192.0.2.2"
+        ],
+        "StaticNameServers": [],
+        "DHCPv4": {
+          "DHCPEnabled": false,
+          "FallbackAddress": "Static",
+          "UseDNSServers": true,
+          "UseDomainName": false,
+          "UseGateway": true,
+          "UseNTPServers": false,
+          "UseStaticRoutes": true
+        },
+        "DHCPv6": {
+          "OperatingMode": "Stateful",
+          "UseDNSServers": false,
+          "UseDomainName": true,
+          "UseNTPServers": false,
+          "UseRapidCommit": true
+        },
+        "StatelessAddressAutoConfig": {
+          "IPv4AutoConfigEnabled": false,
+          "IPv6AutoConfigEnabled": true
+        }
+      },
+      "item_ids": [
+        "schemas::field::EthernetInterface.AutoNeg",
+        "schemas::field::EthernetInterface.EthernetInterfaceType",
+        "schemas::field::EthernetInterface.IPv6DefaultGateway",
+        "schemas::field::EthernetInterface.IPv6Enabled",
+        "schemas::field::EthernetInterface.RoutingScope",
+        "schemas::field::EthernetInterface.TeamMode",
+        "schemas::field::EthernetInterface.UefiDevicePath",
+        "schemas::field::EthernetInterface.NameServers",
+        "schemas::field::EthernetInterface.StaticNameServers",
+        "schemas::field::EthernetInterface.DHCPv4",
+        "schemas::type::DHCPv4Configuration",
+        "schemas::field::DHCPv4Configuration.DHCPEnabled",
+        "schemas::field::DHCPv4Configuration.FallbackAddress",
+        "schemas::field::DHCPv4Configuration.UseDNSServers",
+        "schemas::field::DHCPv4Configuration.UseDomainName",
+        "schemas::field::DHCPv4Configuration.UseGateway",
+        "schemas::field::DHCPv4Configuration.UseNTPServers",
+        "schemas::field::DHCPv4Configuration.UseStaticRoutes",
+        "schemas::field::EthernetInterface.DHCPv6",
+        "schemas::type::DHCPv6Configuration",
+        "schemas::field::DHCPv6Configuration.OperatingMode",
+        "schemas::field::DHCPv6Configuration.UseDNSServers",
+        "schemas::field::DHCPv6Configuration.UseDomainName",
+        "schemas::field::DHCPv6Configuration.UseNTPServers",
+        "schemas::field::DHCPv6Configuration.UseRapidCommit",
+        "schemas::field::EthernetInterface.StatelessAddressAutoConfig",
+        "schemas::type::StatelessAddressAutoConfiguration",
+        "schemas::field::StatelessAddressAutoConfiguration.IPv4AutoConfigEnabled",
+        "schemas::field::StatelessAddressAutoConfiguration.IPv6AutoConfigEnabled",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface",
+        "schemas::method::*ComputerSystem.EthernetInterfaces",
+        "schemas::function::ListReferencedEthernetInterfaces"
+      ],
+      "focus_fields": [
+        "AutoNeg",
+        "EthernetInterfaceType",
+        "IPv6DefaultGateway",
+        "IPv6Enabled",
+        "RoutingScope",
+        "TeamMode",
+        "UefiDevicePath",
+        "NameServers",
+        "StaticNameServers",
+        "DHCPv4",
+        "DHCPv6",
+        "StatelessAddressAutoConfig"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/defined_configuration",
+        "/redfish/v1/NetworkConfig/Cases/defined_configuration/EthernetInterfaces",
+        "/redfish/v1/NetworkConfig/Cases/defined_configuration/EthernetInterfaces/0"
+      ],
+      "relation": "same_selected_observation",
+      "fixture_sha256": "6e4350b40e8940c6fc08f771e1b971e043e10b4e0af8b6c09d6c493ca49ab2d7"
+    },
+    {
+      "id": "all_missing",
+      "uri": "/redfish/v1/NetworkConfig/Cases/all_missing",
+      "kind": "direct",
+      "input": {},
+      "item_ids": [
+        "schemas::field::EthernetInterface.AutoNeg",
+        "schemas::field::EthernetInterface.EthernetInterfaceType",
+        "schemas::field::EthernetInterface.IPv6DefaultGateway",
+        "schemas::field::EthernetInterface.IPv6Enabled",
+        "schemas::field::EthernetInterface.RoutingScope",
+        "schemas::field::EthernetInterface.TeamMode",
+        "schemas::field::EthernetInterface.UefiDevicePath",
+        "schemas::field::EthernetInterface.NameServers",
+        "schemas::field::EthernetInterface.StaticNameServers",
+        "schemas::field::EthernetInterface.DHCPv4",
+        "schemas::type::DHCPv4Configuration",
+        "schemas::field::DHCPv4Configuration.DHCPEnabled",
+        "schemas::field::DHCPv4Configuration.FallbackAddress",
+        "schemas::field::DHCPv4Configuration.UseDNSServers",
+        "schemas::field::DHCPv4Configuration.UseDomainName",
+        "schemas::field::DHCPv4Configuration.UseGateway",
+        "schemas::field::DHCPv4Configuration.UseNTPServers",
+        "schemas::field::DHCPv4Configuration.UseStaticRoutes",
+        "schemas::field::EthernetInterface.DHCPv6",
+        "schemas::type::DHCPv6Configuration",
+        "schemas::field::DHCPv6Configuration.OperatingMode",
+        "schemas::field::DHCPv6Configuration.UseDNSServers",
+        "schemas::field::DHCPv6Configuration.UseDomainName",
+        "schemas::field::DHCPv6Configuration.UseNTPServers",
+        "schemas::field::DHCPv6Configuration.UseRapidCommit",
+        "schemas::field::EthernetInterface.StatelessAddressAutoConfig",
+        "schemas::type::StatelessAddressAutoConfiguration",
+        "schemas::field::StatelessAddressAutoConfiguration.IPv4AutoConfigEnabled",
+        "schemas::field::StatelessAddressAutoConfiguration.IPv6AutoConfigEnabled",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface"
+      ],
+      "focus_fields": [
+        "AutoNeg",
+        "EthernetInterfaceType",
+        "IPv6DefaultGateway",
+        "IPv6Enabled",
+        "RoutingScope",
+        "TeamMode",
+        "UefiDevicePath",
+        "NameServers",
+        "StaticNameServers",
+        "DHCPv4",
+        "DHCPv6",
+        "StatelessAddressAutoConfig"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/all_missing"
+      ],
+      "relation": "known_difference",
+      "fixture_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "id": "all_null",
+      "uri": "/redfish/v1/NetworkConfig/Cases/all_null",
+      "kind": "direct",
+      "input": {
+        "AutoNeg": null,
+        "EthernetInterfaceType": null,
+        "IPv6DefaultGateway": null,
+        "IPv6Enabled": null,
+        "RoutingScope": null,
+        "TeamMode": null,
+        "UefiDevicePath": null,
+        "NameServers": null,
+        "StaticNameServers": null,
+        "DHCPv4": null,
+        "DHCPv6": null,
+        "StatelessAddressAutoConfig": null
+      },
+      "item_ids": [
+        "schemas::field::EthernetInterface.AutoNeg",
+        "schemas::field::EthernetInterface.EthernetInterfaceType",
+        "schemas::field::EthernetInterface.IPv6DefaultGateway",
+        "schemas::field::EthernetInterface.IPv6Enabled",
+        "schemas::field::EthernetInterface.RoutingScope",
+        "schemas::field::EthernetInterface.TeamMode",
+        "schemas::field::EthernetInterface.UefiDevicePath",
+        "schemas::field::EthernetInterface.NameServers",
+        "schemas::field::EthernetInterface.StaticNameServers",
+        "schemas::field::EthernetInterface.DHCPv4",
+        "schemas::type::DHCPv4Configuration",
+        "schemas::field::DHCPv4Configuration.DHCPEnabled",
+        "schemas::field::DHCPv4Configuration.FallbackAddress",
+        "schemas::field::DHCPv4Configuration.UseDNSServers",
+        "schemas::field::DHCPv4Configuration.UseDomainName",
+        "schemas::field::DHCPv4Configuration.UseGateway",
+        "schemas::field::DHCPv4Configuration.UseNTPServers",
+        "schemas::field::DHCPv4Configuration.UseStaticRoutes",
+        "schemas::field::EthernetInterface.DHCPv6",
+        "schemas::type::DHCPv6Configuration",
+        "schemas::field::DHCPv6Configuration.OperatingMode",
+        "schemas::field::DHCPv6Configuration.UseDNSServers",
+        "schemas::field::DHCPv6Configuration.UseDomainName",
+        "schemas::field::DHCPv6Configuration.UseNTPServers",
+        "schemas::field::DHCPv6Configuration.UseRapidCommit",
+        "schemas::field::EthernetInterface.StatelessAddressAutoConfig",
+        "schemas::type::StatelessAddressAutoConfiguration",
+        "schemas::field::StatelessAddressAutoConfiguration.IPv4AutoConfigEnabled",
+        "schemas::field::StatelessAddressAutoConfiguration.IPv6AutoConfigEnabled",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface"
+      ],
+      "focus_fields": [
+        "AutoNeg",
+        "EthernetInterfaceType",
+        "IPv6DefaultGateway",
+        "IPv6Enabled",
+        "RoutingScope",
+        "TeamMode",
+        "UefiDevicePath",
+        "NameServers",
+        "StaticNameServers",
+        "DHCPv4",
+        "DHCPv6",
+        "StatelessAddressAutoConfig"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/all_null"
+      ],
+      "relation": "known_difference",
+      "fixture_sha256": "3a08eae3dc72ef8790be87ab63b9d782c1d87cecb0386cd652aabb636837161c"
+    },
+    {
+      "id": "empty_nested_objects",
+      "uri": "/redfish/v1/NetworkConfig/Cases/empty_nested_objects",
+      "kind": "direct",
+      "input": {
+        "DHCPv4": {},
+        "DHCPv6": {},
+        "StatelessAddressAutoConfig": {}
+      },
+      "item_ids": [
+        "schemas::field::EthernetInterface.DHCPv4",
+        "schemas::type::DHCPv4Configuration",
+        "schemas::field::DHCPv4Configuration.DHCPEnabled",
+        "schemas::field::DHCPv4Configuration.FallbackAddress",
+        "schemas::field::DHCPv4Configuration.UseDNSServers",
+        "schemas::field::DHCPv4Configuration.UseDomainName",
+        "schemas::field::DHCPv4Configuration.UseGateway",
+        "schemas::field::DHCPv4Configuration.UseNTPServers",
+        "schemas::field::DHCPv4Configuration.UseStaticRoutes",
+        "schemas::field::EthernetInterface.DHCPv6",
+        "schemas::type::DHCPv6Configuration",
+        "schemas::field::DHCPv6Configuration.OperatingMode",
+        "schemas::field::DHCPv6Configuration.UseDNSServers",
+        "schemas::field::DHCPv6Configuration.UseDomainName",
+        "schemas::field::DHCPv6Configuration.UseNTPServers",
+        "schemas::field::DHCPv6Configuration.UseRapidCommit",
+        "schemas::field::EthernetInterface.StatelessAddressAutoConfig",
+        "schemas::type::StatelessAddressAutoConfiguration",
+        "schemas::field::StatelessAddressAutoConfiguration.IPv4AutoConfigEnabled",
+        "schemas::field::StatelessAddressAutoConfiguration.IPv6AutoConfigEnabled",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface"
+      ],
+      "focus_fields": [
+        "DHCPv4",
+        "DHCPv6",
+        "StatelessAddressAutoConfig"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/empty_nested_objects"
+      ],
+      "relation": "known_difference",
+      "fixture_sha256": "4112e5876426366faf0df19907bc7c0ea46e400ceeb915284358279850c4e7da"
+    },
+    {
+      "id": "nested_nulls",
+      "uri": "/redfish/v1/NetworkConfig/Cases/nested_nulls",
+      "kind": "direct",
+      "input": {
+        "DHCPv4": {
+          "DHCPEnabled": null,
+          "FallbackAddress": null,
+          "UseDNSServers": null,
+          "UseDomainName": null,
+          "UseGateway": null,
+          "UseNTPServers": null,
+          "UseStaticRoutes": null
+        },
+        "DHCPv6": {
+          "OperatingMode": null,
+          "UseDNSServers": null,
+          "UseDomainName": null,
+          "UseNTPServers": null,
+          "UseRapidCommit": null
+        },
+        "StatelessAddressAutoConfig": {
+          "IPv4AutoConfigEnabled": null,
+          "IPv6AutoConfigEnabled": null
+        }
+      },
+      "item_ids": [
+        "schemas::field::DHCPv4Configuration.DHCPEnabled",
+        "schemas::type::DHCPv4Configuration",
+        "schemas::field::DHCPv4Configuration.FallbackAddress",
+        "schemas::field::DHCPv4Configuration.UseDNSServers",
+        "schemas::field::DHCPv4Configuration.UseDomainName",
+        "schemas::field::DHCPv4Configuration.UseGateway",
+        "schemas::field::DHCPv4Configuration.UseNTPServers",
+        "schemas::field::DHCPv4Configuration.UseStaticRoutes",
+        "schemas::field::DHCPv6Configuration.OperatingMode",
+        "schemas::type::DHCPv6Configuration",
+        "schemas::field::DHCPv6Configuration.UseDNSServers",
+        "schemas::field::DHCPv6Configuration.UseDomainName",
+        "schemas::field::DHCPv6Configuration.UseNTPServers",
+        "schemas::field::DHCPv6Configuration.UseRapidCommit",
+        "schemas::field::StatelessAddressAutoConfiguration.IPv4AutoConfigEnabled",
+        "schemas::type::StatelessAddressAutoConfiguration",
+        "schemas::field::StatelessAddressAutoConfiguration.IPv6AutoConfigEnabled",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface"
+      ],
+      "focus_fields": [
+        "DHCPv4.DHCPEnabled",
+        "DHCPv4.FallbackAddress",
+        "DHCPv4.UseDNSServers",
+        "DHCPv4.UseDomainName",
+        "DHCPv4.UseGateway",
+        "DHCPv4.UseNTPServers",
+        "DHCPv4.UseStaticRoutes",
+        "DHCPv6.OperatingMode",
+        "DHCPv6.UseDNSServers",
+        "DHCPv6.UseDomainName",
+        "DHCPv6.UseNTPServers",
+        "DHCPv6.UseRapidCommit",
+        "StatelessAddressAutoConfig.IPv4AutoConfigEnabled",
+        "StatelessAddressAutoConfig.IPv6AutoConfigEnabled"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/nested_nulls"
+      ],
+      "relation": "known_difference",
+      "fixture_sha256": "f542afe249f961e4ce30644549a2b39a06b2a70ab81825c9a7e3611223c342f4"
+    },
+    {
+      "id": "unknown_policy_strings",
+      "uri": "/redfish/v1/NetworkConfig/Cases/unknown_policy_strings",
+      "kind": "direct",
+      "input": {
+        "EthernetInterfaceType": "FutureInterface",
+        "RoutingScope": "FutureScope",
+        "TeamMode": "FutureTeam",
+        "DHCPv4": {
+          "FallbackAddress": "FutureFallback"
+        },
+        "DHCPv6": {
+          "OperatingMode": "FutureMode"
+        }
+      },
+      "item_ids": [
+        "schemas::field::EthernetInterface.EthernetInterfaceType",
+        "schemas::field::EthernetInterface.RoutingScope",
+        "schemas::field::EthernetInterface.TeamMode",
+        "schemas::field::DHCPv4Configuration.FallbackAddress",
+        "schemas::type::DHCPv4Configuration",
+        "schemas::field::DHCPv6Configuration.OperatingMode",
+        "schemas::type::DHCPv6Configuration",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface"
+      ],
+      "focus_fields": [
+        "EthernetInterfaceType",
+        "RoutingScope",
+        "TeamMode",
+        "DHCPv4.FallbackAddress",
+        "DHCPv6.OperatingMode"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/unknown_policy_strings"
+      ],
+      "relation": "known_difference",
+      "fixture_sha256": "c18b50858557ba9051392de8bcb3ce78de995fe1bb274c7b39326f567fbf787e"
+    },
+    {
+      "id": "ipv6_present_without_enabled",
+      "uri": "/redfish/v1/NetworkConfig/Cases/ipv6_present_without_enabled",
+      "kind": "direct",
+      "input": {
+        "IPv6DefaultGateway": "2001:db8::1"
+      },
+      "item_ids": [
+        "schemas::field::EthernetInterface.IPv6DefaultGateway",
+        "schemas::field::EthernetInterface.IPv6Enabled",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface"
+      ],
+      "focus_fields": [
+        "IPv6DefaultGateway",
+        "IPv6Enabled"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/ipv6_present_without_enabled"
+      ],
+      "relation": "known_difference",
+      "fixture_sha256": "d20a06f7d56fffd05583df21c4e685b2147661a520fc312bc470fd774caddb09"
+    },
+    {
+      "id": "team_mode_absent",
+      "uri": "/redfish/v1/NetworkConfig/Cases/team_mode_absent",
+      "kind": "direct",
+      "input": {
+        "AutoNeg": true
+      },
+      "item_ids": [
+        "schemas::field::EthernetInterface.TeamMode",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface"
+      ],
+      "focus_fields": [
+        "TeamMode"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/team_mode_absent"
+      ],
+      "relation": "known_difference",
+      "fixture_sha256": "e92d0c772c88ae54916ebfd0085c2ef6f4201fb64fb50a76f81a7a4930e1da53"
+    },
+    {
+      "id": "wrong_AutoNeg",
+      "uri": "/redfish/v1/NetworkConfig/Cases/wrong_AutoNeg",
+      "kind": "direct",
+      "input": {
+        "AutoNeg": "false"
+      },
+      "item_ids": [
+        "schemas::field::EthernetInterface.AutoNeg",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface"
+      ],
+      "focus_fields": [
+        "AutoNeg"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/wrong_AutoNeg"
+      ],
+      "relation": "both_reject",
+      "fixture_sha256": "7ffadc035a1bbacaf443e0724a45b912d4902293c6737a1bee10120ab284f4b8"
+    },
+    {
+      "id": "wrong_EthernetInterfaceType",
+      "uri": "/redfish/v1/NetworkConfig/Cases/wrong_EthernetInterfaceType",
+      "kind": "direct",
+      "input": {
+        "EthernetInterfaceType": false
+      },
+      "item_ids": [
+        "schemas::field::EthernetInterface.EthernetInterfaceType",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface"
+      ],
+      "focus_fields": [
+        "EthernetInterfaceType"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/wrong_EthernetInterfaceType"
+      ],
+      "relation": "both_reject",
+      "fixture_sha256": "065ca56bf4168e39667f07469a7baa8bce3b5770c5efdb4ff0952b19eb0288a2"
+    },
+    {
+      "id": "wrong_IPv6DefaultGateway",
+      "uri": "/redfish/v1/NetworkConfig/Cases/wrong_IPv6DefaultGateway",
+      "kind": "direct",
+      "input": {
+        "IPv6DefaultGateway": false
+      },
+      "item_ids": [
+        "schemas::field::EthernetInterface.IPv6DefaultGateway",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface"
+      ],
+      "focus_fields": [
+        "IPv6DefaultGateway"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/wrong_IPv6DefaultGateway"
+      ],
+      "relation": "both_reject",
+      "fixture_sha256": "23507d0f3965cf61b663990762170dfc5857b221d4d5c589b85edd4d140f7618"
+    },
+    {
+      "id": "wrong_IPv6Enabled",
+      "uri": "/redfish/v1/NetworkConfig/Cases/wrong_IPv6Enabled",
+      "kind": "direct",
+      "input": {
+        "IPv6Enabled": "false"
+      },
+      "item_ids": [
+        "schemas::field::EthernetInterface.IPv6Enabled",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface"
+      ],
+      "focus_fields": [
+        "IPv6Enabled"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/wrong_IPv6Enabled"
+      ],
+      "relation": "both_reject",
+      "fixture_sha256": "b6bc26697d2b90e79ea2ad0ac4b79411291a56f2684ec93c47fb635e8a280162"
+    },
+    {
+      "id": "wrong_RoutingScope",
+      "uri": "/redfish/v1/NetworkConfig/Cases/wrong_RoutingScope",
+      "kind": "direct",
+      "input": {
+        "RoutingScope": false
+      },
+      "item_ids": [
+        "schemas::field::EthernetInterface.RoutingScope",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface"
+      ],
+      "focus_fields": [
+        "RoutingScope"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/wrong_RoutingScope"
+      ],
+      "relation": "both_reject",
+      "fixture_sha256": "daf61920c1248fe64e4283dc77fbcc5d5f6f8b9a1e59bd5f8b6a24f5bc19ffde"
+    },
+    {
+      "id": "wrong_TeamMode",
+      "uri": "/redfish/v1/NetworkConfig/Cases/wrong_TeamMode",
+      "kind": "direct",
+      "input": {
+        "TeamMode": false
+      },
+      "item_ids": [
+        "schemas::field::EthernetInterface.TeamMode",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface"
+      ],
+      "focus_fields": [
+        "TeamMode"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/wrong_TeamMode"
+      ],
+      "relation": "both_reject",
+      "fixture_sha256": "8a80ce3ea8d2ca75a74d859c22300cb0efdd3ceb9380abe3fafeb688aaa93731"
+    },
+    {
+      "id": "wrong_UefiDevicePath",
+      "uri": "/redfish/v1/NetworkConfig/Cases/wrong_UefiDevicePath",
+      "kind": "direct",
+      "input": {
+        "UefiDevicePath": false
+      },
+      "item_ids": [
+        "schemas::field::EthernetInterface.UefiDevicePath",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface"
+      ],
+      "focus_fields": [
+        "UefiDevicePath"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/wrong_UefiDevicePath"
+      ],
+      "relation": "both_reject",
+      "fixture_sha256": "781328cfcd8624fe72387a21ecce3ed31f3996ca574eee75b5d5ca1c7e144d07"
+    },
+    {
+      "id": "wrong_NameServers",
+      "uri": "/redfish/v1/NetworkConfig/Cases/wrong_NameServers",
+      "kind": "direct",
+      "input": {
+        "NameServers": "192.0.2.53"
+      },
+      "item_ids": [
+        "schemas::field::EthernetInterface.NameServers",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface"
+      ],
+      "focus_fields": [
+        "NameServers"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/wrong_NameServers"
+      ],
+      "relation": "both_reject",
+      "fixture_sha256": "f8f7a36e94dca297fd0fee95012d62060ec83e1fdf545d1aa398d71c3aeb40ec"
+    },
+    {
+      "id": "wrong_element_NameServers",
+      "uri": "/redfish/v1/NetworkConfig/Cases/wrong_element_NameServers",
+      "kind": "direct",
+      "input": {
+        "NameServers": [
+          123
+        ]
+      },
+      "item_ids": [
+        "schemas::field::EthernetInterface.NameServers",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface"
+      ],
+      "focus_fields": [
+        "NameServers"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/wrong_element_NameServers"
+      ],
+      "relation": "both_reject",
+      "fixture_sha256": "98cff8c7f7518f1dfe0e8abaceb54cb80c0ffdc59c8dd19e93b0e17b98cd84f2"
+    },
+    {
+      "id": "null_element_NameServers",
+      "uri": "/redfish/v1/NetworkConfig/Cases/null_element_NameServers",
+      "kind": "direct",
+      "input": {
+        "NameServers": [
+          null
+        ]
+      },
+      "item_ids": [
+        "schemas::field::EthernetInterface.NameServers",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface"
+      ],
+      "focus_fields": [
+        "NameServers"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/null_element_NameServers"
+      ],
+      "relation": "known_difference",
+      "fixture_sha256": "59ed1ffd2627517abd60d736a7791d6ce363316328bdb7a9c113e70ab1b6e129"
+    },
+    {
+      "id": "empty_NameServers",
+      "uri": "/redfish/v1/NetworkConfig/Cases/empty_NameServers",
+      "kind": "direct",
+      "input": {
+        "NameServers": []
+      },
+      "item_ids": [
+        "schemas::field::EthernetInterface.NameServers",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface"
+      ],
+      "focus_fields": [
+        "NameServers"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/empty_NameServers"
+      ],
+      "relation": "known_difference",
+      "fixture_sha256": "3753fc56a6d30dfde785c1a849e6856c5547d60826806cbb59386cbc7b495c51"
+    },
+    {
+      "id": "wrong_StaticNameServers",
+      "uri": "/redfish/v1/NetworkConfig/Cases/wrong_StaticNameServers",
+      "kind": "direct",
+      "input": {
+        "StaticNameServers": "192.0.2.53"
+      },
+      "item_ids": [
+        "schemas::field::EthernetInterface.StaticNameServers",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface"
+      ],
+      "focus_fields": [
+        "StaticNameServers"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/wrong_StaticNameServers"
+      ],
+      "relation": "both_reject",
+      "fixture_sha256": "d62c9fd4e5454268810b0d2544e420f9988674d7341fb0ac1315f4b8c1192f02"
+    },
+    {
+      "id": "wrong_element_StaticNameServers",
+      "uri": "/redfish/v1/NetworkConfig/Cases/wrong_element_StaticNameServers",
+      "kind": "direct",
+      "input": {
+        "StaticNameServers": [
+          123
+        ]
+      },
+      "item_ids": [
+        "schemas::field::EthernetInterface.StaticNameServers",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface"
+      ],
+      "focus_fields": [
+        "StaticNameServers"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/wrong_element_StaticNameServers"
+      ],
+      "relation": "both_reject",
+      "fixture_sha256": "f057521be9a3a665d72bbda246cfc0ea95da70cd15c009cba36fd65213544cba"
+    },
+    {
+      "id": "null_element_StaticNameServers",
+      "uri": "/redfish/v1/NetworkConfig/Cases/null_element_StaticNameServers",
+      "kind": "direct",
+      "input": {
+        "StaticNameServers": [
+          null
+        ]
+      },
+      "item_ids": [
+        "schemas::field::EthernetInterface.StaticNameServers",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface"
+      ],
+      "focus_fields": [
+        "StaticNameServers"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/null_element_StaticNameServers"
+      ],
+      "relation": "known_difference",
+      "fixture_sha256": "fb92f5792dc174d3d3c7e393efdc3b7e1789c35007635a3f97abe7bcd7f6ee70"
+    },
+    {
+      "id": "empty_StaticNameServers",
+      "uri": "/redfish/v1/NetworkConfig/Cases/empty_StaticNameServers",
+      "kind": "direct",
+      "input": {
+        "StaticNameServers": []
+      },
+      "item_ids": [
+        "schemas::field::EthernetInterface.StaticNameServers",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface"
+      ],
+      "focus_fields": [
+        "StaticNameServers"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/empty_StaticNameServers"
+      ],
+      "relation": "known_difference",
+      "fixture_sha256": "7453ae1a2c418f62f7e9ce6c8232107f777bfcd2a4eaa03a62e6cbe802ef4381"
+    },
+    {
+      "id": "wrong_DHCPv4",
+      "uri": "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv4",
+      "kind": "direct",
+      "input": {
+        "DHCPv4": false
+      },
+      "item_ids": [
+        "schemas::field::EthernetInterface.DHCPv4",
+        "schemas::type::DHCPv4Configuration",
+        "schemas::field::DHCPv4Configuration.DHCPEnabled",
+        "schemas::field::DHCPv4Configuration.FallbackAddress",
+        "schemas::field::DHCPv4Configuration.UseDNSServers",
+        "schemas::field::DHCPv4Configuration.UseDomainName",
+        "schemas::field::DHCPv4Configuration.UseGateway",
+        "schemas::field::DHCPv4Configuration.UseNTPServers",
+        "schemas::field::DHCPv4Configuration.UseStaticRoutes",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface"
+      ],
+      "focus_fields": [
+        "DHCPv4"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv4"
+      ],
+      "relation": "both_reject",
+      "fixture_sha256": "053d8e4f9f65c9df08bf97c694182973753ace7ea3ff4912db1421305ece08c4"
+    },
+    {
+      "id": "wrong_DHCPv4_DHCPEnabled",
+      "uri": "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv4_DHCPEnabled",
+      "kind": "direct",
+      "input": {
+        "DHCPv4": {
+          "DHCPEnabled": "false"
+        }
+      },
+      "item_ids": [
+        "schemas::field::DHCPv4Configuration.DHCPEnabled",
+        "schemas::type::DHCPv4Configuration",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface"
+      ],
+      "focus_fields": [
+        "DHCPv4.DHCPEnabled"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv4_DHCPEnabled"
+      ],
+      "relation": "both_reject",
+      "fixture_sha256": "7cc03e7ed7d3e62f4eff9a5a78a314732fa367d79565b27bfc6a6732be7d906e"
+    },
+    {
+      "id": "wrong_DHCPv4_FallbackAddress",
+      "uri": "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv4_FallbackAddress",
+      "kind": "direct",
+      "input": {
+        "DHCPv4": {
+          "FallbackAddress": false
+        }
+      },
+      "item_ids": [
+        "schemas::field::DHCPv4Configuration.FallbackAddress",
+        "schemas::type::DHCPv4Configuration",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface"
+      ],
+      "focus_fields": [
+        "DHCPv4.FallbackAddress"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv4_FallbackAddress"
+      ],
+      "relation": "both_reject",
+      "fixture_sha256": "a18dccba9260e0c6a2d1cb00f13f5ab879889b3013ccce2f21909629c5ee4691"
+    },
+    {
+      "id": "wrong_DHCPv4_UseDNSServers",
+      "uri": "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv4_UseDNSServers",
+      "kind": "direct",
+      "input": {
+        "DHCPv4": {
+          "UseDNSServers": "false"
+        }
+      },
+      "item_ids": [
+        "schemas::field::DHCPv4Configuration.UseDNSServers",
+        "schemas::type::DHCPv4Configuration",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface"
+      ],
+      "focus_fields": [
+        "DHCPv4.UseDNSServers"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv4_UseDNSServers"
+      ],
+      "relation": "both_reject",
+      "fixture_sha256": "efdfb98c8f0076dbb6c6decb51c6926738cf5ffcb36a61f550d785e074737b25"
+    },
+    {
+      "id": "wrong_DHCPv4_UseDomainName",
+      "uri": "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv4_UseDomainName",
+      "kind": "direct",
+      "input": {
+        "DHCPv4": {
+          "UseDomainName": "false"
+        }
+      },
+      "item_ids": [
+        "schemas::field::DHCPv4Configuration.UseDomainName",
+        "schemas::type::DHCPv4Configuration",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface"
+      ],
+      "focus_fields": [
+        "DHCPv4.UseDomainName"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv4_UseDomainName"
+      ],
+      "relation": "both_reject",
+      "fixture_sha256": "f565d03dd53171f4c3120a02cb48257fc439c5b90d2a83e77166ee525ae02c90"
+    },
+    {
+      "id": "wrong_DHCPv4_UseGateway",
+      "uri": "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv4_UseGateway",
+      "kind": "direct",
+      "input": {
+        "DHCPv4": {
+          "UseGateway": "false"
+        }
+      },
+      "item_ids": [
+        "schemas::field::DHCPv4Configuration.UseGateway",
+        "schemas::type::DHCPv4Configuration",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface"
+      ],
+      "focus_fields": [
+        "DHCPv4.UseGateway"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv4_UseGateway"
+      ],
+      "relation": "both_reject",
+      "fixture_sha256": "9a8f18f73ef7e355840fe8f1a167289ae7324ce173439490340362b53a805a02"
+    },
+    {
+      "id": "wrong_DHCPv4_UseNTPServers",
+      "uri": "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv4_UseNTPServers",
+      "kind": "direct",
+      "input": {
+        "DHCPv4": {
+          "UseNTPServers": "false"
+        }
+      },
+      "item_ids": [
+        "schemas::field::DHCPv4Configuration.UseNTPServers",
+        "schemas::type::DHCPv4Configuration",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface"
+      ],
+      "focus_fields": [
+        "DHCPv4.UseNTPServers"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv4_UseNTPServers"
+      ],
+      "relation": "both_reject",
+      "fixture_sha256": "ba5d4d44d97764a001104ed9cb8c5bbd0d427b30118f0a23e54ccc7eaf36538a"
+    },
+    {
+      "id": "wrong_DHCPv4_UseStaticRoutes",
+      "uri": "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv4_UseStaticRoutes",
+      "kind": "direct",
+      "input": {
+        "DHCPv4": {
+          "UseStaticRoutes": "false"
+        }
+      },
+      "item_ids": [
+        "schemas::field::DHCPv4Configuration.UseStaticRoutes",
+        "schemas::type::DHCPv4Configuration",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface"
+      ],
+      "focus_fields": [
+        "DHCPv4.UseStaticRoutes"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv4_UseStaticRoutes"
+      ],
+      "relation": "both_reject",
+      "fixture_sha256": "ac5190152409921fe22b8a7220b95390d4fa042f77c811564f1c963875b1764d"
+    },
+    {
+      "id": "wrong_DHCPv6",
+      "uri": "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv6",
+      "kind": "direct",
+      "input": {
+        "DHCPv6": false
+      },
+      "item_ids": [
+        "schemas::field::EthernetInterface.DHCPv6",
+        "schemas::type::DHCPv6Configuration",
+        "schemas::field::DHCPv6Configuration.OperatingMode",
+        "schemas::field::DHCPv6Configuration.UseDNSServers",
+        "schemas::field::DHCPv6Configuration.UseDomainName",
+        "schemas::field::DHCPv6Configuration.UseNTPServers",
+        "schemas::field::DHCPv6Configuration.UseRapidCommit",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface"
+      ],
+      "focus_fields": [
+        "DHCPv6"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv6"
+      ],
+      "relation": "both_reject",
+      "fixture_sha256": "5641787b9d855026a6345e8dcf14f2c663fd3f5f49dcfcbae8c33454f54b174a"
+    },
+    {
+      "id": "wrong_DHCPv6_OperatingMode",
+      "uri": "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv6_OperatingMode",
+      "kind": "direct",
+      "input": {
+        "DHCPv6": {
+          "OperatingMode": false
+        }
+      },
+      "item_ids": [
+        "schemas::field::DHCPv6Configuration.OperatingMode",
+        "schemas::type::DHCPv6Configuration",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface"
+      ],
+      "focus_fields": [
+        "DHCPv6.OperatingMode"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv6_OperatingMode"
+      ],
+      "relation": "both_reject",
+      "fixture_sha256": "f74d7ad71ef3674aed0b029deec4e112d09561e592cb2586f58c06adf3dabac3"
+    },
+    {
+      "id": "wrong_DHCPv6_UseDNSServers",
+      "uri": "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv6_UseDNSServers",
+      "kind": "direct",
+      "input": {
+        "DHCPv6": {
+          "UseDNSServers": "false"
+        }
+      },
+      "item_ids": [
+        "schemas::field::DHCPv6Configuration.UseDNSServers",
+        "schemas::type::DHCPv6Configuration",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface"
+      ],
+      "focus_fields": [
+        "DHCPv6.UseDNSServers"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv6_UseDNSServers"
+      ],
+      "relation": "both_reject",
+      "fixture_sha256": "47520b36c4416e41ee8c8380896d41eb8d8307894cf70a9df56fb0fd07354ccd"
+    },
+    {
+      "id": "wrong_DHCPv6_UseDomainName",
+      "uri": "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv6_UseDomainName",
+      "kind": "direct",
+      "input": {
+        "DHCPv6": {
+          "UseDomainName": "false"
+        }
+      },
+      "item_ids": [
+        "schemas::field::DHCPv6Configuration.UseDomainName",
+        "schemas::type::DHCPv6Configuration",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface"
+      ],
+      "focus_fields": [
+        "DHCPv6.UseDomainName"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv6_UseDomainName"
+      ],
+      "relation": "both_reject",
+      "fixture_sha256": "5f3e6ac2cc769e82450282ae10ab76fc2c4f8ff80af7dc6d2977461ebbf8d2fd"
+    },
+    {
+      "id": "wrong_DHCPv6_UseNTPServers",
+      "uri": "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv6_UseNTPServers",
+      "kind": "direct",
+      "input": {
+        "DHCPv6": {
+          "UseNTPServers": "false"
+        }
+      },
+      "item_ids": [
+        "schemas::field::DHCPv6Configuration.UseNTPServers",
+        "schemas::type::DHCPv6Configuration",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface"
+      ],
+      "focus_fields": [
+        "DHCPv6.UseNTPServers"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv6_UseNTPServers"
+      ],
+      "relation": "both_reject",
+      "fixture_sha256": "cbb76dbaf87a327f5ec5b739cb705d3c4e1b4da0fbb5c0b72fe0865667d01df2"
+    },
+    {
+      "id": "wrong_DHCPv6_UseRapidCommit",
+      "uri": "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv6_UseRapidCommit",
+      "kind": "direct",
+      "input": {
+        "DHCPv6": {
+          "UseRapidCommit": "false"
+        }
+      },
+      "item_ids": [
+        "schemas::field::DHCPv6Configuration.UseRapidCommit",
+        "schemas::type::DHCPv6Configuration",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface"
+      ],
+      "focus_fields": [
+        "DHCPv6.UseRapidCommit"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv6_UseRapidCommit"
+      ],
+      "relation": "both_reject",
+      "fixture_sha256": "72be879e609fd67581bd17edbed53bc41f3390fd10c3b2b880daadbc7e66d9b6"
+    },
+    {
+      "id": "wrong_StatelessAddressAutoConfig",
+      "uri": "/redfish/v1/NetworkConfig/Cases/wrong_StatelessAddressAutoConfig",
+      "kind": "direct",
+      "input": {
+        "StatelessAddressAutoConfig": false
+      },
+      "item_ids": [
+        "schemas::field::EthernetInterface.StatelessAddressAutoConfig",
+        "schemas::type::StatelessAddressAutoConfiguration",
+        "schemas::field::StatelessAddressAutoConfiguration.IPv4AutoConfigEnabled",
+        "schemas::field::StatelessAddressAutoConfiguration.IPv6AutoConfigEnabled",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface"
+      ],
+      "focus_fields": [
+        "StatelessAddressAutoConfig"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/wrong_StatelessAddressAutoConfig"
+      ],
+      "relation": "both_reject",
+      "fixture_sha256": "133abffd72b2c9cfc7772b8753d2e7227fd42bf2b17a8fbdd272b2def1356666"
+    },
+    {
+      "id": "wrong_StatelessAddressAutoConfig_IPv4AutoConfigEnabled",
+      "uri": "/redfish/v1/NetworkConfig/Cases/wrong_StatelessAddressAutoConfig_IPv4AutoConfigEnabled",
+      "kind": "direct",
+      "input": {
+        "StatelessAddressAutoConfig": {
+          "IPv4AutoConfigEnabled": "false"
+        }
+      },
+      "item_ids": [
+        "schemas::field::StatelessAddressAutoConfiguration.IPv4AutoConfigEnabled",
+        "schemas::type::StatelessAddressAutoConfiguration",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface"
+      ],
+      "focus_fields": [
+        "StatelessAddressAutoConfig.IPv4AutoConfigEnabled"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/wrong_StatelessAddressAutoConfig_IPv4AutoConfigEnabled"
+      ],
+      "relation": "both_reject",
+      "fixture_sha256": "55f651cd191179e4083ec9d9773e8bf71ff63721cc42fe1d911336c9a4aed4d5"
+    },
+    {
+      "id": "wrong_StatelessAddressAutoConfig_IPv6AutoConfigEnabled",
+      "uri": "/redfish/v1/NetworkConfig/Cases/wrong_StatelessAddressAutoConfig_IPv6AutoConfigEnabled",
+      "kind": "direct",
+      "input": {
+        "StatelessAddressAutoConfig": {
+          "IPv6AutoConfigEnabled": "false"
+        }
+      },
+      "item_ids": [
+        "schemas::field::StatelessAddressAutoConfiguration.IPv6AutoConfigEnabled",
+        "schemas::type::StatelessAddressAutoConfiguration",
+        "schemas::method::*EthernetInterface.UnmarshalJSON",
+        "schemas::function::GetEthernetInterface"
+      ],
+      "focus_fields": [
+        "StatelessAddressAutoConfig.IPv6AutoConfigEnabled"
+      ],
+      "paths": [
+        "/redfish/v1/NetworkConfig/Cases/wrong_StatelessAddressAutoConfig_IPv6AutoConfigEnabled"
+      ],
+      "relation": "both_reject",
+      "fixture_sha256": "7259f453e250be3c8ec3115d732620e27da554d804902806482599681c42b711"
+    }
+  ],
+  "adapters": {
+    "moonredfish": {
+      "observations": {
+        "defined_configuration": {
+          "ok": true,
+          "error": "",
+          "value": [
+            {
+              "AutoNeg": {
+                "state": "value",
+                "value": false
+              },
+              "DHCPv4": {
+                "state": "value",
+                "value": {
+                  "DHCPEnabled": {
+                    "state": "value",
+                    "value": false
+                  },
+                  "FallbackAddress": {
+                    "state": "value",
+                    "value": "Static"
+                  },
+                  "UseDNSServers": {
+                    "state": "value",
+                    "value": true
+                  },
+                  "UseDomainName": {
+                    "state": "value",
+                    "value": false
+                  },
+                  "UseGateway": {
+                    "state": "value",
+                    "value": true
+                  },
+                  "UseNTPServers": {
+                    "state": "value",
+                    "value": false
+                  },
+                  "UseStaticRoutes": {
+                    "state": "value",
+                    "value": true
+                  }
+                }
+              },
+              "DHCPv6": {
+                "state": "value",
+                "value": {
+                  "OperatingMode": {
+                    "state": "value",
+                    "value": "Stateful"
+                  },
+                  "UseDNSServers": {
+                    "state": "value",
+                    "value": false
+                  },
+                  "UseDomainName": {
+                    "state": "value",
+                    "value": true
+                  },
+                  "UseNTPServers": {
+                    "state": "value",
+                    "value": false
+                  },
+                  "UseRapidCommit": {
+                    "state": "value",
+                    "value": true
+                  }
+                }
+              },
+              "EthernetInterfaceType": {
+                "state": "value",
+                "value": "Physical"
+              },
+              "IPv6DefaultGateway": {
+                "state": "value",
+                "value": "2001:db8::1"
+              },
+              "IPv6Enabled": {
+                "state": "value",
+                "value": true
+              },
+              "NameServers": {
+                "state": "value",
+                "value": [
+                  "192.0.2.2",
+                  "2001:db8::53",
+                  "192.0.2.2"
+                ]
+              },
+              "RoutingScope": {
+                "state": "value",
+                "value": "HostOnly"
+              },
+              "StatelessAddressAutoConfig": {
+                "state": "value",
+                "value": {
+                  "IPv4AutoConfigEnabled": {
+                    "state": "value",
+                    "value": false
+                  },
+                  "IPv6AutoConfigEnabled": {
+                    "state": "value",
+                    "value": true
+                  }
+                }
+              },
+              "StaticNameServers": {
+                "state": "value",
+                "value": []
+              },
+              "TeamMode": {
+                "state": "value",
+                "value": "ActiveBackup"
+              },
+              "UefiDevicePath": {
+                "state": "value",
+                "value": "synthetic-path"
+              }
+            }
+          ]
+        },
+        "all_missing": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "AutoNeg": {
+              "state": "missing"
+            },
+            "DHCPv4": {
+              "state": "missing"
+            },
+            "DHCPv6": {
+              "state": "missing"
+            },
+            "EthernetInterfaceType": {
+              "state": "missing"
+            },
+            "IPv6DefaultGateway": {
+              "state": "missing"
+            },
+            "IPv6Enabled": {
+              "state": "missing"
+            },
+            "NameServers": {
+              "state": "missing"
+            },
+            "RoutingScope": {
+              "state": "missing"
+            },
+            "StatelessAddressAutoConfig": {
+              "state": "missing"
+            },
+            "StaticNameServers": {
+              "state": "missing"
+            },
+            "TeamMode": {
+              "state": "missing"
+            },
+            "UefiDevicePath": {
+              "state": "missing"
+            }
+          }
+        },
+        "all_null": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "AutoNeg": {
+              "state": "null"
+            },
+            "DHCPv4": {
+              "state": "null"
+            },
+            "DHCPv6": {
+              "state": "null"
+            },
+            "EthernetInterfaceType": {
+              "state": "null"
+            },
+            "IPv6DefaultGateway": {
+              "state": "null"
+            },
+            "IPv6Enabled": {
+              "state": "null"
+            },
+            "NameServers": {
+              "state": "null"
+            },
+            "RoutingScope": {
+              "state": "null"
+            },
+            "StatelessAddressAutoConfig": {
+              "state": "null"
+            },
+            "StaticNameServers": {
+              "state": "null"
+            },
+            "TeamMode": {
+              "state": "null"
+            },
+            "UefiDevicePath": {
+              "state": "null"
+            }
+          }
+        },
+        "empty_nested_objects": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "DHCPv4": {
+              "state": "value",
+              "value": {
+                "DHCPEnabled": {
+                  "state": "missing"
+                },
+                "FallbackAddress": {
+                  "state": "missing"
+                },
+                "UseDNSServers": {
+                  "state": "missing"
+                },
+                "UseDomainName": {
+                  "state": "missing"
+                },
+                "UseGateway": {
+                  "state": "missing"
+                },
+                "UseNTPServers": {
+                  "state": "missing"
+                },
+                "UseStaticRoutes": {
+                  "state": "missing"
+                }
+              }
+            },
+            "DHCPv6": {
+              "state": "value",
+              "value": {
+                "OperatingMode": {
+                  "state": "missing"
+                },
+                "UseDNSServers": {
+                  "state": "missing"
+                },
+                "UseDomainName": {
+                  "state": "missing"
+                },
+                "UseNTPServers": {
+                  "state": "missing"
+                },
+                "UseRapidCommit": {
+                  "state": "missing"
+                }
+              }
+            },
+            "StatelessAddressAutoConfig": {
+              "state": "value",
+              "value": {
+                "IPv4AutoConfigEnabled": {
+                  "state": "missing"
+                },
+                "IPv6AutoConfigEnabled": {
+                  "state": "missing"
+                }
+              }
+            }
+          }
+        },
+        "nested_nulls": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "DHCPv4": {
+              "state": "value",
+              "value": {
+                "DHCPEnabled": {
+                  "state": "null"
+                },
+                "FallbackAddress": {
+                  "state": "null"
+                },
+                "UseDNSServers": {
+                  "state": "null"
+                },
+                "UseDomainName": {
+                  "state": "null"
+                },
+                "UseGateway": {
+                  "state": "null"
+                },
+                "UseNTPServers": {
+                  "state": "null"
+                },
+                "UseStaticRoutes": {
+                  "state": "null"
+                }
+              }
+            },
+            "DHCPv6": {
+              "state": "value",
+              "value": {
+                "OperatingMode": {
+                  "state": "null"
+                },
+                "UseDNSServers": {
+                  "state": "null"
+                },
+                "UseDomainName": {
+                  "state": "null"
+                },
+                "UseNTPServers": {
+                  "state": "null"
+                },
+                "UseRapidCommit": {
+                  "state": "null"
+                }
+              }
+            },
+            "StatelessAddressAutoConfig": {
+              "state": "value",
+              "value": {
+                "IPv4AutoConfigEnabled": {
+                  "state": "null"
+                },
+                "IPv6AutoConfigEnabled": {
+                  "state": "null"
+                }
+              }
+            }
+          }
+        },
+        "unknown_policy_strings": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "DHCPv4": {
+              "state": "value",
+              "value": {
+                "DHCPEnabled": {
+                  "state": "missing"
+                },
+                "FallbackAddress": {
+                  "state": "value",
+                  "value": "FutureFallback"
+                },
+                "UseDNSServers": {
+                  "state": "missing"
+                },
+                "UseDomainName": {
+                  "state": "missing"
+                },
+                "UseGateway": {
+                  "state": "missing"
+                },
+                "UseNTPServers": {
+                  "state": "missing"
+                },
+                "UseStaticRoutes": {
+                  "state": "missing"
+                }
+              }
+            },
+            "DHCPv6": {
+              "state": "value",
+              "value": {
+                "OperatingMode": {
+                  "state": "value",
+                  "value": "FutureMode"
+                },
+                "UseDNSServers": {
+                  "state": "missing"
+                },
+                "UseDomainName": {
+                  "state": "missing"
+                },
+                "UseNTPServers": {
+                  "state": "missing"
+                },
+                "UseRapidCommit": {
+                  "state": "missing"
+                }
+              }
+            },
+            "EthernetInterfaceType": {
+              "state": "value",
+              "value": "FutureInterface"
+            },
+            "RoutingScope": {
+              "state": "value",
+              "value": "FutureScope"
+            },
+            "TeamMode": {
+              "state": "value",
+              "value": "FutureTeam"
+            }
+          }
+        },
+        "ipv6_present_without_enabled": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "IPv6DefaultGateway": {
+              "state": "value",
+              "value": "2001:db8::1"
+            },
+            "IPv6Enabled": {
+              "state": "missing"
+            }
+          }
+        },
+        "team_mode_absent": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "TeamMode": {
+              "state": "missing"
+            }
+          }
+        },
+        "wrong_AutoNeg": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "wrong_EthernetInterfaceType": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "wrong_IPv6DefaultGateway": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "wrong_IPv6Enabled": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "wrong_RoutingScope": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "wrong_TeamMode": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "wrong_UefiDevicePath": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "wrong_NameServers": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "wrong_element_NameServers": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "null_element_NameServers": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "empty_NameServers": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "NameServers": {
+              "state": "value",
+              "value": []
+            }
+          }
+        },
+        "wrong_StaticNameServers": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "wrong_element_StaticNameServers": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "null_element_StaticNameServers": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "empty_StaticNameServers": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "StaticNameServers": {
+              "state": "value",
+              "value": []
+            }
+          }
+        },
+        "wrong_DHCPv4": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "wrong_DHCPv4_DHCPEnabled": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "wrong_DHCPv4_FallbackAddress": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "wrong_DHCPv4_UseDNSServers": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "wrong_DHCPv4_UseDomainName": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "wrong_DHCPv4_UseGateway": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "wrong_DHCPv4_UseNTPServers": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "wrong_DHCPv4_UseStaticRoutes": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "wrong_DHCPv6": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "wrong_DHCPv6_OperatingMode": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "wrong_DHCPv6_UseDNSServers": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "wrong_DHCPv6_UseDomainName": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "wrong_DHCPv6_UseNTPServers": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "wrong_DHCPv6_UseRapidCommit": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "wrong_StatelessAddressAutoConfig": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "wrong_StatelessAddressAutoConfig_IPv4AutoConfigEnabled": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "wrong_StatelessAddressAutoConfig_IPv6AutoConfigEnabled": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        }
+      },
+      "requests": [
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/defined_configuration"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/defined_configuration/EthernetInterfaces"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/defined_configuration/EthernetInterfaces/0"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/all_missing"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/all_null"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/empty_nested_objects"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/nested_nulls"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/unknown_policy_strings"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/ipv6_present_without_enabled"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/team_mode_absent"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_AutoNeg"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_EthernetInterfaceType"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_IPv6DefaultGateway"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_IPv6Enabled"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_RoutingScope"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_TeamMode"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_UefiDevicePath"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_NameServers"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_element_NameServers"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/null_element_NameServers"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/empty_NameServers"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_StaticNameServers"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_element_StaticNameServers"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/null_element_StaticNameServers"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/empty_StaticNameServers"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv4"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv4_DHCPEnabled"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv4_FallbackAddress"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv4_UseDNSServers"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv4_UseDomainName"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv4_UseGateway"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv4_UseNTPServers"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv4_UseStaticRoutes"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv6"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv6_OperatingMode"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv6_UseDNSServers"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv6_UseDomainName"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv6_UseNTPServers"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv6_UseRapidCommit"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_StatelessAddressAutoConfig"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_StatelessAddressAutoConfig_IPv4AutoConfigEnabled"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_StatelessAddressAutoConfig_IPv6AutoConfigEnabled"
+        ]
+      ]
+    },
+    "gofish": {
+      "observations": {
+        "all_missing": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "AutoNeg": {
+              "state": "value",
+              "value": false
+            },
+            "DHCPv4": {
+              "state": "value",
+              "value": {
+                "DHCPEnabled": {
+                  "state": "value",
+                  "value": false
+                },
+                "FallbackAddress": {
+                  "state": "value",
+                  "value": ""
+                },
+                "UseDNSServers": {
+                  "state": "value",
+                  "value": false
+                },
+                "UseDomainName": {
+                  "state": "value",
+                  "value": false
+                },
+                "UseGateway": {
+                  "state": "value",
+                  "value": false
+                },
+                "UseNTPServers": {
+                  "state": "value",
+                  "value": false
+                },
+                "UseStaticRoutes": {
+                  "state": "value",
+                  "value": false
+                }
+              }
+            },
+            "DHCPv6": {
+              "state": "value",
+              "value": {
+                "OperatingMode": {
+                  "state": "value",
+                  "value": ""
+                },
+                "UseDNSServers": {
+                  "state": "value",
+                  "value": false
+                },
+                "UseDomainName": {
+                  "state": "value",
+                  "value": false
+                },
+                "UseNTPServers": {
+                  "state": "value",
+                  "value": false
+                },
+                "UseRapidCommit": {
+                  "state": "value",
+                  "value": false
+                }
+              }
+            },
+            "EthernetInterfaceType": {
+              "state": "value",
+              "value": ""
+            },
+            "IPv6DefaultGateway": {
+              "state": "value",
+              "value": ""
+            },
+            "IPv6Enabled": {
+              "state": "value",
+              "value": false
+            },
+            "NameServers": {
+              "state": "nil"
+            },
+            "RoutingScope": {
+              "state": "value",
+              "value": ""
+            },
+            "StatelessAddressAutoConfig": {
+              "state": "value",
+              "value": {
+                "IPv4AutoConfigEnabled": {
+                  "state": "value",
+                  "value": false
+                },
+                "IPv6AutoConfigEnabled": {
+                  "state": "value",
+                  "value": false
+                }
+              }
+            },
+            "StaticNameServers": {
+              "state": "nil"
+            },
+            "TeamMode": {
+              "state": "value",
+              "value": ""
+            },
+            "UefiDevicePath": {
+              "state": "value",
+              "value": ""
+            }
+          }
+        },
+        "all_null": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "AutoNeg": {
+              "state": "value",
+              "value": false
+            },
+            "DHCPv4": {
+              "state": "value",
+              "value": {
+                "DHCPEnabled": {
+                  "state": "value",
+                  "value": false
+                },
+                "FallbackAddress": {
+                  "state": "value",
+                  "value": ""
+                },
+                "UseDNSServers": {
+                  "state": "value",
+                  "value": false
+                },
+                "UseDomainName": {
+                  "state": "value",
+                  "value": false
+                },
+                "UseGateway": {
+                  "state": "value",
+                  "value": false
+                },
+                "UseNTPServers": {
+                  "state": "value",
+                  "value": false
+                },
+                "UseStaticRoutes": {
+                  "state": "value",
+                  "value": false
+                }
+              }
+            },
+            "DHCPv6": {
+              "state": "value",
+              "value": {
+                "OperatingMode": {
+                  "state": "value",
+                  "value": ""
+                },
+                "UseDNSServers": {
+                  "state": "value",
+                  "value": false
+                },
+                "UseDomainName": {
+                  "state": "value",
+                  "value": false
+                },
+                "UseNTPServers": {
+                  "state": "value",
+                  "value": false
+                },
+                "UseRapidCommit": {
+                  "state": "value",
+                  "value": false
+                }
+              }
+            },
+            "EthernetInterfaceType": {
+              "state": "value",
+              "value": ""
+            },
+            "IPv6DefaultGateway": {
+              "state": "value",
+              "value": ""
+            },
+            "IPv6Enabled": {
+              "state": "value",
+              "value": false
+            },
+            "NameServers": {
+              "state": "nil"
+            },
+            "RoutingScope": {
+              "state": "value",
+              "value": ""
+            },
+            "StatelessAddressAutoConfig": {
+              "state": "value",
+              "value": {
+                "IPv4AutoConfigEnabled": {
+                  "state": "value",
+                  "value": false
+                },
+                "IPv6AutoConfigEnabled": {
+                  "state": "value",
+                  "value": false
+                }
+              }
+            },
+            "StaticNameServers": {
+              "state": "nil"
+            },
+            "TeamMode": {
+              "state": "value",
+              "value": ""
+            },
+            "UefiDevicePath": {
+              "state": "value",
+              "value": ""
+            }
+          }
+        },
+        "defined_configuration": {
+          "error": "",
+          "ok": true,
+          "value": [
+            {
+              "AutoNeg": {
+                "state": "value",
+                "value": false
+              },
+              "DHCPv4": {
+                "state": "value",
+                "value": {
+                  "DHCPEnabled": {
+                    "state": "value",
+                    "value": false
+                  },
+                  "FallbackAddress": {
+                    "state": "value",
+                    "value": "Static"
+                  },
+                  "UseDNSServers": {
+                    "state": "value",
+                    "value": true
+                  },
+                  "UseDomainName": {
+                    "state": "value",
+                    "value": false
+                  },
+                  "UseGateway": {
+                    "state": "value",
+                    "value": true
+                  },
+                  "UseNTPServers": {
+                    "state": "value",
+                    "value": false
+                  },
+                  "UseStaticRoutes": {
+                    "state": "value",
+                    "value": true
+                  }
+                }
+              },
+              "DHCPv6": {
+                "state": "value",
+                "value": {
+                  "OperatingMode": {
+                    "state": "value",
+                    "value": "Stateful"
+                  },
+                  "UseDNSServers": {
+                    "state": "value",
+                    "value": false
+                  },
+                  "UseDomainName": {
+                    "state": "value",
+                    "value": true
+                  },
+                  "UseNTPServers": {
+                    "state": "value",
+                    "value": false
+                  },
+                  "UseRapidCommit": {
+                    "state": "value",
+                    "value": true
+                  }
+                }
+              },
+              "EthernetInterfaceType": {
+                "state": "value",
+                "value": "Physical"
+              },
+              "IPv6DefaultGateway": {
+                "state": "value",
+                "value": "2001:db8::1"
+              },
+              "IPv6Enabled": {
+                "state": "value",
+                "value": true
+              },
+              "NameServers": {
+                "state": "value",
+                "value": [
+                  "192.0.2.2",
+                  "2001:db8::53",
+                  "192.0.2.2"
+                ]
+              },
+              "RoutingScope": {
+                "state": "value",
+                "value": "HostOnly"
+              },
+              "StatelessAddressAutoConfig": {
+                "state": "value",
+                "value": {
+                  "IPv4AutoConfigEnabled": {
+                    "state": "value",
+                    "value": false
+                  },
+                  "IPv6AutoConfigEnabled": {
+                    "state": "value",
+                    "value": true
+                  }
+                }
+              },
+              "StaticNameServers": {
+                "state": "value",
+                "value": []
+              },
+              "TeamMode": {
+                "state": "value",
+                "value": "ActiveBackup"
+              },
+              "UefiDevicePath": {
+                "state": "value",
+                "value": "synthetic-path"
+              }
+            }
+          ]
+        },
+        "empty_NameServers": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "NameServers": {
+              "state": "value",
+              "value": []
+            }
+          }
+        },
+        "empty_StaticNameServers": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "StaticNameServers": {
+              "state": "value",
+              "value": []
+            }
+          }
+        },
+        "empty_nested_objects": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "DHCPv4": {
+              "state": "value",
+              "value": {
+                "DHCPEnabled": {
+                  "state": "value",
+                  "value": false
+                },
+                "FallbackAddress": {
+                  "state": "value",
+                  "value": ""
+                },
+                "UseDNSServers": {
+                  "state": "value",
+                  "value": false
+                },
+                "UseDomainName": {
+                  "state": "value",
+                  "value": false
+                },
+                "UseGateway": {
+                  "state": "value",
+                  "value": false
+                },
+                "UseNTPServers": {
+                  "state": "value",
+                  "value": false
+                },
+                "UseStaticRoutes": {
+                  "state": "value",
+                  "value": false
+                }
+              }
+            },
+            "DHCPv6": {
+              "state": "value",
+              "value": {
+                "OperatingMode": {
+                  "state": "value",
+                  "value": ""
+                },
+                "UseDNSServers": {
+                  "state": "value",
+                  "value": false
+                },
+                "UseDomainName": {
+                  "state": "value",
+                  "value": false
+                },
+                "UseNTPServers": {
+                  "state": "value",
+                  "value": false
+                },
+                "UseRapidCommit": {
+                  "state": "value",
+                  "value": false
+                }
+              }
+            },
+            "StatelessAddressAutoConfig": {
+              "state": "value",
+              "value": {
+                "IPv4AutoConfigEnabled": {
+                  "state": "value",
+                  "value": false
+                },
+                "IPv6AutoConfigEnabled": {
+                  "state": "value",
+                  "value": false
+                }
+              }
+            }
+          }
+        },
+        "ipv6_present_without_enabled": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "IPv6DefaultGateway": {
+              "state": "value",
+              "value": "2001:db8::1"
+            },
+            "IPv6Enabled": {
+              "state": "value",
+              "value": false
+            }
+          }
+        },
+        "nested_nulls": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "DHCPv4": {
+              "state": "value",
+              "value": {
+                "DHCPEnabled": {
+                  "state": "value",
+                  "value": false
+                },
+                "FallbackAddress": {
+                  "state": "value",
+                  "value": ""
+                },
+                "UseDNSServers": {
+                  "state": "value",
+                  "value": false
+                },
+                "UseDomainName": {
+                  "state": "value",
+                  "value": false
+                },
+                "UseGateway": {
+                  "state": "value",
+                  "value": false
+                },
+                "UseNTPServers": {
+                  "state": "value",
+                  "value": false
+                },
+                "UseStaticRoutes": {
+                  "state": "value",
+                  "value": false
+                }
+              }
+            },
+            "DHCPv6": {
+              "state": "value",
+              "value": {
+                "OperatingMode": {
+                  "state": "value",
+                  "value": ""
+                },
+                "UseDNSServers": {
+                  "state": "value",
+                  "value": false
+                },
+                "UseDomainName": {
+                  "state": "value",
+                  "value": false
+                },
+                "UseNTPServers": {
+                  "state": "value",
+                  "value": false
+                },
+                "UseRapidCommit": {
+                  "state": "value",
+                  "value": false
+                }
+              }
+            },
+            "StatelessAddressAutoConfig": {
+              "state": "value",
+              "value": {
+                "IPv4AutoConfigEnabled": {
+                  "state": "value",
+                  "value": false
+                },
+                "IPv6AutoConfigEnabled": {
+                  "state": "value",
+                  "value": false
+                }
+              }
+            }
+          }
+        },
+        "null_element_NameServers": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "NameServers": {
+              "state": "value",
+              "value": [
+                ""
+              ]
+            }
+          }
+        },
+        "null_element_StaticNameServers": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "StaticNameServers": {
+              "state": "value",
+              "value": [
+                ""
+              ]
+            }
+          }
+        },
+        "team_mode_absent": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "TeamMode": {
+              "state": "value",
+              "value": ""
+            }
+          }
+        },
+        "unknown_policy_strings": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "DHCPv4": {
+              "state": "value",
+              "value": {
+                "DHCPEnabled": {
+                  "state": "value",
+                  "value": false
+                },
+                "FallbackAddress": {
+                  "state": "value",
+                  "value": "FutureFallback"
+                },
+                "UseDNSServers": {
+                  "state": "value",
+                  "value": false
+                },
+                "UseDomainName": {
+                  "state": "value",
+                  "value": false
+                },
+                "UseGateway": {
+                  "state": "value",
+                  "value": false
+                },
+                "UseNTPServers": {
+                  "state": "value",
+                  "value": false
+                },
+                "UseStaticRoutes": {
+                  "state": "value",
+                  "value": false
+                }
+              }
+            },
+            "DHCPv6": {
+              "state": "value",
+              "value": {
+                "OperatingMode": {
+                  "state": "value",
+                  "value": "FutureMode"
+                },
+                "UseDNSServers": {
+                  "state": "value",
+                  "value": false
+                },
+                "UseDomainName": {
+                  "state": "value",
+                  "value": false
+                },
+                "UseNTPServers": {
+                  "state": "value",
+                  "value": false
+                },
+                "UseRapidCommit": {
+                  "state": "value",
+                  "value": false
+                }
+              }
+            },
+            "EthernetInterfaceType": {
+              "state": "value",
+              "value": "FutureInterface"
+            },
+            "RoutingScope": {
+              "state": "value",
+              "value": "FutureScope"
+            },
+            "TeamMode": {
+              "state": "value",
+              "value": "FutureTeam"
+            }
+          }
+        },
+        "wrong_AutoNeg": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "wrong_DHCPv4": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "wrong_DHCPv4_DHCPEnabled": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "wrong_DHCPv4_FallbackAddress": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "wrong_DHCPv4_UseDNSServers": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "wrong_DHCPv4_UseDomainName": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "wrong_DHCPv4_UseGateway": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "wrong_DHCPv4_UseNTPServers": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "wrong_DHCPv4_UseStaticRoutes": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "wrong_DHCPv6": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "wrong_DHCPv6_OperatingMode": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "wrong_DHCPv6_UseDNSServers": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "wrong_DHCPv6_UseDomainName": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "wrong_DHCPv6_UseNTPServers": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "wrong_DHCPv6_UseRapidCommit": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "wrong_EthernetInterfaceType": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "wrong_IPv6DefaultGateway": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "wrong_IPv6Enabled": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "wrong_NameServers": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "wrong_RoutingScope": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "wrong_StatelessAddressAutoConfig": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "wrong_StatelessAddressAutoConfig_IPv4AutoConfigEnabled": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "wrong_StatelessAddressAutoConfig_IPv6AutoConfigEnabled": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "wrong_StaticNameServers": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "wrong_TeamMode": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "wrong_UefiDevicePath": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "wrong_element_NameServers": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "wrong_element_StaticNameServers": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        }
+      },
+      "requests": [
+        [
+          "GET",
+          "/redfish/v1/"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/defined_configuration"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/defined_configuration/EthernetInterfaces"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/defined_configuration/EthernetInterfaces/0"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/all_missing"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/all_null"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/empty_nested_objects"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/nested_nulls"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/unknown_policy_strings"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/ipv6_present_without_enabled"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/team_mode_absent"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_AutoNeg"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_EthernetInterfaceType"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_IPv6DefaultGateway"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_IPv6Enabled"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_RoutingScope"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_TeamMode"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_UefiDevicePath"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_NameServers"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_element_NameServers"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/null_element_NameServers"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/empty_NameServers"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_StaticNameServers"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_element_StaticNameServers"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/null_element_StaticNameServers"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/empty_StaticNameServers"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv4"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv4_DHCPEnabled"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv4_FallbackAddress"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv4_UseDNSServers"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv4_UseDomainName"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv4_UseGateway"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv4_UseNTPServers"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv4_UseStaticRoutes"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv6"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv6_OperatingMode"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv6_UseDNSServers"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv6_UseDomainName"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv6_UseNTPServers"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_DHCPv6_UseRapidCommit"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_StatelessAddressAutoConfig"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_StatelessAddressAutoConfig_IPv4AutoConfigEnabled"
+        ],
+        [
+          "GET",
+          "/redfish/v1/NetworkConfig/Cases/wrong_StatelessAddressAutoConfig_IPv6AutoConfigEnabled"
+        ]
+      ]
+    }
+  },
+  "observation_scope": "Full projections asserted by runner; evidence retains focus_fields and their containing objects without normalizing their values or states.",
+  "source_sha256": {
+    "ethernet_configuration.mbt": "4b2b0449c79d3f30999ce1a3820aa54d46b777439359bcf8d1c98a3a64811911",
+    "extended_inventory.mbt": "cb109bcb67a0650a05d8242f2e30af6d44998f50698865338f6f01e8392f2ca7",
+    "extended_links.mbt": "3727ca1bb683d1786bfc553f0b404a1e2bcac6c8fc7b68f758fe4a35c95ae6cb",
+    "inventory_fields.mbt": "2a04b44d9ef3dfb9891c6e6584896a3e1c3d9a54d250c0d12f861b663a25e184",
+    "inventory_links.mbt": "3c4b17657d82bd8cbbb548267ed3af3307f2d22d446913ec0ebdc3f79f3a6b4b",
+    "moonredfish.mbt": "58a0ff8bcfcbabe1fdfc7054737488ff12ee117d0090038e7d6751aecebdb272",
+    "examples/compare/network_configuration.mbt": "e2ec7fdfbe7f3a6a89506c4bcf90054d1fce99ec1247b8630679402077d93862",
+    "examples/compare/main.mbt": "4ab4764a30fb2cb78790e16c56dced76344d4d1d00379530da379742cb89cc2f",
+    "tools/gofish/network_configuration.go": "1bb853e7fc5937c8afe8c20e4a3fb74cce20f052b56e908ba62c65cdbf310432",
+    "tools/gofish/main.go": "787f02a181cf725319276a2da66d5d57d555e1192c335fd44df494c9679da4bd",
+    "tools/gofish/parity.go": "46527fbcf64c7ac1697f9068aac450d9c68fb25f2776a14d4fdac771b978fb42",
+    "tools/test_network_config.py": "b7cac74f98329873e4f18fc298da0de0ef9fc06c22a4f3c7f4a6d16265b8e62b",
+    "tools/test_gofish.py": "ac27ec92a4820582f32c133442ba5adfaeaecdc206b6ee32c77fdad320ff9a11"
+  }
+}

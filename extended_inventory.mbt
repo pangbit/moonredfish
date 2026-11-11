@@ -68,6 +68,18 @@ pub fn Resource::volume(self : Resource) -> Volume raise RedfishError {
 /// Interface inventory. MAC addresses and hostname remain private caller data.
 pub struct EthernetInterface {
   resource : Resource
+  auto_neg : Field[Bool]
+  dhcpv4 : Field[DHCPv4Configuration]
+  dhcpv6 : Field[DHCPv6Configuration]
+  ethernet_interface_type : Field[String]
+  ipv6_default_gateway : Field[String]
+  ipv6_enabled : Field[Bool]
+  name_servers : Field[Array[String]]
+  routing_scope : Field[String]
+  stateless_address_auto_config : Field[StatelessAddressAutoConfiguration]
+  static_name_servers : Field[Array[String]]
+  team_mode : Field[String]
+  uefi_device_path : Field[String]
   mac_address : Field[String]
   permanent_mac_address : Field[String]
   hostname : Field[String]
@@ -85,6 +97,34 @@ pub fn Resource::ethernet_interface(
 ) -> EthernetInterface raise RedfishError {
   {
     resource: self,
+    auto_neg: read_field(self.json, "AutoNeg", bool_value),
+    dhcpv4: read_field(self.json, "DHCPv4", parse_dhcpv4_configuration),
+    dhcpv6: read_field(self.json, "DHCPv6", parse_dhcpv6_configuration),
+    ethernet_interface_type: read_field(
+      self.json,
+      "EthernetInterfaceType",
+      string_value,
+    ),
+    ipv6_default_gateway: read_field(
+      self.json,
+      "IPv6DefaultGateway",
+      string_value,
+    ),
+    ipv6_enabled: read_field(self.json, "IPv6Enabled", bool_value),
+    name_servers: read_array(self.json, "NameServers", string_value),
+    routing_scope: read_field(self.json, "RoutingScope", string_value),
+    stateless_address_auto_config: read_field(
+      self.json,
+      "StatelessAddressAutoConfig",
+      parse_stateless_address_auto_configuration,
+    ),
+    static_name_servers: read_array(
+      self.json,
+      "StaticNameServers",
+      string_value,
+    ),
+    team_mode: read_field(self.json, "TeamMode", string_value),
+    uefi_device_path: read_field(self.json, "UefiDevicePath", string_value),
     mac_address: read_field(self.json, "MACAddress", string_value),
     permanent_mac_address: read_field(
       self.json,

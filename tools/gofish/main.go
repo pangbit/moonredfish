@@ -151,6 +151,9 @@ func main() {
 		if os.Args[1] == "reject_tls" {
 			var untrusted x509.UnknownAuthorityError
 			result = map[string]bool{"tls_rejected": errors.As(err, &untrusted)}
+		} else if os.Args[1] == "network-config" {
+			must(err, "service root")
+			result = networkConfig(c)
 		} else if os.Args[1] == "parity" {
 			must(err, "service root")
 			result = parity(c)

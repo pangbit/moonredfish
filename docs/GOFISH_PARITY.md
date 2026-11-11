@@ -4,7 +4,9 @@
 **持续推进只读差分与无歧义修复；跨语言 API、安全和重大兼容取舍仍待明确决策。无实机控制或发布。**
 
 [Read-only batch 01 / 只读证据 01](gofish/READONLY-01.md): 39 measured cases,
-22 known differences, one integer-validation defect fixed. Zero fully verified items.
+22 known differences, one integer-validation defect fixed.
+[Read-only batch 02 / 只读实现 02](gofish/READONLY-02.md) adds DHCP/DNS/SLAAC/policy
+read fields. Current mappings: 263 P / 11,317 U / 0 V; no fully verified items.
 
 The target is every public capability of the fixed GoFish version, including Redfish,
 Swordfish, OEM extensions and support APIs. Current moonredfish is a selected read-only
@@ -89,7 +91,9 @@ States / 状态：`U` = no reviewed full mapping (gap/unverified); `P` = overlap
 or mapping candidate; `V` = verified under an approved contract. Initial inventory has
 234 `P` and 11,346 `U` rows, including embeds, and **zero `V`**. A `P` field may have a
 selected-value test, but is not equivalent across null/default/error/serialization cases.
-All statuses are relative to the subject commit, not a claim about future work.
+Initial statuses refer to the subject baseline; later candidate mappings are versioned
+by the evidence batches. Current totals are 263 P / 11,317 U / 0 V after batch 02.
+They are not a claim about untested behavior or future work.
 
 `U` 是未映射差距/未验证，`P` 是已有子集或映射候选，`V` 才表示按已批准契约验证。
 当前无 `V` 项。字段在某个样例中相同，不说明缺失、null、错误、序列化均相同。
@@ -260,6 +264,8 @@ for every possible server/input; report the exact tested contract and remaining 
 Continue bounded read-only evidence and unambiguous defect fixes under the user's later
 instruction. [Batch 01](gofish/READONLY-01.md) links measured cases to individual rows and
 lists concrete D-PRESENCE, D-NUM, D-COLLECTION, D-JSON and D-AUTH recommendations.
+[Batch 02](gofish/READONLY-02.md) implements independent DHCP/DNS/SLAAC fields and records
+concrete nested-default, null DNS entry and source-comment/runtime conflicts.
 Affected API/safety migrations remain pending; no control phase or physical test is authorized.
 
 按用户后续指令持续推进只读差分及明确缺陷修复。证据 01 已关联具体条目并列明五项

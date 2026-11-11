@@ -7,12 +7,12 @@ request sequences. The containing Git commit identifies this batch; `subject_bas
 is its parent checkout, and source hashes identify the tested uncommitted changes.
 
 **39 cases: 7 same selected observations, 10 both reject, 22 known differences.**
-No item is promoted to `V`. The 10 rejection cases have different error types; they are
+At this batch's commit no item was promoted to `V`. The 10 rejection cases have different error types; they are
 not evidence of error equivalence. The 7 matching projections cover only the specified
 values, not every property, API, wire byte, request schedule or environment.
 
-**39 个场景：7 个选定观测相同、10 个两端拒绝、22 个已知差异。** 逐项矩阵仍为
-234 P / 11,346 U / 0 V。“两端拒绝”不表示错误类型相同；相同投影不关闭整个字段或 API。
+**39 个场景：7 个选定观测相同、10 个两端拒绝、22 个已知差异。** 本批提交时的矩阵为
+234 P / 11,346 U / 0 V（后续映射进展见新批次）。“两端拒绝”不表示错误类型相同；相同投影不关闭整个字段或 API。
 证据包含原始结果与请求顺序；Git 所在提交及测试源码哈希定位被测改动。
 
 ## Reproduce / 复现

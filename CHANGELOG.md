@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Add typed read-only Ethernet DHCPv4/DHCPv6, SLAAC, DNS and interface policy fields,
+  nested raw-JSON retention and owner-link differential verification. Keep unresolved
+  default/null-element behavior explicit; no configuration writes or full-parity claim.
+- 新增以太网 DHCPv4/DHCPv6、SLAAC、DNS 与接口策略类型化读取，保留嵌套原始 JSON，
+  补充显式链接差分验证；默认值和 null 成员差异继续开放，不执行配置写入。
+
 - Preserve wire JSON numeric spelling and reject fractional counts/capacities hidden by
   floating-point rounding. Existing integer ranges and integral decimal/exponent behavior
   remain unchanged. Add 39 read-only differential cases, item-level evidence and open

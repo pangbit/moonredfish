@@ -88,6 +88,26 @@ pub struct Collection {
   next_link : String?
 }
 
+pub struct DHCPv4Configuration {
+  json : @json.Json
+  dhcp_enabled : Field[Bool]
+  fallback_address : Field[String]
+  use_dns_servers : Field[Bool]
+  use_domain_name : Field[Bool]
+  use_gateway : Field[Bool]
+  use_ntp_servers : Field[Bool]
+  use_static_routes : Field[Bool]
+}
+
+pub struct DHCPv6Configuration {
+  json : @json.Json
+  operating_mode : Field[String]
+  use_dns_servers : Field[Bool]
+  use_domain_name : Field[Bool]
+  use_ntp_servers : Field[Bool]
+  use_rapid_commit : Field[Bool]
+}
+
 pub struct Drive {
   resource : Resource
   manufacturer : Field[String]
@@ -104,6 +124,18 @@ pub struct Drive {
 
 pub struct EthernetInterface {
   resource : Resource
+  auto_neg : Field[Bool]
+  dhcpv4 : Field[DHCPv4Configuration]
+  dhcpv6 : Field[DHCPv6Configuration]
+  ethernet_interface_type : Field[String]
+  ipv6_default_gateway : Field[String]
+  ipv6_enabled : Field[Bool]
+  name_servers : Field[Array[String]]
+  routing_scope : Field[String]
+  stateless_address_auto_config : Field[StatelessAddressAutoConfiguration]
+  static_name_servers : Field[Array[String]]
+  team_mode : Field[String]
+  uefi_device_path : Field[String]
   mac_address : Field[String]
   permanent_mac_address : Field[String]
   hostname : Field[String]
@@ -298,6 +330,12 @@ pub struct SoftwareInventory {
   lowest_supported_version : Field[String]
   updateable : Field[Bool]
   status : Field[Health]
+}
+
+pub struct StatelessAddressAutoConfiguration {
+  json : @json.Json
+  ipv4_auto_config_enabled : Field[Bool]
+  ipv6_auto_config_enabled : Field[Bool]
 }
 
 pub struct Storage {

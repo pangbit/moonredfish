@@ -274,3 +274,25 @@ drive deduplication, malformed/unsafe links, 403/404 and shared traversal limits
 26 路由合成图覆盖存储/磁盘/卷、适配器、所有新增资源的选定字段及日志分页。两个客户端
 分别对照原始输入提取的字段，不以 GoFish 默认值证明三态语义等价。本机 mock 另测链接
 三态/空值、磁盘去重、畸形/危险链接、403/404 及共享遍历预算。尚无真实 BMC 验证。
+
+
+## Ethernet configuration reads (Unreleased) / 以太网配置读取（未发布）
+
+`resource.ethernet_interface()` and `client.ethernet_interfaces(owner)` now expose
+`dhcpv4`, `dhcpv6`, `stateless_address_auto_config`, `name_servers`,
+`static_name_servers`, `auto_neg`, `ethernet_interface_type`, `ipv6_default_gateway`,
+`ipv6_enabled`, `routing_scope`, `team_mode` and `uefi_device_path`.
+DHCPv4/DHCPv6/SLAAC use typed nested views; each contains `json` and Field-valued
+properties. For example, `interface.dhcpv4.value()` returns an optional
+`DHCPv4Configuration`; inspect `dhcp_enabled` without treating Missing or Null as false.
+
+上述字段可通过原有接口读取路径获取；嵌套配置保留原始 JSON 与 Field 三态。读取
+`interface.dhcpv4.value()` 后可查看 `dhcp_enabled`，不要把缺失/null 当成 false。
+DNS 数组保留顺序、重复和空数组；不解析 DNS、不验证 IP、不推断 IPv6Enabled 或 TeamMode。
+配置读取不会执行 Update。网络地址属于调用方数据，示例只输出存在性和数量。
+
+See [the complete added-field list and differential evidence](gofish/READONLY-02.md).
+Missing/null/defaults and null DNS members still differ from GoFish. This is not full
+EthernetInterface/address/VLAN/update support; those gaps remain in the item matrix.
+详见字段清单与差分证据；缺失/null/默认值及 DNS null 成员仍有差异，地址/VLAN/写入等
+能力继续保留在矩阵中，未冒称完整 EthernetInterface 一致。

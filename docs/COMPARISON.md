@@ -136,6 +136,18 @@ macOS arm64. Neither result closes full API/model acceptance.
 运行上述命令可复核 39 个细粒度合成场景，保留缺失/null/默认值、数组顺序、重复、部分结果
 和请求记录。证据 01 中 7 个选定观测相同、10 个两端拒绝、22 个差异；矩阵保持未完成。
 
+## Network configuration implementation / 网络配置实现
+
+`python3 tools/test_network_config.py` exercises the added DHCPv4/DHCPv6/SLAAC,
+DNS and interface policy read APIs, including explicit owner-link traversal. It checks
+all supplied fields, nested presence, wrong types, enum strings and DNS member behavior.
+[Batch 02](gofish/READONLY-02.md) contains exact inputs, observations, remaining differences
+and recommendations. These functional reads extend the library; they do not close full
+EthernetInterface or API-shape equivalence.
+
+该命令验证新增网络配置读取，包括真实 owner→集合→接口调用路径及新增字段值。
+证据 02 给出明确输入、两端表现、影响和建议；不会把候选映射或测试数量当成完整一致。
+
 ## Open differences / 待解决差异
 
 GoFish is the pinned behavior reference for the full-parity goal; DMTF remains the protocol specification. Its error strings can

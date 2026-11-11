@@ -13,7 +13,8 @@ personally maintained Apache-2.0 project, not a DMTF certification or a GoFish p
 The proposed full GoFish alignment is documented in the [draft parity plan](docs/GOFISH_PARITY.md).
 Read-only differential work is underway; API/safety decisions remain open. See the
 [39-case evidence and concrete decisions](docs/gofish/READONLY-01.md). Current subset
-support is not complete GoFish equivalence.
+support is not complete GoFish equivalence. [Network configuration reads](docs/gofish/READONLY-02.md)
+now include DHCPv4/DHCPv6, SLAAC, DNS and interface policies under the existing Field API.
 
 ## Scope
 
