@@ -124,9 +124,21 @@ DMTF 日志集合内嵌完整条目，GoFish 可以直接解析而不发成员 G
 `Members@odata.nextLink`。未被集合引用的 AC-RoT0 不纳入夹具。缺失/null 及遍历预算由
 moonredfish 自身回归验证，不宣称与 GoFish 等价。尚未进行真实 BMC 测试。
 
-## Intentional differences / 刻意保留的差异
+## Detailed differential evidence / 细粒度差分证据
 
-GoFish is a comparison implementation, not the specification. Its error strings can
+Run `python3 tools/test_parity.py` for 39 bounded synthetic cases covering numeric
+spelling/ranges, missing/null/defaults, JSON decoding and collection order/duplicates/
+embedded/partial results. [Batch 01](gofish/READONLY-01.md) records 7 matching selected
+observations, 10 both-reject cases and 22 open differences. The adapters preserve Field
+states and partial results. Linux CI runs this batch; current committed evidence is local
+macOS arm64. Neither result closes full API/model acceptance.
+
+运行上述命令可复核 39 个细粒度合成场景，保留缺失/null/默认值、数组顺序、重复、部分结果
+和请求记录。证据 01 中 7 个选定观测相同、10 个两端拒绝、22 个差异；矩阵保持未完成。
+
+## Open differences / 待解决差异
+
+GoFish is the pinned behavior reference for the full-parity goal; DMTF remains the protocol specification. Its error strings can
 retain raw response bodies, so the adapter extracts selected error fields without
 printing the original error or enabling HTTP dumps. `Logout()` returns no error;
 the server separately verifies deletion. Its collections may return partial data with
@@ -134,7 +146,7 @@ an error, while moonredfish rejects incomplete inventory. Missing collection lin
 absent/null/zero values, duplicate members, redirects and resource limits need their own
 contract review; this small comparison does not assert equivalence for those cases.
 
-GoFish 不是规范本身。其错误字符串可能保留原始响应，因此适配器只提取选定字段，不输出
+GoFish 是完整对齐目标的固定行为参照，DMTF 是协议规范。其错误字符串可能保留原始响应，因此适配器只提取选定字段，不输出
 原始错误或 HTTP dump。`Logout()` 没有错误返回，故由服务端另行核实删除。它允许集合
 返回部分数据加错误，moonredfish 则不返回不完整清单。缺失集合链接、缺省/null/零值、
 重复成员、重定向及资源上限需要按各自契约审阅，本对照不宣称这些行为相同。

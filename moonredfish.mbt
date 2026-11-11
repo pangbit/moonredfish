@@ -298,7 +298,11 @@ async fn Client::request(
 
 ///|
 fn decode_json(data : Bytes) -> Json raise RedfishError {
-  @json.parse(@utf8.decode(data), reject_duplicate_keys=true) catch {
+  @json.parse(
+    @utf8.decode(data),
+    reject_duplicate_keys=true,
+    preserve_number_repr=true,
+  ) catch {
     _ => raise InvalidResponse("invalid UTF-8 or JSON")
   }
 }

@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Preserve wire JSON numeric spelling and reject fractional counts/capacities hidden by
+  floating-point rounding. Existing integer ranges and integral decimal/exponent behavior
+  remain unchanged. Add 39 read-only differential cases, item-level evidence and open
+  GoFish compatibility decisions; no full-parity claim, device controls or publication.
+- 保留 HTTP JSON 数字原文，修复浮点舍入掩盖非整数容量/数量的问题；既有范围与数学整数
+  拼写规则不变。新增 39 个只读差分场景、逐项证据及待决兼容取舍，不宣称完整对齐。
+
 - Added bounded read-only Storage/Drive/Volume, EthernetInterface/NetworkAdapter,
   LogService/LogEntry, SoftwareInventory and current BIOS attribute views and explicit
   link readers. Added a count-only example, three-state/budget regression checks and

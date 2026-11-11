@@ -36,7 +36,7 @@ def canonical(result):
 
 @contextmanager
 def fixture(routes, protocol=False, tls=None):
-    state = {"login": 0, "logout": 0, "wrong": 0, "active": False, "visited": set(), "unexpected": []}
+    state = {"login": 0, "logout": 0, "wrong": 0, "active": False, "visited": set(), "unexpected": [], "requests": []}
 
     class Handler(BaseHTTPRequestHandler):
         def log_message(self, *_args):
@@ -57,13 +57,17 @@ def fixture(routes, protocol=False, tls=None):
             self.respond(405, {})
 
         def do_GET(self):
+            state["requests"].append([self.command, self.path])
             state["visited"].add(self.path)
             if protocol and self.path != ROOT + "/" and (
                 not state["active"] or self.headers.get("X-Auth-Token") != TOKEN
             ):
                 return self.respond(401, {})
             if self.path in routes:
-                return self.respond(200, routes[self.path])
+                data = routes[self.path]
+                if isinstance(data, tuple):
+                    return self.respond(*data)
+                return self.respond(200, data)
             if protocol and self.path == ROOT + "/Forbidden":
                 return self.respond(403, {"error": {
                     "code": "Base.1.0.GeneralError", "message": PRIVATE,

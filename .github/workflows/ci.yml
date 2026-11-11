@@ -40,6 +40,7 @@ jobs:
           test -z "$(gofmt -l tools/gofish/*.go)"
           python3 tools/test_gofish.py
           python3 tools/test_extended.py
+          python3 tools/test_parity.py
       - run: moon info --target native
       - run: moon fmt --check
       - run: git diff --exit-code

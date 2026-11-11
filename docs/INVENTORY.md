@@ -183,13 +183,21 @@ The number fields added here use nonnegative integral `Double` values capped at
 9,007,199,254,740,991 (2^53−1); larger values fail instead of being exposed as a
 rounded typed integer. This is a deliberately bounded selected-field decoder, not
 full Redfish numeric/schema validation. Original parsed JSON is available for wider
-application-specific handling. Units are bytes and Mbps, with no conversion.
+application-specific handling. HTTP decoding preserves number spellings and checks exact
+integrality before Double rounding; `1.0000000000000001` and `1e-9999` are rejected.
+Mathematically integral `1.0` and `1e3` remain accepted. Caller-created Json that has already
+lost its number spelling cannot recover discarded precision; parse external JSON with
+`preserve_number_repr=true`. Raw JSON reserialization retains the preserved spelling.
+Units are bytes and Mbps, with no conversion.
 
 所有视图保留原资源及 JSON；false、零、空数组和空属性对象均是有效值。未知枚举原样保留。
 布尔字段须为 JSON 布尔值，BIOS Attributes 须为对象，MessageArgs 须为字符串数组；
 不把 BIOS 属性强制转换为字符串，也不推断写权限。新增数字字段使用非负整数 Double，
 上限为 2^53−1；超过范围报错，不作为已四舍五入的类型化整数返回。这是有界字段解码，
-不是完整数值或 schema 验证。更大数值可由应用检查原始解析后 JSON。单位为字节和 Mbps。
+不是完整数值或 schema 验证。HTTP 解码保留数字原文，在浮点舍入前校验整数性，拒绝
+`1.0000000000000001`、`1e-9999`，继续接受数学上为整数的 `1.0`、`1e3`。
+调用者的 Json 若已丢失原文则无法恢复精度；自行解析外部 JSON 时应启用
+`preserve_number_repr=true`。raw JSON 再序列化保留数字拼写。单位为字节和 Mbps。
 
 | Client method / 方法 | Explicit owner link / 显式来源链接 |
 | --- | --- |

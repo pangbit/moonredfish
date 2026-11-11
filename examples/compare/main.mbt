@@ -108,6 +108,7 @@ async fn main {
       }
     "hardware" => hardware(c)
     "extended" => extended(c)
+    "parity" => parity(c)
     "protocol" => protocol(c)
     "reject_tls" => {
       let rejected = try {

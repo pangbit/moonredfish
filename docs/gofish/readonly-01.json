@@ -1,0 +1,1405 @@
+{
+  "reference": {
+    "version": "v0.27.0",
+    "commit": "4cc897fb5c172996e8f34a31a5d1012b45a287a7"
+  },
+  "subject_base_commit": "66545d7ceba678ddd0936e1c9e8b90021c1ddf6e",
+  "environment": {
+    "os": "Darwin",
+    "arch": "arm64",
+    "go": "go version go1.24.0 darwin/arm64",
+    "moon": "moon 0.1.20261104 (940aa18 2026-11-04) ~/.moon/bin/moon\nmoonc v0.10.20+65efd5b93 (2026-11-05) ~/.moon/bin/moonc\nmoonrun 0.1.20261104 (940aa18 2026-11-04) ~/.moon/bin/moonrun\n\nFeature flags enabled: rr_moon_mod,rr_moon_pkg"
+  },
+  "limits": "Synthetic read-only selected fields/collection behavior only; no approved API mapping, full error equivalence, safety-default equivalence, real BMC or all-platform claim. Same projection is not full item parity.",
+  "summary": {
+    "known_difference": 22,
+    "same_selected_observation": 7,
+    "both_reject": 10
+  },
+  "cases": [
+    {
+      "id": "capacity_missing",
+      "behavior": "B07",
+      "kind": "drive",
+      "field": "CapacityBytes",
+      "fixture_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "relation": "known_difference",
+      "item_ids": [
+        "schemas::field::Drive.CapacityBytes",
+        "schemas::method::*Drive.UnmarshalJSON",
+        "schemas::function::GetDrive",
+        "schemas::function::GetObject",
+        "schemas::function::DecodeGenericEntity"
+      ]
+    },
+    {
+      "id": "capacity_null",
+      "behavior": "B07",
+      "kind": "drive",
+      "field": "CapacityBytes",
+      "fixture_sha256": "1e8a64cc29efc2b90430bbaaad9386a31e15bdc0c68af802233c9c7c17bb3b1d",
+      "relation": "known_difference",
+      "item_ids": [
+        "schemas::field::Drive.CapacityBytes",
+        "schemas::method::*Drive.UnmarshalJSON",
+        "schemas::function::GetDrive",
+        "schemas::function::GetObject",
+        "schemas::function::DecodeGenericEntity"
+      ]
+    },
+    {
+      "id": "capacity_zero",
+      "behavior": "B08",
+      "kind": "drive",
+      "field": "CapacityBytes",
+      "fixture_sha256": "60655b4b62ff0660c6b5bbac37be6fa7aaaeabb8793c7b9198507134b870726c",
+      "relation": "same_selected_observation",
+      "item_ids": [
+        "schemas::field::Drive.CapacityBytes",
+        "schemas::method::*Drive.UnmarshalJSON",
+        "schemas::function::GetDrive",
+        "schemas::function::GetObject",
+        "schemas::function::DecodeGenericEntity"
+      ]
+    },
+    {
+      "id": "capacity_safe_max",
+      "behavior": "B08",
+      "kind": "drive",
+      "field": "CapacityBytes",
+      "fixture_sha256": "6e48791d01a4b80847d4a3db8436e15605d7c56f391cd622f5aec83ae97f5029",
+      "relation": "same_selected_observation",
+      "item_ids": [
+        "schemas::field::Drive.CapacityBytes",
+        "schemas::method::*Drive.UnmarshalJSON",
+        "schemas::function::GetDrive",
+        "schemas::function::GetObject",
+        "schemas::function::DecodeGenericEntity"
+      ]
+    },
+    {
+      "id": "capacity_above_safe",
+      "behavior": "B08",
+      "kind": "drive",
+      "field": "CapacityBytes",
+      "fixture_sha256": "2b0faaac4f1a78a6f11134fa37d0f5b4a60ba9242250daab8e605d2c515f7a32",
+      "relation": "known_difference",
+      "item_ids": [
+        "schemas::field::Drive.CapacityBytes",
+        "schemas::method::*Drive.UnmarshalJSON",
+        "schemas::function::GetDrive",
+        "schemas::function::GetObject",
+        "schemas::function::DecodeGenericEntity"
+      ]
+    },
+    {
+      "id": "capacity_int64_max",
+      "behavior": "B08",
+      "kind": "drive",
+      "field": "CapacityBytes",
+      "fixture_sha256": "d0be4c555d78ce31bba976e61406bc0c7d39b24ca32b6f6f64f088e1b52b0bed",
+      "relation": "known_difference",
+      "item_ids": [
+        "schemas::field::Drive.CapacityBytes",
+        "schemas::method::*Drive.UnmarshalJSON",
+        "schemas::function::GetDrive",
+        "schemas::function::GetObject",
+        "schemas::function::DecodeGenericEntity"
+      ]
+    },
+    {
+      "id": "capacity_int64_overflow",
+      "behavior": "B08",
+      "kind": "drive",
+      "field": "CapacityBytes",
+      "fixture_sha256": "eac4f697613aa9a0df4f2be701d34424f929f88239c4505cca0612c1766e1616",
+      "relation": "both_reject",
+      "item_ids": [
+        "schemas::field::Drive.CapacityBytes",
+        "schemas::method::*Drive.UnmarshalJSON",
+        "schemas::function::GetDrive",
+        "schemas::function::GetObject",
+        "schemas::function::DecodeGenericEntity"
+      ]
+    },
+    {
+      "id": "capacity_negative",
+      "behavior": "B08",
+      "kind": "drive",
+      "field": "CapacityBytes",
+      "fixture_sha256": "442ee941bc5d1c60def65b3dd4e12000ba9043e63baa1a9a6505a42b74f76275",
+      "relation": "known_difference",
+      "item_ids": [
+        "schemas::field::Drive.CapacityBytes",
+        "schemas::method::*Drive.UnmarshalJSON",
+        "schemas::function::GetDrive",
+        "schemas::function::GetObject",
+        "schemas::function::DecodeGenericEntity"
+      ]
+    },
+    {
+      "id": "capacity_fraction",
+      "behavior": "B08",
+      "kind": "drive",
+      "field": "CapacityBytes",
+      "fixture_sha256": "9e64fd57cdc721fa8db3c4f5f1ad7041d21421f84d730b94e39ea348f23c0bb3",
+      "relation": "both_reject",
+      "item_ids": [
+        "schemas::field::Drive.CapacityBytes",
+        "schemas::method::*Drive.UnmarshalJSON",
+        "schemas::function::GetDrive",
+        "schemas::function::GetObject",
+        "schemas::function::DecodeGenericEntity"
+      ]
+    },
+    {
+      "id": "capacity_rounded_fraction",
+      "behavior": "B08",
+      "kind": "drive",
+      "field": "CapacityBytes",
+      "fixture_sha256": "0c8f093f2809c2748c383164aed3270bdb74decda7892d708298bffbcd494441",
+      "relation": "both_reject",
+      "item_ids": [
+        "schemas::field::Drive.CapacityBytes",
+        "schemas::method::*Drive.UnmarshalJSON",
+        "schemas::function::GetDrive",
+        "schemas::function::GetObject",
+        "schemas::function::DecodeGenericEntity"
+      ]
+    },
+    {
+      "id": "capacity_large_fraction",
+      "behavior": "B08",
+      "kind": "drive",
+      "field": "CapacityBytes",
+      "fixture_sha256": "88023c33fa6d84cb4c8e7fd290b3d99fa65a15c32235301bf242f47bb240b873",
+      "relation": "both_reject",
+      "item_ids": [
+        "schemas::field::Drive.CapacityBytes",
+        "schemas::method::*Drive.UnmarshalJSON",
+        "schemas::function::GetDrive",
+        "schemas::function::GetObject",
+        "schemas::function::DecodeGenericEntity"
+      ]
+    },
+    {
+      "id": "capacity_underflow",
+      "behavior": "B08",
+      "kind": "drive",
+      "field": "CapacityBytes",
+      "fixture_sha256": "cd8f59bf58236764d7280d68b20479378a7b6a20ea3b40df45c70cc48093783d",
+      "relation": "both_reject",
+      "item_ids": [
+        "schemas::field::Drive.CapacityBytes",
+        "schemas::method::*Drive.UnmarshalJSON",
+        "schemas::function::GetDrive",
+        "schemas::function::GetObject",
+        "schemas::function::DecodeGenericEntity"
+      ]
+    },
+    {
+      "id": "capacity_decimal_integer",
+      "behavior": "B08",
+      "kind": "drive",
+      "field": "CapacityBytes",
+      "fixture_sha256": "b09abd55998f5ad3ac69cd7ce21a38ea6e8276a4231d5f17ce4469eeb77181bd",
+      "relation": "known_difference",
+      "item_ids": [
+        "schemas::field::Drive.CapacityBytes",
+        "schemas::method::*Drive.UnmarshalJSON",
+        "schemas::function::GetDrive",
+        "schemas::function::GetObject",
+        "schemas::function::DecodeGenericEntity"
+      ]
+    },
+    {
+      "id": "capacity_exponent_integer",
+      "behavior": "B08",
+      "kind": "drive",
+      "field": "CapacityBytes",
+      "fixture_sha256": "266ec8705096f70a67814604c31742dd7ff483cf9b3797ff8dc2c65117103ef7",
+      "relation": "known_difference",
+      "item_ids": [
+        "schemas::field::Drive.CapacityBytes",
+        "schemas::method::*Drive.UnmarshalJSON",
+        "schemas::function::GetDrive",
+        "schemas::function::GetObject",
+        "schemas::function::DecodeGenericEntity"
+      ]
+    },
+    {
+      "id": "capacity_string",
+      "behavior": "B08",
+      "kind": "drive",
+      "field": "CapacityBytes",
+      "fixture_sha256": "a409ff176d65f82a8f9993e19c2ab475634a6afe60fe84d29bf826ba49fe7657",
+      "relation": "both_reject",
+      "item_ids": [
+        "schemas::field::Drive.CapacityBytes",
+        "schemas::method::*Drive.UnmarshalJSON",
+        "schemas::function::GetDrive",
+        "schemas::function::GetObject",
+        "schemas::function::DecodeGenericEntity"
+      ]
+    },
+    {
+      "id": "boolean_false",
+      "behavior": "B07",
+      "kind": "drive",
+      "field": "FailurePredicted",
+      "fixture_sha256": "80968f712e4ad7a14d2d03638c9ce82b7a4d2fa0e7e909e9fe1ad5979dd9dcab",
+      "relation": "same_selected_observation",
+      "item_ids": [
+        "schemas::field::Drive.FailurePredicted",
+        "schemas::method::*Drive.UnmarshalJSON",
+        "schemas::function::GetDrive",
+        "schemas::function::GetObject",
+        "schemas::function::DecodeGenericEntity"
+      ]
+    },
+    {
+      "id": "boolean_missing",
+      "behavior": "B07",
+      "kind": "drive",
+      "field": "FailurePredicted",
+      "fixture_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "relation": "known_difference",
+      "item_ids": [
+        "schemas::field::Drive.FailurePredicted",
+        "schemas::method::*Drive.UnmarshalJSON",
+        "schemas::function::GetDrive",
+        "schemas::function::GetObject",
+        "schemas::function::DecodeGenericEntity"
+      ]
+    },
+    {
+      "id": "boolean_null",
+      "behavior": "B07",
+      "kind": "drive",
+      "field": "FailurePredicted",
+      "fixture_sha256": "a29179e18199444152c3c38be682d0f4a8226b370b1992a0f3944f3c4f6e059f",
+      "relation": "known_difference",
+      "item_ids": [
+        "schemas::field::Drive.FailurePredicted",
+        "schemas::method::*Drive.UnmarshalJSON",
+        "schemas::function::GetDrive",
+        "schemas::function::GetObject",
+        "schemas::function::DecodeGenericEntity"
+      ]
+    },
+    {
+      "id": "boolean_wrong_type",
+      "behavior": "B09",
+      "kind": "drive",
+      "field": "FailurePredicted",
+      "fixture_sha256": "76d6ef141090936448f9dd606ac5de139b2efc7027482d4f014d473416a83cb1",
+      "relation": "both_reject",
+      "item_ids": [
+        "schemas::field::Drive.FailurePredicted",
+        "schemas::method::*Drive.UnmarshalJSON",
+        "schemas::function::GetDrive",
+        "schemas::function::GetObject",
+        "schemas::function::DecodeGenericEntity"
+      ]
+    },
+    {
+      "id": "enum_unknown",
+      "behavior": "B07",
+      "kind": "drive",
+      "field": "Protocol",
+      "fixture_sha256": "771b57a1fa46ddb3c106546f9500795b333628db6d6a2119f9e458efe2c44ed1",
+      "relation": "same_selected_observation",
+      "item_ids": [
+        "schemas::field::Drive.Protocol",
+        "schemas::method::*Drive.UnmarshalJSON",
+        "schemas::function::GetDrive",
+        "schemas::function::GetObject",
+        "schemas::function::DecodeGenericEntity"
+      ]
+    },
+    {
+      "id": "enum_missing",
+      "behavior": "B07",
+      "kind": "drive",
+      "field": "Protocol",
+      "fixture_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "relation": "known_difference",
+      "item_ids": [
+        "schemas::field::Drive.Protocol",
+        "schemas::method::*Drive.UnmarshalJSON",
+        "schemas::function::GetDrive",
+        "schemas::function::GetObject",
+        "schemas::function::DecodeGenericEntity"
+      ]
+    },
+    {
+      "id": "enum_null",
+      "behavior": "B07",
+      "kind": "drive",
+      "field": "Protocol",
+      "fixture_sha256": "a5206afc4275dc13b6fc3a7adb5ffc187d3678311fd075582b13264fc1ba0295",
+      "relation": "known_difference",
+      "item_ids": [
+        "schemas::field::Drive.Protocol",
+        "schemas::method::*Drive.UnmarshalJSON",
+        "schemas::function::GetDrive",
+        "schemas::function::GetObject",
+        "schemas::function::DecodeGenericEntity"
+      ]
+    },
+    {
+      "id": "enum_wrong_type",
+      "behavior": "B09",
+      "kind": "drive",
+      "field": "Protocol",
+      "fixture_sha256": "2b2f6350b02c6a796abe2a375b5c9a450e50b35aab4ff72f5d516ac8a7a536e5",
+      "relation": "both_reject",
+      "item_ids": [
+        "schemas::field::Drive.Protocol",
+        "schemas::method::*Drive.UnmarshalJSON",
+        "schemas::function::GetDrive",
+        "schemas::function::GetObject",
+        "schemas::function::DecodeGenericEntity"
+      ]
+    },
+    {
+      "id": "duplicate_key",
+      "behavior": "B09",
+      "kind": "drive",
+      "field": "CapacityBytes",
+      "fixture_sha256": "f866879b9a56510028031694f9ec67e2c89c94dec5958a57416d59b1279098b3",
+      "relation": "known_difference",
+      "item_ids": [
+        "schemas::field::Drive.CapacityBytes",
+        "schemas::method::*Drive.UnmarshalJSON",
+        "schemas::function::GetDrive",
+        "schemas::function::GetObject",
+        "schemas::function::DecodeGenericEntity"
+      ]
+    },
+    {
+      "id": "case_folded_key",
+      "behavior": "B09",
+      "kind": "drive",
+      "field": "CapacityBytes",
+      "fixture_sha256": "d970ca3fc6f56fefd29d8efbe6b9a0ed3f650acfc26ed73b002a7c2001c8e9aa",
+      "relation": "known_difference",
+      "item_ids": [
+        "schemas::field::Drive.CapacityBytes",
+        "schemas::method::*Drive.UnmarshalJSON",
+        "schemas::function::GetDrive",
+        "schemas::function::GetObject",
+        "schemas::function::DecodeGenericEntity"
+      ]
+    },
+    {
+      "id": "invalid_utf8",
+      "behavior": "B09",
+      "kind": "drive",
+      "field": "SerialNumber",
+      "fixture_sha256": "274b6407136ac9fc579f7bac47153937a513a0a2f805c66d0ff03b51137dc2f8",
+      "relation": "known_difference",
+      "item_ids": [
+        "schemas::field::Drive.SerialNumber",
+        "schemas::method::*Drive.UnmarshalJSON",
+        "schemas::function::GetDrive",
+        "schemas::function::GetObject",
+        "schemas::function::DecodeGenericEntity"
+      ]
+    },
+    {
+      "id": "trailing_json",
+      "behavior": "B09",
+      "kind": "drive",
+      "field": "CapacityBytes",
+      "fixture_sha256": "503ecd55ef800e044f088115e70727c3b21dd3f7d575384c1bbbdc6bd5c57a77",
+      "relation": "known_difference",
+      "item_ids": [
+        "schemas::field::Drive.CapacityBytes",
+        "schemas::method::*Drive.UnmarshalJSON",
+        "schemas::function::GetDrive",
+        "schemas::function::GetObject",
+        "schemas::function::DecodeGenericEntity"
+      ]
+    },
+    {
+      "id": "truncated_json",
+      "behavior": "B09",
+      "kind": "drive",
+      "field": "CapacityBytes",
+      "fixture_sha256": "e2d7561d8f238f0cb28b387e095158a1849ca1a723b3045db70f0770e94f2f5a",
+      "relation": "both_reject",
+      "item_ids": [
+        "schemas::field::Drive.CapacityBytes",
+        "schemas::method::*Drive.UnmarshalJSON",
+        "schemas::function::GetDrive",
+        "schemas::function::GetObject",
+        "schemas::function::DecodeGenericEntity"
+      ]
+    },
+    {
+      "id": "malformed_json",
+      "behavior": "B09",
+      "kind": "drive",
+      "field": "CapacityBytes",
+      "fixture_sha256": "e160ed83445cbad3bbfb20adb89a9e5e0054b4824a6b6b188a280ebf15a48362",
+      "relation": "both_reject",
+      "item_ids": [
+        "schemas::field::Drive.CapacityBytes",
+        "schemas::method::*Drive.UnmarshalJSON",
+        "schemas::function::GetDrive",
+        "schemas::function::GetObject",
+        "schemas::function::DecodeGenericEntity"
+      ]
+    },
+    {
+      "id": "collection_order",
+      "behavior": "B05",
+      "kind": "collection",
+      "field": "",
+      "fixture_sha256": "89dfd7a005bc92c87bbe4d00c2a103c8b35afd3f875c3996c376b64d3dd6749c",
+      "relation": "same_selected_observation",
+      "item_ids": [
+        "schemas::function::GetCollectionObjects",
+        "schemas::function::GetResourceCollection"
+      ]
+    },
+    {
+      "id": "collection_duplicate",
+      "behavior": "B05",
+      "kind": "collection",
+      "field": "",
+      "fixture_sha256": "7fab9dfbab039cbea3dae6660bbb79038371155975b370709a07fe882965ffec",
+      "relation": "known_difference",
+      "item_ids": [
+        "schemas::function::GetCollectionObjects",
+        "schemas::function::GetResourceCollection"
+      ]
+    },
+    {
+      "id": "collection_embedded",
+      "behavior": "B06",
+      "kind": "collection",
+      "field": "",
+      "fixture_sha256": "da37f4c94497267097edad846c0f4296ad248105006a83df5534002fbc67dacb",
+      "relation": "known_difference",
+      "item_ids": [
+        "schemas::function::GetCollectionObjects",
+        "schemas::function::GetResourceCollection"
+      ]
+    },
+    {
+      "id": "collection_missing_members",
+      "behavior": "B05",
+      "kind": "collection",
+      "field": "",
+      "fixture_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "relation": "known_difference",
+      "item_ids": [
+        "schemas::function::GetCollectionObjects",
+        "schemas::function::GetResourceCollection"
+      ]
+    },
+    {
+      "id": "collection_null_members",
+      "behavior": "B05",
+      "kind": "collection",
+      "field": "",
+      "fixture_sha256": "8412494c7cf7ac139ec0e47623d0dedf8ef99ac3d8561b281568fe4ac14a7cfa",
+      "relation": "known_difference",
+      "item_ids": [
+        "schemas::function::GetCollectionObjects",
+        "schemas::function::GetResourceCollection"
+      ]
+    },
+    {
+      "id": "collection_empty",
+      "behavior": "B05",
+      "kind": "collection",
+      "field": "",
+      "fixture_sha256": "25f5975423aaed8d590366523e50327d5e6e0079353194abbccdd54296a04c2e",
+      "relation": "same_selected_observation",
+      "item_ids": [
+        "schemas::function::GetCollectionObjects",
+        "schemas::function::GetResourceCollection"
+      ]
+    },
+    {
+      "id": "collection_unlinked_member",
+      "behavior": "B05",
+      "kind": "collection",
+      "field": "",
+      "fixture_sha256": "dd9fff4f7ed23d47a01fcc916db1495c10a94bf8910cbd42b3602ee068de1507",
+      "relation": "known_difference",
+      "item_ids": [
+        "schemas::function::GetCollectionObjects",
+        "schemas::function::GetResourceCollection"
+      ]
+    },
+    {
+      "id": "collection_member_failure",
+      "behavior": "B05",
+      "kind": "collection",
+      "field": "",
+      "fixture_sha256": "cd9c6f820e09053cc445ec1804f7dd56ae4ea35ddf8767a8d530daa2e7b7863c",
+      "relation": "known_difference",
+      "item_ids": [
+        "schemas::function::GetCollectionObjects",
+        "schemas::function::GetResourceCollection",
+        "schemas::type::CollectionError",
+        "schemas::field::CollectionError.Failures"
+      ]
+    },
+    {
+      "id": "collection_paged",
+      "behavior": "B05",
+      "kind": "collection",
+      "field": "",
+      "fixture_sha256": "7cf87c1c115f820438d9126e854fd1a60ef7a0dc5cd1d3514246427c525b0309",
+      "relation": "same_selected_observation",
+      "item_ids": [
+        "schemas::function::GetCollectionObjects",
+        "schemas::function::GetResourceCollection"
+      ]
+    },
+    {
+      "id": "collection_cycle",
+      "behavior": "B05",
+      "kind": "collection",
+      "field": "",
+      "fixture_sha256": "a06ccc5f5225843496256380d874f4a5c98d941b2dfe746c3e7db7b547ebaa83",
+      "relation": "known_difference",
+      "item_ids": [
+        "schemas::function::GetCollectionObjects",
+        "schemas::function::GetResourceCollection",
+        "schemas::type::CollectionError",
+        "schemas::field::CollectionError.Failures"
+      ]
+    }
+  ],
+  "adapters": {
+    "moonredfish": {
+      "observations": {
+        "capacity_missing": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "missing"
+          }
+        },
+        "capacity_null": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "null"
+          }
+        },
+        "capacity_zero": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "value",
+            "value": 0
+          }
+        },
+        "capacity_safe_max": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "value",
+            "value": 9007199254740991
+          }
+        },
+        "capacity_above_safe": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "capacity_int64_max": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "capacity_int64_overflow": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "capacity_negative": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "capacity_fraction": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "capacity_rounded_fraction": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "capacity_large_fraction": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "capacity_underflow": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "capacity_decimal_integer": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "value",
+            "value": 1
+          }
+        },
+        "capacity_exponent_integer": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "value",
+            "value": 1000
+          }
+        },
+        "capacity_string": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "boolean_false": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "value",
+            "value": false
+          }
+        },
+        "boolean_missing": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "missing"
+          }
+        },
+        "boolean_null": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "null"
+          }
+        },
+        "boolean_wrong_type": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "enum_unknown": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "value",
+            "value": "FutureProtocol"
+          }
+        },
+        "enum_missing": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "missing"
+          }
+        },
+        "enum_null": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "null"
+          }
+        },
+        "enum_wrong_type": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "duplicate_key": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "case_folded_key": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "missing"
+          }
+        },
+        "invalid_utf8": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "trailing_json": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "truncated_json": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "malformed_json": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "collection_order": {
+          "ok": true,
+          "error": "",
+          "value": [
+            {
+              "id": "2",
+              "name": "full two"
+            },
+            {
+              "id": "1",
+              "name": "full one"
+            }
+          ]
+        },
+        "collection_duplicate": {
+          "ok": true,
+          "error": "",
+          "value": [
+            {
+              "id": "1",
+              "name": "full one"
+            }
+          ]
+        },
+        "collection_embedded": {
+          "ok": true,
+          "error": "",
+          "value": [
+            {
+              "id": "1",
+              "name": "full one"
+            }
+          ]
+        },
+        "collection_missing_members": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "collection_null_members": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "collection_empty": {
+          "ok": true,
+          "error": "",
+          "value": []
+        },
+        "collection_unlinked_member": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "collection_member_failure": {
+          "ok": false,
+          "error": "http",
+          "value": null
+        },
+        "collection_paged": {
+          "ok": true,
+          "error": "",
+          "value": [
+            {
+              "id": "1",
+              "name": "full one"
+            },
+            {
+              "id": "2",
+              "name": "full two"
+            }
+          ]
+        },
+        "collection_cycle": {
+          "ok": false,
+          "error": "pagination_cycle",
+          "value": null
+        }
+      },
+      "request_sequences": {
+        "startup": [
+          "/redfish/v1/Parity"
+        ],
+        "capacity_missing": [
+          "/redfish/v1/Parity/Cases/capacity_missing"
+        ],
+        "capacity_null": [
+          "/redfish/v1/Parity/Cases/capacity_null"
+        ],
+        "capacity_zero": [
+          "/redfish/v1/Parity/Cases/capacity_zero"
+        ],
+        "capacity_safe_max": [
+          "/redfish/v1/Parity/Cases/capacity_safe_max"
+        ],
+        "capacity_above_safe": [
+          "/redfish/v1/Parity/Cases/capacity_above_safe"
+        ],
+        "capacity_int64_max": [
+          "/redfish/v1/Parity/Cases/capacity_int64_max"
+        ],
+        "capacity_int64_overflow": [
+          "/redfish/v1/Parity/Cases/capacity_int64_overflow"
+        ],
+        "capacity_negative": [
+          "/redfish/v1/Parity/Cases/capacity_negative"
+        ],
+        "capacity_fraction": [
+          "/redfish/v1/Parity/Cases/capacity_fraction"
+        ],
+        "capacity_rounded_fraction": [
+          "/redfish/v1/Parity/Cases/capacity_rounded_fraction"
+        ],
+        "capacity_large_fraction": [
+          "/redfish/v1/Parity/Cases/capacity_large_fraction"
+        ],
+        "capacity_underflow": [
+          "/redfish/v1/Parity/Cases/capacity_underflow"
+        ],
+        "capacity_decimal_integer": [
+          "/redfish/v1/Parity/Cases/capacity_decimal_integer"
+        ],
+        "capacity_exponent_integer": [
+          "/redfish/v1/Parity/Cases/capacity_exponent_integer"
+        ],
+        "capacity_string": [
+          "/redfish/v1/Parity/Cases/capacity_string"
+        ],
+        "boolean_false": [
+          "/redfish/v1/Parity/Cases/boolean_false"
+        ],
+        "boolean_missing": [
+          "/redfish/v1/Parity/Cases/boolean_missing"
+        ],
+        "boolean_null": [
+          "/redfish/v1/Parity/Cases/boolean_null"
+        ],
+        "boolean_wrong_type": [
+          "/redfish/v1/Parity/Cases/boolean_wrong_type"
+        ],
+        "enum_unknown": [
+          "/redfish/v1/Parity/Cases/enum_unknown"
+        ],
+        "enum_missing": [
+          "/redfish/v1/Parity/Cases/enum_missing"
+        ],
+        "enum_null": [
+          "/redfish/v1/Parity/Cases/enum_null"
+        ],
+        "enum_wrong_type": [
+          "/redfish/v1/Parity/Cases/enum_wrong_type"
+        ],
+        "duplicate_key": [
+          "/redfish/v1/Parity/Cases/duplicate_key"
+        ],
+        "case_folded_key": [
+          "/redfish/v1/Parity/Cases/case_folded_key"
+        ],
+        "invalid_utf8": [
+          "/redfish/v1/Parity/Cases/invalid_utf8"
+        ],
+        "trailing_json": [
+          "/redfish/v1/Parity/Cases/trailing_json"
+        ],
+        "truncated_json": [
+          "/redfish/v1/Parity/Cases/truncated_json"
+        ],
+        "malformed_json": [
+          "/redfish/v1/Parity/Cases/malformed_json"
+        ],
+        "collection_order": [
+          "/redfish/v1/Parity/Cases/collection_order",
+          "/redfish/v1/Parity/Members/2",
+          "/redfish/v1/Parity/Members/1"
+        ],
+        "collection_duplicate": [
+          "/redfish/v1/Parity/Cases/collection_duplicate",
+          "/redfish/v1/Parity/Members/1"
+        ],
+        "collection_embedded": [
+          "/redfish/v1/Parity/Cases/collection_embedded",
+          "/redfish/v1/Parity/Members/1"
+        ],
+        "collection_missing_members": [
+          "/redfish/v1/Parity/Cases/collection_missing_members"
+        ],
+        "collection_null_members": [
+          "/redfish/v1/Parity/Cases/collection_null_members"
+        ],
+        "collection_empty": [
+          "/redfish/v1/Parity/Cases/collection_empty"
+        ],
+        "collection_unlinked_member": [
+          "/redfish/v1/Parity/Cases/collection_unlinked_member"
+        ],
+        "collection_member_failure": [
+          "/redfish/v1/Parity/Cases/collection_member_failure",
+          "/redfish/v1/Parity/Members/1",
+          "/redfish/v1/Parity/Members/Bad"
+        ],
+        "collection_paged": [
+          "/redfish/v1/Parity/Cases/collection_paged",
+          "/redfish/v1/Parity/Pages/2",
+          "/redfish/v1/Parity/Members/1",
+          "/redfish/v1/Parity/Members/2"
+        ],
+        "collection_cycle": [
+          "/redfish/v1/Parity/Cases/collection_cycle"
+        ]
+      }
+    },
+    "gofish": {
+      "observations": {
+        "boolean_false": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": false
+          }
+        },
+        "boolean_missing": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": false
+          }
+        },
+        "boolean_null": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": false
+          }
+        },
+        "boolean_wrong_type": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "capacity_above_safe": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": 9007199254740992
+          }
+        },
+        "capacity_decimal_integer": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "capacity_exponent_integer": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "capacity_fraction": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "capacity_int64_max": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": 9223372036854775807
+          }
+        },
+        "capacity_int64_overflow": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "capacity_large_fraction": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "capacity_missing": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "nil"
+          }
+        },
+        "capacity_negative": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": -1
+          }
+        },
+        "capacity_null": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "nil"
+          }
+        },
+        "capacity_rounded_fraction": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "capacity_safe_max": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": 9007199254740991
+          }
+        },
+        "capacity_string": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "capacity_underflow": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "capacity_zero": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": 0
+          }
+        },
+        "case_folded_key": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": 3
+          }
+        },
+        "collection_cycle": {
+          "error": "collection",
+          "ok": false,
+          "value": [
+            {
+              "id": "1",
+              "name": "full one"
+            }
+          ]
+        },
+        "collection_duplicate": {
+          "error": "",
+          "ok": true,
+          "value": [
+            {
+              "id": "1",
+              "name": "full one"
+            },
+            {
+              "id": "1",
+              "name": "full one"
+            }
+          ]
+        },
+        "collection_embedded": {
+          "error": "",
+          "ok": true,
+          "value": [
+            {
+              "id": "1",
+              "name": "inline one"
+            }
+          ]
+        },
+        "collection_empty": {
+          "error": "",
+          "ok": true,
+          "value": []
+        },
+        "collection_member_failure": {
+          "error": "collection",
+          "ok": false,
+          "value": [
+            {
+              "id": "1",
+              "name": "full one"
+            }
+          ]
+        },
+        "collection_missing_members": {
+          "error": "",
+          "ok": true,
+          "value": []
+        },
+        "collection_null_members": {
+          "error": "",
+          "ok": true,
+          "value": []
+        },
+        "collection_order": {
+          "error": "",
+          "ok": true,
+          "value": [
+            {
+              "id": "2",
+              "name": "full two"
+            },
+            {
+              "id": "1",
+              "name": "full one"
+            }
+          ]
+        },
+        "collection_paged": {
+          "error": "",
+          "ok": true,
+          "value": [
+            {
+              "id": "1",
+              "name": "full one"
+            },
+            {
+              "id": "2",
+              "name": "full two"
+            }
+          ]
+        },
+        "collection_unlinked_member": {
+          "error": "",
+          "ok": true,
+          "value": []
+        },
+        "duplicate_key": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": 2
+          }
+        },
+        "enum_missing": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": ""
+          }
+        },
+        "enum_null": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": ""
+          }
+        },
+        "enum_unknown": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": "FutureProtocol"
+          }
+        },
+        "enum_wrong_type": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "invalid_utf8": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": "�"
+          }
+        },
+        "malformed_json": {
+          "error": "json_syntax",
+          "ok": false,
+          "value": null
+        },
+        "trailing_json": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": 1
+          }
+        },
+        "truncated_json": {
+          "error": "json_eof",
+          "ok": false,
+          "value": null
+        }
+      },
+      "request_sequences": {
+        "startup": [
+          "/redfish/v1/",
+          "/redfish/v1/Parity"
+        ],
+        "capacity_missing": [
+          "/redfish/v1/Parity/Cases/capacity_missing"
+        ],
+        "capacity_null": [
+          "/redfish/v1/Parity/Cases/capacity_null"
+        ],
+        "capacity_zero": [
+          "/redfish/v1/Parity/Cases/capacity_zero"
+        ],
+        "capacity_safe_max": [
+          "/redfish/v1/Parity/Cases/capacity_safe_max"
+        ],
+        "capacity_above_safe": [
+          "/redfish/v1/Parity/Cases/capacity_above_safe"
+        ],
+        "capacity_int64_max": [
+          "/redfish/v1/Parity/Cases/capacity_int64_max"
+        ],
+        "capacity_int64_overflow": [
+          "/redfish/v1/Parity/Cases/capacity_int64_overflow"
+        ],
+        "capacity_negative": [
+          "/redfish/v1/Parity/Cases/capacity_negative"
+        ],
+        "capacity_fraction": [
+          "/redfish/v1/Parity/Cases/capacity_fraction"
+        ],
+        "capacity_rounded_fraction": [
+          "/redfish/v1/Parity/Cases/capacity_rounded_fraction"
+        ],
+        "capacity_large_fraction": [
+          "/redfish/v1/Parity/Cases/capacity_large_fraction"
+        ],
+        "capacity_underflow": [
+          "/redfish/v1/Parity/Cases/capacity_underflow"
+        ],
+        "capacity_decimal_integer": [
+          "/redfish/v1/Parity/Cases/capacity_decimal_integer"
+        ],
+        "capacity_exponent_integer": [
+          "/redfish/v1/Parity/Cases/capacity_exponent_integer"
+        ],
+        "capacity_string": [
+          "/redfish/v1/Parity/Cases/capacity_string"
+        ],
+        "boolean_false": [
+          "/redfish/v1/Parity/Cases/boolean_false"
+        ],
+        "boolean_missing": [
+          "/redfish/v1/Parity/Cases/boolean_missing"
+        ],
+        "boolean_null": [
+          "/redfish/v1/Parity/Cases/boolean_null"
+        ],
+        "boolean_wrong_type": [
+          "/redfish/v1/Parity/Cases/boolean_wrong_type"
+        ],
+        "enum_unknown": [
+          "/redfish/v1/Parity/Cases/enum_unknown"
+        ],
+        "enum_missing": [
+          "/redfish/v1/Parity/Cases/enum_missing"
+        ],
+        "enum_null": [
+          "/redfish/v1/Parity/Cases/enum_null"
+        ],
+        "enum_wrong_type": [
+          "/redfish/v1/Parity/Cases/enum_wrong_type"
+        ],
+        "duplicate_key": [
+          "/redfish/v1/Parity/Cases/duplicate_key"
+        ],
+        "case_folded_key": [
+          "/redfish/v1/Parity/Cases/case_folded_key"
+        ],
+        "invalid_utf8": [
+          "/redfish/v1/Parity/Cases/invalid_utf8"
+        ],
+        "trailing_json": [
+          "/redfish/v1/Parity/Cases/trailing_json"
+        ],
+        "truncated_json": [
+          "/redfish/v1/Parity/Cases/truncated_json"
+        ],
+        "malformed_json": [
+          "/redfish/v1/Parity/Cases/malformed_json"
+        ],
+        "collection_order": [
+          "/redfish/v1/Parity/Cases/collection_order",
+          "/redfish/v1/Parity/Members/1",
+          "/redfish/v1/Parity/Members/2"
+        ],
+        "collection_duplicate": [
+          "/redfish/v1/Parity/Cases/collection_duplicate",
+          "/redfish/v1/Parity/Members/1",
+          "/redfish/v1/Parity/Members/1"
+        ],
+        "collection_embedded": [
+          "/redfish/v1/Parity/Cases/collection_embedded"
+        ],
+        "collection_missing_members": [
+          "/redfish/v1/Parity/Cases/collection_missing_members"
+        ],
+        "collection_null_members": [
+          "/redfish/v1/Parity/Cases/collection_null_members"
+        ],
+        "collection_empty": [
+          "/redfish/v1/Parity/Cases/collection_empty"
+        ],
+        "collection_unlinked_member": [
+          "/redfish/v1/Parity/Cases/collection_unlinked_member"
+        ],
+        "collection_member_failure": [
+          "/redfish/v1/Parity/Cases/collection_member_failure",
+          "/redfish/v1/Parity/Members/Bad",
+          "/redfish/v1/Parity/Members/1"
+        ],
+        "collection_paged": [
+          "/redfish/v1/Parity/Cases/collection_paged",
+          "/redfish/v1/Parity/Pages/2",
+          "/redfish/v1/Parity/Members/1",
+          "/redfish/v1/Parity/Members/2"
+        ],
+        "collection_cycle": [
+          "/redfish/v1/Parity/Cases/collection_cycle",
+          "/redfish/v1/Parity/Members/1"
+        ]
+      }
+    }
+  },
+  "source_sha256": {
+    "moonredfish.mbt": "58a0ff8bcfcbabe1fdfc7054737488ff12ee117d0090038e7d6751aecebdb272",
+    "inventory_fields.mbt": "2a04b44d9ef3dfb9891c6e6584896a3e1c3d9a54d250c0d12f861b663a25e184",
+    "examples/compare/main.mbt": "d1c798941f2db62302566fb78ebedbc79530bce0097563fe32746a2d25c472b7",
+    "examples/compare/parity.mbt": "f41f95a2c9e1e60b66d012c3e3535f00a2b8b75665f141cf453ba77e11dcefce",
+    "tools/gofish/main.go": "b9a378018d6e9bf32ae3ec18ef58b7518796c4ed99ef09914020e741d97bf48a",
+    "tools/gofish/parity.go": "46527fbcf64c7ac1697f9068aac450d9c68fb25f2776a14d4fdac771b978fb42",
+    "tools/test_gofish.py": "ac27ec92a4820582f32c133442ba5adfaeaecdc206b6ee32c77fdad320ff9a11",
+    "tools/test_parity.py": "fe78100a5820b1601924f2e84c9dbddae8b93a2c892ba5e95926b10fd10a05dc"
+  }
+}

@@ -1,7 +1,10 @@
 # GoFish parity plan / GoFish 完整对齐计划
 
-**Draft for user review — 2026-11-11. No implementation approval is implied.**
-**待用户审核：本次仅盘点与规划，未开发控制功能、未访问真实设备、未发布。**
+**Open contract — 2026-11-11. Read-only differential work and unambiguous fixes authorized.**
+**持续推进只读差分与无歧义修复；跨语言 API、安全和重大兼容取舍仍待明确决策。无实机控制或发布。**
+
+[Read-only batch 01 / 只读证据 01](gofish/READONLY-01.md): 39 measured cases,
+22 known differences, one integer-validation defect fixed. Zero fully verified items.
 
 The target is every public capability of the fixed GoFish version, including Redfish,
 Swordfish, OEM extensions and support APIs. Current moonredfish is a selected read-only
@@ -166,7 +169,7 @@ by this plan; do not implement a second framework before D-API/D-SAFE are decide
 
 中文审核要点：固定参考版本；确认“API 一致”是跨语言一对一语义映射还是 Go 源码/ABI
 兼容；逐项决定安全行为冲突，不能用保留差异冒充零差异；明确平台与硬件验收边界；
-控制开发及实机操作分开授权。此次交付完成后等待审核，不自动开始后续阶段。
+控制开发及实机操作分开授权。用户已要求继续无歧义的只读差分和修复；受未决契约影响的实现保持开放。
 
 ## 6. Staged delivery / 分阶段交付
 
@@ -254,12 +257,13 @@ for every possible server/input; report the exact tested contract and remaining 
 完成对齐。若用户接受例外，可以形成有用的兼容子集，但不能说原“零差异”目标已实现。
 有限测试不能证明所有可能输入/设备行为相同，交付始终写清实际证据边界。
 
-Immediate next step: user review of D-REF through D-CONTROL and the phase gates. This change
-contains planning, a static audit tool and documentation only. No runtime/API behavior has
-been changed and no new implementation stage starts automatically.
+Continue bounded read-only evidence and unambiguous defect fixes under the user's later
+instruction. [Batch 01](gofish/READONLY-01.md) links measured cases to individual rows and
+lists concrete D-PRESENCE, D-NUM, D-COLLECTION, D-JSON and D-AUTH recommendations.
+Affected API/safety migrations remain pending; no control phase or physical test is authorized.
 
-下一步仅请用户审核上述决策和阶段门槛；本次只提交计划、静态盘点工具和文档，运行时 API
-及行为未修改，不自动开始后续开发。
+按用户后续指令持续推进只读差分及明确缺陷修复。证据 01 已关联具体条目并列明五项
+具体决策及建议；不因测试通过而提升完整一致性状态，未决 API/安全迁移不擅自执行。
 
 ## Reproducing the inventory / 复核盘点
 

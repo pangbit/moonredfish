@@ -10,6 +10,7 @@ Unreleased 新 API 与示例；安装 0.1.0 不会获得这些新增内容，具
 许可；不是 DMTF 认证产品，也不是 GoFish 的移植版。
 
 GoFish 完整对齐的[计划与逐项矩阵](docs/GOFISH_PARITY.md)已形成待审核草案；
+只读差分正在推进，见 [39 项证据与具体决策](docs/gofish/READONLY-01.md)。API 和安全取舍仍待明确，
 当前子集支持不代表已与 GoFish 完整一致。
 
 ## 类型化硬件清单（Unreleased）
@@ -174,8 +175,8 @@ CI 配置面向 Linux x86_64 与 macOS arm64；配置文件存在不代表远端
 - [moonbitlang/async](https://github.com/moonbitlang/async)，Apache-2.0：提供 HTTP、
   网络、TLS、取消与超时，避免重复开发底层能力。
 
-最小有用范围是安全获取清单。保留 JSON 使个人维护者不必生成和维护数千个 schema 类型。
-只有明确、可测试的使用需求出现时才添加类型化辅助方法。
+当前发布范围是只读清单。完整 GoFish 目标包含全部公开类型化能力，原始 JSON 不替代
+缺失 API；后续按对齐计划分批实施和审阅。
 
 独立格式检查可运行 `python3 tools/test_reference.py`：下载 7 个 SHA-256 固定的
 DMTF 公开 mockup，在本机回环服务上测试。该步骤本地可选、需要联网；Linux CI 通过

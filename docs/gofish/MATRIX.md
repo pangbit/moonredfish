@@ -3,6 +3,7 @@
 Draft for review. Reference and scope: [plan](../GOFISH_PARITY.md). Every exported declaration,
 signature, source line, initial state and acceptance template is in [the item matrix](api-v0.27.0.json).
 This table aggregates all 253 scanned files; it is not a table of passed tests.
+[Read-only batch 01](READONLY-01.md) attaches measured cases to item IDs; no state is upgraded.
 待审核；逐项矩阵列出全部公开声明、签名、源码行、初始状态与验收模板。本表按 253 个文件汇总，不表示测试通过。
 
 `P` = overlapping subset/candidate; `U` = unmapped gap/unverified. No `V` (verified parity) rows exist.

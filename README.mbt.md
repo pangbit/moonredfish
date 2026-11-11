@@ -11,7 +11,9 @@ A small Redfish inventory client for **MoonBit native** applications. An indepen
 personally maintained Apache-2.0 project, not a DMTF certification or a GoFish port.
 
 The proposed full GoFish alignment is documented in the [draft parity plan](docs/GOFISH_PARITY.md).
-It is pending user review; current subset support is not complete GoFish equivalence.
+Read-only differential work is underway; API/safety decisions remain open. See the
+[39-case evidence and concrete decisions](docs/gofish/READONLY-01.md). Current subset
+support is not complete GoFish equivalence.
 
 ## Scope
 
@@ -215,9 +217,9 @@ remain unverified until separately tested.
 - [moonbitlang/async](https://github.com/moonbitlang/async), Apache-2.0: HTTP, networking,
   TLS, cancellation and timeouts. These layers are reused rather than reimplemented.
 
-The smallest useful boundary is safely retrieving inventory. Preserving JSON makes the
-project maintainable by one person without generating thousands of schema types. Add
-typed helpers only when a concrete, tested use case requires them.
+The current release boundary is read-only inventory. The full GoFish target includes all
+public typed capabilities; raw JSON does not close missing APIs. Implementation proceeds
+in reviewable batches under the parity plan.
 
 For an independent shape check, run `python3 tools/test_reference.py`. It downloads
 seven SHA-256-pinned public DMTF mockup files and serves them on loopback. It is an
