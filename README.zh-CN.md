@@ -9,6 +9,9 @@ Unreleased 新 API 与示例；安装 0.1.0 不会获得这些新增内容，具
 面向 **MoonBit native** 应用的小型 Redfish 资产清单客户端。个人维护，Apache-2.0
 许可；不是 DMTF 认证产品，也不是 GoFish 的移植版。
 
+GoFish 完整对齐的[计划与逐项矩阵](docs/GOFISH_PARITY.md)已形成待审核草案；
+当前子集支持不代表已与 GoFish 完整一致。
+
 ## 类型化硬件清单（Unreleased）
 
 使用 `resource.system_info()`、`.chassis_info()`、`.manager_info()` 获取常用资产与健康字段。

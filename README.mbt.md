@@ -10,6 +10,9 @@ releases are published manually by the maintainer.
 A small Redfish inventory client for **MoonBit native** applications. An independent,
 personally maintained Apache-2.0 project, not a DMTF certification or a GoFish port.
 
+The proposed full GoFish alignment is documented in the [draft parity plan](docs/GOFISH_PARITY.md).
+It is pending user review; current subset support is not complete GoFish equivalence.
+
 ## Scope
 
 - Verified HTTPS using system roots or an application-managed CA file.
