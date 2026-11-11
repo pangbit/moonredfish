@@ -39,6 +39,33 @@ pub struct Bios {
   attributes : Field[@json.Json]
 }
 
+pub struct Boot {
+  json : @json.Json
+  automatic_retry_config : Field[String]
+  boot_next : Field[String]
+  boot_order_property_selection : Field[String]
+  boot_source_override_enabled : Field[String]
+  boot_source_override_mode : Field[String]
+  boot_source_override_target : Field[String]
+  http_boot_uri : Field[String]
+  stop_boot_on_fault : Field[String]
+  trusted_module_required_to_boot : Field[String]
+  uefi_target_boot_source_override : Field[String]
+  alias_boot_order : Field[Array[String]]
+  boot_order : Field[Array[String]]
+  allowable_boot_source_override_target_values : Field[Array[String]]
+  allowable_uefi_target_boot_source_override_values : Field[Array[String]]
+}
+
+pub struct BootOption {
+  resource : Resource
+  boot_alias : Field[String]
+  boot_option_reference : Field[String]
+  display_name : Field[String]
+  uefi_device_path : Field[String]
+  boot_option_enabled : Field[Bool]
+}
+
 pub struct ChassisInfo {
   resource : Resource
   manufacturer : Field[String]
@@ -54,6 +81,7 @@ pub struct ChassisInfo {
 
 type Client
 pub async fn Client::bios(Self, Resource) -> Field[Bios]
+pub async fn Client::boot_options(Self, Resource) -> Field[Array[BootOption]]
 pub async fn Client::chassis(Self) -> Array[Resource]
 pub async fn Client::chassis_pcie_devices(Self, Resource) -> Field[Array[PCIeDevice]]
 pub async fn Client::drives(Self, Resource) -> Field[Array[Drive]]
@@ -76,8 +104,11 @@ pub async fn Client::power(Self, Resource) -> Field[Power]
 pub async fn Client::power_subsystem(Self, Resource) -> Field[Resource]
 pub async fn Client::power_supplies(Self, Resource) -> Field[Array[PowerSupply]]
 pub async fn Client::processors(Self, Resource) -> Field[Array[Processor]]
+pub async fn Client::secure_boot(Self, Resource) -> Field[SecureBoot]
+pub async fn Client::secure_boot_databases(Self, Resource) -> Field[Array[SecureBootDatabase]]
 pub async fn Client::sensors(Self, Resource) -> Field[Array[Sensor]]
 pub async fn Client::service_root(Self) -> Resource
+pub async fn Client::signatures(Self, Resource) -> Field[Array[Signature]]
 pub async fn Client::storage(Self, Resource) -> Field[Array[Storage]]
 pub async fn Client::system_pcie_devices(Self, Resource) -> Field[Array[PCIeDevice]]
 pub async fn Client::system_pcie_functions(Self, Resource) -> Field[Array[PCIeFunction]]
@@ -342,6 +373,8 @@ pub struct Resource {
   json : @json.Json
 }
 pub fn Resource::bios(Self) -> Bios raise RedfishError
+pub fn Resource::boot(Self) -> Field[Boot] raise RedfishError
+pub fn Resource::boot_option(Self) -> BootOption raise RedfishError
 pub fn Resource::chassis_info(Self) -> ChassisInfo raise RedfishError
 pub fn Resource::drive(Self) -> Drive raise RedfishError
 pub fn Resource::ethernet_interface(Self) -> EthernetInterface raise RedfishError
@@ -357,13 +390,28 @@ pub fn Resource::pcie_function(Self) -> PCIeFunction raise RedfishError
 pub fn Resource::power(Self) -> Power raise RedfishError
 pub fn Resource::power_supply(Self) -> PowerSupply raise RedfishError
 pub fn Resource::processor(Self) -> Processor raise RedfishError
+pub fn Resource::secure_boot(Self) -> SecureBoot raise RedfishError
+pub fn Resource::secure_boot_database(Self) -> SecureBootDatabase raise RedfishError
 pub fn Resource::sensor(Self) -> Sensor raise RedfishError
+pub fn Resource::signature(Self) -> Signature raise RedfishError
 pub fn Resource::software_inventory(Self) -> SoftwareInventory raise RedfishError
 pub fn Resource::storage(Self) -> Storage raise RedfishError
 pub fn Resource::string(Self, String) -> String?
 pub fn Resource::system_info(Self) -> SystemInfo raise RedfishError
 pub fn Resource::thermal(Self) -> Thermal raise RedfishError
 pub fn Resource::volume(Self) -> Volume raise RedfishError
+
+pub struct SecureBoot {
+  resource : Resource
+  secure_boot_current_boot : Field[String]
+  secure_boot_mode : Field[String]
+  secure_boot_enable : Field[Bool]
+}
+
+pub struct SecureBootDatabase {
+  resource : Resource
+  database_id : Field[String]
+}
 
 pub struct Sensor {
   resource : Resource
@@ -376,6 +424,14 @@ pub struct Sensor {
 pub struct SensorReading {
   json : @json.Json
   reading : Field[Double]
+}
+
+pub struct Signature {
+  resource : Resource
+  signature_string : Field[String]
+  signature_type : Field[String]
+  signature_type_registry : Field[String]
+  uefi_signature_owner : Field[String]
 }
 
 pub struct SoftwareInventory {

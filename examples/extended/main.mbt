@@ -91,6 +91,20 @@ async fn main {
     println(
       "offline synthetic network: DHCPv4=\{presence(interface.dhcpv4)}, DNS servers=\{count(interface.name_servers)}",
     )
+    let boot = @moonredfish.parse_resource("/redfish/v1/Systems/demo", {
+        "Boot": { "BootOrder": ["Boot0002", "Boot0001"] },
+      })
+      .boot()
+      .value()
+      .unwrap()
+    println("offline synthetic boot order entries: \{count(boot.boot_order)}")
+    let secure = @moonredfish.parse_resource(
+      "/redfish/v1/Systems/demo/SecureBoot",
+      { "SecureBootCurrentBoot": "Enabled", "SecureBootEnable": false },
+    ).secure_boot()
+    println(
+      "offline synthetic Secure Boot: current=\{presence(secure.secure_boot_current_boot)}, next=\{presence(secure.secure_boot_enable)}",
+    )
     let bios = @moonredfish.parse_resource("/redfish/v1/Systems/demo/Bios", {
       "Attributes": null,
     }).bios()

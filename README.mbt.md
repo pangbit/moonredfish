@@ -16,7 +16,8 @@ Read-only differential work is underway; API/safety decisions remain open. See t
 support is not complete GoFish equivalence. [Network configuration reads](docs/gofish/READONLY-02.md)
 now include DHCPv4/DHCPv6, SLAAC, DNS and interface policies under the existing Field API.
 [PCIe inventory](docs/gofish/READONLY-03.md) adds device/function reads and explicit topology
-navigation. Open compatibility choices are in the [combined review](docs/gofish/DECISIONS.md).
+navigation. [Boot/Secure Boot reads](docs/gofish/READONLY-04.md) add boot configuration,
+options, current/next Secure Boot state, databases and signatures. Open compatibility choices are in the [combined review](docs/gofish/DECISIONS.md).
 
 ## Scope
 

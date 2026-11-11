@@ -5,8 +5,9 @@ signature, source line, initial state and acceptance template is in [the item ma
 This table aggregates all 253 scanned files; it is not a table of passed tests.
 [Read-only batch 01](READONLY-01.md) attaches measured cases to item IDs.
 [Batch 02](READONLY-02.md) adds 29 candidate mappings for implemented network reads.
-[Batch 03](READONLY-03.md) adds 48 PCIe candidates. Current totals:
-311 P / 11,269 U / 0 V; candidate mapping is not verified equivalence.
+[Batch 03](READONLY-03.md) adds 48 PCIe candidates.
+[Batch 04](READONLY-04.md) adds 42 boot/Secure Boot candidates. Current totals:
+353 P / 11,227 U / 0 V; candidate mapping is not verified equivalence.
 待审核；逐项矩阵列出全部公开声明、签名、源码行、初始状态与验收模板。本表按 253 个文件汇总，不表示测试通过。
 
 `P` = overlapping subset/candidate; `U` = unmapped gap/unverified. No `V` (verified parity) rows exist.
@@ -70,7 +71,7 @@ Phase is model/read/support allocation; all mutations require the P4/P5/P6 gate,
 | [schemas/battery.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/battery.go) | Redfish | 4 | 11 | 38 | 1 | U | P3 |
 | [schemas/batterymetrics.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/batterymetrics.go) | Redfish | 1 | 2 | 19 | 1 | U | P3 |
 | [schemas/bios.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/bios.go) | Redfish | 1 | 11 | 6 | 1 | P | P2 |
-| [schemas/bootoption.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/bootoption.go) | Redfish | 1 | 5 | 10 | 1 | U | P3 |
+| [schemas/bootoption.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/bootoption.go) | Redfish | 1 | 5 | 10 | 1 | P | P3 |
 | [schemas/cable.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/cable.go) | Redfish | 4 | 11 | 59 | 1 | U | P3 |
 | [schemas/capacity.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/capacity.go) | Swordfish | 3 | 8 | 13 | 1 | U | P3 |
 | [schemas/certificate.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/certificate.go) | Redfish | 9 | 12 | 69 | 1 | U | P3 |
@@ -212,8 +213,8 @@ Phase is model/read/support allocation; all mutations require the P4/P5/P6 gate,
 | [schemas/routeentry.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/routeentry.go) | Redfish | 1 | 5 | 6 | 1 | U | P3 |
 | [schemas/routesetentry.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/routesetentry.go) | Redfish | 1 | 4 | 8 | 1 | U | P3 |
 | [schemas/schedule.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/schedule.go) | Redfish | 3 | 0 | 30 | 0 | U | P3 |
-| [schemas/secureboot.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/secureboot.go) | Redfish | 4 | 6 | 16 | 1 | U | P3 |
-| [schemas/securebootdatabase.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/securebootdatabase.go) | Redfish | 2 | 8 | 6 | 1 | U | P3 |
+| [schemas/secureboot.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/secureboot.go) | Redfish | 4 | 6 | 16 | 1 | P | P3 |
+| [schemas/securebootdatabase.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/securebootdatabase.go) | Redfish | 2 | 8 | 6 | 1 | P | P3 |
 | [schemas/securitypolicy.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/securitypolicy.go) | Redfish | 8 | 10 | 28 | 1 | U | P3 |
 | [schemas/sensor.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/sensor.go) | Redfish | 19 | 9 | 184 | 1 | P | P2 |
 | [schemas/serialinterface.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/serialinterface.go) | Redfish | 11 | 4 | 59 | 1 | U | P3 |
@@ -224,7 +225,7 @@ Phase is model/read/support allocation; all mutations require the P4/P5/P6 gate,
 | [schemas/sflocation.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/sflocation.go) | Swordfish | 1 | 0 | 16 | 0 | U | P3 |
 | [schemas/sfschedule.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/sfschedule.go) | Swordfish | 3 | 0 | 28 | 0 | U | P3 |
 | [schemas/sfvolume.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/sfvolume.go) | Swordfish | 20 | 33 | 163 | 1 | U | P3 |
-| [schemas/signature.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/signature.go) | Redfish | 2 | 2 | 8 | 1 | U | P3 |
+| [schemas/signature.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/signature.go) | Redfish | 2 | 2 | 8 | 1 | P | P3 |
 | [schemas/simplestorage.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/simplestorage.go) | Redfish | 2 | 5 | 12 | 1 | U | P3 |
 | [schemas/softwareinventory.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/softwareinventory.go) | Redfish | 5 | 8 | 41 | 1 | P | P2 |
 | [schemas/spareresourceset.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/spareresourceset.go) | Swordfish | 1 | 6 | 9 | 1 | U | P3 |

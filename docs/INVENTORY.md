@@ -312,3 +312,21 @@ parent only. No path is guessed or topology automatically recursed.
 [PCIe 范围、实测及限制](gofish/READONLY-03.md)。不猜路径、不自动递归，不把 ReadyToRemove
 等状态当作操作授权。lane 和 FunctionId 使用既有非负 Int32，默认值与厂商宽松转换差异
 汇入[集中决策](gofish/DECISIONS.md)，不宣称完整 PCIe/GoFish 一致。
+
+
+## Boot and Secure Boot (Unreleased) / 启动配置与安全启动（未发布）
+
+`resource.boot()` returns Field[Boot] for nested ComputerSystem.Boot. BootOrder and
+AliasBootOrder retain order/duplicates, and override/next/retry/fault/trusted-module
+policy strings remain reported data. `resource.boot_option()`, `.secure_boot()`,
+`.secure_boot_database()` and `.signature()` expose selected resource metadata.
+`client.boot_options(system)`, `secure_boot(system)`, `secure_boot_databases(secure.resource)`
+and `signatures(database.resource)` follow only the advertised links, one bounded call
+at a time. SecureBootCurrentBoot and SecureBootEnable are separate current/next values.
+
+五个视图和四条导航沿用 Field 与原始 JSON；当前与下次安全启动状态不合并。BootOrder
+不重排 BootOptions 集合，HTTP/UEFI 路径和签名不被执行、下载或验证。只读取当前 Boot，
+不自动读取/应用 Settings。不提供启动设置、密钥重置或证书登记。
+See [exact fields, limits and differential evidence](gofish/READONLY-04.md) and
+[the related upstream issues](gofish/ISSUES.md). Full models and compatibility decisions
+remain open; raw annotation retention does not imply a typed ExtendedInfo API.

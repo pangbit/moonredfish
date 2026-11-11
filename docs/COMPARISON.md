@@ -184,6 +184,19 @@ DMTF Mockup Server 的会话实现返回 204 和固定测试 token，因此不�
 不代表完整 Redfish 符合性、GoFish/Swordfish/OEM 全量对等、取消/退出失败语义相同，
 也不代表真实 BMC 兼容。
 
+## Boot and Secure Boot comparison / 启动配置与安全启动对照
+
+`python3 tools/test_boot.py` checks 35 synthetic cases for five selected read views,
+four navigations and both GoFish BootOptions entry points. It asserts source order,
+pagination, missing/null/defaults, current versus next flags, inline data, errors and
+requests. Two targeted issue cases preserve raw property annotations and distinguish
+current Boot from Settings without reading/writing Settings. See [batch 04](gofish/READONLY-04.md)
+for exact results and [upstream issue review](gofish/ISSUES.md) for pinned-version findings.
+
+该命令验证五类选定视图、四条导航、两条参考 BootOptions 入口及请求轨迹。35 场景中
+14 个选定观测相同，4 个两端拒绝但错误不同，17 个有差异；不把原始数据保留或普通分页
+通过当作类型化注解、自动 expand 或全量 GoFish 一致。兼容模式建议仍待用户决定。
+
 ## Safety / 安全
 
 Adapters accept only numeric loopback endpoints. The runner permits only reads plus

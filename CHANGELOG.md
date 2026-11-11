@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- Add read-only Boot, BootOption, SecureBoot, SecureBootDatabase and Signature views
+  with four bounded navigation APIs. Compare both GoFish BootOptions entry points;
+  retain presence, strictness and inline-data differences. Review upstream issues and
+  verify raw annotations/current Boot versus Settings without any control calls.
+- 新增启动配置、启动选项、安全启动、数据库和签名只读视图及四条有界导航，
+  对照 GoFish 两条 BootOptions 入口；保留三态、严格解码与内嵌数据差异。
+  核对上游 issues，定向验证注解/原始数据和当前 Boot 与 Settings 的区分，不执行控制。
+
 - Add selected read-only PCIeDevice/PCIeFunction/PCIeInterface views and five explicit
   system/chassis/device/function navigation APIs. Reuse bounded link-array traversal;
   verify reference source priorities and record vendor numeric/partial-result differences.

@@ -1,0 +1,4024 @@
+{
+  "reference": {
+    "module": "github.com/stmcginnis/gofish",
+    "version": "v0.27.0",
+    "commit": "4cc897fb5c172996e8f34a31a5d1012b45a287a7",
+    "module_sum": "h1:jyM2BlBhULXtHnayY+/wnkZYXKjIO0ZdR3oBXKl1VYs=",
+    "source_url_prefix": "https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/"
+  },
+  "subject_base_commit": "a9001a2043838fe1929247e70d16fde90de66298",
+  "environment": {
+    "os": "Darwin",
+    "arch": "arm64",
+    "go": "go version go1.24.0 darwin/arm64",
+    "moon": "moon 0.1.20261104 (940aa18 2026-11-04) ~/.moon/bin/moon\nmoonc v0.10.20+65efd5b93 (2026-11-05) ~/.moon/bin/moonc\nmoonrun 0.1.20261104 (940aa18 2026-11-04) ~/.moon/bin/moonrun\n\nFeature flags enabled: rr_moon_mod,rr_moon_pkg"
+  },
+  "scope": "Selected boot configuration, options, Secure Boot/database/signature reads under existing Field/strict decoder contract. No compatibility mode, numeric migration, key or boot operation, publication or hardware claim.",
+  "summary": {
+    "same_selected_observation": 14,
+    "known_difference": 17,
+    "both_reject": 4
+  },
+  "cases": [
+    {
+      "id": "boot_full",
+      "uri": "/redfish/v1/BootTests/Cases/boot_full",
+      "kind": "boot",
+      "input": {
+        "@odata.id": "/redfish/v1/BootTests/Cases/boot_full",
+        "Id": "boot_full",
+        "Boot": {
+          "AutomaticRetryConfig": "Disabled",
+          "BootNext": "Boot0002",
+          "BootOrderPropertySelection": "BootOrder",
+          "BootSourceOverrideEnabled": "Once",
+          "BootSourceOverrideMode": "UEFI",
+          "BootSourceOverrideTarget": "Pxe",
+          "HttpBootUri": "https://boot.example.invalid/image",
+          "StopBootOnFault": "AnyFault",
+          "TrustedModuleRequiredToBoot": "Required",
+          "UefiTargetBootSourceOverride": "synthetic-device-path",
+          "AliasBootOrder": [
+            "Pxe",
+            "Hdd"
+          ],
+          "BootOrder": [
+            "Boot0002",
+            "Boot0001",
+            "Boot0002"
+          ],
+          "BootSourceOverrideTarget@Redfish.AllowableValues": [
+            "Pxe",
+            "Hdd",
+            "FutureSource"
+          ],
+          "UefiTargetBootSourceOverride@Redfish.AllowableValues": []
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/BootTests/Cases/boot_full"
+        ],
+        "gofish": [
+          "/redfish/v1/BootTests/Cases/boot_full"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::Boot",
+        "schemas::method::*Boot.UnmarshalJSON",
+        "schemas::field::ComputerSystem.Boot",
+        "schemas::field::Boot.AutomaticRetryConfig",
+        "schemas::field::Boot.BootNext",
+        "schemas::field::Boot.BootOrderPropertySelection",
+        "schemas::field::Boot.BootSourceOverrideEnabled",
+        "schemas::field::Boot.BootSourceOverrideMode",
+        "schemas::field::Boot.BootSourceOverrideTarget",
+        "schemas::field::Boot.HTTPBootURI",
+        "schemas::field::Boot.StopBootOnFault",
+        "schemas::field::Boot.TrustedModuleRequiredToBoot",
+        "schemas::field::Boot.UefiTargetBootSourceOverride",
+        "schemas::field::Boot.AliasBootOrder",
+        "schemas::field::Boot.BootOrder",
+        "schemas::field::Boot.AllowableBootSourceOverrideTargetValues",
+        "schemas::field::Boot.AllowableUefiTargetBootSourceOverrideValues"
+      ],
+      "relation": "same_selected_observation"
+    },
+    {
+      "id": "option_full",
+      "uri": "/redfish/v1/BootTests/Cases/option_full",
+      "kind": "option",
+      "input": {
+        "@odata.id": "/redfish/v1/BootTests/Cases/option_full",
+        "Id": "option_full",
+        "Alias": "Pxe",
+        "BootOptionReference": "Boot0002",
+        "DisplayName": "Synthetic network boot",
+        "UefiDevicePath": "synthetic-path",
+        "BootOptionEnabled": false
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/BootTests/Cases/option_full"
+        ],
+        "gofish": [
+          "/redfish/v1/BootTests/Cases/option_full"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::BootOption",
+        "schemas::function::GetBootOption",
+        "schemas::field::BootOption.Alias",
+        "schemas::field::BootOption.BootOptionReference",
+        "schemas::field::BootOption.DisplayName",
+        "schemas::field::BootOption.UefiDevicePath",
+        "schemas::field::BootOption.BootOptionEnabled",
+        "schemas::method::*BootOption.UnmarshalJSON"
+      ],
+      "relation": "same_selected_observation"
+    },
+    {
+      "id": "secure_full",
+      "uri": "/redfish/v1/BootTests/Cases/secure_full",
+      "kind": "secure",
+      "input": {
+        "@odata.id": "/redfish/v1/BootTests/Cases/secure_full",
+        "Id": "secure_full",
+        "SecureBootCurrentBoot": "Enabled",
+        "SecureBootEnable": false,
+        "SecureBootMode": "UserMode",
+        "Actions": {
+          "#SecureBoot.ResetKeys": {
+            "target": "/redfish/v1/MustNotReset"
+          }
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/BootTests/Cases/secure_full"
+        ],
+        "gofish": [
+          "/redfish/v1/BootTests/Cases/secure_full"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::SecureBoot",
+        "schemas::function::GetSecureBoot",
+        "schemas::field::SecureBoot.SecureBootCurrentBoot",
+        "schemas::field::SecureBoot.SecureBootMode",
+        "schemas::field::SecureBoot.SecureBootEnable",
+        "schemas::method::*SecureBoot.UnmarshalJSON"
+      ],
+      "relation": "same_selected_observation"
+    },
+    {
+      "id": "database_full",
+      "uri": "/redfish/v1/BootTests/Cases/database_full",
+      "kind": "database",
+      "input": {
+        "@odata.id": "/redfish/v1/BootTests/Cases/database_full",
+        "Id": "database_full",
+        "DatabaseId": "dbx"
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/BootTests/Cases/database_full"
+        ],
+        "gofish": [
+          "/redfish/v1/BootTests/Cases/database_full"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::SecureBootDatabase",
+        "schemas::function::GetSecureBootDatabase",
+        "schemas::field::SecureBootDatabase.DatabaseID",
+        "schemas::method::*SecureBootDatabase.UnmarshalJSON"
+      ],
+      "relation": "same_selected_observation"
+    },
+    {
+      "id": "signature_full",
+      "uri": "/redfish/v1/BootTests/Cases/signature_full",
+      "kind": "signature",
+      "input": {
+        "@odata.id": "/redfish/v1/BootTests/Cases/signature_full",
+        "Id": "signature_full",
+        "SignatureString": "00112233445566778899aabbccddeeff",
+        "SignatureType": "EFI_CERT_SHA256_GUID",
+        "SignatureTypeRegistry": "UEFI",
+        "UefiSignatureOwner": "00000000-0000-0000-0000-000000000001"
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/BootTests/Cases/signature_full"
+        ],
+        "gofish": [
+          "/redfish/v1/BootTests/Cases/signature_full"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::Signature",
+        "schemas::function::GetSignature",
+        "schemas::field::Signature.SignatureString",
+        "schemas::field::Signature.SignatureType",
+        "schemas::field::Signature.SignatureTypeRegistry",
+        "schemas::field::Signature.UefiSignatureOwner"
+      ],
+      "relation": "same_selected_observation"
+    },
+    {
+      "id": "boot_missing",
+      "uri": "/redfish/v1/BootTests/Cases/boot_missing",
+      "kind": "boot",
+      "input": {
+        "@odata.id": "/redfish/v1/BootTests/Cases/boot_missing",
+        "Id": "boot_missing"
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/BootTests/Cases/boot_missing"
+        ],
+        "gofish": [
+          "/redfish/v1/BootTests/Cases/boot_missing"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::Boot",
+        "schemas::method::*Boot.UnmarshalJSON",
+        "schemas::field::ComputerSystem.Boot",
+        "schemas::field::Boot.AutomaticRetryConfig",
+        "schemas::field::Boot.BootNext",
+        "schemas::field::Boot.BootOrderPropertySelection",
+        "schemas::field::Boot.BootSourceOverrideEnabled",
+        "schemas::field::Boot.BootSourceOverrideMode",
+        "schemas::field::Boot.BootSourceOverrideTarget",
+        "schemas::field::Boot.HTTPBootURI",
+        "schemas::field::Boot.StopBootOnFault",
+        "schemas::field::Boot.TrustedModuleRequiredToBoot",
+        "schemas::field::Boot.UefiTargetBootSourceOverride",
+        "schemas::field::Boot.AliasBootOrder",
+        "schemas::field::Boot.BootOrder",
+        "schemas::field::Boot.AllowableBootSourceOverrideTargetValues",
+        "schemas::field::Boot.AllowableUefiTargetBootSourceOverrideValues"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "boot_null",
+      "uri": "/redfish/v1/BootTests/Cases/boot_null",
+      "kind": "boot",
+      "input": {
+        "@odata.id": "/redfish/v1/BootTests/Cases/boot_null",
+        "Id": "boot_null",
+        "Boot": null
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/BootTests/Cases/boot_null"
+        ],
+        "gofish": [
+          "/redfish/v1/BootTests/Cases/boot_null"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::Boot",
+        "schemas::method::*Boot.UnmarshalJSON",
+        "schemas::field::ComputerSystem.Boot",
+        "schemas::field::Boot.AutomaticRetryConfig",
+        "schemas::field::Boot.BootNext",
+        "schemas::field::Boot.BootOrderPropertySelection",
+        "schemas::field::Boot.BootSourceOverrideEnabled",
+        "schemas::field::Boot.BootSourceOverrideMode",
+        "schemas::field::Boot.BootSourceOverrideTarget",
+        "schemas::field::Boot.HTTPBootURI",
+        "schemas::field::Boot.StopBootOnFault",
+        "schemas::field::Boot.TrustedModuleRequiredToBoot",
+        "schemas::field::Boot.UefiTargetBootSourceOverride",
+        "schemas::field::Boot.AliasBootOrder",
+        "schemas::field::Boot.BootOrder",
+        "schemas::field::Boot.AllowableBootSourceOverrideTargetValues",
+        "schemas::field::Boot.AllowableUefiTargetBootSourceOverrideValues"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "boot_empty",
+      "uri": "/redfish/v1/BootTests/Cases/boot_empty",
+      "kind": "boot",
+      "input": {
+        "@odata.id": "/redfish/v1/BootTests/Cases/boot_empty",
+        "Id": "boot_empty",
+        "Boot": {}
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/BootTests/Cases/boot_empty"
+        ],
+        "gofish": [
+          "/redfish/v1/BootTests/Cases/boot_empty"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::Boot",
+        "schemas::method::*Boot.UnmarshalJSON",
+        "schemas::field::ComputerSystem.Boot",
+        "schemas::field::Boot.AutomaticRetryConfig",
+        "schemas::field::Boot.BootNext",
+        "schemas::field::Boot.BootOrderPropertySelection",
+        "schemas::field::Boot.BootSourceOverrideEnabled",
+        "schemas::field::Boot.BootSourceOverrideMode",
+        "schemas::field::Boot.BootSourceOverrideTarget",
+        "schemas::field::Boot.HTTPBootURI",
+        "schemas::field::Boot.StopBootOnFault",
+        "schemas::field::Boot.TrustedModuleRequiredToBoot",
+        "schemas::field::Boot.UefiTargetBootSourceOverride",
+        "schemas::field::Boot.AliasBootOrder",
+        "schemas::field::Boot.BootOrder",
+        "schemas::field::Boot.AllowableBootSourceOverrideTargetValues",
+        "schemas::field::Boot.AllowableUefiTargetBootSourceOverrideValues"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "boot_fields_null",
+      "uri": "/redfish/v1/BootTests/Cases/boot_fields_null",
+      "kind": "boot",
+      "input": {
+        "@odata.id": "/redfish/v1/BootTests/Cases/boot_fields_null",
+        "Id": "boot_fields_null",
+        "Boot": {
+          "AutomaticRetryConfig": null,
+          "BootNext": null,
+          "BootOrderPropertySelection": null,
+          "BootSourceOverrideEnabled": null,
+          "BootSourceOverrideMode": null,
+          "BootSourceOverrideTarget": null,
+          "HttpBootUri": null,
+          "StopBootOnFault": null,
+          "TrustedModuleRequiredToBoot": null,
+          "UefiTargetBootSourceOverride": null,
+          "AliasBootOrder": null,
+          "BootOrder": null,
+          "BootSourceOverrideTarget@Redfish.AllowableValues": null,
+          "UefiTargetBootSourceOverride@Redfish.AllowableValues": null
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/BootTests/Cases/boot_fields_null"
+        ],
+        "gofish": [
+          "/redfish/v1/BootTests/Cases/boot_fields_null"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::Boot",
+        "schemas::method::*Boot.UnmarshalJSON",
+        "schemas::field::ComputerSystem.Boot",
+        "schemas::field::Boot.AutomaticRetryConfig",
+        "schemas::field::Boot.BootNext",
+        "schemas::field::Boot.BootOrderPropertySelection",
+        "schemas::field::Boot.BootSourceOverrideEnabled",
+        "schemas::field::Boot.BootSourceOverrideMode",
+        "schemas::field::Boot.BootSourceOverrideTarget",
+        "schemas::field::Boot.HTTPBootURI",
+        "schemas::field::Boot.StopBootOnFault",
+        "schemas::field::Boot.TrustedModuleRequiredToBoot",
+        "schemas::field::Boot.UefiTargetBootSourceOverride",
+        "schemas::field::Boot.AliasBootOrder",
+        "schemas::field::Boot.BootOrder",
+        "schemas::field::Boot.AllowableBootSourceOverrideTargetValues",
+        "schemas::field::Boot.AllowableUefiTargetBootSourceOverrideValues"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "future_boot_values",
+      "uri": "/redfish/v1/BootTests/Cases/future_boot_values",
+      "kind": "boot",
+      "input": {
+        "@odata.id": "/redfish/v1/BootTests/Cases/future_boot_values",
+        "Id": "future_boot_values",
+        "Boot": {
+          "AutomaticRetryConfig": "Disabled",
+          "BootNext": "Boot0002",
+          "BootOrderPropertySelection": "BootOrder",
+          "BootSourceOverrideEnabled": "Once",
+          "BootSourceOverrideMode": "FutureMode",
+          "BootSourceOverrideTarget": "FutureTarget",
+          "HttpBootUri": "https://boot.example.invalid/image",
+          "StopBootOnFault": "AnyFault",
+          "TrustedModuleRequiredToBoot": "Required",
+          "UefiTargetBootSourceOverride": "synthetic-device-path",
+          "AliasBootOrder": [
+            "FutureSource"
+          ],
+          "BootOrder": [
+            "Boot0002",
+            "Boot0001",
+            "Boot0002"
+          ],
+          "BootSourceOverrideTarget@Redfish.AllowableValues": [
+            "Pxe",
+            "Hdd",
+            "FutureSource"
+          ],
+          "UefiTargetBootSourceOverride@Redfish.AllowableValues": []
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/BootTests/Cases/future_boot_values"
+        ],
+        "gofish": [
+          "/redfish/v1/BootTests/Cases/future_boot_values"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::Boot",
+        "schemas::method::*Boot.UnmarshalJSON",
+        "schemas::field::ComputerSystem.Boot",
+        "schemas::field::Boot.AutomaticRetryConfig",
+        "schemas::field::Boot.BootNext",
+        "schemas::field::Boot.BootOrderPropertySelection",
+        "schemas::field::Boot.BootSourceOverrideEnabled",
+        "schemas::field::Boot.BootSourceOverrideMode",
+        "schemas::field::Boot.BootSourceOverrideTarget",
+        "schemas::field::Boot.HTTPBootURI",
+        "schemas::field::Boot.StopBootOnFault",
+        "schemas::field::Boot.TrustedModuleRequiredToBoot",
+        "schemas::field::Boot.UefiTargetBootSourceOverride",
+        "schemas::field::Boot.AliasBootOrder",
+        "schemas::field::Boot.BootOrder",
+        "schemas::field::Boot.AllowableBootSourceOverrideTargetValues",
+        "schemas::field::Boot.AllowableUefiTargetBootSourceOverrideValues"
+      ],
+      "relation": "same_selected_observation"
+    },
+    {
+      "id": "boot_array_wrong_type",
+      "uri": "/redfish/v1/BootTests/Cases/boot_array_wrong_type",
+      "kind": "boot",
+      "input": {
+        "@odata.id": "/redfish/v1/BootTests/Cases/boot_array_wrong_type",
+        "Id": "boot_array_wrong_type",
+        "Boot": {
+          "AutomaticRetryConfig": "Disabled",
+          "BootNext": "Boot0002",
+          "BootOrderPropertySelection": "BootOrder",
+          "BootSourceOverrideEnabled": "Once",
+          "BootSourceOverrideMode": "UEFI",
+          "BootSourceOverrideTarget": "Pxe",
+          "HttpBootUri": "https://boot.example.invalid/image",
+          "StopBootOnFault": "AnyFault",
+          "TrustedModuleRequiredToBoot": "Required",
+          "UefiTargetBootSourceOverride": "synthetic-device-path",
+          "AliasBootOrder": [
+            "Pxe",
+            "Hdd"
+          ],
+          "BootOrder": false,
+          "BootSourceOverrideTarget@Redfish.AllowableValues": [
+            "Pxe",
+            "Hdd",
+            "FutureSource"
+          ],
+          "UefiTargetBootSourceOverride@Redfish.AllowableValues": []
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/BootTests/Cases/boot_array_wrong_type"
+        ],
+        "gofish": [
+          "/redfish/v1/BootTests/Cases/boot_array_wrong_type"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::Boot",
+        "schemas::method::*Boot.UnmarshalJSON",
+        "schemas::field::ComputerSystem.Boot",
+        "schemas::field::Boot.AutomaticRetryConfig",
+        "schemas::field::Boot.BootNext",
+        "schemas::field::Boot.BootOrderPropertySelection",
+        "schemas::field::Boot.BootSourceOverrideEnabled",
+        "schemas::field::Boot.BootSourceOverrideMode",
+        "schemas::field::Boot.BootSourceOverrideTarget",
+        "schemas::field::Boot.HTTPBootURI",
+        "schemas::field::Boot.StopBootOnFault",
+        "schemas::field::Boot.TrustedModuleRequiredToBoot",
+        "schemas::field::Boot.UefiTargetBootSourceOverride",
+        "schemas::field::Boot.AliasBootOrder",
+        "schemas::field::Boot.BootOrder",
+        "schemas::field::Boot.AllowableBootSourceOverrideTargetValues",
+        "schemas::field::Boot.AllowableUefiTargetBootSourceOverrideValues"
+      ],
+      "relation": "both_reject"
+    },
+    {
+      "id": "boot_null_array_member",
+      "uri": "/redfish/v1/BootTests/Cases/boot_null_array_member",
+      "kind": "boot",
+      "input": {
+        "@odata.id": "/redfish/v1/BootTests/Cases/boot_null_array_member",
+        "Id": "boot_null_array_member",
+        "Boot": {
+          "AutomaticRetryConfig": "Disabled",
+          "BootNext": "Boot0002",
+          "BootOrderPropertySelection": "BootOrder",
+          "BootSourceOverrideEnabled": "Once",
+          "BootSourceOverrideMode": "UEFI",
+          "BootSourceOverrideTarget": "Pxe",
+          "HttpBootUri": "https://boot.example.invalid/image",
+          "StopBootOnFault": "AnyFault",
+          "TrustedModuleRequiredToBoot": "Required",
+          "UefiTargetBootSourceOverride": "synthetic-device-path",
+          "AliasBootOrder": [
+            "Pxe",
+            "Hdd"
+          ],
+          "BootOrder": [
+            null
+          ],
+          "BootSourceOverrideTarget@Redfish.AllowableValues": [
+            "Pxe",
+            "Hdd",
+            "FutureSource"
+          ],
+          "UefiTargetBootSourceOverride@Redfish.AllowableValues": []
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/BootTests/Cases/boot_null_array_member"
+        ],
+        "gofish": [
+          "/redfish/v1/BootTests/Cases/boot_null_array_member"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::Boot",
+        "schemas::method::*Boot.UnmarshalJSON",
+        "schemas::field::ComputerSystem.Boot",
+        "schemas::field::Boot.AutomaticRetryConfig",
+        "schemas::field::Boot.BootNext",
+        "schemas::field::Boot.BootOrderPropertySelection",
+        "schemas::field::Boot.BootSourceOverrideEnabled",
+        "schemas::field::Boot.BootSourceOverrideMode",
+        "schemas::field::Boot.BootSourceOverrideTarget",
+        "schemas::field::Boot.HTTPBootURI",
+        "schemas::field::Boot.StopBootOnFault",
+        "schemas::field::Boot.TrustedModuleRequiredToBoot",
+        "schemas::field::Boot.UefiTargetBootSourceOverride",
+        "schemas::field::Boot.AliasBootOrder",
+        "schemas::field::Boot.BootOrder",
+        "schemas::field::Boot.AllowableBootSourceOverrideTargetValues",
+        "schemas::field::Boot.AllowableUefiTargetBootSourceOverrideValues"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "secure_enable_wrong_type",
+      "uri": "/redfish/v1/BootTests/Cases/secure_enable_wrong_type",
+      "kind": "secure",
+      "input": {
+        "@odata.id": "/redfish/v1/BootTests/Cases/secure_enable_wrong_type",
+        "Id": "secure_enable_wrong_type",
+        "SecureBootCurrentBoot": "Enabled",
+        "SecureBootEnable": "false",
+        "SecureBootMode": "UserMode",
+        "Actions": {
+          "#SecureBoot.ResetKeys": {
+            "target": "/redfish/v1/MustNotReset"
+          }
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/BootTests/Cases/secure_enable_wrong_type"
+        ],
+        "gofish": [
+          "/redfish/v1/BootTests/Cases/secure_enable_wrong_type"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::SecureBoot",
+        "schemas::function::GetSecureBoot",
+        "schemas::field::SecureBoot.SecureBootCurrentBoot",
+        "schemas::field::SecureBoot.SecureBootMode",
+        "schemas::field::SecureBoot.SecureBootEnable",
+        "schemas::method::*SecureBoot.UnmarshalJSON"
+      ],
+      "relation": "both_reject"
+    },
+    {
+      "id": "database_wrong_type",
+      "uri": "/redfish/v1/BootTests/Cases/database_wrong_type",
+      "kind": "database",
+      "input": {
+        "@odata.id": "/redfish/v1/BootTests/Cases/database_wrong_type",
+        "Id": "database_wrong_type",
+        "DatabaseId": 1
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/BootTests/Cases/database_wrong_type"
+        ],
+        "gofish": [
+          "/redfish/v1/BootTests/Cases/database_wrong_type"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::SecureBootDatabase",
+        "schemas::function::GetSecureBootDatabase",
+        "schemas::field::SecureBootDatabase.DatabaseID",
+        "schemas::method::*SecureBootDatabase.UnmarshalJSON"
+      ],
+      "relation": "both_reject"
+    },
+    {
+      "id": "signature_wrong_type",
+      "uri": "/redfish/v1/BootTests/Cases/signature_wrong_type",
+      "kind": "signature",
+      "input": {
+        "@odata.id": "/redfish/v1/BootTests/Cases/signature_wrong_type",
+        "Id": "signature_wrong_type",
+        "SignatureString": false,
+        "SignatureType": "EFI_CERT_SHA256_GUID",
+        "SignatureTypeRegistry": "UEFI",
+        "UefiSignatureOwner": "00000000-0000-0000-0000-000000000001"
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/BootTests/Cases/signature_wrong_type"
+        ],
+        "gofish": [
+          "/redfish/v1/BootTests/Cases/signature_wrong_type"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::Signature",
+        "schemas::function::GetSignature",
+        "schemas::field::Signature.SignatureString",
+        "schemas::field::Signature.SignatureType",
+        "schemas::field::Signature.SignatureTypeRegistry",
+        "schemas::field::Signature.UefiSignatureOwner"
+      ],
+      "relation": "both_reject"
+    },
+    {
+      "id": "secure_missing_fields",
+      "uri": "/redfish/v1/BootTests/Cases/secure_missing_fields",
+      "kind": "secure",
+      "input": {
+        "@odata.id": "/redfish/v1/BootTests/Cases/secure_missing_fields",
+        "Id": "secure_missing_fields"
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/BootTests/Cases/secure_missing_fields"
+        ],
+        "gofish": [
+          "/redfish/v1/BootTests/Cases/secure_missing_fields"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::SecureBoot",
+        "schemas::function::GetSecureBoot",
+        "schemas::field::SecureBoot.SecureBootCurrentBoot",
+        "schemas::field::SecureBoot.SecureBootMode",
+        "schemas::field::SecureBoot.SecureBootEnable",
+        "schemas::method::*SecureBoot.UnmarshalJSON"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "secure_null_fields",
+      "uri": "/redfish/v1/BootTests/Cases/secure_null_fields",
+      "kind": "secure",
+      "input": {
+        "@odata.id": "/redfish/v1/BootTests/Cases/secure_null_fields",
+        "Id": "secure_null_fields",
+        "SecureBootCurrentBoot": null,
+        "SecureBootMode": null,
+        "SecureBootEnable": null
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/BootTests/Cases/secure_null_fields"
+        ],
+        "gofish": [
+          "/redfish/v1/BootTests/Cases/secure_null_fields"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::SecureBoot",
+        "schemas::function::GetSecureBoot",
+        "schemas::field::SecureBoot.SecureBootCurrentBoot",
+        "schemas::field::SecureBoot.SecureBootMode",
+        "schemas::field::SecureBoot.SecureBootEnable",
+        "schemas::method::*SecureBoot.UnmarshalJSON"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "future_signature_type",
+      "uri": "/redfish/v1/BootTests/Cases/future_signature_type",
+      "kind": "signature",
+      "input": {
+        "@odata.id": "/redfish/v1/BootTests/Cases/future_signature_type",
+        "Id": "future_signature_type",
+        "SignatureString": "00112233445566778899aabbccddeeff",
+        "SignatureType": "FutureSignature",
+        "SignatureTypeRegistry": "FutureRegistry",
+        "UefiSignatureOwner": "00000000-0000-0000-0000-000000000001"
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/BootTests/Cases/future_signature_type"
+        ],
+        "gofish": [
+          "/redfish/v1/BootTests/Cases/future_signature_type"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::Signature",
+        "schemas::function::GetSignature",
+        "schemas::field::Signature.SignatureString",
+        "schemas::field::Signature.SignatureType",
+        "schemas::field::Signature.SignatureTypeRegistry",
+        "schemas::field::Signature.UefiSignatureOwner"
+      ],
+      "relation": "same_selected_observation"
+    },
+    {
+      "id": "boot_options_paged",
+      "uri": "/redfish/v1/BootTests/Cases/boot_options_paged",
+      "kind": "boot_options",
+      "input": {
+        "@odata.id": "/redfish/v1/BootTests/Cases/boot_options_paged",
+        "Id": "boot_options_paged",
+        "Boot": {
+          "AutomaticRetryConfig": "Disabled",
+          "BootNext": "Boot0002",
+          "BootOrderPropertySelection": "BootOrder",
+          "BootSourceOverrideEnabled": "Once",
+          "BootSourceOverrideMode": "UEFI",
+          "BootSourceOverrideTarget": "Pxe",
+          "HttpBootUri": "https://boot.example.invalid/image",
+          "StopBootOnFault": "AnyFault",
+          "TrustedModuleRequiredToBoot": "Required",
+          "UefiTargetBootSourceOverride": "synthetic-device-path",
+          "AliasBootOrder": [
+            "Pxe",
+            "Hdd"
+          ],
+          "BootOrder": [
+            "Boot0002",
+            "Boot0001",
+            "Boot0002"
+          ],
+          "BootSourceOverrideTarget@Redfish.AllowableValues": [
+            "Pxe",
+            "Hdd",
+            "FutureSource"
+          ],
+          "UefiTargetBootSourceOverride@Redfish.AllowableValues": [],
+          "BootOptions": {
+            "@odata.id": "/redfish/v1/BootTests/Pages/Options"
+          }
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/BootTests/Cases/boot_options_paged",
+          "/redfish/v1/BootTests/Pages/Options",
+          "/redfish/v1/BootTests/Pages/Options?$skip=1",
+          "/redfish/v1/BootTests/Objects/O0",
+          "/redfish/v1/BootTests/Objects/O1"
+        ],
+        "gofish": [
+          "/redfish/v1/BootTests/Cases/boot_options_paged",
+          "/redfish/v1/BootTests/Pages/Options",
+          "/redfish/v1/BootTests/Pages/Options?$skip=1",
+          "/redfish/v1/BootTests/Objects/O0",
+          "/redfish/v1/BootTests/Objects/O1"
+        ]
+      },
+      "item_ids": [
+        "schemas::method::*Boot.BootOptions"
+      ],
+      "relation": "same_selected_observation"
+    },
+    {
+      "id": "system_boot_options_paged",
+      "uri": "/redfish/v1/BootTests/Cases/system_boot_options_paged",
+      "kind": "system_boot_options",
+      "input": {
+        "@odata.id": "/redfish/v1/BootTests/Cases/system_boot_options_paged",
+        "Id": "system_boot_options_paged",
+        "Boot": {
+          "AutomaticRetryConfig": "Disabled",
+          "BootNext": "Boot0002",
+          "BootOrderPropertySelection": "BootOrder",
+          "BootSourceOverrideEnabled": "Once",
+          "BootSourceOverrideMode": "UEFI",
+          "BootSourceOverrideTarget": "Pxe",
+          "HttpBootUri": "https://boot.example.invalid/image",
+          "StopBootOnFault": "AnyFault",
+          "TrustedModuleRequiredToBoot": "Required",
+          "UefiTargetBootSourceOverride": "synthetic-device-path",
+          "AliasBootOrder": [
+            "Pxe",
+            "Hdd"
+          ],
+          "BootOrder": [
+            "Boot0002",
+            "Boot0001",
+            "Boot0002"
+          ],
+          "BootSourceOverrideTarget@Redfish.AllowableValues": [
+            "Pxe",
+            "Hdd",
+            "FutureSource"
+          ],
+          "UefiTargetBootSourceOverride@Redfish.AllowableValues": [],
+          "BootOptions": {
+            "@odata.id": "/redfish/v1/BootTests/Pages/Options"
+          }
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/BootTests/Cases/system_boot_options_paged",
+          "/redfish/v1/BootTests/Pages/Options",
+          "/redfish/v1/BootTests/Pages/Options?$skip=1",
+          "/redfish/v1/BootTests/Objects/O0",
+          "/redfish/v1/BootTests/Objects/O1"
+        ],
+        "gofish": [
+          "/redfish/v1/BootTests/Cases/system_boot_options_paged",
+          "/redfish/v1/BootTests/Pages/Options",
+          "/redfish/v1/BootTests/Pages/Options?$skip=1",
+          "/redfish/v1/BootTests/Objects/O0",
+          "/redfish/v1/BootTests/Objects/O1"
+        ]
+      },
+      "item_ids": [
+        "schemas::method::*ComputerSystem.BootOptions"
+      ],
+      "relation": "same_selected_observation"
+    },
+    {
+      "id": "secure_link",
+      "uri": "/redfish/v1/BootTests/Cases/secure_link",
+      "kind": "secure_boot",
+      "input": {
+        "@odata.id": "/redfish/v1/BootTests/Cases/secure_link",
+        "Id": "secure_link",
+        "SecureBoot": {
+          "@odata.id": "/redfish/v1/BootTests/Objects/Secure"
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/BootTests/Cases/secure_link",
+          "/redfish/v1/BootTests/Objects/Secure"
+        ],
+        "gofish": [
+          "/redfish/v1/BootTests/Cases/secure_link",
+          "/redfish/v1/BootTests/Objects/Secure"
+        ]
+      },
+      "item_ids": [
+        "schemas::method::*ComputerSystem.SecureBoot"
+      ],
+      "relation": "same_selected_observation"
+    },
+    {
+      "id": "secure_inline_differs",
+      "uri": "/redfish/v1/BootTests/Cases/secure_inline_differs",
+      "kind": "secure_boot",
+      "input": {
+        "@odata.id": "/redfish/v1/BootTests/Cases/secure_inline_differs",
+        "Id": "secure_inline_differs",
+        "SecureBoot": {
+          "@odata.id": "/redfish/v1/BootTests/Objects/Secure",
+          "Id": "Secure",
+          "SecureBootCurrentBoot": "Enabled",
+          "SecureBootEnable": false,
+          "SecureBootMode": "UserMode",
+          "Actions": {
+            "#SecureBoot.ResetKeys": {
+              "target": "/redfish/v1/MustNotReset"
+            }
+          }
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/BootTests/Cases/secure_inline_differs",
+          "/redfish/v1/BootTests/Objects/Secure"
+        ],
+        "gofish": [
+          "/redfish/v1/BootTests/Cases/secure_inline_differs"
+        ]
+      },
+      "item_ids": [
+        "schemas::method::*ComputerSystem.SecureBoot"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "database_collection",
+      "uri": "/redfish/v1/BootTests/Cases/database_collection",
+      "kind": "databases",
+      "input": {
+        "@odata.id": "/redfish/v1/BootTests/Cases/database_collection",
+        "Id": "database_collection",
+        "SecureBootCurrentBoot": "Enabled",
+        "SecureBootEnable": false,
+        "SecureBootMode": "UserMode",
+        "Actions": {
+          "#SecureBoot.ResetKeys": {
+            "target": "/redfish/v1/MustNotReset"
+          }
+        },
+        "SecureBootDatabases": {
+          "@odata.id": "/redfish/v1/BootTests/Pages/Databases"
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/BootTests/Cases/database_collection",
+          "/redfish/v1/BootTests/Pages/Databases",
+          "/redfish/v1/BootTests/Objects/DB0",
+          "/redfish/v1/BootTests/Objects/DB1"
+        ],
+        "gofish": [
+          "/redfish/v1/BootTests/Cases/database_collection",
+          "/redfish/v1/BootTests/Pages/Databases",
+          "/redfish/v1/BootTests/Objects/DB0",
+          "/redfish/v1/BootTests/Objects/DB1"
+        ]
+      },
+      "item_ids": [
+        "schemas::method::*SecureBoot.SecureBootDatabases"
+      ],
+      "relation": "same_selected_observation"
+    },
+    {
+      "id": "signature_collection",
+      "uri": "/redfish/v1/BootTests/Cases/signature_collection",
+      "kind": "signatures",
+      "input": {
+        "@odata.id": "/redfish/v1/BootTests/Cases/signature_collection",
+        "Id": "signature_collection",
+        "DatabaseId": "dbx",
+        "Signatures": {
+          "@odata.id": "/redfish/v1/BootTests/Pages/Signatures"
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/BootTests/Cases/signature_collection",
+          "/redfish/v1/BootTests/Pages/Signatures",
+          "/redfish/v1/BootTests/Pages/Signatures?$skip=1",
+          "/redfish/v1/BootTests/Objects/S0",
+          "/redfish/v1/BootTests/Objects/S1"
+        ],
+        "gofish": [
+          "/redfish/v1/BootTests/Cases/signature_collection",
+          "/redfish/v1/BootTests/Pages/Signatures",
+          "/redfish/v1/BootTests/Pages/Signatures?$skip=1",
+          "/redfish/v1/BootTests/Objects/S0",
+          "/redfish/v1/BootTests/Objects/S1"
+        ]
+      },
+      "item_ids": [
+        "schemas::method::*SecureBootDatabase.Signatures"
+      ],
+      "relation": "same_selected_observation"
+    },
+    {
+      "id": "secure_absent_link",
+      "uri": "/redfish/v1/BootTests/Cases/secure_absent_link",
+      "kind": "secure_boot",
+      "input": {
+        "@odata.id": "/redfish/v1/BootTests/Cases/secure_absent_link",
+        "Id": "secure_absent_link"
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/BootTests/Cases/secure_absent_link"
+        ],
+        "gofish": [
+          "/redfish/v1/BootTests/Cases/secure_absent_link"
+        ]
+      },
+      "item_ids": [
+        "schemas::method::*ComputerSystem.SecureBoot"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "secure_null_link",
+      "uri": "/redfish/v1/BootTests/Cases/secure_null_link",
+      "kind": "secure_boot",
+      "input": {
+        "@odata.id": "/redfish/v1/BootTests/Cases/secure_null_link",
+        "Id": "secure_null_link",
+        "SecureBoot": null
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/BootTests/Cases/secure_null_link"
+        ],
+        "gofish": [
+          "/redfish/v1/BootTests/Cases/secure_null_link"
+        ]
+      },
+      "item_ids": [
+        "schemas::method::*ComputerSystem.SecureBoot"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "boot_options_absent_link",
+      "uri": "/redfish/v1/BootTests/Cases/boot_options_absent_link",
+      "kind": "boot_options",
+      "input": {
+        "@odata.id": "/redfish/v1/BootTests/Cases/boot_options_absent_link",
+        "Id": "boot_options_absent_link",
+        "Boot": {}
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/BootTests/Cases/boot_options_absent_link"
+        ],
+        "gofish": [
+          "/redfish/v1/BootTests/Cases/boot_options_absent_link"
+        ]
+      },
+      "item_ids": [
+        "schemas::method::*Boot.BootOptions"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "boot_options_null_link",
+      "uri": "/redfish/v1/BootTests/Cases/boot_options_null_link",
+      "kind": "boot_options",
+      "input": {
+        "@odata.id": "/redfish/v1/BootTests/Cases/boot_options_null_link",
+        "Id": "boot_options_null_link",
+        "Boot": {
+          "BootOptions": null
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/BootTests/Cases/boot_options_null_link"
+        ],
+        "gofish": [
+          "/redfish/v1/BootTests/Cases/boot_options_null_link"
+        ]
+      },
+      "item_ids": [
+        "schemas::method::*Boot.BootOptions"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "databases_absent_link",
+      "uri": "/redfish/v1/BootTests/Cases/databases_absent_link",
+      "kind": "databases",
+      "input": {
+        "@odata.id": "/redfish/v1/BootTests/Cases/databases_absent_link",
+        "Id": "databases_absent_link"
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/BootTests/Cases/databases_absent_link"
+        ],
+        "gofish": [
+          "/redfish/v1/BootTests/Cases/databases_absent_link"
+        ]
+      },
+      "item_ids": [
+        "schemas::method::*SecureBoot.SecureBootDatabases"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "signatures_null_link",
+      "uri": "/redfish/v1/BootTests/Cases/signatures_null_link",
+      "kind": "signatures",
+      "input": {
+        "@odata.id": "/redfish/v1/BootTests/Cases/signatures_null_link",
+        "Id": "signatures_null_link",
+        "Signatures": null
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/BootTests/Cases/signatures_null_link"
+        ],
+        "gofish": [
+          "/redfish/v1/BootTests/Cases/signatures_null_link"
+        ]
+      },
+      "item_ids": [
+        "schemas::method::*SecureBootDatabase.Signatures"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "system_options_absent_link",
+      "uri": "/redfish/v1/BootTests/Cases/system_options_absent_link",
+      "kind": "system_boot_options",
+      "input": {
+        "@odata.id": "/redfish/v1/BootTests/Cases/system_options_absent_link",
+        "Id": "system_options_absent_link",
+        "Boot": {}
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/BootTests/Cases/system_options_absent_link"
+        ],
+        "gofish": [
+          "/redfish/v1/BootTests/Cases/system_options_absent_link"
+        ]
+      },
+      "item_ids": [
+        "schemas::method::*ComputerSystem.BootOptions"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "signatures_denied",
+      "uri": "/redfish/v1/BootTests/Cases/signatures_denied",
+      "kind": "signatures",
+      "input": {
+        "@odata.id": "/redfish/v1/BootTests/Cases/signatures_denied",
+        "Id": "signatures_denied",
+        "Signatures": {
+          "@odata.id": "/redfish/v1/BootTests/Denied"
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/BootTests/Cases/signatures_denied",
+          "/redfish/v1/BootTests/Denied"
+        ],
+        "gofish": [
+          "/redfish/v1/BootTests/Cases/signatures_denied",
+          "/redfish/v1/BootTests/Denied"
+        ]
+      },
+      "item_ids": [
+        "schemas::method::*SecureBootDatabase.Signatures"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "signatures_empty",
+      "uri": "/redfish/v1/BootTests/Cases/signatures_empty",
+      "kind": "signatures",
+      "input": {
+        "@odata.id": "/redfish/v1/BootTests/Cases/signatures_empty",
+        "Id": "signatures_empty",
+        "Signatures": {
+          "@odata.id": "/redfish/v1/BootTests/Empty"
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/BootTests/Cases/signatures_empty",
+          "/redfish/v1/BootTests/Empty"
+        ],
+        "gofish": [
+          "/redfish/v1/BootTests/Cases/signatures_empty",
+          "/redfish/v1/BootTests/Empty"
+        ]
+      },
+      "item_ids": [
+        "schemas::method::*SecureBootDatabase.Signatures"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "issue_property_annotations_raw",
+      "uri": "/redfish/v1/BootTests/Cases/issue_property_annotations_raw",
+      "kind": "boot_metadata",
+      "input": {
+        "@odata.id": "/redfish/v1/BootTests/Cases/issue_property_annotations_raw",
+        "Id": "issue_property_annotations_raw",
+        "Boot": {
+          "AutomaticRetryConfig": "Disabled",
+          "BootNext": "Boot0002",
+          "BootOrderPropertySelection": "BootOrder",
+          "BootSourceOverrideEnabled": "Once",
+          "BootSourceOverrideMode": "UEFI",
+          "BootSourceOverrideTarget": "Pxe",
+          "HttpBootUri": "https://boot.example.invalid/image",
+          "StopBootOnFault": "AnyFault",
+          "TrustedModuleRequiredToBoot": "Required",
+          "UefiTargetBootSourceOverride": "synthetic-device-path",
+          "AliasBootOrder": [
+            "Pxe",
+            "Hdd"
+          ],
+          "BootOrder": [
+            "Boot0002",
+            "Boot0001",
+            "Boot0002"
+          ],
+          "BootSourceOverrideTarget@Redfish.AllowableValues": [
+            "Pxe",
+            "Hdd",
+            "FutureSource"
+          ],
+          "UefiTargetBootSourceOverride@Redfish.AllowableValues": [],
+          "BootNext@Message.ExtendedInfo": [
+            {
+              "MessageId": "Synthetic.1.0.Pending",
+              "MessageArgs": [
+                "synthetic-only"
+              ]
+            }
+          ],
+          "Oem": {
+            "Synthetic": {
+              "Unmodeled": true
+            }
+          }
+        },
+        "@Message.ExtendedInfo": [
+          {
+            "MessageId": "Synthetic.1.0.General"
+          }
+        ]
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/BootTests/Cases/issue_property_annotations_raw"
+        ],
+        "gofish": [
+          "/redfish/v1/BootTests/Cases/issue_property_annotations_raw"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::Boot",
+        "schemas::method::*Boot.UnmarshalJSON",
+        "schemas::field::ComputerSystem.Boot",
+        "schemas::field::Boot.AutomaticRetryConfig",
+        "schemas::field::Boot.BootNext",
+        "schemas::field::Boot.BootOrderPropertySelection",
+        "schemas::field::Boot.BootSourceOverrideEnabled",
+        "schemas::field::Boot.BootSourceOverrideMode",
+        "schemas::field::Boot.BootSourceOverrideTarget",
+        "schemas::field::Boot.HTTPBootURI",
+        "schemas::field::Boot.StopBootOnFault",
+        "schemas::field::Boot.TrustedModuleRequiredToBoot",
+        "schemas::field::Boot.UefiTargetBootSourceOverride",
+        "schemas::field::Boot.AliasBootOrder",
+        "schemas::field::Boot.BootOrder",
+        "schemas::field::Boot.AllowableBootSourceOverrideTargetValues",
+        "schemas::field::Boot.AllowableUefiTargetBootSourceOverrideValues"
+      ],
+      "relation": "same_selected_observation"
+    },
+    {
+      "id": "issue_current_boot_settings",
+      "uri": "/redfish/v1/BootTests/Cases/issue_current_boot_settings",
+      "kind": "boot_metadata",
+      "input": {
+        "@odata.id": "/redfish/v1/BootTests/Cases/issue_current_boot_settings",
+        "Id": "issue_current_boot_settings",
+        "Boot": {
+          "AutomaticRetryConfig": "Disabled",
+          "BootNext": "Boot0002",
+          "BootOrderPropertySelection": "BootOrder",
+          "BootSourceOverrideEnabled": "Once",
+          "BootSourceOverrideMode": "UEFI",
+          "BootSourceOverrideTarget": "Pxe",
+          "HttpBootUri": "https://boot.example.invalid/image",
+          "StopBootOnFault": "AnyFault",
+          "TrustedModuleRequiredToBoot": "Required",
+          "UefiTargetBootSourceOverride": "synthetic-device-path",
+          "AliasBootOrder": [
+            "Pxe",
+            "Hdd"
+          ],
+          "BootOrder": [
+            "Boot0002",
+            "Boot0001",
+            "Boot0002"
+          ],
+          "BootSourceOverrideTarget@Redfish.AllowableValues": [
+            "Pxe",
+            "Hdd",
+            "FutureSource"
+          ],
+          "UefiTargetBootSourceOverride@Redfish.AllowableValues": []
+        },
+        "@odata.etag": "synthetic-current-etag",
+        "@Redfish.Settings": {
+          "SettingsObject": {
+            "@odata.id": "/redfish/v1/BootTests/PendingSettings"
+          }
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/BootTests/Cases/issue_current_boot_settings"
+        ],
+        "gofish": [
+          "/redfish/v1/BootTests/Cases/issue_current_boot_settings"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::Boot",
+        "schemas::method::*Boot.UnmarshalJSON",
+        "schemas::field::ComputerSystem.Boot",
+        "schemas::field::Boot.AutomaticRetryConfig",
+        "schemas::field::Boot.BootNext",
+        "schemas::field::Boot.BootOrderPropertySelection",
+        "schemas::field::Boot.BootSourceOverrideEnabled",
+        "schemas::field::Boot.BootSourceOverrideMode",
+        "schemas::field::Boot.BootSourceOverrideTarget",
+        "schemas::field::Boot.HTTPBootURI",
+        "schemas::field::Boot.StopBootOnFault",
+        "schemas::field::Boot.TrustedModuleRequiredToBoot",
+        "schemas::field::Boot.UefiTargetBootSourceOverride",
+        "schemas::field::Boot.AliasBootOrder",
+        "schemas::field::Boot.BootOrder",
+        "schemas::field::Boot.AllowableBootSourceOverrideTargetValues",
+        "schemas::field::Boot.AllowableUefiTargetBootSourceOverrideValues"
+      ],
+      "relation": "same_selected_observation"
+    }
+  ],
+  "adapters": {
+    "moonredfish": {
+      "observations": {
+        "boot_full": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "value",
+            "value": {
+              "AutomaticRetryConfig": {
+                "state": "value",
+                "value": "Disabled"
+              },
+              "BootNext": {
+                "state": "value",
+                "value": "Boot0002"
+              },
+              "BootOrderPropertySelection": {
+                "state": "value",
+                "value": "BootOrder"
+              },
+              "BootSourceOverrideEnabled": {
+                "state": "value",
+                "value": "Once"
+              },
+              "BootSourceOverrideMode": {
+                "state": "value",
+                "value": "UEFI"
+              },
+              "BootSourceOverrideTarget": {
+                "state": "value",
+                "value": "Pxe"
+              },
+              "HttpBootUri": {
+                "state": "value",
+                "value": "https://boot.example.invalid/image"
+              },
+              "StopBootOnFault": {
+                "state": "value",
+                "value": "AnyFault"
+              },
+              "TrustedModuleRequiredToBoot": {
+                "state": "value",
+                "value": "Required"
+              },
+              "UefiTargetBootSourceOverride": {
+                "state": "value",
+                "value": "synthetic-device-path"
+              },
+              "AliasBootOrder": {
+                "state": "value",
+                "value": [
+                  "Pxe",
+                  "Hdd"
+                ]
+              },
+              "BootOrder": {
+                "state": "value",
+                "value": [
+                  "Boot0002",
+                  "Boot0001",
+                  "Boot0002"
+                ]
+              },
+              "BootSourceOverrideTarget@Redfish.AllowableValues": {
+                "state": "value",
+                "value": [
+                  "Pxe",
+                  "Hdd",
+                  "FutureSource"
+                ]
+              },
+              "UefiTargetBootSourceOverride@Redfish.AllowableValues": {
+                "state": "value",
+                "value": []
+              }
+            }
+          }
+        },
+        "option_full": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "uri": "/redfish/v1/BootTests/Cases/option_full",
+            "id": "option_full",
+            "fields": {
+              "Alias": {
+                "state": "value",
+                "value": "Pxe"
+              },
+              "BootOptionReference": {
+                "state": "value",
+                "value": "Boot0002"
+              },
+              "DisplayName": {
+                "state": "value",
+                "value": "Synthetic network boot"
+              },
+              "UefiDevicePath": {
+                "state": "value",
+                "value": "synthetic-path"
+              },
+              "BootOptionEnabled": {
+                "state": "value",
+                "value": false
+              }
+            }
+          }
+        },
+        "secure_full": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "uri": "/redfish/v1/BootTests/Cases/secure_full",
+            "id": "secure_full",
+            "fields": {
+              "SecureBootCurrentBoot": {
+                "state": "value",
+                "value": "Enabled"
+              },
+              "SecureBootMode": {
+                "state": "value",
+                "value": "UserMode"
+              },
+              "SecureBootEnable": {
+                "state": "value",
+                "value": false
+              }
+            }
+          }
+        },
+        "database_full": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "uri": "/redfish/v1/BootTests/Cases/database_full",
+            "id": "database_full",
+            "fields": {
+              "DatabaseId": {
+                "state": "value",
+                "value": "dbx"
+              }
+            }
+          }
+        },
+        "signature_full": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "uri": "/redfish/v1/BootTests/Cases/signature_full",
+            "id": "signature_full",
+            "fields": {
+              "SignatureString": {
+                "state": "value",
+                "value": "00112233445566778899aabbccddeeff"
+              },
+              "SignatureType": {
+                "state": "value",
+                "value": "EFI_CERT_SHA256_GUID"
+              },
+              "SignatureTypeRegistry": {
+                "state": "value",
+                "value": "UEFI"
+              },
+              "UefiSignatureOwner": {
+                "state": "value",
+                "value": "00000000-0000-0000-0000-000000000001"
+              }
+            }
+          }
+        },
+        "boot_missing": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "missing"
+          }
+        },
+        "boot_null": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "null"
+          }
+        },
+        "boot_empty": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "value",
+            "value": {
+              "AutomaticRetryConfig": {
+                "state": "missing"
+              },
+              "BootNext": {
+                "state": "missing"
+              },
+              "BootOrderPropertySelection": {
+                "state": "missing"
+              },
+              "BootSourceOverrideEnabled": {
+                "state": "missing"
+              },
+              "BootSourceOverrideMode": {
+                "state": "missing"
+              },
+              "BootSourceOverrideTarget": {
+                "state": "missing"
+              },
+              "HttpBootUri": {
+                "state": "missing"
+              },
+              "StopBootOnFault": {
+                "state": "missing"
+              },
+              "TrustedModuleRequiredToBoot": {
+                "state": "missing"
+              },
+              "UefiTargetBootSourceOverride": {
+                "state": "missing"
+              },
+              "AliasBootOrder": {
+                "state": "missing"
+              },
+              "BootOrder": {
+                "state": "missing"
+              },
+              "BootSourceOverrideTarget@Redfish.AllowableValues": {
+                "state": "missing"
+              },
+              "UefiTargetBootSourceOverride@Redfish.AllowableValues": {
+                "state": "missing"
+              }
+            }
+          }
+        },
+        "boot_fields_null": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "value",
+            "value": {
+              "AutomaticRetryConfig": {
+                "state": "null"
+              },
+              "BootNext": {
+                "state": "null"
+              },
+              "BootOrderPropertySelection": {
+                "state": "null"
+              },
+              "BootSourceOverrideEnabled": {
+                "state": "null"
+              },
+              "BootSourceOverrideMode": {
+                "state": "null"
+              },
+              "BootSourceOverrideTarget": {
+                "state": "null"
+              },
+              "HttpBootUri": {
+                "state": "null"
+              },
+              "StopBootOnFault": {
+                "state": "null"
+              },
+              "TrustedModuleRequiredToBoot": {
+                "state": "null"
+              },
+              "UefiTargetBootSourceOverride": {
+                "state": "null"
+              },
+              "AliasBootOrder": {
+                "state": "null"
+              },
+              "BootOrder": {
+                "state": "null"
+              },
+              "BootSourceOverrideTarget@Redfish.AllowableValues": {
+                "state": "null"
+              },
+              "UefiTargetBootSourceOverride@Redfish.AllowableValues": {
+                "state": "null"
+              }
+            }
+          }
+        },
+        "future_boot_values": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "value",
+            "value": {
+              "AutomaticRetryConfig": {
+                "state": "value",
+                "value": "Disabled"
+              },
+              "BootNext": {
+                "state": "value",
+                "value": "Boot0002"
+              },
+              "BootOrderPropertySelection": {
+                "state": "value",
+                "value": "BootOrder"
+              },
+              "BootSourceOverrideEnabled": {
+                "state": "value",
+                "value": "Once"
+              },
+              "BootSourceOverrideMode": {
+                "state": "value",
+                "value": "FutureMode"
+              },
+              "BootSourceOverrideTarget": {
+                "state": "value",
+                "value": "FutureTarget"
+              },
+              "HttpBootUri": {
+                "state": "value",
+                "value": "https://boot.example.invalid/image"
+              },
+              "StopBootOnFault": {
+                "state": "value",
+                "value": "AnyFault"
+              },
+              "TrustedModuleRequiredToBoot": {
+                "state": "value",
+                "value": "Required"
+              },
+              "UefiTargetBootSourceOverride": {
+                "state": "value",
+                "value": "synthetic-device-path"
+              },
+              "AliasBootOrder": {
+                "state": "value",
+                "value": [
+                  "FutureSource"
+                ]
+              },
+              "BootOrder": {
+                "state": "value",
+                "value": [
+                  "Boot0002",
+                  "Boot0001",
+                  "Boot0002"
+                ]
+              },
+              "BootSourceOverrideTarget@Redfish.AllowableValues": {
+                "state": "value",
+                "value": [
+                  "Pxe",
+                  "Hdd",
+                  "FutureSource"
+                ]
+              },
+              "UefiTargetBootSourceOverride@Redfish.AllowableValues": {
+                "state": "value",
+                "value": []
+              }
+            }
+          }
+        },
+        "boot_array_wrong_type": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "boot_null_array_member": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "secure_enable_wrong_type": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "database_wrong_type": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "signature_wrong_type": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "secure_missing_fields": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "uri": "/redfish/v1/BootTests/Cases/secure_missing_fields",
+            "id": "secure_missing_fields",
+            "fields": {
+              "SecureBootCurrentBoot": {
+                "state": "missing"
+              },
+              "SecureBootMode": {
+                "state": "missing"
+              },
+              "SecureBootEnable": {
+                "state": "missing"
+              }
+            }
+          }
+        },
+        "secure_null_fields": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "uri": "/redfish/v1/BootTests/Cases/secure_null_fields",
+            "id": "secure_null_fields",
+            "fields": {
+              "SecureBootCurrentBoot": {
+                "state": "null"
+              },
+              "SecureBootMode": {
+                "state": "null"
+              },
+              "SecureBootEnable": {
+                "state": "null"
+              }
+            }
+          }
+        },
+        "future_signature_type": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "uri": "/redfish/v1/BootTests/Cases/future_signature_type",
+            "id": "future_signature_type",
+            "fields": {
+              "SignatureString": {
+                "state": "value",
+                "value": "00112233445566778899aabbccddeeff"
+              },
+              "SignatureType": {
+                "state": "value",
+                "value": "FutureSignature"
+              },
+              "SignatureTypeRegistry": {
+                "state": "value",
+                "value": "FutureRegistry"
+              },
+              "UefiSignatureOwner": {
+                "state": "value",
+                "value": "00000000-0000-0000-0000-000000000001"
+              }
+            }
+          }
+        },
+        "boot_options_paged": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "value",
+            "value": [
+              {
+                "uri": "/redfish/v1/BootTests/Objects/O0",
+                "id": "O0",
+                "fields": {
+                  "Alias": {
+                    "state": "value",
+                    "value": "Pxe"
+                  },
+                  "BootOptionReference": {
+                    "state": "value",
+                    "value": "Boot0002"
+                  },
+                  "DisplayName": {
+                    "state": "value",
+                    "value": "Synthetic network boot"
+                  },
+                  "UefiDevicePath": {
+                    "state": "value",
+                    "value": "synthetic-path"
+                  },
+                  "BootOptionEnabled": {
+                    "state": "value",
+                    "value": false
+                  }
+                }
+              },
+              {
+                "uri": "/redfish/v1/BootTests/Objects/O1",
+                "id": "O1",
+                "fields": {
+                  "Alias": {
+                    "state": "value",
+                    "value": "Pxe"
+                  },
+                  "BootOptionReference": {
+                    "state": "value",
+                    "value": "Boot0001"
+                  },
+                  "DisplayName": {
+                    "state": "value",
+                    "value": "Synthetic network boot"
+                  },
+                  "UefiDevicePath": {
+                    "state": "value",
+                    "value": "synthetic-path"
+                  },
+                  "BootOptionEnabled": {
+                    "state": "value",
+                    "value": true
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "system_boot_options_paged": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "value",
+            "value": [
+              {
+                "uri": "/redfish/v1/BootTests/Objects/O0",
+                "id": "O0",
+                "fields": {
+                  "Alias": {
+                    "state": "value",
+                    "value": "Pxe"
+                  },
+                  "BootOptionReference": {
+                    "state": "value",
+                    "value": "Boot0002"
+                  },
+                  "DisplayName": {
+                    "state": "value",
+                    "value": "Synthetic network boot"
+                  },
+                  "UefiDevicePath": {
+                    "state": "value",
+                    "value": "synthetic-path"
+                  },
+                  "BootOptionEnabled": {
+                    "state": "value",
+                    "value": false
+                  }
+                }
+              },
+              {
+                "uri": "/redfish/v1/BootTests/Objects/O1",
+                "id": "O1",
+                "fields": {
+                  "Alias": {
+                    "state": "value",
+                    "value": "Pxe"
+                  },
+                  "BootOptionReference": {
+                    "state": "value",
+                    "value": "Boot0001"
+                  },
+                  "DisplayName": {
+                    "state": "value",
+                    "value": "Synthetic network boot"
+                  },
+                  "UefiDevicePath": {
+                    "state": "value",
+                    "value": "synthetic-path"
+                  },
+                  "BootOptionEnabled": {
+                    "state": "value",
+                    "value": true
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "secure_link": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "value",
+            "value": {
+              "uri": "/redfish/v1/BootTests/Objects/Secure",
+              "id": "Secure",
+              "fields": {
+                "SecureBootCurrentBoot": {
+                  "state": "value",
+                  "value": "Disabled"
+                },
+                "SecureBootMode": {
+                  "state": "value",
+                  "value": "SetupMode"
+                },
+                "SecureBootEnable": {
+                  "state": "value",
+                  "value": true
+                }
+              }
+            }
+          }
+        },
+        "secure_inline_differs": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "value",
+            "value": {
+              "uri": "/redfish/v1/BootTests/Objects/Secure",
+              "id": "Secure",
+              "fields": {
+                "SecureBootCurrentBoot": {
+                  "state": "value",
+                  "value": "Disabled"
+                },
+                "SecureBootMode": {
+                  "state": "value",
+                  "value": "SetupMode"
+                },
+                "SecureBootEnable": {
+                  "state": "value",
+                  "value": true
+                }
+              }
+            }
+          }
+        },
+        "database_collection": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "value",
+            "value": [
+              {
+                "uri": "/redfish/v1/BootTests/Objects/DB0",
+                "id": "DB0",
+                "fields": {
+                  "DatabaseId": {
+                    "state": "value",
+                    "value": "db"
+                  }
+                }
+              },
+              {
+                "uri": "/redfish/v1/BootTests/Objects/DB1",
+                "id": "DB1",
+                "fields": {
+                  "DatabaseId": {
+                    "state": "value",
+                    "value": "dbx"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "signature_collection": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "value",
+            "value": [
+              {
+                "uri": "/redfish/v1/BootTests/Objects/S0",
+                "id": "S0",
+                "fields": {
+                  "SignatureString": {
+                    "state": "value",
+                    "value": "00112233445566778899aabbccddeeff"
+                  },
+                  "SignatureType": {
+                    "state": "value",
+                    "value": "EFI_CERT_SHA256_GUID"
+                  },
+                  "SignatureTypeRegistry": {
+                    "state": "value",
+                    "value": "UEFI"
+                  },
+                  "UefiSignatureOwner": {
+                    "state": "value",
+                    "value": "00000000-0000-0000-0000-000000000001"
+                  }
+                }
+              },
+              {
+                "uri": "/redfish/v1/BootTests/Objects/S1",
+                "id": "S1",
+                "fields": {
+                  "SignatureString": {
+                    "state": "value",
+                    "value": "ffeeddccbbaa99887766554433221100"
+                  },
+                  "SignatureType": {
+                    "state": "value",
+                    "value": "EFI_CERT_SHA256_GUID"
+                  },
+                  "SignatureTypeRegistry": {
+                    "state": "value",
+                    "value": "UEFI"
+                  },
+                  "UefiSignatureOwner": {
+                    "state": "value",
+                    "value": "00000000-0000-0000-0000-000000000001"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "secure_absent_link": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "missing"
+          }
+        },
+        "secure_null_link": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "null"
+          }
+        },
+        "boot_options_absent_link": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "missing"
+          }
+        },
+        "boot_options_null_link": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "null"
+          }
+        },
+        "databases_absent_link": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "missing"
+          }
+        },
+        "signatures_null_link": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "null"
+          }
+        },
+        "system_options_absent_link": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "missing"
+          }
+        },
+        "signatures_denied": {
+          "ok": false,
+          "error": "http",
+          "value": null
+        },
+        "signatures_empty": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "value",
+            "value": []
+          }
+        },
+        "issue_property_annotations_raw": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "boot": {
+              "state": "value",
+              "value": {
+                "AutomaticRetryConfig": {
+                  "state": "value",
+                  "value": "Disabled"
+                },
+                "BootNext": {
+                  "state": "value",
+                  "value": "Boot0002"
+                },
+                "BootOrderPropertySelection": {
+                  "state": "value",
+                  "value": "BootOrder"
+                },
+                "BootSourceOverrideEnabled": {
+                  "state": "value",
+                  "value": "Once"
+                },
+                "BootSourceOverrideMode": {
+                  "state": "value",
+                  "value": "UEFI"
+                },
+                "BootSourceOverrideTarget": {
+                  "state": "value",
+                  "value": "Pxe"
+                },
+                "HttpBootUri": {
+                  "state": "value",
+                  "value": "https://boot.example.invalid/image"
+                },
+                "StopBootOnFault": {
+                  "state": "value",
+                  "value": "AnyFault"
+                },
+                "TrustedModuleRequiredToBoot": {
+                  "state": "value",
+                  "value": "Required"
+                },
+                "UefiTargetBootSourceOverride": {
+                  "state": "value",
+                  "value": "synthetic-device-path"
+                },
+                "AliasBootOrder": {
+                  "state": "value",
+                  "value": [
+                    "Pxe",
+                    "Hdd"
+                  ]
+                },
+                "BootOrder": {
+                  "state": "value",
+                  "value": [
+                    "Boot0002",
+                    "Boot0001",
+                    "Boot0002"
+                  ]
+                },
+                "BootSourceOverrideTarget@Redfish.AllowableValues": {
+                  "state": "value",
+                  "value": [
+                    "Pxe",
+                    "Hdd",
+                    "FutureSource"
+                  ]
+                },
+                "UefiTargetBootSourceOverride@Redfish.AllowableValues": {
+                  "state": "value",
+                  "value": []
+                }
+              }
+            },
+            "raw": {
+              "@odata.id": "/redfish/v1/BootTests/Cases/issue_property_annotations_raw",
+              "Id": "issue_property_annotations_raw",
+              "Boot": {
+                "AutomaticRetryConfig": "Disabled",
+                "BootNext": "Boot0002",
+                "BootOrderPropertySelection": "BootOrder",
+                "BootSourceOverrideEnabled": "Once",
+                "BootSourceOverrideMode": "UEFI",
+                "BootSourceOverrideTarget": "Pxe",
+                "HttpBootUri": "https://boot.example.invalid/image",
+                "StopBootOnFault": "AnyFault",
+                "TrustedModuleRequiredToBoot": "Required",
+                "UefiTargetBootSourceOverride": "synthetic-device-path",
+                "AliasBootOrder": [
+                  "Pxe",
+                  "Hdd"
+                ],
+                "BootOrder": [
+                  "Boot0002",
+                  "Boot0001",
+                  "Boot0002"
+                ],
+                "BootSourceOverrideTarget@Redfish.AllowableValues": [
+                  "Pxe",
+                  "Hdd",
+                  "FutureSource"
+                ],
+                "UefiTargetBootSourceOverride@Redfish.AllowableValues": [],
+                "BootNext@Message.ExtendedInfo": [
+                  {
+                    "MessageId": "Synthetic.1.0.Pending",
+                    "MessageArgs": [
+                      "synthetic-only"
+                    ]
+                  }
+                ],
+                "Oem": {
+                  "Synthetic": {
+                    "Unmodeled": true
+                  }
+                }
+              },
+              "@Message.ExtendedInfo": [
+                {
+                  "MessageId": "Synthetic.1.0.General"
+                }
+              ]
+            },
+            "boot_raw": {
+              "AutomaticRetryConfig": "Disabled",
+              "BootNext": "Boot0002",
+              "BootOrderPropertySelection": "BootOrder",
+              "BootSourceOverrideEnabled": "Once",
+              "BootSourceOverrideMode": "UEFI",
+              "BootSourceOverrideTarget": "Pxe",
+              "HttpBootUri": "https://boot.example.invalid/image",
+              "StopBootOnFault": "AnyFault",
+              "TrustedModuleRequiredToBoot": "Required",
+              "UefiTargetBootSourceOverride": "synthetic-device-path",
+              "AliasBootOrder": [
+                "Pxe",
+                "Hdd"
+              ],
+              "BootOrder": [
+                "Boot0002",
+                "Boot0001",
+                "Boot0002"
+              ],
+              "BootSourceOverrideTarget@Redfish.AllowableValues": [
+                "Pxe",
+                "Hdd",
+                "FutureSource"
+              ],
+              "UefiTargetBootSourceOverride@Redfish.AllowableValues": [],
+              "BootNext@Message.ExtendedInfo": [
+                {
+                  "MessageId": "Synthetic.1.0.Pending",
+                  "MessageArgs": [
+                    "synthetic-only"
+                  ]
+                }
+              ],
+              "Oem": {
+                "Synthetic": {
+                  "Unmodeled": true
+                }
+              }
+            }
+          }
+        },
+        "issue_current_boot_settings": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "boot": {
+              "state": "value",
+              "value": {
+                "AutomaticRetryConfig": {
+                  "state": "value",
+                  "value": "Disabled"
+                },
+                "BootNext": {
+                  "state": "value",
+                  "value": "Boot0002"
+                },
+                "BootOrderPropertySelection": {
+                  "state": "value",
+                  "value": "BootOrder"
+                },
+                "BootSourceOverrideEnabled": {
+                  "state": "value",
+                  "value": "Once"
+                },
+                "BootSourceOverrideMode": {
+                  "state": "value",
+                  "value": "UEFI"
+                },
+                "BootSourceOverrideTarget": {
+                  "state": "value",
+                  "value": "Pxe"
+                },
+                "HttpBootUri": {
+                  "state": "value",
+                  "value": "https://boot.example.invalid/image"
+                },
+                "StopBootOnFault": {
+                  "state": "value",
+                  "value": "AnyFault"
+                },
+                "TrustedModuleRequiredToBoot": {
+                  "state": "value",
+                  "value": "Required"
+                },
+                "UefiTargetBootSourceOverride": {
+                  "state": "value",
+                  "value": "synthetic-device-path"
+                },
+                "AliasBootOrder": {
+                  "state": "value",
+                  "value": [
+                    "Pxe",
+                    "Hdd"
+                  ]
+                },
+                "BootOrder": {
+                  "state": "value",
+                  "value": [
+                    "Boot0002",
+                    "Boot0001",
+                    "Boot0002"
+                  ]
+                },
+                "BootSourceOverrideTarget@Redfish.AllowableValues": {
+                  "state": "value",
+                  "value": [
+                    "Pxe",
+                    "Hdd",
+                    "FutureSource"
+                  ]
+                },
+                "UefiTargetBootSourceOverride@Redfish.AllowableValues": {
+                  "state": "value",
+                  "value": []
+                }
+              }
+            },
+            "raw": {
+              "@odata.id": "/redfish/v1/BootTests/Cases/issue_current_boot_settings",
+              "Id": "issue_current_boot_settings",
+              "Boot": {
+                "AutomaticRetryConfig": "Disabled",
+                "BootNext": "Boot0002",
+                "BootOrderPropertySelection": "BootOrder",
+                "BootSourceOverrideEnabled": "Once",
+                "BootSourceOverrideMode": "UEFI",
+                "BootSourceOverrideTarget": "Pxe",
+                "HttpBootUri": "https://boot.example.invalid/image",
+                "StopBootOnFault": "AnyFault",
+                "TrustedModuleRequiredToBoot": "Required",
+                "UefiTargetBootSourceOverride": "synthetic-device-path",
+                "AliasBootOrder": [
+                  "Pxe",
+                  "Hdd"
+                ],
+                "BootOrder": [
+                  "Boot0002",
+                  "Boot0001",
+                  "Boot0002"
+                ],
+                "BootSourceOverrideTarget@Redfish.AllowableValues": [
+                  "Pxe",
+                  "Hdd",
+                  "FutureSource"
+                ],
+                "UefiTargetBootSourceOverride@Redfish.AllowableValues": []
+              },
+              "@odata.etag": "synthetic-current-etag",
+              "@Redfish.Settings": {
+                "SettingsObject": {
+                  "@odata.id": "/redfish/v1/BootTests/PendingSettings"
+                }
+              }
+            },
+            "boot_raw": {
+              "AutomaticRetryConfig": "Disabled",
+              "BootNext": "Boot0002",
+              "BootOrderPropertySelection": "BootOrder",
+              "BootSourceOverrideEnabled": "Once",
+              "BootSourceOverrideMode": "UEFI",
+              "BootSourceOverrideTarget": "Pxe",
+              "HttpBootUri": "https://boot.example.invalid/image",
+              "StopBootOnFault": "AnyFault",
+              "TrustedModuleRequiredToBoot": "Required",
+              "UefiTargetBootSourceOverride": "synthetic-device-path",
+              "AliasBootOrder": [
+                "Pxe",
+                "Hdd"
+              ],
+              "BootOrder": [
+                "Boot0002",
+                "Boot0001",
+                "Boot0002"
+              ],
+              "BootSourceOverrideTarget@Redfish.AllowableValues": [
+                "Pxe",
+                "Hdd",
+                "FutureSource"
+              ],
+              "UefiTargetBootSourceOverride@Redfish.AllowableValues": []
+            }
+          }
+        }
+      },
+      "request_sequences": {
+        "startup": [
+          "/redfish/v1/BootTests"
+        ],
+        "boot_full": [
+          "/redfish/v1/BootTests/Cases/boot_full"
+        ],
+        "option_full": [
+          "/redfish/v1/BootTests/Cases/option_full"
+        ],
+        "secure_full": [
+          "/redfish/v1/BootTests/Cases/secure_full"
+        ],
+        "database_full": [
+          "/redfish/v1/BootTests/Cases/database_full"
+        ],
+        "signature_full": [
+          "/redfish/v1/BootTests/Cases/signature_full"
+        ],
+        "boot_missing": [
+          "/redfish/v1/BootTests/Cases/boot_missing"
+        ],
+        "boot_null": [
+          "/redfish/v1/BootTests/Cases/boot_null"
+        ],
+        "boot_empty": [
+          "/redfish/v1/BootTests/Cases/boot_empty"
+        ],
+        "boot_fields_null": [
+          "/redfish/v1/BootTests/Cases/boot_fields_null"
+        ],
+        "future_boot_values": [
+          "/redfish/v1/BootTests/Cases/future_boot_values"
+        ],
+        "boot_array_wrong_type": [
+          "/redfish/v1/BootTests/Cases/boot_array_wrong_type"
+        ],
+        "boot_null_array_member": [
+          "/redfish/v1/BootTests/Cases/boot_null_array_member"
+        ],
+        "secure_enable_wrong_type": [
+          "/redfish/v1/BootTests/Cases/secure_enable_wrong_type"
+        ],
+        "database_wrong_type": [
+          "/redfish/v1/BootTests/Cases/database_wrong_type"
+        ],
+        "signature_wrong_type": [
+          "/redfish/v1/BootTests/Cases/signature_wrong_type"
+        ],
+        "secure_missing_fields": [
+          "/redfish/v1/BootTests/Cases/secure_missing_fields"
+        ],
+        "secure_null_fields": [
+          "/redfish/v1/BootTests/Cases/secure_null_fields"
+        ],
+        "future_signature_type": [
+          "/redfish/v1/BootTests/Cases/future_signature_type"
+        ],
+        "boot_options_paged": [
+          "/redfish/v1/BootTests/Cases/boot_options_paged",
+          "/redfish/v1/BootTests/Pages/Options",
+          "/redfish/v1/BootTests/Pages/Options?$skip=1",
+          "/redfish/v1/BootTests/Objects/O0",
+          "/redfish/v1/BootTests/Objects/O1"
+        ],
+        "system_boot_options_paged": [
+          "/redfish/v1/BootTests/Cases/system_boot_options_paged",
+          "/redfish/v1/BootTests/Pages/Options",
+          "/redfish/v1/BootTests/Pages/Options?$skip=1",
+          "/redfish/v1/BootTests/Objects/O0",
+          "/redfish/v1/BootTests/Objects/O1"
+        ],
+        "secure_link": [
+          "/redfish/v1/BootTests/Cases/secure_link",
+          "/redfish/v1/BootTests/Objects/Secure"
+        ],
+        "secure_inline_differs": [
+          "/redfish/v1/BootTests/Cases/secure_inline_differs",
+          "/redfish/v1/BootTests/Objects/Secure"
+        ],
+        "database_collection": [
+          "/redfish/v1/BootTests/Cases/database_collection",
+          "/redfish/v1/BootTests/Pages/Databases",
+          "/redfish/v1/BootTests/Objects/DB0",
+          "/redfish/v1/BootTests/Objects/DB1"
+        ],
+        "signature_collection": [
+          "/redfish/v1/BootTests/Cases/signature_collection",
+          "/redfish/v1/BootTests/Pages/Signatures",
+          "/redfish/v1/BootTests/Pages/Signatures?$skip=1",
+          "/redfish/v1/BootTests/Objects/S0",
+          "/redfish/v1/BootTests/Objects/S1"
+        ],
+        "secure_absent_link": [
+          "/redfish/v1/BootTests/Cases/secure_absent_link"
+        ],
+        "secure_null_link": [
+          "/redfish/v1/BootTests/Cases/secure_null_link"
+        ],
+        "boot_options_absent_link": [
+          "/redfish/v1/BootTests/Cases/boot_options_absent_link"
+        ],
+        "boot_options_null_link": [
+          "/redfish/v1/BootTests/Cases/boot_options_null_link"
+        ],
+        "databases_absent_link": [
+          "/redfish/v1/BootTests/Cases/databases_absent_link"
+        ],
+        "signatures_null_link": [
+          "/redfish/v1/BootTests/Cases/signatures_null_link"
+        ],
+        "system_options_absent_link": [
+          "/redfish/v1/BootTests/Cases/system_options_absent_link"
+        ],
+        "signatures_denied": [
+          "/redfish/v1/BootTests/Cases/signatures_denied",
+          "/redfish/v1/BootTests/Denied"
+        ],
+        "signatures_empty": [
+          "/redfish/v1/BootTests/Cases/signatures_empty",
+          "/redfish/v1/BootTests/Empty"
+        ],
+        "issue_property_annotations_raw": [
+          "/redfish/v1/BootTests/Cases/issue_property_annotations_raw"
+        ],
+        "issue_current_boot_settings": [
+          "/redfish/v1/BootTests/Cases/issue_current_boot_settings"
+        ]
+      }
+    },
+    "gofish": {
+      "observations": {
+        "boot_array_wrong_type": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "boot_empty": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": {
+              "AliasBootOrder": {
+                "state": "nil"
+              },
+              "AutomaticRetryConfig": {
+                "state": "value",
+                "value": ""
+              },
+              "BootNext": {
+                "state": "value",
+                "value": ""
+              },
+              "BootOrder": {
+                "state": "nil"
+              },
+              "BootOrderPropertySelection": {
+                "state": "value",
+                "value": ""
+              },
+              "BootSourceOverrideEnabled": {
+                "state": "value",
+                "value": ""
+              },
+              "BootSourceOverrideMode": {
+                "state": "value",
+                "value": ""
+              },
+              "BootSourceOverrideTarget": {
+                "state": "value",
+                "value": ""
+              },
+              "BootSourceOverrideTarget@Redfish.AllowableValues": {
+                "state": "nil"
+              },
+              "HttpBootUri": {
+                "state": "nil"
+              },
+              "StopBootOnFault": {
+                "state": "value",
+                "value": ""
+              },
+              "TrustedModuleRequiredToBoot": {
+                "state": "value",
+                "value": ""
+              },
+              "UefiTargetBootSourceOverride": {
+                "state": "value",
+                "value": ""
+              },
+              "UefiTargetBootSourceOverride@Redfish.AllowableValues": {
+                "state": "nil"
+              }
+            }
+          }
+        },
+        "boot_fields_null": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": {
+              "AliasBootOrder": {
+                "state": "nil"
+              },
+              "AutomaticRetryConfig": {
+                "state": "value",
+                "value": ""
+              },
+              "BootNext": {
+                "state": "value",
+                "value": ""
+              },
+              "BootOrder": {
+                "state": "nil"
+              },
+              "BootOrderPropertySelection": {
+                "state": "value",
+                "value": ""
+              },
+              "BootSourceOverrideEnabled": {
+                "state": "value",
+                "value": ""
+              },
+              "BootSourceOverrideMode": {
+                "state": "value",
+                "value": ""
+              },
+              "BootSourceOverrideTarget": {
+                "state": "value",
+                "value": ""
+              },
+              "BootSourceOverrideTarget@Redfish.AllowableValues": {
+                "state": "nil"
+              },
+              "HttpBootUri": {
+                "state": "nil"
+              },
+              "StopBootOnFault": {
+                "state": "value",
+                "value": ""
+              },
+              "TrustedModuleRequiredToBoot": {
+                "state": "value",
+                "value": ""
+              },
+              "UefiTargetBootSourceOverride": {
+                "state": "value",
+                "value": ""
+              },
+              "UefiTargetBootSourceOverride@Redfish.AllowableValues": {
+                "state": "nil"
+              }
+            }
+          }
+        },
+        "boot_full": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": {
+              "AliasBootOrder": {
+                "state": "value",
+                "value": [
+                  "Pxe",
+                  "Hdd"
+                ]
+              },
+              "AutomaticRetryConfig": {
+                "state": "value",
+                "value": "Disabled"
+              },
+              "BootNext": {
+                "state": "value",
+                "value": "Boot0002"
+              },
+              "BootOrder": {
+                "state": "value",
+                "value": [
+                  "Boot0002",
+                  "Boot0001",
+                  "Boot0002"
+                ]
+              },
+              "BootOrderPropertySelection": {
+                "state": "value",
+                "value": "BootOrder"
+              },
+              "BootSourceOverrideEnabled": {
+                "state": "value",
+                "value": "Once"
+              },
+              "BootSourceOverrideMode": {
+                "state": "value",
+                "value": "UEFI"
+              },
+              "BootSourceOverrideTarget": {
+                "state": "value",
+                "value": "Pxe"
+              },
+              "BootSourceOverrideTarget@Redfish.AllowableValues": {
+                "state": "value",
+                "value": [
+                  "Pxe",
+                  "Hdd",
+                  "FutureSource"
+                ]
+              },
+              "HttpBootUri": {
+                "state": "value",
+                "value": "https://boot.example.invalid/image"
+              },
+              "StopBootOnFault": {
+                "state": "value",
+                "value": "AnyFault"
+              },
+              "TrustedModuleRequiredToBoot": {
+                "state": "value",
+                "value": "Required"
+              },
+              "UefiTargetBootSourceOverride": {
+                "state": "value",
+                "value": "synthetic-device-path"
+              },
+              "UefiTargetBootSourceOverride@Redfish.AllowableValues": {
+                "state": "value",
+                "value": []
+              }
+            }
+          }
+        },
+        "boot_missing": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": {
+              "AliasBootOrder": {
+                "state": "nil"
+              },
+              "AutomaticRetryConfig": {
+                "state": "value",
+                "value": ""
+              },
+              "BootNext": {
+                "state": "value",
+                "value": ""
+              },
+              "BootOrder": {
+                "state": "nil"
+              },
+              "BootOrderPropertySelection": {
+                "state": "value",
+                "value": ""
+              },
+              "BootSourceOverrideEnabled": {
+                "state": "value",
+                "value": ""
+              },
+              "BootSourceOverrideMode": {
+                "state": "value",
+                "value": ""
+              },
+              "BootSourceOverrideTarget": {
+                "state": "value",
+                "value": ""
+              },
+              "BootSourceOverrideTarget@Redfish.AllowableValues": {
+                "state": "nil"
+              },
+              "HttpBootUri": {
+                "state": "nil"
+              },
+              "StopBootOnFault": {
+                "state": "value",
+                "value": ""
+              },
+              "TrustedModuleRequiredToBoot": {
+                "state": "value",
+                "value": ""
+              },
+              "UefiTargetBootSourceOverride": {
+                "state": "value",
+                "value": ""
+              },
+              "UefiTargetBootSourceOverride@Redfish.AllowableValues": {
+                "state": "nil"
+              }
+            }
+          }
+        },
+        "boot_null": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": {
+              "AliasBootOrder": {
+                "state": "nil"
+              },
+              "AutomaticRetryConfig": {
+                "state": "value",
+                "value": ""
+              },
+              "BootNext": {
+                "state": "value",
+                "value": ""
+              },
+              "BootOrder": {
+                "state": "nil"
+              },
+              "BootOrderPropertySelection": {
+                "state": "value",
+                "value": ""
+              },
+              "BootSourceOverrideEnabled": {
+                "state": "value",
+                "value": ""
+              },
+              "BootSourceOverrideMode": {
+                "state": "value",
+                "value": ""
+              },
+              "BootSourceOverrideTarget": {
+                "state": "value",
+                "value": ""
+              },
+              "BootSourceOverrideTarget@Redfish.AllowableValues": {
+                "state": "nil"
+              },
+              "HttpBootUri": {
+                "state": "nil"
+              },
+              "StopBootOnFault": {
+                "state": "value",
+                "value": ""
+              },
+              "TrustedModuleRequiredToBoot": {
+                "state": "value",
+                "value": ""
+              },
+              "UefiTargetBootSourceOverride": {
+                "state": "value",
+                "value": ""
+              },
+              "UefiTargetBootSourceOverride@Redfish.AllowableValues": {
+                "state": "nil"
+              }
+            }
+          }
+        },
+        "boot_null_array_member": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": {
+              "AliasBootOrder": {
+                "state": "value",
+                "value": [
+                  "Pxe",
+                  "Hdd"
+                ]
+              },
+              "AutomaticRetryConfig": {
+                "state": "value",
+                "value": "Disabled"
+              },
+              "BootNext": {
+                "state": "value",
+                "value": "Boot0002"
+              },
+              "BootOrder": {
+                "state": "value",
+                "value": [
+                  ""
+                ]
+              },
+              "BootOrderPropertySelection": {
+                "state": "value",
+                "value": "BootOrder"
+              },
+              "BootSourceOverrideEnabled": {
+                "state": "value",
+                "value": "Once"
+              },
+              "BootSourceOverrideMode": {
+                "state": "value",
+                "value": "UEFI"
+              },
+              "BootSourceOverrideTarget": {
+                "state": "value",
+                "value": "Pxe"
+              },
+              "BootSourceOverrideTarget@Redfish.AllowableValues": {
+                "state": "value",
+                "value": [
+                  "Pxe",
+                  "Hdd",
+                  "FutureSource"
+                ]
+              },
+              "HttpBootUri": {
+                "state": "value",
+                "value": "https://boot.example.invalid/image"
+              },
+              "StopBootOnFault": {
+                "state": "value",
+                "value": "AnyFault"
+              },
+              "TrustedModuleRequiredToBoot": {
+                "state": "value",
+                "value": "Required"
+              },
+              "UefiTargetBootSourceOverride": {
+                "state": "value",
+                "value": "synthetic-device-path"
+              },
+              "UefiTargetBootSourceOverride@Redfish.AllowableValues": {
+                "state": "value",
+                "value": []
+              }
+            }
+          }
+        },
+        "boot_options_absent_link": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "nil"
+          }
+        },
+        "boot_options_null_link": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "nil"
+          }
+        },
+        "boot_options_paged": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": [
+              {
+                "fields": {
+                  "Alias": {
+                    "state": "value",
+                    "value": "Pxe"
+                  },
+                  "BootOptionEnabled": {
+                    "state": "value",
+                    "value": false
+                  },
+                  "BootOptionReference": {
+                    "state": "value",
+                    "value": "Boot0002"
+                  },
+                  "DisplayName": {
+                    "state": "value",
+                    "value": "Synthetic network boot"
+                  },
+                  "UefiDevicePath": {
+                    "state": "value",
+                    "value": "synthetic-path"
+                  }
+                },
+                "id": "O0",
+                "uri": "/redfish/v1/BootTests/Objects/O0"
+              },
+              {
+                "fields": {
+                  "Alias": {
+                    "state": "value",
+                    "value": "Pxe"
+                  },
+                  "BootOptionEnabled": {
+                    "state": "value",
+                    "value": true
+                  },
+                  "BootOptionReference": {
+                    "state": "value",
+                    "value": "Boot0001"
+                  },
+                  "DisplayName": {
+                    "state": "value",
+                    "value": "Synthetic network boot"
+                  },
+                  "UefiDevicePath": {
+                    "state": "value",
+                    "value": "synthetic-path"
+                  }
+                },
+                "id": "O1",
+                "uri": "/redfish/v1/BootTests/Objects/O1"
+              }
+            ]
+          }
+        },
+        "database_collection": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": [
+              {
+                "fields": {
+                  "DatabaseId": {
+                    "state": "value",
+                    "value": "db"
+                  }
+                },
+                "id": "DB0",
+                "uri": "/redfish/v1/BootTests/Objects/DB0"
+              },
+              {
+                "fields": {
+                  "DatabaseId": {
+                    "state": "value",
+                    "value": "dbx"
+                  }
+                },
+                "id": "DB1",
+                "uri": "/redfish/v1/BootTests/Objects/DB1"
+              }
+            ]
+          }
+        },
+        "database_full": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "fields": {
+              "DatabaseId": {
+                "state": "value",
+                "value": "dbx"
+              }
+            },
+            "id": "database_full",
+            "uri": "/redfish/v1/BootTests/Cases/database_full"
+          }
+        },
+        "database_wrong_type": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "databases_absent_link": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "nil"
+          }
+        },
+        "future_boot_values": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": {
+              "AliasBootOrder": {
+                "state": "value",
+                "value": [
+                  "FutureSource"
+                ]
+              },
+              "AutomaticRetryConfig": {
+                "state": "value",
+                "value": "Disabled"
+              },
+              "BootNext": {
+                "state": "value",
+                "value": "Boot0002"
+              },
+              "BootOrder": {
+                "state": "value",
+                "value": [
+                  "Boot0002",
+                  "Boot0001",
+                  "Boot0002"
+                ]
+              },
+              "BootOrderPropertySelection": {
+                "state": "value",
+                "value": "BootOrder"
+              },
+              "BootSourceOverrideEnabled": {
+                "state": "value",
+                "value": "Once"
+              },
+              "BootSourceOverrideMode": {
+                "state": "value",
+                "value": "FutureMode"
+              },
+              "BootSourceOverrideTarget": {
+                "state": "value",
+                "value": "FutureTarget"
+              },
+              "BootSourceOverrideTarget@Redfish.AllowableValues": {
+                "state": "value",
+                "value": [
+                  "Pxe",
+                  "Hdd",
+                  "FutureSource"
+                ]
+              },
+              "HttpBootUri": {
+                "state": "value",
+                "value": "https://boot.example.invalid/image"
+              },
+              "StopBootOnFault": {
+                "state": "value",
+                "value": "AnyFault"
+              },
+              "TrustedModuleRequiredToBoot": {
+                "state": "value",
+                "value": "Required"
+              },
+              "UefiTargetBootSourceOverride": {
+                "state": "value",
+                "value": "synthetic-device-path"
+              },
+              "UefiTargetBootSourceOverride@Redfish.AllowableValues": {
+                "state": "value",
+                "value": []
+              }
+            }
+          }
+        },
+        "future_signature_type": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "fields": {
+              "SignatureString": {
+                "state": "value",
+                "value": "00112233445566778899aabbccddeeff"
+              },
+              "SignatureType": {
+                "state": "value",
+                "value": "FutureSignature"
+              },
+              "SignatureTypeRegistry": {
+                "state": "value",
+                "value": "FutureRegistry"
+              },
+              "UefiSignatureOwner": {
+                "state": "value",
+                "value": "00000000-0000-0000-0000-000000000001"
+              }
+            },
+            "id": "future_signature_type",
+            "uri": "/redfish/v1/BootTests/Cases/future_signature_type"
+          }
+        },
+        "issue_current_boot_settings": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "boot": {
+              "state": "value",
+              "value": {
+                "AliasBootOrder": {
+                  "state": "value",
+                  "value": [
+                    "Pxe",
+                    "Hdd"
+                  ]
+                },
+                "AutomaticRetryConfig": {
+                  "state": "value",
+                  "value": "Disabled"
+                },
+                "BootNext": {
+                  "state": "value",
+                  "value": "Boot0002"
+                },
+                "BootOrder": {
+                  "state": "value",
+                  "value": [
+                    "Boot0002",
+                    "Boot0001",
+                    "Boot0002"
+                  ]
+                },
+                "BootOrderPropertySelection": {
+                  "state": "value",
+                  "value": "BootOrder"
+                },
+                "BootSourceOverrideEnabled": {
+                  "state": "value",
+                  "value": "Once"
+                },
+                "BootSourceOverrideMode": {
+                  "state": "value",
+                  "value": "UEFI"
+                },
+                "BootSourceOverrideTarget": {
+                  "state": "value",
+                  "value": "Pxe"
+                },
+                "BootSourceOverrideTarget@Redfish.AllowableValues": {
+                  "state": "value",
+                  "value": [
+                    "Pxe",
+                    "Hdd",
+                    "FutureSource"
+                  ]
+                },
+                "HttpBootUri": {
+                  "state": "value",
+                  "value": "https://boot.example.invalid/image"
+                },
+                "StopBootOnFault": {
+                  "state": "value",
+                  "value": "AnyFault"
+                },
+                "TrustedModuleRequiredToBoot": {
+                  "state": "value",
+                  "value": "Required"
+                },
+                "UefiTargetBootSourceOverride": {
+                  "state": "value",
+                  "value": "synthetic-device-path"
+                },
+                "UefiTargetBootSourceOverride@Redfish.AllowableValues": {
+                  "state": "value",
+                  "value": []
+                }
+              }
+            },
+            "boot_raw": {
+              "AliasBootOrder": [
+                "Pxe",
+                "Hdd"
+              ],
+              "AutomaticRetryConfig": "Disabled",
+              "BootNext": "Boot0002",
+              "BootOrder": [
+                "Boot0002",
+                "Boot0001",
+                "Boot0002"
+              ],
+              "BootOrderPropertySelection": "BootOrder",
+              "BootSourceOverrideEnabled": "Once",
+              "BootSourceOverrideMode": "UEFI",
+              "BootSourceOverrideTarget": "Pxe",
+              "BootSourceOverrideTarget@Redfish.AllowableValues": [
+                "Pxe",
+                "Hdd",
+                "FutureSource"
+              ],
+              "HttpBootUri": "https://boot.example.invalid/image",
+              "StopBootOnFault": "AnyFault",
+              "TrustedModuleRequiredToBoot": "Required",
+              "UefiTargetBootSourceOverride": "synthetic-device-path",
+              "UefiTargetBootSourceOverride@Redfish.AllowableValues": []
+            },
+            "raw": {
+              "@Redfish.Settings": {
+                "SettingsObject": {
+                  "@odata.id": "/redfish/v1/BootTests/PendingSettings"
+                }
+              },
+              "@odata.etag": "synthetic-current-etag",
+              "@odata.id": "/redfish/v1/BootTests/Cases/issue_current_boot_settings",
+              "Boot": {
+                "AliasBootOrder": [
+                  "Pxe",
+                  "Hdd"
+                ],
+                "AutomaticRetryConfig": "Disabled",
+                "BootNext": "Boot0002",
+                "BootOrder": [
+                  "Boot0002",
+                  "Boot0001",
+                  "Boot0002"
+                ],
+                "BootOrderPropertySelection": "BootOrder",
+                "BootSourceOverrideEnabled": "Once",
+                "BootSourceOverrideMode": "UEFI",
+                "BootSourceOverrideTarget": "Pxe",
+                "BootSourceOverrideTarget@Redfish.AllowableValues": [
+                  "Pxe",
+                  "Hdd",
+                  "FutureSource"
+                ],
+                "HttpBootUri": "https://boot.example.invalid/image",
+                "StopBootOnFault": "AnyFault",
+                "TrustedModuleRequiredToBoot": "Required",
+                "UefiTargetBootSourceOverride": "synthetic-device-path",
+                "UefiTargetBootSourceOverride@Redfish.AllowableValues": []
+              },
+              "Id": "issue_current_boot_settings"
+            }
+          }
+        },
+        "issue_property_annotations_raw": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "boot": {
+              "state": "value",
+              "value": {
+                "AliasBootOrder": {
+                  "state": "value",
+                  "value": [
+                    "Pxe",
+                    "Hdd"
+                  ]
+                },
+                "AutomaticRetryConfig": {
+                  "state": "value",
+                  "value": "Disabled"
+                },
+                "BootNext": {
+                  "state": "value",
+                  "value": "Boot0002"
+                },
+                "BootOrder": {
+                  "state": "value",
+                  "value": [
+                    "Boot0002",
+                    "Boot0001",
+                    "Boot0002"
+                  ]
+                },
+                "BootOrderPropertySelection": {
+                  "state": "value",
+                  "value": "BootOrder"
+                },
+                "BootSourceOverrideEnabled": {
+                  "state": "value",
+                  "value": "Once"
+                },
+                "BootSourceOverrideMode": {
+                  "state": "value",
+                  "value": "UEFI"
+                },
+                "BootSourceOverrideTarget": {
+                  "state": "value",
+                  "value": "Pxe"
+                },
+                "BootSourceOverrideTarget@Redfish.AllowableValues": {
+                  "state": "value",
+                  "value": [
+                    "Pxe",
+                    "Hdd",
+                    "FutureSource"
+                  ]
+                },
+                "HttpBootUri": {
+                  "state": "value",
+                  "value": "https://boot.example.invalid/image"
+                },
+                "StopBootOnFault": {
+                  "state": "value",
+                  "value": "AnyFault"
+                },
+                "TrustedModuleRequiredToBoot": {
+                  "state": "value",
+                  "value": "Required"
+                },
+                "UefiTargetBootSourceOverride": {
+                  "state": "value",
+                  "value": "synthetic-device-path"
+                },
+                "UefiTargetBootSourceOverride@Redfish.AllowableValues": {
+                  "state": "value",
+                  "value": []
+                }
+              }
+            },
+            "boot_raw": {
+              "AliasBootOrder": [
+                "Pxe",
+                "Hdd"
+              ],
+              "AutomaticRetryConfig": "Disabled",
+              "BootNext": "Boot0002",
+              "BootNext@Message.ExtendedInfo": [
+                {
+                  "MessageArgs": [
+                    "synthetic-only"
+                  ],
+                  "MessageId": "Synthetic.1.0.Pending"
+                }
+              ],
+              "BootOrder": [
+                "Boot0002",
+                "Boot0001",
+                "Boot0002"
+              ],
+              "BootOrderPropertySelection": "BootOrder",
+              "BootSourceOverrideEnabled": "Once",
+              "BootSourceOverrideMode": "UEFI",
+              "BootSourceOverrideTarget": "Pxe",
+              "BootSourceOverrideTarget@Redfish.AllowableValues": [
+                "Pxe",
+                "Hdd",
+                "FutureSource"
+              ],
+              "HttpBootUri": "https://boot.example.invalid/image",
+              "Oem": {
+                "Synthetic": {
+                  "Unmodeled": true
+                }
+              },
+              "StopBootOnFault": "AnyFault",
+              "TrustedModuleRequiredToBoot": "Required",
+              "UefiTargetBootSourceOverride": "synthetic-device-path",
+              "UefiTargetBootSourceOverride@Redfish.AllowableValues": []
+            },
+            "raw": {
+              "@Message.ExtendedInfo": [
+                {
+                  "MessageId": "Synthetic.1.0.General"
+                }
+              ],
+              "@odata.id": "/redfish/v1/BootTests/Cases/issue_property_annotations_raw",
+              "Boot": {
+                "AliasBootOrder": [
+                  "Pxe",
+                  "Hdd"
+                ],
+                "AutomaticRetryConfig": "Disabled",
+                "BootNext": "Boot0002",
+                "BootNext@Message.ExtendedInfo": [
+                  {
+                    "MessageArgs": [
+                      "synthetic-only"
+                    ],
+                    "MessageId": "Synthetic.1.0.Pending"
+                  }
+                ],
+                "BootOrder": [
+                  "Boot0002",
+                  "Boot0001",
+                  "Boot0002"
+                ],
+                "BootOrderPropertySelection": "BootOrder",
+                "BootSourceOverrideEnabled": "Once",
+                "BootSourceOverrideMode": "UEFI",
+                "BootSourceOverrideTarget": "Pxe",
+                "BootSourceOverrideTarget@Redfish.AllowableValues": [
+                  "Pxe",
+                  "Hdd",
+                  "FutureSource"
+                ],
+                "HttpBootUri": "https://boot.example.invalid/image",
+                "Oem": {
+                  "Synthetic": {
+                    "Unmodeled": true
+                  }
+                },
+                "StopBootOnFault": "AnyFault",
+                "TrustedModuleRequiredToBoot": "Required",
+                "UefiTargetBootSourceOverride": "synthetic-device-path",
+                "UefiTargetBootSourceOverride@Redfish.AllowableValues": []
+              },
+              "Id": "issue_property_annotations_raw"
+            }
+          }
+        },
+        "option_full": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "fields": {
+              "Alias": {
+                "state": "value",
+                "value": "Pxe"
+              },
+              "BootOptionEnabled": {
+                "state": "value",
+                "value": false
+              },
+              "BootOptionReference": {
+                "state": "value",
+                "value": "Boot0002"
+              },
+              "DisplayName": {
+                "state": "value",
+                "value": "Synthetic network boot"
+              },
+              "UefiDevicePath": {
+                "state": "value",
+                "value": "synthetic-path"
+              }
+            },
+            "id": "option_full",
+            "uri": "/redfish/v1/BootTests/Cases/option_full"
+          }
+        },
+        "secure_absent_link": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "nil"
+          }
+        },
+        "secure_enable_wrong_type": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "secure_full": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "fields": {
+              "SecureBootCurrentBoot": {
+                "state": "value",
+                "value": "Enabled"
+              },
+              "SecureBootEnable": {
+                "state": "value",
+                "value": false
+              },
+              "SecureBootMode": {
+                "state": "value",
+                "value": "UserMode"
+              }
+            },
+            "id": "secure_full",
+            "uri": "/redfish/v1/BootTests/Cases/secure_full"
+          }
+        },
+        "secure_inline_differs": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": {
+              "fields": {
+                "SecureBootCurrentBoot": {
+                  "state": "value",
+                  "value": "Enabled"
+                },
+                "SecureBootEnable": {
+                  "state": "value",
+                  "value": false
+                },
+                "SecureBootMode": {
+                  "state": "value",
+                  "value": "UserMode"
+                }
+              },
+              "id": "Secure",
+              "uri": "/redfish/v1/BootTests/Objects/Secure"
+            }
+          }
+        },
+        "secure_link": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": {
+              "fields": {
+                "SecureBootCurrentBoot": {
+                  "state": "value",
+                  "value": "Disabled"
+                },
+                "SecureBootEnable": {
+                  "state": "value",
+                  "value": true
+                },
+                "SecureBootMode": {
+                  "state": "value",
+                  "value": "SetupMode"
+                }
+              },
+              "id": "Secure",
+              "uri": "/redfish/v1/BootTests/Objects/Secure"
+            }
+          }
+        },
+        "secure_missing_fields": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "fields": {
+              "SecureBootCurrentBoot": {
+                "state": "value",
+                "value": ""
+              },
+              "SecureBootEnable": {
+                "state": "value",
+                "value": false
+              },
+              "SecureBootMode": {
+                "state": "value",
+                "value": ""
+              }
+            },
+            "id": "secure_missing_fields",
+            "uri": "/redfish/v1/BootTests/Cases/secure_missing_fields"
+          }
+        },
+        "secure_null_fields": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "fields": {
+              "SecureBootCurrentBoot": {
+                "state": "value",
+                "value": ""
+              },
+              "SecureBootEnable": {
+                "state": "value",
+                "value": false
+              },
+              "SecureBootMode": {
+                "state": "value",
+                "value": ""
+              }
+            },
+            "id": "secure_null_fields",
+            "uri": "/redfish/v1/BootTests/Cases/secure_null_fields"
+          }
+        },
+        "secure_null_link": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "nil"
+          }
+        },
+        "signature_collection": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": [
+              {
+                "fields": {
+                  "SignatureString": {
+                    "state": "value",
+                    "value": "00112233445566778899aabbccddeeff"
+                  },
+                  "SignatureType": {
+                    "state": "value",
+                    "value": "EFI_CERT_SHA256_GUID"
+                  },
+                  "SignatureTypeRegistry": {
+                    "state": "value",
+                    "value": "UEFI"
+                  },
+                  "UefiSignatureOwner": {
+                    "state": "value",
+                    "value": "00000000-0000-0000-0000-000000000001"
+                  }
+                },
+                "id": "S0",
+                "uri": "/redfish/v1/BootTests/Objects/S0"
+              },
+              {
+                "fields": {
+                  "SignatureString": {
+                    "state": "value",
+                    "value": "ffeeddccbbaa99887766554433221100"
+                  },
+                  "SignatureType": {
+                    "state": "value",
+                    "value": "EFI_CERT_SHA256_GUID"
+                  },
+                  "SignatureTypeRegistry": {
+                    "state": "value",
+                    "value": "UEFI"
+                  },
+                  "UefiSignatureOwner": {
+                    "state": "value",
+                    "value": "00000000-0000-0000-0000-000000000001"
+                  }
+                },
+                "id": "S1",
+                "uri": "/redfish/v1/BootTests/Objects/S1"
+              }
+            ]
+          }
+        },
+        "signature_full": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "fields": {
+              "SignatureString": {
+                "state": "value",
+                "value": "00112233445566778899aabbccddeeff"
+              },
+              "SignatureType": {
+                "state": "value",
+                "value": "EFI_CERT_SHA256_GUID"
+              },
+              "SignatureTypeRegistry": {
+                "state": "value",
+                "value": "UEFI"
+              },
+              "UefiSignatureOwner": {
+                "state": "value",
+                "value": "00000000-0000-0000-0000-000000000001"
+              }
+            },
+            "id": "signature_full",
+            "uri": "/redfish/v1/BootTests/Cases/signature_full"
+          }
+        },
+        "signature_wrong_type": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "signatures_denied": {
+          "error": "collection",
+          "ok": false,
+          "value": {
+            "state": "nil"
+          }
+        },
+        "signatures_empty": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "nil"
+          }
+        },
+        "signatures_null_link": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "nil"
+          }
+        },
+        "system_boot_options_paged": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": [
+              {
+                "fields": {
+                  "Alias": {
+                    "state": "value",
+                    "value": "Pxe"
+                  },
+                  "BootOptionEnabled": {
+                    "state": "value",
+                    "value": false
+                  },
+                  "BootOptionReference": {
+                    "state": "value",
+                    "value": "Boot0002"
+                  },
+                  "DisplayName": {
+                    "state": "value",
+                    "value": "Synthetic network boot"
+                  },
+                  "UefiDevicePath": {
+                    "state": "value",
+                    "value": "synthetic-path"
+                  }
+                },
+                "id": "O0",
+                "uri": "/redfish/v1/BootTests/Objects/O0"
+              },
+              {
+                "fields": {
+                  "Alias": {
+                    "state": "value",
+                    "value": "Pxe"
+                  },
+                  "BootOptionEnabled": {
+                    "state": "value",
+                    "value": true
+                  },
+                  "BootOptionReference": {
+                    "state": "value",
+                    "value": "Boot0001"
+                  },
+                  "DisplayName": {
+                    "state": "value",
+                    "value": "Synthetic network boot"
+                  },
+                  "UefiDevicePath": {
+                    "state": "value",
+                    "value": "synthetic-path"
+                  }
+                },
+                "id": "O1",
+                "uri": "/redfish/v1/BootTests/Objects/O1"
+              }
+            ]
+          }
+        },
+        "system_options_absent_link": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "nil"
+          }
+        }
+      },
+      "request_sequences": {
+        "startup": [
+          "/redfish/v1/",
+          "/redfish/v1/BootTests"
+        ],
+        "boot_full": [
+          "/redfish/v1/BootTests/Cases/boot_full"
+        ],
+        "option_full": [
+          "/redfish/v1/BootTests/Cases/option_full"
+        ],
+        "secure_full": [
+          "/redfish/v1/BootTests/Cases/secure_full"
+        ],
+        "database_full": [
+          "/redfish/v1/BootTests/Cases/database_full"
+        ],
+        "signature_full": [
+          "/redfish/v1/BootTests/Cases/signature_full"
+        ],
+        "boot_missing": [
+          "/redfish/v1/BootTests/Cases/boot_missing"
+        ],
+        "boot_null": [
+          "/redfish/v1/BootTests/Cases/boot_null"
+        ],
+        "boot_empty": [
+          "/redfish/v1/BootTests/Cases/boot_empty"
+        ],
+        "boot_fields_null": [
+          "/redfish/v1/BootTests/Cases/boot_fields_null"
+        ],
+        "future_boot_values": [
+          "/redfish/v1/BootTests/Cases/future_boot_values"
+        ],
+        "boot_array_wrong_type": [
+          "/redfish/v1/BootTests/Cases/boot_array_wrong_type"
+        ],
+        "boot_null_array_member": [
+          "/redfish/v1/BootTests/Cases/boot_null_array_member"
+        ],
+        "secure_enable_wrong_type": [
+          "/redfish/v1/BootTests/Cases/secure_enable_wrong_type"
+        ],
+        "database_wrong_type": [
+          "/redfish/v1/BootTests/Cases/database_wrong_type"
+        ],
+        "signature_wrong_type": [
+          "/redfish/v1/BootTests/Cases/signature_wrong_type"
+        ],
+        "secure_missing_fields": [
+          "/redfish/v1/BootTests/Cases/secure_missing_fields"
+        ],
+        "secure_null_fields": [
+          "/redfish/v1/BootTests/Cases/secure_null_fields"
+        ],
+        "future_signature_type": [
+          "/redfish/v1/BootTests/Cases/future_signature_type"
+        ],
+        "boot_options_paged": [
+          "/redfish/v1/BootTests/Cases/boot_options_paged",
+          "/redfish/v1/BootTests/Pages/Options",
+          "/redfish/v1/BootTests/Pages/Options?$skip=1",
+          "/redfish/v1/BootTests/Objects/O1",
+          "/redfish/v1/BootTests/Objects/O0"
+        ],
+        "system_boot_options_paged": [
+          "/redfish/v1/BootTests/Cases/system_boot_options_paged",
+          "/redfish/v1/BootTests/Pages/Options",
+          "/redfish/v1/BootTests/Pages/Options?$skip=1",
+          "/redfish/v1/BootTests/Objects/O1",
+          "/redfish/v1/BootTests/Objects/O0"
+        ],
+        "secure_link": [
+          "/redfish/v1/BootTests/Cases/secure_link",
+          "/redfish/v1/BootTests/Objects/Secure"
+        ],
+        "secure_inline_differs": [
+          "/redfish/v1/BootTests/Cases/secure_inline_differs"
+        ],
+        "database_collection": [
+          "/redfish/v1/BootTests/Cases/database_collection",
+          "/redfish/v1/BootTests/Pages/Databases",
+          "/redfish/v1/BootTests/Objects/DB1",
+          "/redfish/v1/BootTests/Objects/DB0"
+        ],
+        "signature_collection": [
+          "/redfish/v1/BootTests/Cases/signature_collection",
+          "/redfish/v1/BootTests/Pages/Signatures",
+          "/redfish/v1/BootTests/Pages/Signatures?$skip=1",
+          "/redfish/v1/BootTests/Objects/S1",
+          "/redfish/v1/BootTests/Objects/S0"
+        ],
+        "secure_absent_link": [
+          "/redfish/v1/BootTests/Cases/secure_absent_link"
+        ],
+        "secure_null_link": [
+          "/redfish/v1/BootTests/Cases/secure_null_link"
+        ],
+        "boot_options_absent_link": [
+          "/redfish/v1/BootTests/Cases/boot_options_absent_link"
+        ],
+        "boot_options_null_link": [
+          "/redfish/v1/BootTests/Cases/boot_options_null_link"
+        ],
+        "databases_absent_link": [
+          "/redfish/v1/BootTests/Cases/databases_absent_link"
+        ],
+        "signatures_null_link": [
+          "/redfish/v1/BootTests/Cases/signatures_null_link"
+        ],
+        "system_options_absent_link": [
+          "/redfish/v1/BootTests/Cases/system_options_absent_link"
+        ],
+        "signatures_denied": [
+          "/redfish/v1/BootTests/Cases/signatures_denied",
+          "/redfish/v1/BootTests/Denied"
+        ],
+        "signatures_empty": [
+          "/redfish/v1/BootTests/Cases/signatures_empty",
+          "/redfish/v1/BootTests/Empty"
+        ],
+        "issue_property_annotations_raw": [
+          "/redfish/v1/BootTests/Cases/issue_property_annotations_raw"
+        ],
+        "issue_current_boot_settings": [
+          "/redfish/v1/BootTests/Cases/issue_current_boot_settings"
+        ]
+      }
+    }
+  },
+  "fixtures_sha256": {
+    "/redfish/v1/": "edb32320f6648d6d9de357a9ac6489c43f3476817c91de7612f6d52ee9c00a9a",
+    "/redfish/v1/BootTests/Cases/boot_full": "eb0181949d7e8589191db5260790f402ced1f3b03debe8afb541bd1dade6db19",
+    "/redfish/v1/BootTests/Cases/option_full": "c6854c4884ceddba1a9d04b12ea36331db7f7eb5c88f73e0446e4bb7c0caa47f",
+    "/redfish/v1/BootTests/Cases/secure_full": "a337bbc1a63b9e12a58c1dc9acbe478ff53132200652492fb8c299ac2193ccfd",
+    "/redfish/v1/BootTests/Cases/database_full": "4a77df2c3b0864481e62458dc8ef2856e677a1e3f26605404820dcfeb599b2ca",
+    "/redfish/v1/BootTests/Cases/signature_full": "5648b2b91c515dcf0e747fb20ad586747fd829d9d59fae0af67dbe43f733dc31",
+    "/redfish/v1/BootTests/Cases/boot_missing": "8d85d27d13c6275b14aa837f447c15176a70b6d84612dc9c915c5e74c35ffce2",
+    "/redfish/v1/BootTests/Cases/boot_null": "9d6a3db4def253337fa149899b547edbdfa5941280185dfed85199a5974225ab",
+    "/redfish/v1/BootTests/Cases/boot_empty": "2f9f1d983abd0a26db8be7306797528cfb8bbcb678f2ad7fc6088ee2d7c73909",
+    "/redfish/v1/BootTests/Cases/boot_fields_null": "1c7636cfbce9fdb4fb9162c53b44146ef94e84917b31f9870ff5e2ed33659fc4",
+    "/redfish/v1/BootTests/Cases/future_boot_values": "966a80a80a7683510db5047de4aeb38d281c7a632ba016429948e23c2b2af636",
+    "/redfish/v1/BootTests/Cases/boot_array_wrong_type": "15d75d12b8fd109ae3376f7e3398b85e0981655d1a7829899464ed13b2c5af57",
+    "/redfish/v1/BootTests/Cases/boot_null_array_member": "737d2b6ea4a153c832323128e6e2975e03e619bc1a35f83f2160c214fdb56603",
+    "/redfish/v1/BootTests/Cases/secure_enable_wrong_type": "e5fe60356ec6c9ffb192d061cac8034f394d6b091b32ba9a7bc954f107cd9088",
+    "/redfish/v1/BootTests/Cases/database_wrong_type": "c3fa6a441b81bd5fbee4e674a99e6174e12d6555a3cebc6f39356af3b40dd631",
+    "/redfish/v1/BootTests/Cases/signature_wrong_type": "d9fba01b30bd6faa2ca88626d93ad61f6abe54c683690f0291bb71406d1ed914",
+    "/redfish/v1/BootTests/Cases/secure_missing_fields": "79babf1899362d72e0a385b0ad8c04021ba368c97122b90c835e05d1535992d7",
+    "/redfish/v1/BootTests/Cases/secure_null_fields": "026b4c0fe7fb15f451ae3ce7e310d3e181414a50ed90ce0935e1b88ba304c8fc",
+    "/redfish/v1/BootTests/Cases/future_signature_type": "0c6d9a9f693d6ea46d50505d39fc721908495a05508f402735277d93b238793e",
+    "/redfish/v1/BootTests/Objects/O0": "746533481817b61b8c73cca4e68c24174af390c7e35e3a09b36d8627a9d5c82e",
+    "/redfish/v1/BootTests/Objects/O1": "84677fa677a73fefb1106dbd5ef67fc1755acb2a080f67d88253e828f966a39d",
+    "/redfish/v1/BootTests/Objects/Secure": "d406e954d295e4ded38ce0aa4858bffd804a23657f4a9a72b12753909ddab5d8",
+    "/redfish/v1/BootTests/Objects/DB0": "c083d615249929556f37de89dd76e4beee5ca8558f0f410fe00e5351100fabbd",
+    "/redfish/v1/BootTests/Objects/DB1": "5eced50713d5029cbc4b16198e867c9f0938a2bef1f78b4f8b6727fb5e2a9d80",
+    "/redfish/v1/BootTests/Objects/S0": "ab72d4bd86e840c6b289f3156002e59012f0251ad71fda86b2934fbde74af6cb",
+    "/redfish/v1/BootTests/Objects/S1": "3630c9fe02e53773af7216455d2261516858fe1da07f7cc3a57a79ec9cf60f33",
+    "/redfish/v1/BootTests/Pages/Options": "68c06b9f7be203958a1e73a734b2bc82a337aaf5d4755e8bfc263465d8d55692",
+    "/redfish/v1/BootTests/Pages/Options?$skip=1": "d5157b824e069935813cea9667ec4a33ef9778795fe59bdc515517a3a482c971",
+    "/redfish/v1/BootTests/Cases/boot_options_paged": "d6295ecb4027c21d276d4a20e049219dae89b534e7203fcb2f0b399331a134fc",
+    "/redfish/v1/BootTests/Cases/system_boot_options_paged": "d94dae0a342e4783b16d1cd46b4756fb95a6afac4dbfcb4700e325b0293e6a05",
+    "/redfish/v1/BootTests/Cases/secure_link": "4d0c792b84fcf483ec3f4e94c1ff2b11aff98b1fae4bd198a358103a94e730ba",
+    "/redfish/v1/BootTests/Cases/secure_inline_differs": "352a5ee3d2ec7664a1a05bc0544b2c9eafd73cec5fbdcd7ad1a0190b0d065be4",
+    "/redfish/v1/BootTests/Pages/Databases": "56cf79500712512e55bedf19189521132805e5a3aef571d494108d69fbb70b18",
+    "/redfish/v1/BootTests/Cases/database_collection": "ee7ddd9499f2618905e5e101cacfc1ac8d7eb7856c54f2d9395ca538f9e14134",
+    "/redfish/v1/BootTests/Pages/Signatures": "592a481859b6393dff1eb925c271cc1e0a96efffa623dee1efbdbb20e2efc12e",
+    "/redfish/v1/BootTests/Pages/Signatures?$skip=1": "f192a094feaa26e0f0bdd6bbebf01889ef541cfb9e1e7cdb28808854ca5d99ab",
+    "/redfish/v1/BootTests/Cases/signature_collection": "24df41292c638eda07b826b7b39e9078c8e224cc41c78bbb7ccfe9aa30344be2",
+    "/redfish/v1/BootTests/Cases/secure_absent_link": "25858416191a86c4f56e7668cbb6931a0d778b31777c8614df0ef54f529ee5ff",
+    "/redfish/v1/BootTests/Cases/secure_null_link": "cf8f5c0dcc26062b93e3b25e9b66aee0855f50216d3729a776c7e2a18289e603",
+    "/redfish/v1/BootTests/Cases/boot_options_absent_link": "51bc12f2cdfdd57cd771a6f7758d198ff51cdf6639826532df1e1daba8f96314",
+    "/redfish/v1/BootTests/Cases/boot_options_null_link": "95e5c6d1721ffa99b8a54bb16ff61d466857c544affa49b13cf34a281737e0b8",
+    "/redfish/v1/BootTests/Cases/databases_absent_link": "e9aabdd9a576fd34a02cd198f35a6c484b8b64fa32e7476298f07d1df83e0139",
+    "/redfish/v1/BootTests/Cases/signatures_null_link": "c6331d96f899375fee3ee4990158ad02b9648dbb7b7eff65fbcc7706407b2f4c",
+    "/redfish/v1/BootTests/Cases/system_options_absent_link": "6cf372ea3d633618b944427a1d143826ca444a3535f2ae0cfe9af6193dc6c3b6",
+    "/redfish/v1/BootTests/Denied": "03c7f183f926259354c0a65639c02d5385efebfd630708420dd0793f67ecae55",
+    "/redfish/v1/BootTests/Cases/signatures_denied": "17128125c4d15aa9499739b6228ac1734cda14ac789e69306e31dbfa50c7640e",
+    "/redfish/v1/BootTests/Empty": "25f5975423aaed8d590366523e50327d5e6e0079353194abbccdd54296a04c2e",
+    "/redfish/v1/BootTests/Cases/signatures_empty": "4063a76511d6345f36175b4f24ff99773d4740b83e56236725ada000aae4c96b",
+    "/redfish/v1/BootTests/PendingSettings": "116a3127e274ca7f3f505fb4dde66c8eeef8ae05f0f97ed7c8579cee5526f68d",
+    "/redfish/v1/BootTests/Cases/issue_property_annotations_raw": "ac3b7955438058147b428451ddaca54df89fc0ab3c4e87b3575760fab0e4f7f9",
+    "/redfish/v1/BootTests/Cases/issue_current_boot_settings": "f78f1b9cca7079f95965954254d05c1d13a1563647bb071fab4366f31426d8e0",
+    "/redfish/v1/BootTests": "001e6f3f679d686fda91089ad94e55daef418f3f9572d1bf431b0c8d5a116ebc"
+  },
+  "source_sha256": {
+    "boot_inventory.mbt": "93d22a7e31b1175e7bf8cccf6176a55e425c464e623efa8909d0acda2c5dd45c",
+    "boot_links.mbt": "bd6a5bf4af02fc6135656c6a83f8ac4debef2cb319d1ff68949e1c9b81076651",
+    "inventory_fields.mbt": "2a04b44d9ef3dfb9891c6e6584896a3e1c3d9a54d250c0d12f861b663a25e184",
+    "inventory_links.mbt": "5033a1acf1b8c4ed4fa05ae7d71e2e7faf1d92d1f0d7d04ccc8f56dda0fe9aad",
+    "moonredfish.mbt": "58a0ff8bcfcbabe1fdfc7054737488ff12ee117d0090038e7d6751aecebdb272",
+    "examples/compare/boot.mbt": "fc6f6dec926358e269d844e1d1a1a43276b434cdd4c8a62c31ba2483cdccb54c",
+    "examples/compare/main.mbt": "5b984f2eaeccf26685a2c02ef539533b102c7f66dc178080017c800a6381568f",
+    "tools/gofish/boot.go": "8bbb12f3ec0aa9854fc28756ad7152bb923edb41b2452ad5128fbb31155ea585",
+    "tools/gofish/main.go": "eb8f06a8654f2a9d960513c1f6ea0f70a62fcbda9be0f1ce7e9cd8fe71d0a4c6",
+    "tools/test_boot.py": "9f0ca2e4c7c9959c3b338e388cc116854575c10b11af47945ca53d95a35d2fa1",
+    "tools/test_gofish.py": "ac27ec92a4820582f32c133442ba5adfaeaecdc206b6ee32c77fdad320ff9a11",
+    "tools/test_parity.py": "fe78100a5820b1601924f2e84c9dbddae8b93a2c892ba5e95926b10fd10a05dc"
+  }
+}

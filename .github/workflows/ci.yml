@@ -43,6 +43,7 @@ jobs:
           python3 tools/test_parity.py
           python3 tools/test_network_config.py
           python3 tools/test_pcie.py
+          python3 tools/test_boot.py
       - run: moon info --target native
       - run: moon fmt --check
       - run: git diff --exit-code
