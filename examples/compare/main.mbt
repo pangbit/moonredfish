@@ -114,6 +114,7 @@ async fn main {
     "boot" => boot_inventory(c)
     "task" => task_inventory(c)
     "certificate" => certificate_inventory(c)
+    "virtual-media" => virtual_media_inventory(c)
     "protocol" => protocol(c)
     "reject_tls" => {
       let rejected = try {

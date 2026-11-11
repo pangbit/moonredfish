@@ -123,6 +123,13 @@ async fn main {
     println(
       "offline synthetic certificate: subject=\{presence(certificate.subject)}, key usages=\{count(certificate.key_usage)}",
     )
+    let media = @moonredfish.parse_resource(
+      "/redfish/v1/Systems/demo/VirtualMedia/demo",
+      { "Inserted": false, "WriteProtected": true, "MediaTypes": ["CD", "DVD"] },
+    ).virtual_media()
+    println(
+      "offline synthetic virtual media: inserted=\{presence(media.inserted)}, supported types=\{count(media.media_types)}",
+    )
     let bios = @moonredfish.parse_resource("/redfish/v1/Systems/demo/Bios", {
       "Attributes": null,
     }).bios()

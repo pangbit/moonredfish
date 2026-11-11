@@ -63,3 +63,21 @@ in acceptance. Do not replace the v0.27.0 oracle with latest main without approv
 建议在用户裁决前保留现契约；默认值、转换、内嵌选择及错误/部分结果逐项定义。兼容模式
 需明确复刻哪些行为、保留哪些例外，不能将例外标成完整一致。调试输出建议脱敏认证信息
 和私密正文，相关安全例外应进入验收；未经决定不把 latest main 替换为基准。
+
+
+<a id="virtual-media-actioninfo-source-candidate"></a>
+## Virtual-media ActionInfo source candidate / 虚拟介质源码候选
+
+During batch 07, the pinned [EjectMediaActionInfo implementation](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/virtualmedia.go#L278)
+was found to check and fetch `v.insertMedia.ActionInfoTarget`, as does InsertMediaActionInfo.
+For distinct advertised insert/eject ActionInfo targets, that source selects the insert
+metadata for the eject-named method. This is source inspection only, not a numbered upstream
+issue, executed comparison, latest-main claim or verified defect exception. Neither DMTF
+reference was exercised for this behavior. Batch 07 implements no ActionInfo convenience
+method and issues no ActionInfo or control requests. Keep this candidate for the future
+read-metadata batch and the user's two-reference gate; do not preselect a workaround.
+
+固定版 EjectMediaActionInfo 检查并读取 insertMedia.ActionInfoTarget，两个广告链接不同
+时源码将选择 insert 元数据。这里只记录源码事实：不冒充已报告 issue、实际差分、最新版
+行为或已核实例外。双 DMTF 未核验；本批未实现对应便捷方法，也未发出元数据/控制请求。
+后续读元数据批次按既有门槛处理，不先决定修复方式。

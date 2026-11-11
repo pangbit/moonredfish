@@ -20,7 +20,8 @@ navigation. [Boot/Secure Boot reads](docs/gofish/READONLY-04.md) add boot config
 options, current/next Secure Boot state, databases and signatures. [Task reads](docs/gofish/READONLY-05.md)
 add service discovery, status/progress/messages and explicit subtask/created-resource links.
 [Certificate reads](docs/gofish/READONLY-06.md) add metadata/identities and service/location,
-System/Boot/database and subject navigation. Open compatibility choices are in the [combined review](docs/gofish/DECISIONS.md).
+System/Boot/database and subject navigation. [Virtual-media reads](docs/gofish/READONLY-07.md)
+add reported media state, System/Manager collections and separate certificate sources. Open compatibility choices are in the [combined review](docs/gofish/DECISIONS.md).
 
 ## Scope
 

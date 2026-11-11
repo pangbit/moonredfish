@@ -160,6 +160,8 @@ pub async fn Client::tasks(Self, Resource) -> Field[Array[Task]]
 pub async fn Client::thermal(Self, Resource) -> Field[Thermal]
 pub async fn Client::thermal_subsystem(Self, Resource) -> Field[Resource]
 pub async fn Client::update_service(Self, Resource) -> Field[Resource]
+pub async fn Client::virtual_media(Self, Resource) -> Field[Array[VirtualMedia]]
+pub async fn Client::virtual_media_client_certificates(Self, Resource) -> Field[Array[Certificate]]
 pub async fn Client::volumes(Self, Resource) -> Field[Array[Volume]]
 pub async fn[T] Client::with_session(Self, String, String, async (Self) -> T) -> T
 
@@ -459,6 +461,7 @@ pub fn Resource::system_info(Self) -> SystemInfo raise RedfishError
 pub fn Resource::task(Self) -> Task raise RedfishError
 pub fn Resource::task_service(Self) -> TaskService raise RedfishError
 pub fn Resource::thermal(Self) -> Thermal raise RedfishError
+pub fn Resource::virtual_media(Self) -> VirtualMedia raise RedfishError
 pub fn Resource::volume(Self) -> Volume raise RedfishError
 
 pub struct SecureBoot {
@@ -569,6 +572,26 @@ pub struct Thermal {
   resource : Resource
   temperatures : Field[Array[Temperature]]
   fans : Field[Array[Fan]]
+}
+
+pub struct VirtualMedia {
+  resource : Resource
+  connected_via : Field[String]
+  eject_policy : Field[String]
+  eject_timeout : Field[String]
+  image : Field[String]
+  image_name : Field[String]
+  media_type : Field[String]
+  transfer_method : Field[String]
+  transfer_protocol_type : Field[String]
+  user_name : Field[String]
+  inserted : Field[Bool]
+  verify_certificate : Field[Bool]
+  write_protected : Field[Bool]
+  media_types : Field[Array[String]]
+  status : Field[Health]
+  supports_media_eject : Bool
+  supports_media_insert : Bool
 }
 
 pub struct Volume {

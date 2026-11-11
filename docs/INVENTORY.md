@@ -44,7 +44,8 @@ without mapping them to a guessed enum or an aggregate health judgement.
 
 ## Missing, null and zero / 缺失、null 与零
 
-Every selected typed property is `Field[T]`:
+Reported selected values use `Field[T]` (derived VirtualMedia action-advertisement flags
+are plain Bool, described below):
 
 - `Missing`: the property is absent.
 - `Null`: the property, or a containing summary object, is explicit JSON null.
@@ -362,3 +363,24 @@ the first two return Resource. `client.certificates(owner)` reads top-level coll
 证书视图保留正文、格式、用途、指纹、身份和有效期字符串；不进行密码学或信任判定。
 顶层与 Boot 集合不混用，导航不递归，未引入登记、续期、替换或信任安装。所有字段保留
 三态与原始 JSON；详细属性、版本和差分见[证书批次](gofish/READONLY-06.md)。
+
+
+## Virtual media (Unreleased) / 虚拟介质（未发布）
+
+`resource.virtual_media()` retains selected reported connection/image/media/transfer fields,
+Inserted, WriteProtected, VerifyCertificate and Status. `client.virtual_media(owner)` reads
+an explicit ComputerSystem or Manager VirtualMedia collection. `client.certificates(media)`
+and `virtual_media_client_certificates(media)` read server and client certificate collections
+separately. Image is data: the client neither downloads it nor uses its UserName/Password.
+VerifyCertificate is the reported service setting, not this client's TLS configuration.
+
+`supports_media_insert` and `supports_media_eject` are derived Bool values: true means the
+respective advertised action target is a nonempty string, matching the pinned GoFish decoder.
+It does not validate the target, grant permission or guarantee that a call would succeed.
+ActionInfo-only objects do not set these flags. No control or ActionInfo convenience API is added.
+
+虚拟介质视图保留连接、映像、介质类型、传输和挂载/写保护/证书校验报告值；系统与管理器
+集合显式读取，服务器与客户端证书集合分开。Image、UserName 仅是数据，VerifyCertificate
+不改变本客户端 TLS。两个派生 Bool 只说明对应动作 target 非空，不代表权限或可执行性。
+不会因动作声明自动请求 ActionInfo、访问映像、挂载或弹出。其余报告属性仍使用三态。
+详细范围及差分见[虚拟介质批次](gofish/READONLY-07.md)。

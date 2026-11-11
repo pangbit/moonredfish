@@ -151,6 +151,9 @@ func main() {
 		if os.Args[1] == "reject_tls" {
 			var untrusted x509.UnknownAuthorityError
 			result = map[string]bool{"tls_rejected": errors.As(err, &untrusted)}
+		} else if os.Args[1] == "virtual-media" {
+			must(err, "service root")
+			result = virtualMediaInventory(c)
 		} else if os.Args[1] == "certificate" {
 			must(err, "service root")
 			result = certificateInventory(c)

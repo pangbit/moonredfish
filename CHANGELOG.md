@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Add selected VirtualMedia metadata and advertised action-support flags, with System/Manager
+  collections and separate server/client certificate reads. Record 30 pinned GoFish comparisons
+  and consolidate outstanding decisions; no image fetch, action execution or numeric-contract change.
+- 新增虚拟介质元数据、动作声明标志、系统/管理器集合及分开的服务器/客户端证书读取。
+  记录 30 个固定 GoFish 对照并合并待决事项；不访问映像、不执行动作、不修改数值契约。
+
 - Add selected Certificate/CertificateIdentifier reads and six bounded navigation APIs,
   including separate System/Boot collections and Secure Boot database certificates.
   Run eight same-input numeric probes through both pinned DMTF implementations and

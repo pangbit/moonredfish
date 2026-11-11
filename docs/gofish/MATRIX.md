@@ -8,8 +8,9 @@ This table aggregates all 253 scanned files; it is not a table of passed tests.
 [Batch 03](READONLY-03.md) adds 48 PCIe candidates.
 [Batch 04](READONLY-04.md) adds 42 boot/Secure Boot candidates.
 [Batch 05](READONLY-05.md) adds 34 task/message candidates.
-[Batch 06](READONLY-06.md) adds 36 certificate candidates. Current totals:
-423 P / 11,157 U / 0 V; candidate mapping is not verified equivalence.
+[Batch 06](READONLY-06.md) adds 36 certificate candidates.
+[Batch 07](READONLY-07.md) adds 22 virtual-media candidates. Current totals:
+445 P / 11,135 U / 0 V; candidate mapping is not verified equivalence.
 待审核；逐项矩阵列出全部公开声明、签名、源码行、初始状态与验收模板。本表按 253 个文件汇总，不表示测试通过。
 
 `P` = overlapping subset/candidate; `U` = unmapped gap/unverified. No `V` (verified parity) rows exist.
@@ -265,7 +266,7 @@ Phase is model/read/support allocation; all mutations require the P4/P5/P6 gate,
 | [schemas/utils.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/utils.go) | Core/support | 0 | 0 | 0 | 0 | U | P1 |
 | [schemas/vcatentry.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/vcatentry.go) | Redfish | 2 | 4 | 8 | 1 | U | P3 |
 | [schemas/virtualcxlswitch.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/virtualcxlswitch.go) | Redfish | 1 | 6 | 6 | 1 | U | P3 |
-| [schemas/virtualmedia.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/virtualmedia.go) | Redfish | 7 | 10 | 53 | 1 | U | P3 |
+| [schemas/virtualmedia.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/virtualmedia.go) | Redfish | 7 | 10 | 53 | 1 | P | P3 |
 | [schemas/virtualpci2pcibridge.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/virtualpci2pcibridge.go) | Redfish | 1 | 5 | 15 | 1 | U | P3 |
 | [schemas/vlannetworkinterface.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/vlannetworkinterface.go) | Redfish | 2 | 4 | 11 | 1 | U | P3 |
 | [schemas/volume.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/volume.go) | Swordfish | 22 | 35 | 171 | 1 | P | P2 |

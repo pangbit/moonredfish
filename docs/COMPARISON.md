@@ -217,6 +217,17 @@ different error categories and sixteen differ. See [batch 06](gofish/READONLY-06
 证书对照包含三态、未知值、身份数组、分页、系统/Boot 来源区分、内嵌、重复及部分结果；
 读取证书字符串不证明其密码学或信任有效性。
 
+## Virtual-media reads / 虚拟介质读取
+
+`python3 tools/test_virtual_media.py` runs 30 synthetic cases: twelve selected observations
+agree, five both reject and thirteen differ. It compares reported states, pointer versus scalar
+booleans, derived action-advertisement flags, System/Manager pagination and separate server/client
+certificate sources. Request traces reject image/action/ActionInfo access and check duplicate,
+partial-error and path behavior. See [batch 07](gofish/READONLY-07.md).
+
+30 个场景保留默认值、null、整对象/局部解码及集合差异；不把声明的动作当成执行能力，也不
+把服务端 VerifyCertificate 报告值应用于本地 TLS。官方数值差异仍沿用上一批未决结论。
+
 ## Official numeric reference checks / 官方数值参照核验
 
 `tools/test_official_numbers.py` is an opt-in harness requiring the exact clean DMTF

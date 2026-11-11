@@ -14,6 +14,25 @@ compatibility mode. That is a recommendation, **not an approved decision**; no m
 implemented. Read-only work continues with the existing Field and strict-decoding contract.
 用户正在审阅默认准确且明确报错、另提供兼容模式的建议；尚未批准，也未实现模式。
 
+## Three review topics / 三个合并审阅主题
+
+These are proposals, not decisions or prerequisites for unrelated read work. The first two
+matter before changing existing public contracts; the third matters before adding broader
+transport/auth options. Numeric candidates with missing comparable official field contracts
+remain unresolved under the already-approved defect gate; no new blanket exception is requested.
+
+以下仅是建议，不是已批准决定，也不阻塞独立读取。前两项用于公共契约迁移前，第三项用于
+扩大传输/认证选项前；官方字段契约未覆盖的数值差异继续未决，不请求笼统例外。
+
+| Topic / 主题 | Concrete impact / 具体影响 | Proposed choice for review / 待审建议 |
+| --- | --- | --- |
+| 1. API, presence and decoding / API、存在性与解码 | VirtualMedia `{}` yields Go Inserted=nil and VerifyCertificate=false; native both Missing. `MediaTypes:[null]` becomes Go `[""]`, native error. A single implicit mapping loses distinctions / 隐式映射会丢失三态或改变合法输入 | Retain the current explicit Field/error default and, if approved, define a separate GoFish-compatible interface with per-property mappings and exact numeric representation. Confirm this dual-contract direction before implementation; it cannot be called literal zero-difference native behavior / 建议保留现默认，批准后逐字段定义独立兼容接口及精确数值表示；双契约方向须明确，不能称 native 字面零差异 |
+| 2. Collection result contract / 集合结果契约 | `[M0,403]` yields Go M0+CollectionError, native throws without items; duplicates and inline selection also differ / 部分可用数据、数量与来源不同 | Use an explicit items-plus-error result in the compatible interface, preserve reference order/duplicates/inline choice, and keep any migration of existing methods separate / 兼容接口建议显式 items+error，保留顺序、重复和内嵌选择；既有方法迁移另行确定 |
+| 3. Link, authentication and diagnostics options / 链接、认证与诊断 | Go fetches a same-host `/outside` link that native rejects; HTTP/Insecure/Basic/imported-session options and credential-bearing dumps need distinct contracts / 可访问路径及凭据处理范围改变 | Keep current verified HTTPS/path/default behavior; review explicit options individually when needed, with no implicit downgrade and no credential/body dumping. Any remaining difference must be visible / 建议保留当前默认，新增选项逐项决定，不隐式降级或输出凭据正文；差异公开 |
+
+No choice here authorizes real hardware, controls, publication, or a reference-version upgrade.
+这些主题不授权实机、控制、发布或升级参照版本。
+
 Target: every public capability of GoFish v0.27.0 at
 `4cc897fb5c172996e8f34a31a5d1012b45a287a7`. Current API is a native MoonBit read-only subset.
 Literal Go source/ABI identity is impossible for that API. The proposed target is explicit
@@ -23,7 +42,7 @@ no-differences target unmet; passing selected examples does not close whole API 
 目标为固定 GoFish 版本全部公开能力。建议确认跨语言一对一可观察语义映射；字面 Go 源码/
 ABI 兼容需要另一种架构。任何保留的例外都意味着原零差异目标未完成，不能改写验收口径。
 
-Evidence: [batch 01](READONLY-01.md), [batch 02](READONLY-02.md), [batch 03](READONLY-03.md), [batch 04](READONLY-04.md), [batch 05](READONLY-05.md), [batch 06](READONLY-06.md).
+Evidence: [batch 01](READONLY-01.md), [batch 02](READONLY-02.md), [batch 03](READONLY-03.md), [batch 04](READONLY-04.md), [batch 05](READONLY-05.md), [batch 06](READONLY-06.md), [batch 07](READONLY-07.md).
 [Upstream issue review](ISSUES.md) separates open reports from pinned behavior and later fixes.
 Each JSON report has exact inputs, observed states, source hashes and environment. Cases
 below are measurements unless marked **source only**. No authentication downgrade or
@@ -71,6 +90,17 @@ and other uncovered cases remain unresolved; do not choose a getter to manufactu
 
 证书批次沿用既有待决项。八个官方数值实测已完成，但通用 JSON 保留与不同 getter 的
 结果不能代替字段校验契约，也不构成已核实例外；未覆盖部分仍未决，不挑选 getter 拼出一致。
+
+Batch 07 adds pointer-versus-scalar boolean evidence without changing the above topics:
+Inserted/WriteProtected missing or null become Go nil; VerifyCertificate becomes Go false;
+native retains the separate states. MediaTypes null elements and malformed unselected
+Password/ActionInfo metadata extend D-JSON. Derived nonempty-target support flags agree on
+the measured cases and never imply authorization or action execution. Server/client
+certificate sources remain distinct. The source-only EjectMediaActionInfo candidate stays
+outside implementation and does not add a fourth immediate user decision.
+
+虚拟介质批次将指针/标量布尔值、null 列表和未选定字段类型差异并入前三主题；派生标志
+只表示动作声明。两类证书不混用；ActionInfo 源码候选保留缺口，不追加即时用户决策。
 
 D-PLATFORM, D-HARDWARE and D-CONTROL from the [full plan](../GOFISH_PARITY.md) remain open.
 Current evidence is native Linux x86_64 CI and macOS arm64 local/CI; it does not establish
