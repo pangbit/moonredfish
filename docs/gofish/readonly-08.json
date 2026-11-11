@@ -1,0 +1,3499 @@
+{
+  "reference": {
+    "module": "github.com/stmcginnis/gofish",
+    "version": "v0.27.0",
+    "commit": "4cc897fb5c172996e8f34a31a5d1012b45a287a7",
+    "module_sum": "h1:jyM2BlBhULXtHnayY+/wnkZYXKjIO0ZdR3oBXKl1VYs=",
+    "source_url_prefix": "https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/"
+  },
+  "subject_base_commit": "13e89a0025642cb3851d5a30c586b24a8b099308",
+  "environment": {
+    "os": "Darwin",
+    "arch": "arm64",
+    "go": "go version go1.24.0 darwin/arm64",
+    "moon": "moon 0.1.20261104 (940aa18 2026-11-04) ~/.moon/bin/moon\nmoonc v0.10.20+65efd5b93 (2026-11-05) ~/.moon/bin/moonc\nmoonrun 0.1.20261104 (940aa18 2026-11-04) ~/.moon/bin/moonrun\n\nFeature flags enabled: rr_moon_mod,rr_moon_pkg"
+  },
+  "scope": "Selected ActionInfo/parameter metadata, first matching name/type query and exact annotation reads compared with three unambiguous GoFish getters. No numeric-contract change, action execution, exception decision or physical BMC.",
+  "summary": {
+    "same_selected_observation": 13,
+    "known_difference": 12,
+    "both_reject": 7
+  },
+  "cases": [
+    {
+      "id": "info_full",
+      "kind": "info",
+      "uri": "/redfish/v1/ActionInfoTests/Cases/info_full",
+      "input": {
+        "@odata.id": "/redfish/v1/ActionInfoTests/Cases/info_full",
+        "Id": "info_full",
+        "Name": "Synthetic action metadata",
+        "Parameters": [
+          {
+            "Name": "Mode",
+            "DataType": "String",
+            "DefaultValue": "{not parsed}",
+            "ObjectDataType": "#Future.v1.Type",
+            "AllowablePattern": "[not compiled",
+            "AllowableNumbers": [
+              "1:10:2",
+              "PT1S:PT5S"
+            ],
+            "AllowableValueDescriptions": [
+              "second"
+            ],
+            "AllowableValues": [
+              "B",
+              "A",
+              "B"
+            ],
+            "NoDefaultValue": true,
+            "Required": true,
+            "ArraySizeMinimum": 0,
+            "ArraySizeMaximum": 3,
+            "MinimumValue": -1.5,
+            "MaximumValue": 2.5,
+            "Oem": {
+              "Synthetic": true
+            }
+          }
+        ]
+      },
+      "name": "Mode",
+      "type": "String",
+      "action": "",
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/ActionInfoTests/Cases/info_full"
+        ],
+        "gofish": [
+          "/redfish/v1/ActionInfoTests/Cases/info_full"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::ActionInfo",
+        "schemas::type::ActionInfoParameter",
+        "schemas::field::ActionInfo.Parameters",
+        "schemas::field::ActionInfoParameter.Name",
+        "schemas::field::ActionInfoParameter.DataType",
+        "schemas::field::ActionInfoParameter.DefaultValue",
+        "schemas::field::ActionInfoParameter.ObjectDataType",
+        "schemas::field::ActionInfoParameter.AllowablePattern",
+        "schemas::field::ActionInfoParameter.AllowableNumbers",
+        "schemas::field::ActionInfoParameter.AllowableValueDescriptions",
+        "schemas::field::ActionInfoParameter.AllowableValues",
+        "schemas::field::ActionInfoParameter.NoDefaultValue",
+        "schemas::field::ActionInfoParameter.Required"
+      ],
+      "relation": "same_selected_observation"
+    },
+    {
+      "id": "parameters_missing",
+      "kind": "info",
+      "uri": "/redfish/v1/ActionInfoTests/Cases/parameters_missing",
+      "input": {
+        "@odata.id": "/redfish/v1/ActionInfoTests/Cases/parameters_missing",
+        "Id": "parameters_missing",
+        "Name": "Synthetic action metadata"
+      },
+      "name": "Mode",
+      "type": "String",
+      "action": "",
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/ActionInfoTests/Cases/parameters_missing"
+        ],
+        "gofish": [
+          "/redfish/v1/ActionInfoTests/Cases/parameters_missing"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::ActionInfo",
+        "schemas::type::ActionInfoParameter",
+        "schemas::field::ActionInfo.Parameters",
+        "schemas::field::ActionInfoParameter.Name",
+        "schemas::field::ActionInfoParameter.DataType",
+        "schemas::field::ActionInfoParameter.DefaultValue",
+        "schemas::field::ActionInfoParameter.ObjectDataType",
+        "schemas::field::ActionInfoParameter.AllowablePattern",
+        "schemas::field::ActionInfoParameter.AllowableNumbers",
+        "schemas::field::ActionInfoParameter.AllowableValueDescriptions",
+        "schemas::field::ActionInfoParameter.AllowableValues",
+        "schemas::field::ActionInfoParameter.NoDefaultValue",
+        "schemas::field::ActionInfoParameter.Required"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "parameters_null",
+      "kind": "info",
+      "uri": "/redfish/v1/ActionInfoTests/Cases/parameters_null",
+      "input": {
+        "@odata.id": "/redfish/v1/ActionInfoTests/Cases/parameters_null",
+        "Id": "parameters_null",
+        "Name": "Synthetic action metadata",
+        "Parameters": null
+      },
+      "name": "Mode",
+      "type": "String",
+      "action": "",
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/ActionInfoTests/Cases/parameters_null"
+        ],
+        "gofish": [
+          "/redfish/v1/ActionInfoTests/Cases/parameters_null"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::ActionInfo",
+        "schemas::type::ActionInfoParameter",
+        "schemas::field::ActionInfo.Parameters",
+        "schemas::field::ActionInfoParameter.Name",
+        "schemas::field::ActionInfoParameter.DataType",
+        "schemas::field::ActionInfoParameter.DefaultValue",
+        "schemas::field::ActionInfoParameter.ObjectDataType",
+        "schemas::field::ActionInfoParameter.AllowablePattern",
+        "schemas::field::ActionInfoParameter.AllowableNumbers",
+        "schemas::field::ActionInfoParameter.AllowableValueDescriptions",
+        "schemas::field::ActionInfoParameter.AllowableValues",
+        "schemas::field::ActionInfoParameter.NoDefaultValue",
+        "schemas::field::ActionInfoParameter.Required"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "parameters_empty",
+      "kind": "info",
+      "uri": "/redfish/v1/ActionInfoTests/Cases/parameters_empty",
+      "input": {
+        "@odata.id": "/redfish/v1/ActionInfoTests/Cases/parameters_empty",
+        "Id": "parameters_empty",
+        "Name": "Synthetic action metadata",
+        "Parameters": []
+      },
+      "name": "Mode",
+      "type": "String",
+      "action": "",
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/ActionInfoTests/Cases/parameters_empty"
+        ],
+        "gofish": [
+          "/redfish/v1/ActionInfoTests/Cases/parameters_empty"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::ActionInfo",
+        "schemas::type::ActionInfoParameter",
+        "schemas::field::ActionInfo.Parameters",
+        "schemas::field::ActionInfoParameter.Name",
+        "schemas::field::ActionInfoParameter.DataType",
+        "schemas::field::ActionInfoParameter.DefaultValue",
+        "schemas::field::ActionInfoParameter.ObjectDataType",
+        "schemas::field::ActionInfoParameter.AllowablePattern",
+        "schemas::field::ActionInfoParameter.AllowableNumbers",
+        "schemas::field::ActionInfoParameter.AllowableValueDescriptions",
+        "schemas::field::ActionInfoParameter.AllowableValues",
+        "schemas::field::ActionInfoParameter.NoDefaultValue",
+        "schemas::field::ActionInfoParameter.Required"
+      ],
+      "relation": "same_selected_observation"
+    },
+    {
+      "id": "parameter_empty",
+      "kind": "info",
+      "uri": "/redfish/v1/ActionInfoTests/Cases/parameter_empty",
+      "input": {
+        "@odata.id": "/redfish/v1/ActionInfoTests/Cases/parameter_empty",
+        "Id": "parameter_empty",
+        "Name": "Synthetic action metadata",
+        "Parameters": [
+          {}
+        ]
+      },
+      "name": "Mode",
+      "type": "String",
+      "action": "",
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/ActionInfoTests/Cases/parameter_empty"
+        ],
+        "gofish": [
+          "/redfish/v1/ActionInfoTests/Cases/parameter_empty"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::ActionInfo",
+        "schemas::type::ActionInfoParameter",
+        "schemas::field::ActionInfo.Parameters",
+        "schemas::field::ActionInfoParameter.Name",
+        "schemas::field::ActionInfoParameter.DataType",
+        "schemas::field::ActionInfoParameter.DefaultValue",
+        "schemas::field::ActionInfoParameter.ObjectDataType",
+        "schemas::field::ActionInfoParameter.AllowablePattern",
+        "schemas::field::ActionInfoParameter.AllowableNumbers",
+        "schemas::field::ActionInfoParameter.AllowableValueDescriptions",
+        "schemas::field::ActionInfoParameter.AllowableValues",
+        "schemas::field::ActionInfoParameter.NoDefaultValue",
+        "schemas::field::ActionInfoParameter.Required"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "parameter_null_fields",
+      "kind": "info",
+      "uri": "/redfish/v1/ActionInfoTests/Cases/parameter_null_fields",
+      "input": {
+        "@odata.id": "/redfish/v1/ActionInfoTests/Cases/parameter_null_fields",
+        "Id": "parameter_null_fields",
+        "Name": "Synthetic action metadata",
+        "Parameters": [
+          {
+            "Name": null,
+            "DataType": null,
+            "DefaultValue": null,
+            "ObjectDataType": null,
+            "AllowablePattern": null,
+            "AllowableNumbers": null,
+            "AllowableValueDescriptions": null,
+            "AllowableValues": null,
+            "NoDefaultValue": null,
+            "Required": null
+          }
+        ]
+      },
+      "name": "Mode",
+      "type": "String",
+      "action": "",
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/ActionInfoTests/Cases/parameter_null_fields"
+        ],
+        "gofish": [
+          "/redfish/v1/ActionInfoTests/Cases/parameter_null_fields"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::ActionInfo",
+        "schemas::type::ActionInfoParameter",
+        "schemas::field::ActionInfo.Parameters",
+        "schemas::field::ActionInfoParameter.Name",
+        "schemas::field::ActionInfoParameter.DataType",
+        "schemas::field::ActionInfoParameter.DefaultValue",
+        "schemas::field::ActionInfoParameter.ObjectDataType",
+        "schemas::field::ActionInfoParameter.AllowablePattern",
+        "schemas::field::ActionInfoParameter.AllowableNumbers",
+        "schemas::field::ActionInfoParameter.AllowableValueDescriptions",
+        "schemas::field::ActionInfoParameter.AllowableValues",
+        "schemas::field::ActionInfoParameter.NoDefaultValue",
+        "schemas::field::ActionInfoParameter.Required"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "unknown_type",
+      "kind": "info",
+      "uri": "/redfish/v1/ActionInfoTests/Cases/unknown_type",
+      "input": {
+        "@odata.id": "/redfish/v1/ActionInfoTests/Cases/unknown_type",
+        "Id": "unknown_type",
+        "Name": "Synthetic action metadata",
+        "Parameters": [
+          {
+            "Name": "Mode",
+            "DataType": "FutureType",
+            "DefaultValue": "{not parsed}",
+            "ObjectDataType": "#Future.v1.Type",
+            "AllowablePattern": "[not compiled",
+            "AllowableNumbers": [
+              "1:10:2",
+              "PT1S:PT5S"
+            ],
+            "AllowableValueDescriptions": [
+              "second"
+            ],
+            "AllowableValues": [
+              "B",
+              "A",
+              "B"
+            ],
+            "NoDefaultValue": true,
+            "Required": true,
+            "ArraySizeMinimum": 0,
+            "ArraySizeMaximum": 3,
+            "MinimumValue": -1.5,
+            "MaximumValue": 2.5,
+            "Oem": {
+              "Synthetic": true
+            }
+          }
+        ]
+      },
+      "name": "Mode",
+      "type": "String",
+      "action": "",
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/ActionInfoTests/Cases/unknown_type"
+        ],
+        "gofish": [
+          "/redfish/v1/ActionInfoTests/Cases/unknown_type"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::ActionInfo",
+        "schemas::type::ActionInfoParameter",
+        "schemas::field::ActionInfo.Parameters",
+        "schemas::field::ActionInfoParameter.Name",
+        "schemas::field::ActionInfoParameter.DataType",
+        "schemas::field::ActionInfoParameter.DefaultValue",
+        "schemas::field::ActionInfoParameter.ObjectDataType",
+        "schemas::field::ActionInfoParameter.AllowablePattern",
+        "schemas::field::ActionInfoParameter.AllowableNumbers",
+        "schemas::field::ActionInfoParameter.AllowableValueDescriptions",
+        "schemas::field::ActionInfoParameter.AllowableValues",
+        "schemas::field::ActionInfoParameter.NoDefaultValue",
+        "schemas::field::ActionInfoParameter.Required"
+      ],
+      "relation": "same_selected_observation"
+    },
+    {
+      "id": "parameters_wrong_type",
+      "kind": "info",
+      "uri": "/redfish/v1/ActionInfoTests/Cases/parameters_wrong_type",
+      "input": {
+        "@odata.id": "/redfish/v1/ActionInfoTests/Cases/parameters_wrong_type",
+        "Id": "parameters_wrong_type",
+        "Name": "Synthetic action metadata",
+        "Parameters": {}
+      },
+      "name": "Mode",
+      "type": "String",
+      "action": "",
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/ActionInfoTests/Cases/parameters_wrong_type"
+        ],
+        "gofish": [
+          "/redfish/v1/ActionInfoTests/Cases/parameters_wrong_type"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::ActionInfo",
+        "schemas::type::ActionInfoParameter",
+        "schemas::field::ActionInfo.Parameters",
+        "schemas::field::ActionInfoParameter.Name",
+        "schemas::field::ActionInfoParameter.DataType",
+        "schemas::field::ActionInfoParameter.DefaultValue",
+        "schemas::field::ActionInfoParameter.ObjectDataType",
+        "schemas::field::ActionInfoParameter.AllowablePattern",
+        "schemas::field::ActionInfoParameter.AllowableNumbers",
+        "schemas::field::ActionInfoParameter.AllowableValueDescriptions",
+        "schemas::field::ActionInfoParameter.AllowableValues",
+        "schemas::field::ActionInfoParameter.NoDefaultValue",
+        "schemas::field::ActionInfoParameter.Required"
+      ],
+      "relation": "both_reject"
+    },
+    {
+      "id": "required_wrong_type",
+      "kind": "info",
+      "uri": "/redfish/v1/ActionInfoTests/Cases/required_wrong_type",
+      "input": {
+        "@odata.id": "/redfish/v1/ActionInfoTests/Cases/required_wrong_type",
+        "Id": "required_wrong_type",
+        "Name": "Synthetic action metadata",
+        "Parameters": [
+          {
+            "Name": "Mode",
+            "DataType": "String",
+            "DefaultValue": "{not parsed}",
+            "ObjectDataType": "#Future.v1.Type",
+            "AllowablePattern": "[not compiled",
+            "AllowableNumbers": [
+              "1:10:2",
+              "PT1S:PT5S"
+            ],
+            "AllowableValueDescriptions": [
+              "second"
+            ],
+            "AllowableValues": [
+              "B",
+              "A",
+              "B"
+            ],
+            "NoDefaultValue": true,
+            "Required": "true",
+            "ArraySizeMinimum": 0,
+            "ArraySizeMaximum": 3,
+            "MinimumValue": -1.5,
+            "MaximumValue": 2.5,
+            "Oem": {
+              "Synthetic": true
+            }
+          }
+        ]
+      },
+      "name": "Mode",
+      "type": "String",
+      "action": "",
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/ActionInfoTests/Cases/required_wrong_type"
+        ],
+        "gofish": [
+          "/redfish/v1/ActionInfoTests/Cases/required_wrong_type"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::ActionInfo",
+        "schemas::type::ActionInfoParameter",
+        "schemas::field::ActionInfo.Parameters",
+        "schemas::field::ActionInfoParameter.Name",
+        "schemas::field::ActionInfoParameter.DataType",
+        "schemas::field::ActionInfoParameter.DefaultValue",
+        "schemas::field::ActionInfoParameter.ObjectDataType",
+        "schemas::field::ActionInfoParameter.AllowablePattern",
+        "schemas::field::ActionInfoParameter.AllowableNumbers",
+        "schemas::field::ActionInfoParameter.AllowableValueDescriptions",
+        "schemas::field::ActionInfoParameter.AllowableValues",
+        "schemas::field::ActionInfoParameter.NoDefaultValue",
+        "schemas::field::ActionInfoParameter.Required"
+      ],
+      "relation": "both_reject"
+    },
+    {
+      "id": "allowable_wrong_type",
+      "kind": "info",
+      "uri": "/redfish/v1/ActionInfoTests/Cases/allowable_wrong_type",
+      "input": {
+        "@odata.id": "/redfish/v1/ActionInfoTests/Cases/allowable_wrong_type",
+        "Id": "allowable_wrong_type",
+        "Name": "Synthetic action metadata",
+        "Parameters": [
+          {
+            "Name": "Mode",
+            "DataType": "String",
+            "DefaultValue": "{not parsed}",
+            "ObjectDataType": "#Future.v1.Type",
+            "AllowablePattern": "[not compiled",
+            "AllowableNumbers": [
+              "1:10:2",
+              "PT1S:PT5S"
+            ],
+            "AllowableValueDescriptions": [
+              "second"
+            ],
+            "AllowableValues": "A",
+            "NoDefaultValue": true,
+            "Required": true,
+            "ArraySizeMinimum": 0,
+            "ArraySizeMaximum": 3,
+            "MinimumValue": -1.5,
+            "MaximumValue": 2.5,
+            "Oem": {
+              "Synthetic": true
+            }
+          }
+        ]
+      },
+      "name": "Mode",
+      "type": "String",
+      "action": "",
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/ActionInfoTests/Cases/allowable_wrong_type"
+        ],
+        "gofish": [
+          "/redfish/v1/ActionInfoTests/Cases/allowable_wrong_type"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::ActionInfo",
+        "schemas::type::ActionInfoParameter",
+        "schemas::field::ActionInfo.Parameters",
+        "schemas::field::ActionInfoParameter.Name",
+        "schemas::field::ActionInfoParameter.DataType",
+        "schemas::field::ActionInfoParameter.DefaultValue",
+        "schemas::field::ActionInfoParameter.ObjectDataType",
+        "schemas::field::ActionInfoParameter.AllowablePattern",
+        "schemas::field::ActionInfoParameter.AllowableNumbers",
+        "schemas::field::ActionInfoParameter.AllowableValueDescriptions",
+        "schemas::field::ActionInfoParameter.AllowableValues",
+        "schemas::field::ActionInfoParameter.NoDefaultValue",
+        "schemas::field::ActionInfoParameter.Required"
+      ],
+      "relation": "both_reject"
+    },
+    {
+      "id": "parameter_null_element",
+      "kind": "info",
+      "uri": "/redfish/v1/ActionInfoTests/Cases/parameter_null_element",
+      "input": {
+        "@odata.id": "/redfish/v1/ActionInfoTests/Cases/parameter_null_element",
+        "Id": "parameter_null_element",
+        "Name": "Synthetic action metadata",
+        "Parameters": [
+          null
+        ]
+      },
+      "name": "Mode",
+      "type": "String",
+      "action": "",
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/ActionInfoTests/Cases/parameter_null_element"
+        ],
+        "gofish": [
+          "/redfish/v1/ActionInfoTests/Cases/parameter_null_element"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::ActionInfo",
+        "schemas::type::ActionInfoParameter",
+        "schemas::field::ActionInfo.Parameters",
+        "schemas::field::ActionInfoParameter.Name",
+        "schemas::field::ActionInfoParameter.DataType",
+        "schemas::field::ActionInfoParameter.DefaultValue",
+        "schemas::field::ActionInfoParameter.ObjectDataType",
+        "schemas::field::ActionInfoParameter.AllowablePattern",
+        "schemas::field::ActionInfoParameter.AllowableNumbers",
+        "schemas::field::ActionInfoParameter.AllowableValueDescriptions",
+        "schemas::field::ActionInfoParameter.AllowableValues",
+        "schemas::field::ActionInfoParameter.NoDefaultValue",
+        "schemas::field::ActionInfoParameter.Required"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "allowable_null_element",
+      "kind": "info",
+      "uri": "/redfish/v1/ActionInfoTests/Cases/allowable_null_element",
+      "input": {
+        "@odata.id": "/redfish/v1/ActionInfoTests/Cases/allowable_null_element",
+        "Id": "allowable_null_element",
+        "Name": "Synthetic action metadata",
+        "Parameters": [
+          {
+            "Name": "Mode",
+            "DataType": "String",
+            "DefaultValue": "{not parsed}",
+            "ObjectDataType": "#Future.v1.Type",
+            "AllowablePattern": "[not compiled",
+            "AllowableNumbers": [
+              "1:10:2",
+              "PT1S:PT5S"
+            ],
+            "AllowableValueDescriptions": [
+              "second"
+            ],
+            "AllowableValues": [
+              null
+            ],
+            "NoDefaultValue": true,
+            "Required": true,
+            "ArraySizeMinimum": 0,
+            "ArraySizeMaximum": 3,
+            "MinimumValue": -1.5,
+            "MaximumValue": 2.5,
+            "Oem": {
+              "Synthetic": true
+            }
+          }
+        ]
+      },
+      "name": "Mode",
+      "type": "String",
+      "action": "",
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/ActionInfoTests/Cases/allowable_null_element"
+        ],
+        "gofish": [
+          "/redfish/v1/ActionInfoTests/Cases/allowable_null_element"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::ActionInfo",
+        "schemas::type::ActionInfoParameter",
+        "schemas::field::ActionInfo.Parameters",
+        "schemas::field::ActionInfoParameter.Name",
+        "schemas::field::ActionInfoParameter.DataType",
+        "schemas::field::ActionInfoParameter.DefaultValue",
+        "schemas::field::ActionInfoParameter.ObjectDataType",
+        "schemas::field::ActionInfoParameter.AllowablePattern",
+        "schemas::field::ActionInfoParameter.AllowableNumbers",
+        "schemas::field::ActionInfoParameter.AllowableValueDescriptions",
+        "schemas::field::ActionInfoParameter.AllowableValues",
+        "schemas::field::ActionInfoParameter.NoDefaultValue",
+        "schemas::field::ActionInfoParameter.Required"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "unselected_numeric_wrong_type",
+      "kind": "info",
+      "uri": "/redfish/v1/ActionInfoTests/Cases/unselected_numeric_wrong_type",
+      "input": {
+        "@odata.id": "/redfish/v1/ActionInfoTests/Cases/unselected_numeric_wrong_type",
+        "Id": "unselected_numeric_wrong_type",
+        "Name": "Synthetic action metadata",
+        "Parameters": [
+          {
+            "Name": "Mode",
+            "DataType": "String",
+            "DefaultValue": "{not parsed}",
+            "ObjectDataType": "#Future.v1.Type",
+            "AllowablePattern": "[not compiled",
+            "AllowableNumbers": [
+              "1:10:2",
+              "PT1S:PT5S"
+            ],
+            "AllowableValueDescriptions": [
+              "second"
+            ],
+            "AllowableValues": [
+              "B",
+              "A",
+              "B"
+            ],
+            "NoDefaultValue": true,
+            "Required": true,
+            "ArraySizeMinimum": 0,
+            "ArraySizeMaximum": 3,
+            "MinimumValue": -1.5,
+            "MaximumValue": "wrong-type",
+            "Oem": {
+              "Synthetic": true
+            }
+          }
+        ]
+      },
+      "name": "Mode",
+      "type": "String",
+      "action": "",
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/ActionInfoTests/Cases/unselected_numeric_wrong_type"
+        ],
+        "gofish": [
+          "/redfish/v1/ActionInfoTests/Cases/unselected_numeric_wrong_type"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::ActionInfo",
+        "schemas::type::ActionInfoParameter",
+        "schemas::field::ActionInfo.Parameters",
+        "schemas::field::ActionInfoParameter.Name",
+        "schemas::field::ActionInfoParameter.DataType",
+        "schemas::field::ActionInfoParameter.DefaultValue",
+        "schemas::field::ActionInfoParameter.ObjectDataType",
+        "schemas::field::ActionInfoParameter.AllowablePattern",
+        "schemas::field::ActionInfoParameter.AllowableNumbers",
+        "schemas::field::ActionInfoParameter.AllowableValueDescriptions",
+        "schemas::field::ActionInfoParameter.AllowableValues",
+        "schemas::field::ActionInfoParameter.NoDefaultValue",
+        "schemas::field::ActionInfoParameter.Required"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "query_defined",
+      "kind": "query",
+      "uri": "/redfish/v1/ActionInfoTests/Cases/query_defined",
+      "input": {
+        "@odata.id": "/redfish/v1/ActionInfoTests/Cases/query_defined",
+        "Id": "query_defined",
+        "Name": "Synthetic action metadata",
+        "Parameters": [
+          {
+            "Name": "Mode",
+            "DataType": "String",
+            "DefaultValue": "{not parsed}",
+            "ObjectDataType": "#Future.v1.Type",
+            "AllowablePattern": "[not compiled",
+            "AllowableNumbers": [
+              "1:10:2",
+              "PT1S:PT5S"
+            ],
+            "AllowableValueDescriptions": [
+              "second"
+            ],
+            "AllowableValues": [
+              "B",
+              "A",
+              "B"
+            ],
+            "NoDefaultValue": true,
+            "Required": true,
+            "ArraySizeMinimum": 0,
+            "ArraySizeMaximum": 3,
+            "MinimumValue": -1.5,
+            "MaximumValue": 2.5,
+            "Oem": {
+              "Synthetic": true
+            }
+          }
+        ]
+      },
+      "name": "Mode",
+      "type": "String",
+      "action": "",
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/ActionInfoTests/Cases/query_defined"
+        ],
+        "gofish": [
+          "/redfish/v1/ActionInfoTests/Cases/query_defined"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::ActionInfo",
+        "schemas::type::ActionInfoParameter",
+        "schemas::field::ActionInfo.Parameters",
+        "schemas::field::ActionInfoParameter.Name",
+        "schemas::field::ActionInfoParameter.DataType",
+        "schemas::field::ActionInfoParameter.DefaultValue",
+        "schemas::field::ActionInfoParameter.ObjectDataType",
+        "schemas::field::ActionInfoParameter.AllowablePattern",
+        "schemas::field::ActionInfoParameter.AllowableNumbers",
+        "schemas::field::ActionInfoParameter.AllowableValueDescriptions",
+        "schemas::field::ActionInfoParameter.AllowableValues",
+        "schemas::field::ActionInfoParameter.NoDefaultValue",
+        "schemas::field::ActionInfoParameter.Required",
+        "schemas::method::*ActionInfo.GetParamValues"
+      ],
+      "relation": "same_selected_observation"
+    },
+    {
+      "id": "query_first_match",
+      "kind": "query",
+      "uri": "/redfish/v1/ActionInfoTests/Cases/query_first_match",
+      "input": {
+        "@odata.id": "/redfish/v1/ActionInfoTests/Cases/query_first_match",
+        "Id": "query_first_match",
+        "Name": "Synthetic action metadata",
+        "Parameters": [
+          {
+            "Name": "Mode",
+            "DataType": "Number",
+            "DefaultValue": "{not parsed}",
+            "ObjectDataType": "#Future.v1.Type",
+            "AllowablePattern": "[not compiled",
+            "AllowableNumbers": [
+              "1:10:2",
+              "PT1S:PT5S"
+            ],
+            "AllowableValueDescriptions": [
+              "second"
+            ],
+            "AllowableValues": [
+              "skip"
+            ],
+            "NoDefaultValue": true,
+            "Required": true,
+            "ArraySizeMinimum": 0,
+            "ArraySizeMaximum": 3,
+            "MinimumValue": -1.5,
+            "MaximumValue": 2.5,
+            "Oem": {
+              "Synthetic": true
+            }
+          },
+          {
+            "Name": "Mode",
+            "DataType": "String",
+            "DefaultValue": "{not parsed}",
+            "ObjectDataType": "#Future.v1.Type",
+            "AllowablePattern": "[not compiled",
+            "AllowableNumbers": [
+              "1:10:2",
+              "PT1S:PT5S"
+            ],
+            "AllowableValueDescriptions": [
+              "second"
+            ],
+            "AllowableValues": [
+              "first"
+            ],
+            "NoDefaultValue": true,
+            "Required": true,
+            "ArraySizeMinimum": 0,
+            "ArraySizeMaximum": 3,
+            "MinimumValue": -1.5,
+            "MaximumValue": 2.5,
+            "Oem": {
+              "Synthetic": true
+            }
+          },
+          {
+            "Name": "Mode",
+            "DataType": "String",
+            "DefaultValue": "{not parsed}",
+            "ObjectDataType": "#Future.v1.Type",
+            "AllowablePattern": "[not compiled",
+            "AllowableNumbers": [
+              "1:10:2",
+              "PT1S:PT5S"
+            ],
+            "AllowableValueDescriptions": [
+              "second"
+            ],
+            "AllowableValues": [
+              "later"
+            ],
+            "NoDefaultValue": true,
+            "Required": true,
+            "ArraySizeMinimum": 0,
+            "ArraySizeMaximum": 3,
+            "MinimumValue": -1.5,
+            "MaximumValue": 2.5,
+            "Oem": {
+              "Synthetic": true
+            }
+          }
+        ]
+      },
+      "name": "Mode",
+      "type": "String",
+      "action": "",
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/ActionInfoTests/Cases/query_first_match"
+        ],
+        "gofish": [
+          "/redfish/v1/ActionInfoTests/Cases/query_first_match"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::ActionInfo",
+        "schemas::type::ActionInfoParameter",
+        "schemas::field::ActionInfo.Parameters",
+        "schemas::field::ActionInfoParameter.Name",
+        "schemas::field::ActionInfoParameter.DataType",
+        "schemas::field::ActionInfoParameter.DefaultValue",
+        "schemas::field::ActionInfoParameter.ObjectDataType",
+        "schemas::field::ActionInfoParameter.AllowablePattern",
+        "schemas::field::ActionInfoParameter.AllowableNumbers",
+        "schemas::field::ActionInfoParameter.AllowableValueDescriptions",
+        "schemas::field::ActionInfoParameter.AllowableValues",
+        "schemas::field::ActionInfoParameter.NoDefaultValue",
+        "schemas::field::ActionInfoParameter.Required",
+        "schemas::method::*ActionInfo.GetParamValues"
+      ],
+      "relation": "same_selected_observation"
+    },
+    {
+      "id": "query_wildcard_missing",
+      "kind": "query",
+      "uri": "/redfish/v1/ActionInfoTests/Cases/query_wildcard_missing",
+      "input": {
+        "@odata.id": "/redfish/v1/ActionInfoTests/Cases/query_wildcard_missing",
+        "Id": "query_wildcard_missing",
+        "Name": "Synthetic action metadata",
+        "Parameters": [
+          {
+            "Name": "Mode",
+            "AllowableValues": [
+              "wildcard"
+            ]
+          },
+          {
+            "Name": "Mode",
+            "DataType": "String",
+            "DefaultValue": "{not parsed}",
+            "ObjectDataType": "#Future.v1.Type",
+            "AllowablePattern": "[not compiled",
+            "AllowableNumbers": [
+              "1:10:2",
+              "PT1S:PT5S"
+            ],
+            "AllowableValueDescriptions": [
+              "second"
+            ],
+            "AllowableValues": [
+              "B",
+              "A",
+              "B"
+            ],
+            "NoDefaultValue": true,
+            "Required": true,
+            "ArraySizeMinimum": 0,
+            "ArraySizeMaximum": 3,
+            "MinimumValue": -1.5,
+            "MaximumValue": 2.5,
+            "Oem": {
+              "Synthetic": true
+            }
+          }
+        ]
+      },
+      "name": "Mode",
+      "type": "String",
+      "action": "",
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/ActionInfoTests/Cases/query_wildcard_missing"
+        ],
+        "gofish": [
+          "/redfish/v1/ActionInfoTests/Cases/query_wildcard_missing"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::ActionInfo",
+        "schemas::type::ActionInfoParameter",
+        "schemas::field::ActionInfo.Parameters",
+        "schemas::field::ActionInfoParameter.Name",
+        "schemas::field::ActionInfoParameter.DataType",
+        "schemas::field::ActionInfoParameter.DefaultValue",
+        "schemas::field::ActionInfoParameter.ObjectDataType",
+        "schemas::field::ActionInfoParameter.AllowablePattern",
+        "schemas::field::ActionInfoParameter.AllowableNumbers",
+        "schemas::field::ActionInfoParameter.AllowableValueDescriptions",
+        "schemas::field::ActionInfoParameter.AllowableValues",
+        "schemas::field::ActionInfoParameter.NoDefaultValue",
+        "schemas::field::ActionInfoParameter.Required",
+        "schemas::method::*ActionInfo.GetParamValues"
+      ],
+      "relation": "same_selected_observation"
+    },
+    {
+      "id": "query_wildcard_null",
+      "kind": "query",
+      "uri": "/redfish/v1/ActionInfoTests/Cases/query_wildcard_null",
+      "input": {
+        "@odata.id": "/redfish/v1/ActionInfoTests/Cases/query_wildcard_null",
+        "Id": "query_wildcard_null",
+        "Name": "Synthetic action metadata",
+        "Parameters": [
+          {
+            "Name": "Mode",
+            "DataType": null,
+            "DefaultValue": "{not parsed}",
+            "ObjectDataType": "#Future.v1.Type",
+            "AllowablePattern": "[not compiled",
+            "AllowableNumbers": [
+              "1:10:2",
+              "PT1S:PT5S"
+            ],
+            "AllowableValueDescriptions": [
+              "second"
+            ],
+            "AllowableValues": [
+              "B",
+              "A",
+              "B"
+            ],
+            "NoDefaultValue": true,
+            "Required": true,
+            "ArraySizeMinimum": 0,
+            "ArraySizeMaximum": 3,
+            "MinimumValue": -1.5,
+            "MaximumValue": 2.5,
+            "Oem": {
+              "Synthetic": true
+            }
+          }
+        ]
+      },
+      "name": "Mode",
+      "type": "String",
+      "action": "",
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/ActionInfoTests/Cases/query_wildcard_null"
+        ],
+        "gofish": [
+          "/redfish/v1/ActionInfoTests/Cases/query_wildcard_null"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::ActionInfo",
+        "schemas::type::ActionInfoParameter",
+        "schemas::field::ActionInfo.Parameters",
+        "schemas::field::ActionInfoParameter.Name",
+        "schemas::field::ActionInfoParameter.DataType",
+        "schemas::field::ActionInfoParameter.DefaultValue",
+        "schemas::field::ActionInfoParameter.ObjectDataType",
+        "schemas::field::ActionInfoParameter.AllowablePattern",
+        "schemas::field::ActionInfoParameter.AllowableNumbers",
+        "schemas::field::ActionInfoParameter.AllowableValueDescriptions",
+        "schemas::field::ActionInfoParameter.AllowableValues",
+        "schemas::field::ActionInfoParameter.NoDefaultValue",
+        "schemas::field::ActionInfoParameter.Required",
+        "schemas::method::*ActionInfo.GetParamValues"
+      ],
+      "relation": "same_selected_observation"
+    },
+    {
+      "id": "query_wildcard_empty",
+      "kind": "query",
+      "uri": "/redfish/v1/ActionInfoTests/Cases/query_wildcard_empty",
+      "input": {
+        "@odata.id": "/redfish/v1/ActionInfoTests/Cases/query_wildcard_empty",
+        "Id": "query_wildcard_empty",
+        "Name": "Synthetic action metadata",
+        "Parameters": [
+          {
+            "Name": "Mode",
+            "DataType": "",
+            "DefaultValue": "{not parsed}",
+            "ObjectDataType": "#Future.v1.Type",
+            "AllowablePattern": "[not compiled",
+            "AllowableNumbers": [
+              "1:10:2",
+              "PT1S:PT5S"
+            ],
+            "AllowableValueDescriptions": [
+              "second"
+            ],
+            "AllowableValues": [],
+            "NoDefaultValue": true,
+            "Required": true,
+            "ArraySizeMinimum": 0,
+            "ArraySizeMaximum": 3,
+            "MinimumValue": -1.5,
+            "MaximumValue": 2.5,
+            "Oem": {
+              "Synthetic": true
+            }
+          },
+          {
+            "Name": "Mode",
+            "DataType": "String",
+            "DefaultValue": "{not parsed}",
+            "ObjectDataType": "#Future.v1.Type",
+            "AllowablePattern": "[not compiled",
+            "AllowableNumbers": [
+              "1:10:2",
+              "PT1S:PT5S"
+            ],
+            "AllowableValueDescriptions": [
+              "second"
+            ],
+            "AllowableValues": [
+              "B",
+              "A",
+              "B"
+            ],
+            "NoDefaultValue": true,
+            "Required": true,
+            "ArraySizeMinimum": 0,
+            "ArraySizeMaximum": 3,
+            "MinimumValue": -1.5,
+            "MaximumValue": 2.5,
+            "Oem": {
+              "Synthetic": true
+            }
+          }
+        ]
+      },
+      "name": "Mode",
+      "type": "String",
+      "action": "",
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/ActionInfoTests/Cases/query_wildcard_empty"
+        ],
+        "gofish": [
+          "/redfish/v1/ActionInfoTests/Cases/query_wildcard_empty"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::ActionInfo",
+        "schemas::type::ActionInfoParameter",
+        "schemas::field::ActionInfo.Parameters",
+        "schemas::field::ActionInfoParameter.Name",
+        "schemas::field::ActionInfoParameter.DataType",
+        "schemas::field::ActionInfoParameter.DefaultValue",
+        "schemas::field::ActionInfoParameter.ObjectDataType",
+        "schemas::field::ActionInfoParameter.AllowablePattern",
+        "schemas::field::ActionInfoParameter.AllowableNumbers",
+        "schemas::field::ActionInfoParameter.AllowableValueDescriptions",
+        "schemas::field::ActionInfoParameter.AllowableValues",
+        "schemas::field::ActionInfoParameter.NoDefaultValue",
+        "schemas::field::ActionInfoParameter.Required",
+        "schemas::method::*ActionInfo.GetParamValues"
+      ],
+      "relation": "same_selected_observation"
+    },
+    {
+      "id": "query_first_values_missing",
+      "kind": "query",
+      "uri": "/redfish/v1/ActionInfoTests/Cases/query_first_values_missing",
+      "input": {
+        "@odata.id": "/redfish/v1/ActionInfoTests/Cases/query_first_values_missing",
+        "Id": "query_first_values_missing",
+        "Name": "Synthetic action metadata",
+        "Parameters": [
+          {
+            "Name": "Mode"
+          },
+          {
+            "Name": "Mode",
+            "DataType": "String",
+            "DefaultValue": "{not parsed}",
+            "ObjectDataType": "#Future.v1.Type",
+            "AllowablePattern": "[not compiled",
+            "AllowableNumbers": [
+              "1:10:2",
+              "PT1S:PT5S"
+            ],
+            "AllowableValueDescriptions": [
+              "second"
+            ],
+            "AllowableValues": [
+              "B",
+              "A",
+              "B"
+            ],
+            "NoDefaultValue": true,
+            "Required": true,
+            "ArraySizeMinimum": 0,
+            "ArraySizeMaximum": 3,
+            "MinimumValue": -1.5,
+            "MaximumValue": 2.5,
+            "Oem": {
+              "Synthetic": true
+            }
+          }
+        ]
+      },
+      "name": "Mode",
+      "type": "String",
+      "action": "",
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/ActionInfoTests/Cases/query_first_values_missing"
+        ],
+        "gofish": [
+          "/redfish/v1/ActionInfoTests/Cases/query_first_values_missing"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::ActionInfo",
+        "schemas::type::ActionInfoParameter",
+        "schemas::field::ActionInfo.Parameters",
+        "schemas::field::ActionInfoParameter.Name",
+        "schemas::field::ActionInfoParameter.DataType",
+        "schemas::field::ActionInfoParameter.DefaultValue",
+        "schemas::field::ActionInfoParameter.ObjectDataType",
+        "schemas::field::ActionInfoParameter.AllowablePattern",
+        "schemas::field::ActionInfoParameter.AllowableNumbers",
+        "schemas::field::ActionInfoParameter.AllowableValueDescriptions",
+        "schemas::field::ActionInfoParameter.AllowableValues",
+        "schemas::field::ActionInfoParameter.NoDefaultValue",
+        "schemas::field::ActionInfoParameter.Required",
+        "schemas::method::*ActionInfo.GetParamValues"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "query_first_values_null",
+      "kind": "query",
+      "uri": "/redfish/v1/ActionInfoTests/Cases/query_first_values_null",
+      "input": {
+        "@odata.id": "/redfish/v1/ActionInfoTests/Cases/query_first_values_null",
+        "Id": "query_first_values_null",
+        "Name": "Synthetic action metadata",
+        "Parameters": [
+          {
+            "Name": "Mode",
+            "AllowableValues": null
+          },
+          {
+            "Name": "Mode",
+            "DataType": "String",
+            "DefaultValue": "{not parsed}",
+            "ObjectDataType": "#Future.v1.Type",
+            "AllowablePattern": "[not compiled",
+            "AllowableNumbers": [
+              "1:10:2",
+              "PT1S:PT5S"
+            ],
+            "AllowableValueDescriptions": [
+              "second"
+            ],
+            "AllowableValues": [
+              "B",
+              "A",
+              "B"
+            ],
+            "NoDefaultValue": true,
+            "Required": true,
+            "ArraySizeMinimum": 0,
+            "ArraySizeMaximum": 3,
+            "MinimumValue": -1.5,
+            "MaximumValue": 2.5,
+            "Oem": {
+              "Synthetic": true
+            }
+          }
+        ]
+      },
+      "name": "Mode",
+      "type": "String",
+      "action": "",
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/ActionInfoTests/Cases/query_first_values_null"
+        ],
+        "gofish": [
+          "/redfish/v1/ActionInfoTests/Cases/query_first_values_null"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::ActionInfo",
+        "schemas::type::ActionInfoParameter",
+        "schemas::field::ActionInfo.Parameters",
+        "schemas::field::ActionInfoParameter.Name",
+        "schemas::field::ActionInfoParameter.DataType",
+        "schemas::field::ActionInfoParameter.DefaultValue",
+        "schemas::field::ActionInfoParameter.ObjectDataType",
+        "schemas::field::ActionInfoParameter.AllowablePattern",
+        "schemas::field::ActionInfoParameter.AllowableNumbers",
+        "schemas::field::ActionInfoParameter.AllowableValueDescriptions",
+        "schemas::field::ActionInfoParameter.AllowableValues",
+        "schemas::field::ActionInfoParameter.NoDefaultValue",
+        "schemas::field::ActionInfoParameter.Required",
+        "schemas::method::*ActionInfo.GetParamValues"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "query_empty_name",
+      "kind": "query",
+      "uri": "/redfish/v1/ActionInfoTests/Cases/query_empty_name",
+      "input": {
+        "@odata.id": "/redfish/v1/ActionInfoTests/Cases/query_empty_name",
+        "Id": "query_empty_name",
+        "Name": "Synthetic action metadata",
+        "Parameters": [
+          {
+            "AllowableValues": [
+              "unnamed"
+            ]
+          }
+        ]
+      },
+      "name": "",
+      "type": "String",
+      "action": "",
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/ActionInfoTests/Cases/query_empty_name"
+        ],
+        "gofish": [
+          "/redfish/v1/ActionInfoTests/Cases/query_empty_name"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::ActionInfo",
+        "schemas::type::ActionInfoParameter",
+        "schemas::field::ActionInfo.Parameters",
+        "schemas::field::ActionInfoParameter.Name",
+        "schemas::field::ActionInfoParameter.DataType",
+        "schemas::field::ActionInfoParameter.DefaultValue",
+        "schemas::field::ActionInfoParameter.ObjectDataType",
+        "schemas::field::ActionInfoParameter.AllowablePattern",
+        "schemas::field::ActionInfoParameter.AllowableNumbers",
+        "schemas::field::ActionInfoParameter.AllowableValueDescriptions",
+        "schemas::field::ActionInfoParameter.AllowableValues",
+        "schemas::field::ActionInfoParameter.NoDefaultValue",
+        "schemas::field::ActionInfoParameter.Required",
+        "schemas::method::*ActionInfo.GetParamValues"
+      ],
+      "relation": "same_selected_observation"
+    },
+    {
+      "id": "query_case_sensitive",
+      "kind": "query",
+      "uri": "/redfish/v1/ActionInfoTests/Cases/query_case_sensitive",
+      "input": {
+        "@odata.id": "/redfish/v1/ActionInfoTests/Cases/query_case_sensitive",
+        "Id": "query_case_sensitive",
+        "Name": "Synthetic action metadata",
+        "Parameters": [
+          {
+            "Name": "Mode",
+            "DataType": "String",
+            "DefaultValue": "{not parsed}",
+            "ObjectDataType": "#Future.v1.Type",
+            "AllowablePattern": "[not compiled",
+            "AllowableNumbers": [
+              "1:10:2",
+              "PT1S:PT5S"
+            ],
+            "AllowableValueDescriptions": [
+              "second"
+            ],
+            "AllowableValues": [
+              "B",
+              "A",
+              "B"
+            ],
+            "NoDefaultValue": true,
+            "Required": true,
+            "ArraySizeMinimum": 0,
+            "ArraySizeMaximum": 3,
+            "MinimumValue": -1.5,
+            "MaximumValue": 2.5,
+            "Oem": {
+              "Synthetic": true
+            }
+          }
+        ]
+      },
+      "name": "mode",
+      "type": "String",
+      "action": "",
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/ActionInfoTests/Cases/query_case_sensitive"
+        ],
+        "gofish": [
+          "/redfish/v1/ActionInfoTests/Cases/query_case_sensitive"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::ActionInfo",
+        "schemas::type::ActionInfoParameter",
+        "schemas::field::ActionInfo.Parameters",
+        "schemas::field::ActionInfoParameter.Name",
+        "schemas::field::ActionInfoParameter.DataType",
+        "schemas::field::ActionInfoParameter.DefaultValue",
+        "schemas::field::ActionInfoParameter.ObjectDataType",
+        "schemas::field::ActionInfoParameter.AllowablePattern",
+        "schemas::field::ActionInfoParameter.AllowableNumbers",
+        "schemas::field::ActionInfoParameter.AllowableValueDescriptions",
+        "schemas::field::ActionInfoParameter.AllowableValues",
+        "schemas::field::ActionInfoParameter.NoDefaultValue",
+        "schemas::field::ActionInfoParameter.Required",
+        "schemas::method::*ActionInfo.GetParamValues"
+      ],
+      "relation": "both_reject"
+    },
+    {
+      "id": "query_type_mismatch",
+      "kind": "query",
+      "uri": "/redfish/v1/ActionInfoTests/Cases/query_type_mismatch",
+      "input": {
+        "@odata.id": "/redfish/v1/ActionInfoTests/Cases/query_type_mismatch",
+        "Id": "query_type_mismatch",
+        "Name": "Synthetic action metadata",
+        "Parameters": [
+          {
+            "Name": "Mode",
+            "DataType": "String",
+            "DefaultValue": "{not parsed}",
+            "ObjectDataType": "#Future.v1.Type",
+            "AllowablePattern": "[not compiled",
+            "AllowableNumbers": [
+              "1:10:2",
+              "PT1S:PT5S"
+            ],
+            "AllowableValueDescriptions": [
+              "second"
+            ],
+            "AllowableValues": [
+              "B",
+              "A",
+              "B"
+            ],
+            "NoDefaultValue": true,
+            "Required": true,
+            "ArraySizeMinimum": 0,
+            "ArraySizeMaximum": 3,
+            "MinimumValue": -1.5,
+            "MaximumValue": 2.5,
+            "Oem": {
+              "Synthetic": true
+            }
+          }
+        ]
+      },
+      "name": "Mode",
+      "type": "Number",
+      "action": "",
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/ActionInfoTests/Cases/query_type_mismatch"
+        ],
+        "gofish": [
+          "/redfish/v1/ActionInfoTests/Cases/query_type_mismatch"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::ActionInfo",
+        "schemas::type::ActionInfoParameter",
+        "schemas::field::ActionInfo.Parameters",
+        "schemas::field::ActionInfoParameter.Name",
+        "schemas::field::ActionInfoParameter.DataType",
+        "schemas::field::ActionInfoParameter.DefaultValue",
+        "schemas::field::ActionInfoParameter.ObjectDataType",
+        "schemas::field::ActionInfoParameter.AllowablePattern",
+        "schemas::field::ActionInfoParameter.AllowableNumbers",
+        "schemas::field::ActionInfoParameter.AllowableValueDescriptions",
+        "schemas::field::ActionInfoParameter.AllowableValues",
+        "schemas::field::ActionInfoParameter.NoDefaultValue",
+        "schemas::field::ActionInfoParameter.Required",
+        "schemas::method::*ActionInfo.GetParamValues"
+      ],
+      "relation": "both_reject"
+    },
+    {
+      "id": "query_no_parameters",
+      "kind": "query",
+      "uri": "/redfish/v1/ActionInfoTests/Cases/query_no_parameters",
+      "input": {
+        "@odata.id": "/redfish/v1/ActionInfoTests/Cases/query_no_parameters",
+        "Id": "query_no_parameters",
+        "Name": "Synthetic action metadata",
+        "Parameters": []
+      },
+      "name": "Mode",
+      "type": "String",
+      "action": "",
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/ActionInfoTests/Cases/query_no_parameters"
+        ],
+        "gofish": [
+          "/redfish/v1/ActionInfoTests/Cases/query_no_parameters"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::ActionInfo",
+        "schemas::type::ActionInfoParameter",
+        "schemas::field::ActionInfo.Parameters",
+        "schemas::field::ActionInfoParameter.Name",
+        "schemas::field::ActionInfoParameter.DataType",
+        "schemas::field::ActionInfoParameter.DefaultValue",
+        "schemas::field::ActionInfoParameter.ObjectDataType",
+        "schemas::field::ActionInfoParameter.AllowablePattern",
+        "schemas::field::ActionInfoParameter.AllowableNumbers",
+        "schemas::field::ActionInfoParameter.AllowableValueDescriptions",
+        "schemas::field::ActionInfoParameter.AllowableValues",
+        "schemas::field::ActionInfoParameter.NoDefaultValue",
+        "schemas::field::ActionInfoParameter.Required",
+        "schemas::method::*ActionInfo.GetParamValues"
+      ],
+      "relation": "both_reject"
+    },
+    {
+      "id": "system_reset_link",
+      "kind": "system_reset",
+      "uri": "/redfish/v1/ActionInfoTests/Cases/system_reset_link",
+      "input": {
+        "@odata.id": "/redfish/v1/ActionInfoTests/Cases/system_reset_link",
+        "Id": "system_reset_link",
+        "Name": "Synthetic action metadata",
+        "Actions": {
+          "#ComputerSystem.Reset": {
+            "@Redfish.ActionInfo": "/redfish/v1/ActionInfoTests/Objects/Info",
+            "target": "/redfish/v1/MustNotExecute"
+          }
+        }
+      },
+      "name": "Mode",
+      "type": "String",
+      "action": "#ComputerSystem.Reset",
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/ActionInfoTests/Cases/system_reset_link",
+          "/redfish/v1/ActionInfoTests/Objects/Info"
+        ],
+        "gofish": [
+          "/redfish/v1/ActionInfoTests/Cases/system_reset_link",
+          "/redfish/v1/ActionInfoTests/Objects/Info"
+        ]
+      },
+      "item_ids": [
+        "schemas::method::*ComputerSystem.ResetActionInfo"
+      ],
+      "relation": "same_selected_observation"
+    },
+    {
+      "id": "manager_reset_link",
+      "kind": "manager_reset",
+      "uri": "/redfish/v1/ActionInfoTests/Cases/manager_reset_link",
+      "input": {
+        "@odata.id": "/redfish/v1/ActionInfoTests/Cases/manager_reset_link",
+        "Id": "manager_reset_link",
+        "Name": "Synthetic action metadata",
+        "Actions": {
+          "#Manager.Reset": {
+            "@Redfish.ActionInfo": "/redfish/v1/ActionInfoTests/Objects/Info",
+            "target": "/redfish/v1/MustNotExecute"
+          }
+        }
+      },
+      "name": "Mode",
+      "type": "String",
+      "action": "#Manager.Reset",
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/ActionInfoTests/Cases/manager_reset_link",
+          "/redfish/v1/ActionInfoTests/Objects/Info"
+        ],
+        "gofish": [
+          "/redfish/v1/ActionInfoTests/Cases/manager_reset_link",
+          "/redfish/v1/ActionInfoTests/Objects/Info"
+        ]
+      },
+      "item_ids": [
+        "schemas::method::*Manager.ResetActionInfo"
+      ],
+      "relation": "same_selected_observation"
+    },
+    {
+      "id": "insert_info_link",
+      "kind": "insert_info",
+      "uri": "/redfish/v1/ActionInfoTests/Cases/insert_info_link",
+      "input": {
+        "@odata.id": "/redfish/v1/ActionInfoTests/Cases/insert_info_link",
+        "Id": "insert_info_link",
+        "Name": "Synthetic action metadata",
+        "Actions": {
+          "#VirtualMedia.InsertMedia": {
+            "@Redfish.ActionInfo": "/redfish/v1/ActionInfoTests/Objects/Info",
+            "target": "/redfish/v1/MustNotExecute"
+          }
+        }
+      },
+      "name": "Mode",
+      "type": "String",
+      "action": "#VirtualMedia.InsertMedia",
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/ActionInfoTests/Cases/insert_info_link",
+          "/redfish/v1/ActionInfoTests/Objects/Info"
+        ],
+        "gofish": [
+          "/redfish/v1/ActionInfoTests/Cases/insert_info_link",
+          "/redfish/v1/ActionInfoTests/Objects/Info"
+        ]
+      },
+      "item_ids": [
+        "schemas::method::*VirtualMedia.InsertMediaActionInfo"
+      ],
+      "relation": "same_selected_observation"
+    },
+    {
+      "id": "system_info_missing",
+      "kind": "system_reset",
+      "uri": "/redfish/v1/ActionInfoTests/Cases/system_info_missing",
+      "input": {
+        "@odata.id": "/redfish/v1/ActionInfoTests/Cases/system_info_missing",
+        "Id": "system_info_missing",
+        "Name": "Synthetic action metadata"
+      },
+      "name": "Mode",
+      "type": "String",
+      "action": "#ComputerSystem.Reset",
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/ActionInfoTests/Cases/system_info_missing"
+        ],
+        "gofish": [
+          "/redfish/v1/ActionInfoTests/Cases/system_info_missing"
+        ]
+      },
+      "item_ids": [
+        "schemas::method::*ComputerSystem.ResetActionInfo"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "manager_info_null",
+      "kind": "manager_reset",
+      "uri": "/redfish/v1/ActionInfoTests/Cases/manager_info_null",
+      "input": {
+        "@odata.id": "/redfish/v1/ActionInfoTests/Cases/manager_info_null",
+        "Id": "manager_info_null",
+        "Name": "Synthetic action metadata",
+        "Actions": {
+          "#Manager.Reset": {
+            "@Redfish.ActionInfo": null
+          }
+        }
+      },
+      "name": "Mode",
+      "type": "String",
+      "action": "#Manager.Reset",
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/ActionInfoTests/Cases/manager_info_null"
+        ],
+        "gofish": [
+          "/redfish/v1/ActionInfoTests/Cases/manager_info_null"
+        ]
+      },
+      "item_ids": [
+        "schemas::method::*Manager.ResetActionInfo"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "insert_info_empty",
+      "kind": "insert_info",
+      "uri": "/redfish/v1/ActionInfoTests/Cases/insert_info_empty",
+      "input": {
+        "@odata.id": "/redfish/v1/ActionInfoTests/Cases/insert_info_empty",
+        "Id": "insert_info_empty",
+        "Name": "Synthetic action metadata",
+        "Actions": {
+          "#VirtualMedia.InsertMedia": {
+            "@Redfish.ActionInfo": ""
+          }
+        }
+      },
+      "name": "Mode",
+      "type": "String",
+      "action": "#VirtualMedia.InsertMedia",
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/ActionInfoTests/Cases/insert_info_empty"
+        ],
+        "gofish": [
+          "/redfish/v1/ActionInfoTests/Cases/insert_info_empty"
+        ]
+      },
+      "item_ids": [
+        "schemas::method::*VirtualMedia.InsertMediaActionInfo"
+      ],
+      "relation": "both_reject"
+    },
+    {
+      "id": "manager_info_unsafe",
+      "kind": "manager_reset",
+      "uri": "/redfish/v1/ActionInfoTests/Cases/manager_info_unsafe",
+      "input": {
+        "@odata.id": "/redfish/v1/ActionInfoTests/Cases/manager_info_unsafe",
+        "Id": "manager_info_unsafe",
+        "Name": "Synthetic action metadata",
+        "Actions": {
+          "#Manager.Reset": {
+            "@Redfish.ActionInfo": "/outside"
+          }
+        }
+      },
+      "name": "Mode",
+      "type": "String",
+      "action": "#Manager.Reset",
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/ActionInfoTests/Cases/manager_info_unsafe"
+        ],
+        "gofish": [
+          "/redfish/v1/ActionInfoTests/Cases/manager_info_unsafe",
+          "/outside"
+        ]
+      },
+      "item_ids": [
+        "schemas::method::*Manager.ResetActionInfo"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "insert_info_denied",
+      "kind": "insert_info",
+      "uri": "/redfish/v1/ActionInfoTests/Cases/insert_info_denied",
+      "input": {
+        "@odata.id": "/redfish/v1/ActionInfoTests/Cases/insert_info_denied",
+        "Id": "insert_info_denied",
+        "Name": "Synthetic action metadata",
+        "Actions": {
+          "#VirtualMedia.InsertMedia": {
+            "@Redfish.ActionInfo": "/redfish/v1/ActionInfoTests/Denied"
+          }
+        }
+      },
+      "name": "Mode",
+      "type": "String",
+      "action": "#VirtualMedia.InsertMedia",
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/ActionInfoTests/Cases/insert_info_denied",
+          "/redfish/v1/ActionInfoTests/Denied"
+        ],
+        "gofish": [
+          "/redfish/v1/ActionInfoTests/Cases/insert_info_denied",
+          "/redfish/v1/ActionInfoTests/Denied"
+        ]
+      },
+      "item_ids": [
+        "schemas::method::*VirtualMedia.InsertMediaActionInfo"
+      ],
+      "relation": "same_selected_observation"
+    }
+  ],
+  "adapters": {
+    "moonredfish": {
+      "observations": {
+        "info_full": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "uri": "/redfish/v1/ActionInfoTests/Cases/info_full",
+            "id": "info_full",
+            "fields": {
+              "Parameters": {
+                "state": "value",
+                "value": [
+                  {
+                    "Name": {
+                      "state": "value",
+                      "value": "Mode"
+                    },
+                    "DataType": {
+                      "state": "value",
+                      "value": "String"
+                    },
+                    "DefaultValue": {
+                      "state": "value",
+                      "value": "{not parsed}"
+                    },
+                    "ObjectDataType": {
+                      "state": "value",
+                      "value": "#Future.v1.Type"
+                    },
+                    "AllowablePattern": {
+                      "state": "value",
+                      "value": "[not compiled"
+                    },
+                    "AllowableNumbers": {
+                      "state": "value",
+                      "value": [
+                        "1:10:2",
+                        "PT1S:PT5S"
+                      ]
+                    },
+                    "AllowableValueDescriptions": {
+                      "state": "value",
+                      "value": [
+                        "second"
+                      ]
+                    },
+                    "AllowableValues": {
+                      "state": "value",
+                      "value": [
+                        "B",
+                        "A",
+                        "B"
+                      ]
+                    },
+                    "NoDefaultValue": {
+                      "state": "value",
+                      "value": true
+                    },
+                    "Required": {
+                      "state": "value",
+                      "value": true
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "parameters_missing": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "uri": "/redfish/v1/ActionInfoTests/Cases/parameters_missing",
+            "id": "parameters_missing",
+            "fields": {
+              "Parameters": {
+                "state": "missing"
+              }
+            }
+          }
+        },
+        "parameters_null": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "uri": "/redfish/v1/ActionInfoTests/Cases/parameters_null",
+            "id": "parameters_null",
+            "fields": {
+              "Parameters": {
+                "state": "null"
+              }
+            }
+          }
+        },
+        "parameters_empty": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "uri": "/redfish/v1/ActionInfoTests/Cases/parameters_empty",
+            "id": "parameters_empty",
+            "fields": {
+              "Parameters": {
+                "state": "value",
+                "value": []
+              }
+            }
+          }
+        },
+        "parameter_empty": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "uri": "/redfish/v1/ActionInfoTests/Cases/parameter_empty",
+            "id": "parameter_empty",
+            "fields": {
+              "Parameters": {
+                "state": "value",
+                "value": [
+                  {
+                    "Name": {
+                      "state": "missing"
+                    },
+                    "DataType": {
+                      "state": "missing"
+                    },
+                    "DefaultValue": {
+                      "state": "missing"
+                    },
+                    "ObjectDataType": {
+                      "state": "missing"
+                    },
+                    "AllowablePattern": {
+                      "state": "missing"
+                    },
+                    "AllowableNumbers": {
+                      "state": "missing"
+                    },
+                    "AllowableValueDescriptions": {
+                      "state": "missing"
+                    },
+                    "AllowableValues": {
+                      "state": "missing"
+                    },
+                    "NoDefaultValue": {
+                      "state": "missing"
+                    },
+                    "Required": {
+                      "state": "missing"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "parameter_null_fields": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "uri": "/redfish/v1/ActionInfoTests/Cases/parameter_null_fields",
+            "id": "parameter_null_fields",
+            "fields": {
+              "Parameters": {
+                "state": "value",
+                "value": [
+                  {
+                    "Name": {
+                      "state": "null"
+                    },
+                    "DataType": {
+                      "state": "null"
+                    },
+                    "DefaultValue": {
+                      "state": "null"
+                    },
+                    "ObjectDataType": {
+                      "state": "null"
+                    },
+                    "AllowablePattern": {
+                      "state": "null"
+                    },
+                    "AllowableNumbers": {
+                      "state": "null"
+                    },
+                    "AllowableValueDescriptions": {
+                      "state": "null"
+                    },
+                    "AllowableValues": {
+                      "state": "null"
+                    },
+                    "NoDefaultValue": {
+                      "state": "null"
+                    },
+                    "Required": {
+                      "state": "null"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "unknown_type": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "uri": "/redfish/v1/ActionInfoTests/Cases/unknown_type",
+            "id": "unknown_type",
+            "fields": {
+              "Parameters": {
+                "state": "value",
+                "value": [
+                  {
+                    "Name": {
+                      "state": "value",
+                      "value": "Mode"
+                    },
+                    "DataType": {
+                      "state": "value",
+                      "value": "FutureType"
+                    },
+                    "DefaultValue": {
+                      "state": "value",
+                      "value": "{not parsed}"
+                    },
+                    "ObjectDataType": {
+                      "state": "value",
+                      "value": "#Future.v1.Type"
+                    },
+                    "AllowablePattern": {
+                      "state": "value",
+                      "value": "[not compiled"
+                    },
+                    "AllowableNumbers": {
+                      "state": "value",
+                      "value": [
+                        "1:10:2",
+                        "PT1S:PT5S"
+                      ]
+                    },
+                    "AllowableValueDescriptions": {
+                      "state": "value",
+                      "value": [
+                        "second"
+                      ]
+                    },
+                    "AllowableValues": {
+                      "state": "value",
+                      "value": [
+                        "B",
+                        "A",
+                        "B"
+                      ]
+                    },
+                    "NoDefaultValue": {
+                      "state": "value",
+                      "value": true
+                    },
+                    "Required": {
+                      "state": "value",
+                      "value": true
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "parameters_wrong_type": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "required_wrong_type": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "allowable_wrong_type": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "parameter_null_element": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "allowable_null_element": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "unselected_numeric_wrong_type": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "uri": "/redfish/v1/ActionInfoTests/Cases/unselected_numeric_wrong_type",
+            "id": "unselected_numeric_wrong_type",
+            "fields": {
+              "Parameters": {
+                "state": "value",
+                "value": [
+                  {
+                    "Name": {
+                      "state": "value",
+                      "value": "Mode"
+                    },
+                    "DataType": {
+                      "state": "value",
+                      "value": "String"
+                    },
+                    "DefaultValue": {
+                      "state": "value",
+                      "value": "{not parsed}"
+                    },
+                    "ObjectDataType": {
+                      "state": "value",
+                      "value": "#Future.v1.Type"
+                    },
+                    "AllowablePattern": {
+                      "state": "value",
+                      "value": "[not compiled"
+                    },
+                    "AllowableNumbers": {
+                      "state": "value",
+                      "value": [
+                        "1:10:2",
+                        "PT1S:PT5S"
+                      ]
+                    },
+                    "AllowableValueDescriptions": {
+                      "state": "value",
+                      "value": [
+                        "second"
+                      ]
+                    },
+                    "AllowableValues": {
+                      "state": "value",
+                      "value": [
+                        "B",
+                        "A",
+                        "B"
+                      ]
+                    },
+                    "NoDefaultValue": {
+                      "state": "value",
+                      "value": true
+                    },
+                    "Required": {
+                      "state": "value",
+                      "value": true
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "query_defined": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "value",
+            "value": [
+              "B",
+              "A",
+              "B"
+            ]
+          }
+        },
+        "query_first_match": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "value",
+            "value": [
+              "first"
+            ]
+          }
+        },
+        "query_wildcard_missing": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "value",
+            "value": [
+              "wildcard"
+            ]
+          }
+        },
+        "query_wildcard_null": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "value",
+            "value": [
+              "B",
+              "A",
+              "B"
+            ]
+          }
+        },
+        "query_wildcard_empty": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "value",
+            "value": []
+          }
+        },
+        "query_first_values_missing": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "missing"
+          }
+        },
+        "query_first_values_null": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "null"
+          }
+        },
+        "query_empty_name": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "value",
+            "value": [
+              "unnamed"
+            ]
+          }
+        },
+        "query_case_sensitive": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "query_type_mismatch": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "query_no_parameters": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "system_reset_link": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "value",
+            "value": {
+              "uri": "/redfish/v1/ActionInfoTests/Objects/Info",
+              "id": "Info",
+              "fields": {
+                "Parameters": {
+                  "state": "value",
+                  "value": [
+                    {
+                      "Name": {
+                        "state": "value",
+                        "value": "Mode"
+                      },
+                      "DataType": {
+                        "state": "value",
+                        "value": "String"
+                      },
+                      "DefaultValue": {
+                        "state": "value",
+                        "value": "{not parsed}"
+                      },
+                      "ObjectDataType": {
+                        "state": "value",
+                        "value": "#Future.v1.Type"
+                      },
+                      "AllowablePattern": {
+                        "state": "value",
+                        "value": "[not compiled"
+                      },
+                      "AllowableNumbers": {
+                        "state": "value",
+                        "value": [
+                          "1:10:2",
+                          "PT1S:PT5S"
+                        ]
+                      },
+                      "AllowableValueDescriptions": {
+                        "state": "value",
+                        "value": [
+                          "second"
+                        ]
+                      },
+                      "AllowableValues": {
+                        "state": "value",
+                        "value": [
+                          "B",
+                          "A",
+                          "B"
+                        ]
+                      },
+                      "NoDefaultValue": {
+                        "state": "value",
+                        "value": true
+                      },
+                      "Required": {
+                        "state": "value",
+                        "value": true
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "manager_reset_link": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "value",
+            "value": {
+              "uri": "/redfish/v1/ActionInfoTests/Objects/Info",
+              "id": "Info",
+              "fields": {
+                "Parameters": {
+                  "state": "value",
+                  "value": [
+                    {
+                      "Name": {
+                        "state": "value",
+                        "value": "Mode"
+                      },
+                      "DataType": {
+                        "state": "value",
+                        "value": "String"
+                      },
+                      "DefaultValue": {
+                        "state": "value",
+                        "value": "{not parsed}"
+                      },
+                      "ObjectDataType": {
+                        "state": "value",
+                        "value": "#Future.v1.Type"
+                      },
+                      "AllowablePattern": {
+                        "state": "value",
+                        "value": "[not compiled"
+                      },
+                      "AllowableNumbers": {
+                        "state": "value",
+                        "value": [
+                          "1:10:2",
+                          "PT1S:PT5S"
+                        ]
+                      },
+                      "AllowableValueDescriptions": {
+                        "state": "value",
+                        "value": [
+                          "second"
+                        ]
+                      },
+                      "AllowableValues": {
+                        "state": "value",
+                        "value": [
+                          "B",
+                          "A",
+                          "B"
+                        ]
+                      },
+                      "NoDefaultValue": {
+                        "state": "value",
+                        "value": true
+                      },
+                      "Required": {
+                        "state": "value",
+                        "value": true
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "insert_info_link": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "value",
+            "value": {
+              "uri": "/redfish/v1/ActionInfoTests/Objects/Info",
+              "id": "Info",
+              "fields": {
+                "Parameters": {
+                  "state": "value",
+                  "value": [
+                    {
+                      "Name": {
+                        "state": "value",
+                        "value": "Mode"
+                      },
+                      "DataType": {
+                        "state": "value",
+                        "value": "String"
+                      },
+                      "DefaultValue": {
+                        "state": "value",
+                        "value": "{not parsed}"
+                      },
+                      "ObjectDataType": {
+                        "state": "value",
+                        "value": "#Future.v1.Type"
+                      },
+                      "AllowablePattern": {
+                        "state": "value",
+                        "value": "[not compiled"
+                      },
+                      "AllowableNumbers": {
+                        "state": "value",
+                        "value": [
+                          "1:10:2",
+                          "PT1S:PT5S"
+                        ]
+                      },
+                      "AllowableValueDescriptions": {
+                        "state": "value",
+                        "value": [
+                          "second"
+                        ]
+                      },
+                      "AllowableValues": {
+                        "state": "value",
+                        "value": [
+                          "B",
+                          "A",
+                          "B"
+                        ]
+                      },
+                      "NoDefaultValue": {
+                        "state": "value",
+                        "value": true
+                      },
+                      "Required": {
+                        "state": "value",
+                        "value": true
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "system_info_missing": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "missing"
+          }
+        },
+        "manager_info_null": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "null"
+          }
+        },
+        "insert_info_empty": {
+          "ok": false,
+          "error": "invalid_path",
+          "value": null
+        },
+        "manager_info_unsafe": {
+          "ok": false,
+          "error": "invalid_path",
+          "value": null
+        },
+        "insert_info_denied": {
+          "ok": false,
+          "error": "http",
+          "value": null
+        }
+      },
+      "request_sequences": {
+        "startup": [
+          "/redfish/v1/ActionInfoTests"
+        ],
+        "info_full": [
+          "/redfish/v1/ActionInfoTests/Cases/info_full"
+        ],
+        "parameters_missing": [
+          "/redfish/v1/ActionInfoTests/Cases/parameters_missing"
+        ],
+        "parameters_null": [
+          "/redfish/v1/ActionInfoTests/Cases/parameters_null"
+        ],
+        "parameters_empty": [
+          "/redfish/v1/ActionInfoTests/Cases/parameters_empty"
+        ],
+        "parameter_empty": [
+          "/redfish/v1/ActionInfoTests/Cases/parameter_empty"
+        ],
+        "parameter_null_fields": [
+          "/redfish/v1/ActionInfoTests/Cases/parameter_null_fields"
+        ],
+        "unknown_type": [
+          "/redfish/v1/ActionInfoTests/Cases/unknown_type"
+        ],
+        "parameters_wrong_type": [
+          "/redfish/v1/ActionInfoTests/Cases/parameters_wrong_type"
+        ],
+        "required_wrong_type": [
+          "/redfish/v1/ActionInfoTests/Cases/required_wrong_type"
+        ],
+        "allowable_wrong_type": [
+          "/redfish/v1/ActionInfoTests/Cases/allowable_wrong_type"
+        ],
+        "parameter_null_element": [
+          "/redfish/v1/ActionInfoTests/Cases/parameter_null_element"
+        ],
+        "allowable_null_element": [
+          "/redfish/v1/ActionInfoTests/Cases/allowable_null_element"
+        ],
+        "unselected_numeric_wrong_type": [
+          "/redfish/v1/ActionInfoTests/Cases/unselected_numeric_wrong_type"
+        ],
+        "query_defined": [
+          "/redfish/v1/ActionInfoTests/Cases/query_defined"
+        ],
+        "query_first_match": [
+          "/redfish/v1/ActionInfoTests/Cases/query_first_match"
+        ],
+        "query_wildcard_missing": [
+          "/redfish/v1/ActionInfoTests/Cases/query_wildcard_missing"
+        ],
+        "query_wildcard_null": [
+          "/redfish/v1/ActionInfoTests/Cases/query_wildcard_null"
+        ],
+        "query_wildcard_empty": [
+          "/redfish/v1/ActionInfoTests/Cases/query_wildcard_empty"
+        ],
+        "query_first_values_missing": [
+          "/redfish/v1/ActionInfoTests/Cases/query_first_values_missing"
+        ],
+        "query_first_values_null": [
+          "/redfish/v1/ActionInfoTests/Cases/query_first_values_null"
+        ],
+        "query_empty_name": [
+          "/redfish/v1/ActionInfoTests/Cases/query_empty_name"
+        ],
+        "query_case_sensitive": [
+          "/redfish/v1/ActionInfoTests/Cases/query_case_sensitive"
+        ],
+        "query_type_mismatch": [
+          "/redfish/v1/ActionInfoTests/Cases/query_type_mismatch"
+        ],
+        "query_no_parameters": [
+          "/redfish/v1/ActionInfoTests/Cases/query_no_parameters"
+        ],
+        "system_reset_link": [
+          "/redfish/v1/ActionInfoTests/Cases/system_reset_link",
+          "/redfish/v1/ActionInfoTests/Objects/Info"
+        ],
+        "manager_reset_link": [
+          "/redfish/v1/ActionInfoTests/Cases/manager_reset_link",
+          "/redfish/v1/ActionInfoTests/Objects/Info"
+        ],
+        "insert_info_link": [
+          "/redfish/v1/ActionInfoTests/Cases/insert_info_link",
+          "/redfish/v1/ActionInfoTests/Objects/Info"
+        ],
+        "system_info_missing": [
+          "/redfish/v1/ActionInfoTests/Cases/system_info_missing"
+        ],
+        "manager_info_null": [
+          "/redfish/v1/ActionInfoTests/Cases/manager_info_null"
+        ],
+        "insert_info_empty": [
+          "/redfish/v1/ActionInfoTests/Cases/insert_info_empty"
+        ],
+        "manager_info_unsafe": [
+          "/redfish/v1/ActionInfoTests/Cases/manager_info_unsafe"
+        ],
+        "insert_info_denied": [
+          "/redfish/v1/ActionInfoTests/Cases/insert_info_denied",
+          "/redfish/v1/ActionInfoTests/Denied"
+        ]
+      }
+    },
+    "gofish": {
+      "observations": {
+        "allowable_null_element": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "fields": {
+              "Parameters": {
+                "state": "value",
+                "value": [
+                  {
+                    "AllowableNumbers": {
+                      "state": "value",
+                      "value": [
+                        "1:10:2",
+                        "PT1S:PT5S"
+                      ]
+                    },
+                    "AllowablePattern": {
+                      "state": "value",
+                      "value": "[not compiled"
+                    },
+                    "AllowableValueDescriptions": {
+                      "state": "value",
+                      "value": [
+                        "second"
+                      ]
+                    },
+                    "AllowableValues": {
+                      "state": "value",
+                      "value": [
+                        ""
+                      ]
+                    },
+                    "DataType": {
+                      "state": "value",
+                      "value": "String"
+                    },
+                    "DefaultValue": {
+                      "state": "value",
+                      "value": "{not parsed}"
+                    },
+                    "Name": {
+                      "state": "value",
+                      "value": "Mode"
+                    },
+                    "NoDefaultValue": {
+                      "state": "value",
+                      "value": true
+                    },
+                    "ObjectDataType": {
+                      "state": "value",
+                      "value": "#Future.v1.Type"
+                    },
+                    "Required": {
+                      "state": "value",
+                      "value": true
+                    }
+                  }
+                ]
+              }
+            },
+            "id": "allowable_null_element",
+            "uri": "/redfish/v1/ActionInfoTests/Cases/allowable_null_element"
+          }
+        },
+        "allowable_wrong_type": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "info_full": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "fields": {
+              "Parameters": {
+                "state": "value",
+                "value": [
+                  {
+                    "AllowableNumbers": {
+                      "state": "value",
+                      "value": [
+                        "1:10:2",
+                        "PT1S:PT5S"
+                      ]
+                    },
+                    "AllowablePattern": {
+                      "state": "value",
+                      "value": "[not compiled"
+                    },
+                    "AllowableValueDescriptions": {
+                      "state": "value",
+                      "value": [
+                        "second"
+                      ]
+                    },
+                    "AllowableValues": {
+                      "state": "value",
+                      "value": [
+                        "B",
+                        "A",
+                        "B"
+                      ]
+                    },
+                    "DataType": {
+                      "state": "value",
+                      "value": "String"
+                    },
+                    "DefaultValue": {
+                      "state": "value",
+                      "value": "{not parsed}"
+                    },
+                    "Name": {
+                      "state": "value",
+                      "value": "Mode"
+                    },
+                    "NoDefaultValue": {
+                      "state": "value",
+                      "value": true
+                    },
+                    "ObjectDataType": {
+                      "state": "value",
+                      "value": "#Future.v1.Type"
+                    },
+                    "Required": {
+                      "state": "value",
+                      "value": true
+                    }
+                  }
+                ]
+              }
+            },
+            "id": "info_full",
+            "uri": "/redfish/v1/ActionInfoTests/Cases/info_full"
+          }
+        },
+        "insert_info_denied": {
+          "error": "http",
+          "ok": false,
+          "value": null
+        },
+        "insert_info_empty": {
+          "error": "unsupported",
+          "ok": false,
+          "value": null
+        },
+        "insert_info_link": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": {
+              "fields": {
+                "Parameters": {
+                  "state": "value",
+                  "value": [
+                    {
+                      "AllowableNumbers": {
+                        "state": "value",
+                        "value": [
+                          "1:10:2",
+                          "PT1S:PT5S"
+                        ]
+                      },
+                      "AllowablePattern": {
+                        "state": "value",
+                        "value": "[not compiled"
+                      },
+                      "AllowableValueDescriptions": {
+                        "state": "value",
+                        "value": [
+                          "second"
+                        ]
+                      },
+                      "AllowableValues": {
+                        "state": "value",
+                        "value": [
+                          "B",
+                          "A",
+                          "B"
+                        ]
+                      },
+                      "DataType": {
+                        "state": "value",
+                        "value": "String"
+                      },
+                      "DefaultValue": {
+                        "state": "value",
+                        "value": "{not parsed}"
+                      },
+                      "Name": {
+                        "state": "value",
+                        "value": "Mode"
+                      },
+                      "NoDefaultValue": {
+                        "state": "value",
+                        "value": true
+                      },
+                      "ObjectDataType": {
+                        "state": "value",
+                        "value": "#Future.v1.Type"
+                      },
+                      "Required": {
+                        "state": "value",
+                        "value": true
+                      }
+                    }
+                  ]
+                }
+              },
+              "id": "Info",
+              "uri": "/redfish/v1/ActionInfoTests/Objects/Info"
+            }
+          }
+        },
+        "manager_info_null": {
+          "error": "unsupported",
+          "ok": false,
+          "value": null
+        },
+        "manager_info_unsafe": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": {
+              "fields": {
+                "Parameters": {
+                  "state": "value",
+                  "value": [
+                    {
+                      "AllowableNumbers": {
+                        "state": "value",
+                        "value": [
+                          "1:10:2",
+                          "PT1S:PT5S"
+                        ]
+                      },
+                      "AllowablePattern": {
+                        "state": "value",
+                        "value": "[not compiled"
+                      },
+                      "AllowableValueDescriptions": {
+                        "state": "value",
+                        "value": [
+                          "second"
+                        ]
+                      },
+                      "AllowableValues": {
+                        "state": "value",
+                        "value": [
+                          "B",
+                          "A",
+                          "B"
+                        ]
+                      },
+                      "DataType": {
+                        "state": "value",
+                        "value": "String"
+                      },
+                      "DefaultValue": {
+                        "state": "value",
+                        "value": "{not parsed}"
+                      },
+                      "Name": {
+                        "state": "value",
+                        "value": "Mode"
+                      },
+                      "NoDefaultValue": {
+                        "state": "value",
+                        "value": true
+                      },
+                      "ObjectDataType": {
+                        "state": "value",
+                        "value": "#Future.v1.Type"
+                      },
+                      "Required": {
+                        "state": "value",
+                        "value": true
+                      }
+                    }
+                  ]
+                }
+              },
+              "id": "outside",
+              "uri": "/outside"
+            }
+          }
+        },
+        "manager_reset_link": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": {
+              "fields": {
+                "Parameters": {
+                  "state": "value",
+                  "value": [
+                    {
+                      "AllowableNumbers": {
+                        "state": "value",
+                        "value": [
+                          "1:10:2",
+                          "PT1S:PT5S"
+                        ]
+                      },
+                      "AllowablePattern": {
+                        "state": "value",
+                        "value": "[not compiled"
+                      },
+                      "AllowableValueDescriptions": {
+                        "state": "value",
+                        "value": [
+                          "second"
+                        ]
+                      },
+                      "AllowableValues": {
+                        "state": "value",
+                        "value": [
+                          "B",
+                          "A",
+                          "B"
+                        ]
+                      },
+                      "DataType": {
+                        "state": "value",
+                        "value": "String"
+                      },
+                      "DefaultValue": {
+                        "state": "value",
+                        "value": "{not parsed}"
+                      },
+                      "Name": {
+                        "state": "value",
+                        "value": "Mode"
+                      },
+                      "NoDefaultValue": {
+                        "state": "value",
+                        "value": true
+                      },
+                      "ObjectDataType": {
+                        "state": "value",
+                        "value": "#Future.v1.Type"
+                      },
+                      "Required": {
+                        "state": "value",
+                        "value": true
+                      }
+                    }
+                  ]
+                }
+              },
+              "id": "Info",
+              "uri": "/redfish/v1/ActionInfoTests/Objects/Info"
+            }
+          }
+        },
+        "parameter_empty": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "fields": {
+              "Parameters": {
+                "state": "value",
+                "value": [
+                  {
+                    "AllowableNumbers": {
+                      "state": "nil"
+                    },
+                    "AllowablePattern": {
+                      "state": "value",
+                      "value": ""
+                    },
+                    "AllowableValueDescriptions": {
+                      "state": "nil"
+                    },
+                    "AllowableValues": {
+                      "state": "nil"
+                    },
+                    "DataType": {
+                      "state": "value",
+                      "value": ""
+                    },
+                    "DefaultValue": {
+                      "state": "value",
+                      "value": ""
+                    },
+                    "Name": {
+                      "state": "value",
+                      "value": ""
+                    },
+                    "NoDefaultValue": {
+                      "state": "value",
+                      "value": false
+                    },
+                    "ObjectDataType": {
+                      "state": "value",
+                      "value": ""
+                    },
+                    "Required": {
+                      "state": "value",
+                      "value": false
+                    }
+                  }
+                ]
+              }
+            },
+            "id": "parameter_empty",
+            "uri": "/redfish/v1/ActionInfoTests/Cases/parameter_empty"
+          }
+        },
+        "parameter_null_element": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "fields": {
+              "Parameters": {
+                "state": "value",
+                "value": [
+                  {
+                    "AllowableNumbers": {
+                      "state": "nil"
+                    },
+                    "AllowablePattern": {
+                      "state": "value",
+                      "value": ""
+                    },
+                    "AllowableValueDescriptions": {
+                      "state": "nil"
+                    },
+                    "AllowableValues": {
+                      "state": "nil"
+                    },
+                    "DataType": {
+                      "state": "value",
+                      "value": ""
+                    },
+                    "DefaultValue": {
+                      "state": "value",
+                      "value": ""
+                    },
+                    "Name": {
+                      "state": "value",
+                      "value": ""
+                    },
+                    "NoDefaultValue": {
+                      "state": "value",
+                      "value": false
+                    },
+                    "ObjectDataType": {
+                      "state": "value",
+                      "value": ""
+                    },
+                    "Required": {
+                      "state": "value",
+                      "value": false
+                    }
+                  }
+                ]
+              }
+            },
+            "id": "parameter_null_element",
+            "uri": "/redfish/v1/ActionInfoTests/Cases/parameter_null_element"
+          }
+        },
+        "parameter_null_fields": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "fields": {
+              "Parameters": {
+                "state": "value",
+                "value": [
+                  {
+                    "AllowableNumbers": {
+                      "state": "nil"
+                    },
+                    "AllowablePattern": {
+                      "state": "value",
+                      "value": ""
+                    },
+                    "AllowableValueDescriptions": {
+                      "state": "nil"
+                    },
+                    "AllowableValues": {
+                      "state": "nil"
+                    },
+                    "DataType": {
+                      "state": "value",
+                      "value": ""
+                    },
+                    "DefaultValue": {
+                      "state": "value",
+                      "value": ""
+                    },
+                    "Name": {
+                      "state": "value",
+                      "value": ""
+                    },
+                    "NoDefaultValue": {
+                      "state": "value",
+                      "value": false
+                    },
+                    "ObjectDataType": {
+                      "state": "value",
+                      "value": ""
+                    },
+                    "Required": {
+                      "state": "value",
+                      "value": false
+                    }
+                  }
+                ]
+              }
+            },
+            "id": "parameter_null_fields",
+            "uri": "/redfish/v1/ActionInfoTests/Cases/parameter_null_fields"
+          }
+        },
+        "parameters_empty": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "fields": {
+              "Parameters": {
+                "state": "value",
+                "value": []
+              }
+            },
+            "id": "parameters_empty",
+            "uri": "/redfish/v1/ActionInfoTests/Cases/parameters_empty"
+          }
+        },
+        "parameters_missing": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "fields": {
+              "Parameters": {
+                "state": "nil"
+              }
+            },
+            "id": "parameters_missing",
+            "uri": "/redfish/v1/ActionInfoTests/Cases/parameters_missing"
+          }
+        },
+        "parameters_null": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "fields": {
+              "Parameters": {
+                "state": "nil"
+              }
+            },
+            "id": "parameters_null",
+            "uri": "/redfish/v1/ActionInfoTests/Cases/parameters_null"
+          }
+        },
+        "parameters_wrong_type": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "query_case_sensitive": {
+          "error": "parameter_not_found",
+          "ok": false,
+          "value": null
+        },
+        "query_defined": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": [
+              "B",
+              "A",
+              "B"
+            ]
+          }
+        },
+        "query_empty_name": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": [
+              "unnamed"
+            ]
+          }
+        },
+        "query_first_match": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": [
+              "first"
+            ]
+          }
+        },
+        "query_first_values_missing": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "nil"
+          }
+        },
+        "query_first_values_null": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "nil"
+          }
+        },
+        "query_no_parameters": {
+          "error": "parameter_not_found",
+          "ok": false,
+          "value": null
+        },
+        "query_type_mismatch": {
+          "error": "parameter_not_found",
+          "ok": false,
+          "value": null
+        },
+        "query_wildcard_empty": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": []
+          }
+        },
+        "query_wildcard_missing": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": [
+              "wildcard"
+            ]
+          }
+        },
+        "query_wildcard_null": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": [
+              "B",
+              "A",
+              "B"
+            ]
+          }
+        },
+        "required_wrong_type": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "system_info_missing": {
+          "error": "unsupported",
+          "ok": false,
+          "value": null
+        },
+        "system_reset_link": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": {
+              "fields": {
+                "Parameters": {
+                  "state": "value",
+                  "value": [
+                    {
+                      "AllowableNumbers": {
+                        "state": "value",
+                        "value": [
+                          "1:10:2",
+                          "PT1S:PT5S"
+                        ]
+                      },
+                      "AllowablePattern": {
+                        "state": "value",
+                        "value": "[not compiled"
+                      },
+                      "AllowableValueDescriptions": {
+                        "state": "value",
+                        "value": [
+                          "second"
+                        ]
+                      },
+                      "AllowableValues": {
+                        "state": "value",
+                        "value": [
+                          "B",
+                          "A",
+                          "B"
+                        ]
+                      },
+                      "DataType": {
+                        "state": "value",
+                        "value": "String"
+                      },
+                      "DefaultValue": {
+                        "state": "value",
+                        "value": "{not parsed}"
+                      },
+                      "Name": {
+                        "state": "value",
+                        "value": "Mode"
+                      },
+                      "NoDefaultValue": {
+                        "state": "value",
+                        "value": true
+                      },
+                      "ObjectDataType": {
+                        "state": "value",
+                        "value": "#Future.v1.Type"
+                      },
+                      "Required": {
+                        "state": "value",
+                        "value": true
+                      }
+                    }
+                  ]
+                }
+              },
+              "id": "Info",
+              "uri": "/redfish/v1/ActionInfoTests/Objects/Info"
+            }
+          }
+        },
+        "unknown_type": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "fields": {
+              "Parameters": {
+                "state": "value",
+                "value": [
+                  {
+                    "AllowableNumbers": {
+                      "state": "value",
+                      "value": [
+                        "1:10:2",
+                        "PT1S:PT5S"
+                      ]
+                    },
+                    "AllowablePattern": {
+                      "state": "value",
+                      "value": "[not compiled"
+                    },
+                    "AllowableValueDescriptions": {
+                      "state": "value",
+                      "value": [
+                        "second"
+                      ]
+                    },
+                    "AllowableValues": {
+                      "state": "value",
+                      "value": [
+                        "B",
+                        "A",
+                        "B"
+                      ]
+                    },
+                    "DataType": {
+                      "state": "value",
+                      "value": "FutureType"
+                    },
+                    "DefaultValue": {
+                      "state": "value",
+                      "value": "{not parsed}"
+                    },
+                    "Name": {
+                      "state": "value",
+                      "value": "Mode"
+                    },
+                    "NoDefaultValue": {
+                      "state": "value",
+                      "value": true
+                    },
+                    "ObjectDataType": {
+                      "state": "value",
+                      "value": "#Future.v1.Type"
+                    },
+                    "Required": {
+                      "state": "value",
+                      "value": true
+                    }
+                  }
+                ]
+              }
+            },
+            "id": "unknown_type",
+            "uri": "/redfish/v1/ActionInfoTests/Cases/unknown_type"
+          }
+        },
+        "unselected_numeric_wrong_type": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        }
+      },
+      "request_sequences": {
+        "startup": [
+          "/redfish/v1/",
+          "/redfish/v1/ActionInfoTests"
+        ],
+        "info_full": [
+          "/redfish/v1/ActionInfoTests/Cases/info_full"
+        ],
+        "parameters_missing": [
+          "/redfish/v1/ActionInfoTests/Cases/parameters_missing"
+        ],
+        "parameters_null": [
+          "/redfish/v1/ActionInfoTests/Cases/parameters_null"
+        ],
+        "parameters_empty": [
+          "/redfish/v1/ActionInfoTests/Cases/parameters_empty"
+        ],
+        "parameter_empty": [
+          "/redfish/v1/ActionInfoTests/Cases/parameter_empty"
+        ],
+        "parameter_null_fields": [
+          "/redfish/v1/ActionInfoTests/Cases/parameter_null_fields"
+        ],
+        "unknown_type": [
+          "/redfish/v1/ActionInfoTests/Cases/unknown_type"
+        ],
+        "parameters_wrong_type": [
+          "/redfish/v1/ActionInfoTests/Cases/parameters_wrong_type"
+        ],
+        "required_wrong_type": [
+          "/redfish/v1/ActionInfoTests/Cases/required_wrong_type"
+        ],
+        "allowable_wrong_type": [
+          "/redfish/v1/ActionInfoTests/Cases/allowable_wrong_type"
+        ],
+        "parameter_null_element": [
+          "/redfish/v1/ActionInfoTests/Cases/parameter_null_element"
+        ],
+        "allowable_null_element": [
+          "/redfish/v1/ActionInfoTests/Cases/allowable_null_element"
+        ],
+        "unselected_numeric_wrong_type": [
+          "/redfish/v1/ActionInfoTests/Cases/unselected_numeric_wrong_type"
+        ],
+        "query_defined": [
+          "/redfish/v1/ActionInfoTests/Cases/query_defined"
+        ],
+        "query_first_match": [
+          "/redfish/v1/ActionInfoTests/Cases/query_first_match"
+        ],
+        "query_wildcard_missing": [
+          "/redfish/v1/ActionInfoTests/Cases/query_wildcard_missing"
+        ],
+        "query_wildcard_null": [
+          "/redfish/v1/ActionInfoTests/Cases/query_wildcard_null"
+        ],
+        "query_wildcard_empty": [
+          "/redfish/v1/ActionInfoTests/Cases/query_wildcard_empty"
+        ],
+        "query_first_values_missing": [
+          "/redfish/v1/ActionInfoTests/Cases/query_first_values_missing"
+        ],
+        "query_first_values_null": [
+          "/redfish/v1/ActionInfoTests/Cases/query_first_values_null"
+        ],
+        "query_empty_name": [
+          "/redfish/v1/ActionInfoTests/Cases/query_empty_name"
+        ],
+        "query_case_sensitive": [
+          "/redfish/v1/ActionInfoTests/Cases/query_case_sensitive"
+        ],
+        "query_type_mismatch": [
+          "/redfish/v1/ActionInfoTests/Cases/query_type_mismatch"
+        ],
+        "query_no_parameters": [
+          "/redfish/v1/ActionInfoTests/Cases/query_no_parameters"
+        ],
+        "system_reset_link": [
+          "/redfish/v1/ActionInfoTests/Cases/system_reset_link",
+          "/redfish/v1/ActionInfoTests/Objects/Info"
+        ],
+        "manager_reset_link": [
+          "/redfish/v1/ActionInfoTests/Cases/manager_reset_link",
+          "/redfish/v1/ActionInfoTests/Objects/Info"
+        ],
+        "insert_info_link": [
+          "/redfish/v1/ActionInfoTests/Cases/insert_info_link",
+          "/redfish/v1/ActionInfoTests/Objects/Info"
+        ],
+        "system_info_missing": [
+          "/redfish/v1/ActionInfoTests/Cases/system_info_missing"
+        ],
+        "manager_info_null": [
+          "/redfish/v1/ActionInfoTests/Cases/manager_info_null"
+        ],
+        "insert_info_empty": [
+          "/redfish/v1/ActionInfoTests/Cases/insert_info_empty"
+        ],
+        "manager_info_unsafe": [
+          "/redfish/v1/ActionInfoTests/Cases/manager_info_unsafe",
+          "/outside"
+        ],
+        "insert_info_denied": [
+          "/redfish/v1/ActionInfoTests/Cases/insert_info_denied",
+          "/redfish/v1/ActionInfoTests/Denied"
+        ]
+      }
+    }
+  },
+  "fixtures_sha256": {
+    "/redfish/v1/": "edb32320f6648d6d9de357a9ac6489c43f3476817c91de7612f6d52ee9c00a9a",
+    "/redfish/v1/ActionInfoTests/Cases/info_full": "74aa2c120ccf532407980b7da066606a6c6dbdace17aa70f767f9355e4b3c3ad",
+    "/redfish/v1/ActionInfoTests/Cases/parameters_missing": "8f0db1471e02fc2aeb7b1861a426f6b555f9366248dfc511cbff40c4b3c4f5b8",
+    "/redfish/v1/ActionInfoTests/Cases/parameters_null": "9231716e4e2330873497c2a9b39964264e42218b86852ff58aadd2c30e0bd75a",
+    "/redfish/v1/ActionInfoTests/Cases/parameters_empty": "782c45e5cb47ef7bbd0a2466d6d22e9931bacb208abeaef0c79cfc37fa7013a1",
+    "/redfish/v1/ActionInfoTests/Cases/parameter_empty": "7025635c2d06c30984d2693cd0e905d1bfe5677b895ab560e303119c240c2470",
+    "/redfish/v1/ActionInfoTests/Cases/parameter_null_fields": "474d43a7cd24ab558b5a6345fae55bfe3c3938c7318053a0021b971cf7d3deb2",
+    "/redfish/v1/ActionInfoTests/Cases/unknown_type": "9910190c67b9f33e41c4757a60ba59ce8251890a1ef907afe52152f41bd385de",
+    "/redfish/v1/ActionInfoTests/Cases/parameters_wrong_type": "56e07d3b9d03e22e9d9c73bba9c82d5b58498a77eb009af304f71e98782013a4",
+    "/redfish/v1/ActionInfoTests/Cases/required_wrong_type": "ee8435cba82bf729d2b9e8d0451b3a56b61697a8035e449c8273db5ea5348001",
+    "/redfish/v1/ActionInfoTests/Cases/allowable_wrong_type": "b996134d726305d77a4060017a269bf3eae734c02e8c0e49bca65e36f990b018",
+    "/redfish/v1/ActionInfoTests/Cases/parameter_null_element": "d835f56a33d0516c7fd72dc87e05452a6e4586a45d7326eb6ea82a72aa4c650f",
+    "/redfish/v1/ActionInfoTests/Cases/allowable_null_element": "29c444e7be05f6cb1a887ed4e9d88f195b6d7139643cb363fa10109f8e0281e5",
+    "/redfish/v1/ActionInfoTests/Cases/unselected_numeric_wrong_type": "75ea1f411a173b49cb00e6e9b48950c077aba7ca9babe380fd219250a3bfaf16",
+    "/redfish/v1/ActionInfoTests/Cases/query_defined": "1833d92b46dd13ac796de65b3aea65872f41e42761c02746190aafeb1421c12c",
+    "/redfish/v1/ActionInfoTests/Cases/query_first_match": "1cc72809d7409f80b177316af93076fa6c8584f2b4443264b60f2cf1be1a8906",
+    "/redfish/v1/ActionInfoTests/Cases/query_wildcard_missing": "8e8157425693ccce522fdaa86c6bd4ae010592ffce81f2cddd3e8cad33d95732",
+    "/redfish/v1/ActionInfoTests/Cases/query_wildcard_null": "cb9641d0b17c938195f57ebe11d62e4f9add098f0041fdc573ae48db811a0603",
+    "/redfish/v1/ActionInfoTests/Cases/query_wildcard_empty": "d158173e95a64809de2e6fa8e574b5eb57a2ad7aa6b4e90bbc2e864f47643c80",
+    "/redfish/v1/ActionInfoTests/Cases/query_first_values_missing": "bc8812f0b063a6054fb848308de57c273295e7592a5517aa11177660a61b513e",
+    "/redfish/v1/ActionInfoTests/Cases/query_first_values_null": "2e6ba6ed58b6336d4628774e4c0414b6177716f342bf4ca4e8560a090799c305",
+    "/redfish/v1/ActionInfoTests/Cases/query_empty_name": "93dbff5574c02fd47c423345e34583ad90952b9a2d64ae70beced7040fee53b5",
+    "/redfish/v1/ActionInfoTests/Cases/query_case_sensitive": "5376e3256eb1b7b00599239af49bad934914f6088887d00642b04cf37edb0c67",
+    "/redfish/v1/ActionInfoTests/Cases/query_type_mismatch": "f01ce1ec2d0880858697aa4144d2cbc306c72c136604e23a25b531b6bc0a8274",
+    "/redfish/v1/ActionInfoTests/Cases/query_no_parameters": "c699d4158fdfaaca0f6a6f0c940b18bc05178bec9e7f5b11b78fc721672e5695",
+    "/redfish/v1/ActionInfoTests/Objects/Info": "9c09dbcbedc8f050ed4dc1ebf1afc95b0f3efd5ec3a7d07befd98bdef854a10f",
+    "/redfish/v1/ActionInfoTests/Cases/system_reset_link": "36d2c5cd9028f3814e333ca133c5b1b546836ba187cce1c2932d73771391cdab",
+    "/redfish/v1/ActionInfoTests/Cases/manager_reset_link": "fb3807917c64094efe8f363ddddbcd58b2afcc7045a058cff14c321b7bcd76e8",
+    "/redfish/v1/ActionInfoTests/Cases/insert_info_link": "70e3365fa72aeac57747454dc116eac627ce859303b484bfb1d0e3f03a1e2526",
+    "/redfish/v1/ActionInfoTests/Cases/system_info_missing": "347382119ae3c358fe1d68c26c1fd32fe03b2efbe94cba277203cf8f3b17a3f7",
+    "/redfish/v1/ActionInfoTests/Cases/manager_info_null": "6a6baf062a5accdaf3198ad7b81639a0adb94124a40dded7069a947a54d28221",
+    "/redfish/v1/ActionInfoTests/Cases/insert_info_empty": "85c9a3939812003cd28f8dbc8daaa53e6fdab266d93d38b10f11d57e93e5a994",
+    "/outside": "d625d55c3e26c9592d9c5b952ffc4440d1440f35ddc4c2c275d587347030d81b",
+    "/redfish/v1/ActionInfoTests/Cases/manager_info_unsafe": "ad2df8580b821001339242cfb238c1870c46a1903964802eb69510eefa6d87c3",
+    "/redfish/v1/ActionInfoTests/Denied": "03c7f183f926259354c0a65639c02d5385efebfd630708420dd0793f67ecae55",
+    "/redfish/v1/ActionInfoTests/Cases/insert_info_denied": "dda890aba7140075370ad251fb4d04603bfa02662d54226ae7a1e1b13c8a8f40",
+    "/redfish/v1/ActionInfoTests": "ae57cee80f84cf33f2b798a551f54e0ff7c071d0c9ad55780a9ca9f1060cc3e2"
+  },
+  "source_sha256": {
+    "action_info.mbt": "ecd5909ebccdf015681af9b34fdb7853215252ff74de1766264595d3321eb74f",
+    "action_info_links.mbt": "2629700ade479e0df1a4e118405717a6bd0a4429478ca25b1cc24cef636b03b6",
+    "inventory_fields.mbt": "2a04b44d9ef3dfb9891c6e6584896a3e1c3d9a54d250c0d12f861b663a25e184",
+    "moonredfish.mbt": "58a0ff8bcfcbabe1fdfc7054737488ff12ee117d0090038e7d6751aecebdb272",
+    "examples/compare/action_info.mbt": "cd1b720aaafabc559abadff7c4ca94439f57e5db82955641a81ef9a2798689bd",
+    "examples/compare/main.mbt": "26d1b295efa45714f4041bc43150d15001a786eb2267ac72b516d7ce7550a430",
+    "examples/compare/boot.mbt": "fc6f6dec926358e269d844e1d1a1a43276b434cdd4c8a62c31ba2483cdccb54c",
+    "examples/compare/parity.mbt": "f41f95a2c9e1e60b66d012c3e3535f00a2b8b75665f141cf453ba77e11dcefce",
+    "tools/gofish/action_info.go": "6f40314a8440ce4b9f396496e61169d047a2c37d55c269247a922fead2265841",
+    "tools/gofish/main.go": "513539f2da679e905debb3cb80542cdc78c1c8407d69ed2a1c53c02ab5dd3d36",
+    "tools/gofish/boot.go": "8bbb12f3ec0aa9854fc28756ad7152bb923edb41b2452ad5128fbb31155ea585",
+    "tools/gofish/parity.go": "46527fbcf64c7ac1697f9068aac450d9c68fb25f2776a14d4fdac771b978fb42",
+    "tools/test_action_info.py": "807b1222d36b57c7de3d7a9b9f78bc2e09422cdd89c4d2b47a79449195b873a6",
+    "tools/test_gofish.py": "ac27ec92a4820582f32c133442ba5adfaeaecdc206b6ee32c77fdad320ff9a11",
+    "tools/test_parity.py": "fe78100a5820b1601924f2e84c9dbddae8b93a2c892ba5e95926b10fd10a05dc"
+  }
+}

@@ -66,18 +66,20 @@ in acceptance. Do not replace the v0.27.0 oracle with latest main without approv
 
 
 <a id="virtual-media-actioninfo-source-candidate"></a>
-## Virtual-media ActionInfo source candidate / 虚拟介质源码候选
+## Virtual-media ActionInfo candidate / 虚拟介质候选
 
-During batch 07, the pinned [EjectMediaActionInfo implementation](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/virtualmedia.go#L278)
-was found to check and fetch `v.insertMedia.ActionInfoTarget`, as does InsertMediaActionInfo.
-For distinct advertised insert/eject ActionInfo targets, that source selects the insert
-metadata for the eject-named method. This is source inspection only, not a numbered upstream
-issue, executed comparison, latest-main claim or verified defect exception. Neither DMTF
-reference was exercised for this behavior. Batch 07 implements no ActionInfo convenience
-method and issues no ActionInfo or control requests. Keep this candidate for the future
-read-metadata batch and the user's two-reference gate; do not preselect a workaround.
+Batch 07 identified the pinned EjectMediaActionInfo source selecting insertMedia.ActionInfoTarget.
+[The batch 08 reference review](ACTION-INFO-ROUTING-01.md) now executes two synthetic GET-only
+cases: distinct insert/eject annotations return Insert metadata, and an eject-only annotation
+returns unsupported without a metadata GET. This is a measured pinned behavior, not a claim
+about latest main or a numbered upstream issue.
 
-固定版 EjectMediaActionInfo 检查并读取 insertMedia.ActionInfoTarget，两个广告链接不同
-时源码将选择 insert 元数据。这里只记录源码事实：不冒充已报告 issue、实际差分、最新版
-行为或已核实例外。双 DMTF 未核验；本批未实现对应便捷方法，也未发出元数据/控制请求。
-后续读元数据批次按既有门槛处理，不先决定修复方式。
+Both fixed DMTF sources were audited: Redfishtool supplies a generic helper given an already
+selected URI and reset/boot callers; reviewed libredfish headers/C sources offer generic
+node/path operations. Neither establishes a comparable VirtualMedia selector. The two-DMTF
+gate therefore remains unmet: no verified exception or EjectMediaActionInfo compatibility
+method is added. Generic explicit annotation reads remain distinct from such a mapping.
+
+前批源码疑点现已用两个 GoFish 只读场景复现；双 DMTF 源码覆盖审阅仍未建立可比较选择器，
+例外条件未满足。不冒称最新主线、已报告 issue 或官方运行对照，也不登记对应兼容方法。
+完整输入、版本、请求轨迹、扫描范围和未覆盖原因均见参考核验。

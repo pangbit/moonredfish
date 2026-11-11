@@ -17,6 +17,7 @@ GoFish 完整对齐的[计划与逐项矩阵](docs/GOFISH_PARITY.md)已形成待
 新增[任务服务、状态/进度/消息及子任务/已创建资源读取](docs/gofish/READONLY-05.md)。
 新增[证书元数据/身份、服务/位置及系统/Boot/数据库/主体导航](docs/gofish/READONLY-06.md)。
 新增[虚拟介质状态、系统/管理器集合及服务器/客户端证书读取](docs/gofish/READONLY-07.md)。
+新增[动作参数元数据、允许值查询和显式注解读取](docs/gofish/READONLY-08.md)，不执行动作。
 默认值、严格解码等差异统一汇入[合并决策审阅](docs/gofish/DECISIONS.md)。
 
 ## 类型化硬件清单（Unreleased）

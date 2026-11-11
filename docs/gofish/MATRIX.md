@@ -9,8 +9,9 @@ This table aggregates all 253 scanned files; it is not a table of passed tests.
 [Batch 04](READONLY-04.md) adds 42 boot/Secure Boot candidates.
 [Batch 05](READONLY-05.md) adds 34 task/message candidates.
 [Batch 06](READONLY-06.md) adds 36 certificate candidates.
-[Batch 07](READONLY-07.md) adds 22 virtual-media candidates. Current totals:
-445 P / 11,135 U / 0 V; candidate mapping is not verified equivalence.
+[Batch 07](READONLY-07.md) adds 22 virtual-media candidates.
+[Batch 08](READONLY-08.md) adds 17 ActionInfo candidates. Current totals:
+462 P / 11,118 U / 0 V; candidate mapping is not verified equivalence.
 待审核；逐项矩阵列出全部公开声明、签名、源码行、初始状态与验收模板。本表按 253 个文件汇总，不表示测试通过。
 
 `P` = overlapping subset/candidate; `U` = unmapped gap/unverified. No `V` (verified parity) rows exist.
@@ -60,7 +61,7 @@ Phase is model/read/support allocation; all mutations require the P4/P5/P6 gate,
 | [oem/zt/eventservice.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/oem/zt/eventservice.go) | OEM | 3 | 3 | 19 | 1 | U | P6 |
 | [schemas/accelerationfunction.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/accelerationfunction.go) | Redfish | 2 | 5 | 18 | 1 | U | P3 |
 | [schemas/accountservice.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/accountservice.go) | Redfish | 24 | 14 | 137 | 1 | U | P3 |
-| [schemas/actioninfo.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/actioninfo.go) | Redfish | 3 | 3 | 25 | 1 | U | P3 |
+| [schemas/actioninfo.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/actioninfo.go) | Redfish | 3 | 3 | 25 | 1 | P | P3 |
 | [schemas/addresspool.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/addresspool.go) | Redfish | 23 | 5 | 137 | 1 | U | P3 |
 | [schemas/aggregate.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/aggregate.go) | Redfish | 1 | 8 | 4 | 1 | U | P3 |
 | [schemas/aggregationservice.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/aggregationservice.go) | Redfish | 2 | 9 | 10 | 1 | U | P3 |

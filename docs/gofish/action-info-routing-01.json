@@ -1,0 +1,275 @@
+{
+  "subject_base_commit": "13e89a0025642cb3851d5a30c586b24a8b099308",
+  "reference_pins": {
+    "gofish": "4cc897fb5c172996e8f34a31a5d1012b45a287a7",
+    "redfishtool": "8c46f567aa9c960851108e43bf23fd6a64c37897",
+    "libredfish": "f9a23c33d46afe15f09b604160c09a320f1c769c"
+  },
+  "environment": {
+    "os": "Darwin",
+    "arch": "arm64",
+    "go": "go version go1.24.0 darwin/arm64"
+  },
+  "operation": "Actual GoFish VirtualMedia.EjectMediaActionInfo GET-only reproduction; official source coverage audit, not official runtime behavior",
+  "cases": [
+    {
+      "id": "both_distinct",
+      "uri": "/redfish/v1/ActionInfoRoutingTests/Cases/both_distinct",
+      "input": {
+        "@odata.id": "/redfish/v1/ActionInfoRoutingTests/Cases/both_distinct",
+        "Id": "both_distinct",
+        "Actions": {
+          "#VirtualMedia.InsertMedia": {
+            "@Redfish.ActionInfo": "/redfish/v1/ActionInfoRoutingTests/Metadata/Insert"
+          },
+          "#VirtualMedia.EjectMedia": {
+            "@Redfish.ActionInfo": "/redfish/v1/ActionInfoRoutingTests/Metadata/Eject"
+          }
+        }
+      },
+      "gets": [
+        "/redfish/v1/ActionInfoRoutingTests/Cases/both_distinct",
+        "/redfish/v1/ActionInfoRoutingTests/Metadata/Insert"
+      ],
+      "observed_gofish": {
+        "error": "",
+        "ok": true,
+        "value": {
+          "state": "value",
+          "value": {
+            "fields": {
+              "Parameters": {
+                "state": "value",
+                "value": []
+              }
+            },
+            "id": "Insert",
+            "uri": "/redfish/v1/ActionInfoRoutingTests/Metadata/Insert"
+          }
+        }
+      }
+    },
+    {
+      "id": "eject_only",
+      "uri": "/redfish/v1/ActionInfoRoutingTests/Cases/eject_only",
+      "input": {
+        "@odata.id": "/redfish/v1/ActionInfoRoutingTests/Cases/eject_only",
+        "Id": "eject_only",
+        "Actions": {
+          "#VirtualMedia.EjectMedia": {
+            "@Redfish.ActionInfo": "/redfish/v1/ActionInfoRoutingTests/Metadata/Eject"
+          }
+        }
+      },
+      "gets": [
+        "/redfish/v1/ActionInfoRoutingTests/Cases/eject_only"
+      ],
+      "observed_gofish": {
+        "error": "unsupported",
+        "ok": false,
+        "value": null
+      }
+    }
+  ],
+  "gofish_requests": [
+    [
+      "GET",
+      "/redfish/v1/"
+    ],
+    [
+      "GET",
+      "/redfish/v1/ActionInfoRoutingTests"
+    ],
+    [
+      "GET",
+      "/redfish/v1/ActionInfoRoutingTests/Cases/both_distinct"
+    ],
+    [
+      "GET",
+      "/redfish/v1/ActionInfoRoutingTests/Metadata/Insert"
+    ],
+    [
+      "GET",
+      "/redfish/v1/ActionInfoRoutingTests/Cases/eject_only"
+    ]
+  ],
+  "official_source_coverage": {
+    "redfishtool": {
+      "scan_roots": [
+        "redfishtoollib"
+      ],
+      "source_sha256": {
+        "redfishtoollib/AccountService.py": "9fde33ab68aaa6e9b9bbab91d1789f334dbd7df921a00ccc4a520cbdc752faff",
+        "redfishtoollib/Chassis.py": "84e0cc89fc42dfdcdd13b836d342ad229a12f18daee5695d55722edd4fd3bb48",
+        "redfishtoollib/Managers.py": "098c8b7c72a172ad61d84441ed017e98f8d59c27421a07abe0b4fc617ba7f1d5",
+        "redfishtoollib/ServiceRoot.py": "d3c2ddc66f6569ec15e1b8e3d9680d33a8ee22829b07054e8e3b4896443c4294",
+        "redfishtoollib/SessionService.py": "7309dcb8fb4377e8e62b1a0694078dab261a1e05e1f31a8b553df2fbd87f8a4b",
+        "redfishtoollib/Systems.py": "800a94381dcf201d354fbbd8e0db0cded350e0134778cec8f3b073c119e52641",
+        "redfishtoollib/__init__.py": "57f0154663d2dd207c8d0ba349114f3371e62707b39c4cd8b807b53df32b50f4",
+        "redfishtoollib/raw.py": "98e7d57621dea53b57a61661f2ed0abf130b2e140fea2a88e48f8fc6a72fa4ba",
+        "redfishtoollib/redfishtoolMain.py": "712d5027ced387e7865326448b7cf8f938ceae41a7ebb03ec58b19b732f3571a",
+        "redfishtoollib/redfishtoolTransport.py": "bed095b10e7872b2216d0d56fe33d3b081412f1af911bdb8938b73b3e516538e"
+      },
+      "token_hits": {
+        "redfishtoollib/Managers.py": [
+          {
+            "line": 336,
+            "tokens": [
+              "ActionInfo"
+            ]
+          },
+          {
+            "line": 337,
+            "tokens": [
+              "action_info",
+              "ActionInfo"
+            ]
+          },
+          {
+            "line": 338,
+            "tokens": [
+              "ActionInfo",
+              "action_info"
+            ]
+          },
+          {
+            "line": 340,
+            "tokens": [
+              "ActionInfo"
+            ]
+          },
+          {
+            "line": 343,
+            "tokens": [
+              "ActionInfo"
+            ]
+          }
+        ],
+        "redfishtoollib/Systems.py": [
+          {
+            "line": 396,
+            "tokens": [
+              "ActionInfo"
+            ]
+          },
+          {
+            "line": 397,
+            "tokens": [
+              "action_info",
+              "ActionInfo"
+            ]
+          },
+          {
+            "line": 398,
+            "tokens": [
+              "ActionInfo",
+              "action_info"
+            ]
+          },
+          {
+            "line": 400,
+            "tokens": [
+              "ActionInfo"
+            ]
+          },
+          {
+            "line": 403,
+            "tokens": [
+              "ActionInfo"
+            ]
+          },
+          {
+            "line": 569,
+            "tokens": [
+              "ActionInfo"
+            ]
+          },
+          {
+            "line": 570,
+            "tokens": [
+              "action_info",
+              "ActionInfo"
+            ]
+          },
+          {
+            "line": 571,
+            "tokens": [
+              "ActionInfo",
+              "action_info"
+            ]
+          },
+          {
+            "line": 573,
+            "tokens": [
+              "ActionInfo"
+            ]
+          },
+          {
+            "line": 576,
+            "tokens": [
+              "ActionInfo"
+            ]
+          }
+        ],
+        "redfishtoollib/redfishtoolTransport.py": [
+          {
+            "line": 1272,
+            "tokens": [
+              "ActionInfo"
+            ]
+          },
+          {
+            "line": 1281,
+            "tokens": [
+              "ActionInfo"
+            ]
+          }
+        ]
+      },
+      "coverage": "No VirtualMedia eject/insert ActionInfo selector found in reviewed fixed sources. Generic APIs do not establish equivalent behavior; no official runtime claim."
+    },
+    "libredfish": {
+      "scan_roots": [
+        "include",
+        "src"
+      ],
+      "source_sha256": {
+        "include/entities/chassis.h": "a26ad846415c68fdf12793dfd15d189e3c65ba86580ed80ba31634b2e14205a9",
+        "include/entities/resource.h": "ffde404043b4f4f9caa2bfad15db7b2775ae1aeb6ff667add0884e387cd8bfec",
+        "include/redfish.h": "41ad124d7c509a2765a510e1524216964b18d28e693adfa83d09c3cbad264812",
+        "include/redfishEvent.h": "552b194e87470fae9627e7f1182575af0f005925ad6ca040a044fea161ba36ca",
+        "include/redfishPayload.h": "4449f1382534cc02a58d06df80dd4650c0a25a3283ddf942d24cc63a0ba7be2f",
+        "include/redfishRawAsync.h": "7d9551856cc9cd1ca38588db8ed59a1ee04870a7396cfa3b6fd4e8a65164cbb1",
+        "include/redfishService.h": "8fa9a554ebe29889df57cbfd11df01783814f78e5e9e27ffd47defd70f529e45",
+        "include/redpath.h": "230abb9cec400e4cf012e61e6e6d853244f5150f8b60ed6639a402f0d9140f12",
+        "src/asyncEvent.c": "1d729abc589eb246fcc5892f2f912fc6cb58900b9768842fc132bbd3e7abb89a",
+        "src/asyncEvent.h": "5ac7cad22556c1db1d024648ad5c3f564329968f06c81592f9795dd2a572ed24",
+        "src/asyncRaw.c": "4415fb8456a6322a4e22863cca767e566a031513acd6ae96695783e0b820de65",
+        "src/debug.h": "f0d8a3a9c90ee3846d1f4d5e62015791198b9fd6c5c3facefd543dbc48e0285a",
+        "src/entities/chassis.c": "30e4222fd7cad8e9d71fcafd2e61b6d0d54a426fd6a514c5bf6251b44cb1b045",
+        "src/entities/resource.c": "ad4dbc73ed1d01966e55506727670f39e1f365eb5e9ddfdc9ff8aa2bd5ffd233",
+        "src/internal_service.h": "1cd2769203b002a399453413ba6967943c9622280512254da464a1bdb4c1277d",
+        "src/main.c": "fda4a0195ff5deaf4e7ddc36507500058c2149872b6d2c40a28c3b124c0ab82c",
+        "src/payload.c": "a056a5e354290fe6946489cfb7a6eedf347bd46fc60985a3bd22e3a9775495c3",
+        "src/queue.c": "645b68bf27a1d494b88f4da623caf18ed51411c30a9ab12ef13864ea6ec253f1",
+        "src/queue.h": "0fabade23e6dd5896552dcf72b40601552485313831c554cb290442d48cad80a",
+        "src/redpath.c": "1f73da6ac2ef358ab0c2473d250ca36815943c184203dfa751f95a0690779df6",
+        "src/service.c": "0f38aa5e4990986c0893f6f17a6b04d05aa6a05f93f487a7aad36d9b128cb8a3",
+        "src/util.c": "3f8b87f903370b79539ed4e61c6bf97877dee66b2f97465c52648287fdbae5b9",
+        "src/util.h": "6c355361ec58d069762a6053baa1d3e0229e40f1bd2467c42a40952851496e02"
+      },
+      "token_hits": {},
+      "coverage": "No VirtualMedia eject/insert ActionInfo selector found in reviewed fixed sources. Generic APIs do not establish equivalent behavior; no official runtime claim."
+    }
+  },
+  "verified_exceptions": 0,
+  "gate_result": "Unmet: both pinned official references lack an established comparable VirtualMedia ActionInfo selector. Generic URI/node lookup is not evidence for selector semantics. No exception, workaround or EjectMediaActionInfo compatibility method implemented.",
+  "source_sha256": {
+    "tools/test_action_info_references.py": "4007ae41c7f38b8cd8e23346725fe851f9b051184deccf350ab5b4a8e91d7a50",
+    "tools/test_action_info.py": "807b1222d36b57c7de3d7a9b9f78bc2e09422cdd89c4d2b47a79449195b873a6",
+    "tools/test_official_numbers.py": "f311d15857bbda8c810da375460bbaef3723d38bc0781c16ec625253f0cca06c",
+    "tools/test_gofish.py": "ac27ec92a4820582f32c133442ba5adfaeaecdc206b6ee32c77fdad320ff9a11",
+    "tools/gofish/action_info.go": "6f40314a8440ce4b9f396496e61169d047a2c37d55c269247a922fead2265841",
+    "tools/gofish/main.go": "513539f2da679e905debb3cb80542cdc78c1c8407d69ed2a1c53c02ab5dd3d36"
+  }
+}

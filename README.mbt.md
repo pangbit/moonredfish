@@ -21,7 +21,9 @@ options, current/next Secure Boot state, databases and signatures. [Task reads](
 add service discovery, status/progress/messages and explicit subtask/created-resource links.
 [Certificate reads](docs/gofish/READONLY-06.md) add metadata/identities and service/location,
 System/Boot/database and subject navigation. [Virtual-media reads](docs/gofish/READONLY-07.md)
-add reported media state, System/Manager collections and separate certificate sources. Open compatibility choices are in the [combined review](docs/gofish/DECISIONS.md).
+add reported media state, System/Manager collections and separate certificate sources.
+[Action metadata](docs/gofish/READONLY-08.md) adds selected parameters, allowable-value queries
+and explicit annotation reads. Open compatibility choices are in the [combined review](docs/gofish/DECISIONS.md).
 
 ## Scope
 

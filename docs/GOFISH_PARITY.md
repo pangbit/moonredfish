@@ -6,11 +6,13 @@
 [Read-only batch 01 / 只读证据 01](gofish/READONLY-01.md): 39 measured cases,
 22 known differences, one integer-validation defect fixed.
 [Read-only batch 02 / 只读实现 02](gofish/READONLY-02.md) adds DHCP/DNS/SLAAC/policy
-read fields. Current mappings after [virtual-media batch 07](gofish/READONLY-07.md):
-445 P / 11,135 U / 0 V. [Consolidated decisions](gofish/DECISIONS.md) collect the open
+read fields. Current mappings after [ActionInfo batch 08](gofish/READONLY-08.md):
+462 P / 11,118 U / 0 V. [Consolidated decisions](gofish/DECISIONS.md) collect the open
 default, strict-decoder, vendor-coercion, collection and safety choices.
 [Confirmed-defect exceptions](gofish/EXCEPTIONS.md) now follow the user-approved two-DMTF
 verification rule; no exception is established yet. Normal functionality still targets GoFish.
+[ActionInfo routing review](gofish/ACTION-INFO-ROUTING-01.md) reproduces the pinned GoFish
+selection, but both DMTF references lack an established comparable selector; its gate remains unmet.
 用户已确认双 DMTF 核实后的缺陷例外原则，当前尚无已核实例外；普通功能仍以 GoFish 为准。
 [Eight same-input official numeric observations](gofish/OFFICIAL-NUMBERS-01.md) now exist;
 generic reader results do not establish typed-field validation equivalence.
@@ -100,7 +102,7 @@ or mapping candidate; `V` = verified under an approved contract. Initial invento
 234 `P` and 11,346 `U` rows, including embeds, and **zero `V`**. A `P` field may have a
 selected-value test, but is not equivalent across null/default/error/serialization cases.
 Initial statuses refer to the subject baseline; later candidate mappings are versioned
-by the evidence batches. Current totals are 445 P / 11,135 U / 0 V after batch 07.
+by the evidence batches. Current totals are 462 P / 11,118 U / 0 V after batch 08.
 They are not a claim about untested behavior or future work.
 
 `U` 是未映射差距/未验证，`P` 是已有子集或映射候选，`V` 才表示按已批准契约验证。

@@ -47,6 +47,7 @@ jobs:
           python3 tools/test_task.py
           python3 tools/test_certificate.py
           python3 tools/test_virtual_media.py
+          python3 tools/test_action_info.py
       - run: moon info --target native
       - run: moon fmt --check
       - run: git diff --exit-code

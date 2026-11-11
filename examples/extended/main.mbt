@@ -130,6 +130,14 @@ async fn main {
     println(
       "offline synthetic virtual media: inserted=\{presence(media.inserted)}, supported types=\{count(media.media_types)}",
     )
+    let info = @moonredfish.parse_resource("/redfish/v1/ActionInfo/demo", {
+      "Parameters": [
+        { "Name": "Mode", "DataType": "String", "AllowableValues": ["A", "B"] },
+      ],
+    }).action_info()
+    println(
+      "offline synthetic action metadata: values=\{count(info.param_values("Mode", "String"))}",
+    )
     let bios = @moonredfish.parse_resource("/redfish/v1/Systems/demo/Bios", {
       "Attributes": null,
     }).bios()

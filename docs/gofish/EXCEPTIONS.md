@@ -66,6 +66,15 @@ and distinguish approved-exception conformance from literal GoFish equivalence.
 | --- | --- | --- | --- |
 | PCIe LanesInUse `16777217` | Go 16777216; native exact 16777217 (batch 03) | Both generic paths now retain 16777217; comparable typed-field/domain validation is unestablished / 通用保留已测，同形字段与语义域仍未核实 | Prioritize exact-value preservation verification; do not copy float32 loss before the gate / 优先核实精度，不先复制损失 |
 | PCIe lane `"not-a-number"`, true, or 1.5 | Go 0/0/1; native errors (batch 03) | Both generic paths retain original type/value; getters differ. Typed vendor validation/coercion is unestablished / 通用路径保留原值，getter 不同，厂商字段转换未覆盖 | Separate vendor coercion from transport/raw reads; retain D-VENDOR-NUM / 区分厂商转换与通用读取 |
-| Missing/null/default and null list elements | Recorded in batches 01–07 | Comparable typed contracts may be absent; untested / 是否有可比较的类型化契约仍未核实 | Do not treat generic JSON preservation as mandatory scalar-default behavior / 不由 JSON 保留推导标量默认值 |
+| Missing/null/default and null list elements | Recorded in batches 01–08 | Comparable typed contracts may be absent; untested / 是否有可比较的类型化契约仍未核实 | Do not treat generic JSON preservation as mandatory scalar-default behavior / 不由 JSON 保留推导标量默认值 |
 | Task Payload wrong type, PercentComplete range/spelling | Exact batch 05 cases | PercentComplete generic reads/accessors measured; field validation and Payload malformed-type behavior remain unverified / 进度通用读取已测，字段校验及 Payload 类型错误仍未核实 | Separate selected-field parsing from whole-model validation and API representation / 区分局部解析、全模型验证与类型表示 |
 | #516 ETag/Boot target and #582/#583 expansion | Source review in ISSUES.md | Mutation behavior is outside authorized read-only work; expand is untested / 控制未授权，expand 未测 | Keep source findings and version boundaries; no unsafe reproduction or silent baseline change / 保留版本事实，不越界复现 |
+
+
+[ActionInfo routing review](ACTION-INFO-ROUTING-01.md): two GoFish GET-only cases reproduce
+insert-link selection by EjectMediaActionInfo and unsupported status when only an eject link
+exists. Both pinned DMTF source audits lack an established comparable VirtualMedia selector.
+This fails the current evidence gate; no verified exception or convenience-method fix follows.
+
+两个弹出 ActionInfo 场景已复现；双 DMTF 可比较选择器仍未覆盖，门槛未满足，不由通用
+URI/节点查询推导官方修复契约，不宣布例外或新增该便捷方法的兼容实现。

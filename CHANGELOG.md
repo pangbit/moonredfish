@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- Add selected ActionInfo/parameter metadata, first-match allowable-value queries and bounded
+  reads of explicitly named action annotations. Compare 32 cases against pinned GoFish.
+  Reproduce EjectMediaActionInfo routing in two read-only cases; audit both fixed DMTF sources
+  and retain the unresolved exception gate because comparable selector coverage is absent.
+- 新增 ActionInfo/参数选定元数据、首次匹配值查询和显式动作注解的有界读取，完成 32 个对照。
+  两个只读场景复现弹出 ActionInfo 链接选择；审阅两个固定 DMTF 源码，因可比较选择器未覆盖，
+  仍不宣布例外，不加入对应兼容便捷方法或执行动作。
+
 - Add selected VirtualMedia metadata and advertised action-support flags, with System/Manager
   collections and separate server/client certificate reads. Record 30 pinned GoFish comparisons
   and consolidate outstanding decisions; no image fetch, action execution or numeric-contract change.

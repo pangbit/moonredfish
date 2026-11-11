@@ -42,7 +42,7 @@ no-differences target unmet; passing selected examples does not close whole API 
 目标为固定 GoFish 版本全部公开能力。建议确认跨语言一对一可观察语义映射；字面 Go 源码/
 ABI 兼容需要另一种架构。任何保留的例外都意味着原零差异目标未完成，不能改写验收口径。
 
-Evidence: [batch 01](READONLY-01.md), [batch 02](READONLY-02.md), [batch 03](READONLY-03.md), [batch 04](READONLY-04.md), [batch 05](READONLY-05.md), [batch 06](READONLY-06.md), [batch 07](READONLY-07.md).
+Evidence: [batch 01](READONLY-01.md), [batch 02](READONLY-02.md), [batch 03](READONLY-03.md), [batch 04](READONLY-04.md), [batch 05](READONLY-05.md), [batch 06](READONLY-06.md), [batch 07](READONLY-07.md), [batch 08](READONLY-08.md).
 [Upstream issue review](ISSUES.md) separates open reports from pinned behavior and later fixes.
 Each JSON report has exact inputs, observed states, source hashes and environment. Cases
 below are measurements unless marked **source only**. No authentication downgrade or
@@ -101,6 +101,17 @@ outside implementation and does not add a fourth immediate user decision.
 
 虚拟介质批次将指针/标量布尔值、null 列表和未选定字段类型差异并入前三主题；派生标志
 只表示动作声明。两类证书不混用；ActionInfo 源码候选保留缺口，不追加即时用户决策。
+
+Batch 08 retains the same three review topics. The first-match ActionInfo lookup is explicit:
+missing/null reported names compare as empty, missing/null/empty types match any requested
+type, and the first selected AllowableValues retains Field. No value merge or default is
+invented. Missing annotation versus Go unsupported error, strict null elements and whole-model
+numeric-field errors remain differences. [Two actual GoFish routing cases and official source
+coverage](ACTION-INFO-ROUTING-01.md) leave EjectMediaActionInfo unresolved: neither reference
+establishes a comparable selector contract. No new user decision or exception is inferred.
+
+动作元数据批次继续沿用三个审阅主题；明确查询匹配算法，保留三态和错误差异，不推导默认值。
+两个实际 GoFish 路由场景与官方源码审阅仍未满足双参考例外门槛，不追加裁决或预设修复。
 
 D-PLATFORM, D-HARDWARE and D-CONTROL from the [full plan](../GOFISH_PARITY.md) remain open.
 Current evidence is native Linux x86_64 CI and macOS arm64 local/CI; it does not establish

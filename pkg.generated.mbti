@@ -33,6 +33,26 @@ pub suberror RedfishError {
 pub fn RedfishError::to_repr(Self) -> @debug.Repr
 
 // Types and methods
+pub struct ActionInfo {
+  resource : Resource
+  parameters : Field[Array[ActionInfoParameter]]
+}
+pub fn ActionInfo::param_values(Self, String, String) -> Field[Array[String]] raise RedfishError
+
+pub struct ActionInfoParameter {
+  json : @json.Json
+  name : Field[String]
+  data_type : Field[String]
+  default_value : Field[String]
+  object_data_type : Field[String]
+  allowable_pattern : Field[String]
+  allowable_numbers : Field[Array[String]]
+  allowable_value_descriptions : Field[Array[String]]
+  allowable_values : Field[Array[String]]
+  no_default_value : Field[Bool]
+  required : Field[Bool]
+}
+
 pub struct Bios {
   resource : Resource
   attribute_registry : Field[String]
@@ -114,6 +134,7 @@ pub struct ChassisInfo {
 }
 
 type Client
+pub async fn Client::action_info(Self, Resource, String) -> Field[ActionInfo]
 pub async fn Client::bios(Self, Resource) -> Field[Bios]
 pub async fn Client::boot_certificates(Self, Resource) -> Field[Array[Certificate]]
 pub async fn Client::boot_options(Self, Resource) -> Field[Array[BootOption]]
@@ -431,6 +452,7 @@ pub struct Resource {
   resource_type : String?
   json : @json.Json
 }
+pub fn Resource::action_info(Self) -> ActionInfo raise RedfishError
 pub fn Resource::bios(Self) -> Bios raise RedfishError
 pub fn Resource::boot(Self) -> Field[Boot] raise RedfishError
 pub fn Resource::boot_option(Self) -> BootOption raise RedfishError

@@ -384,3 +384,24 @@ ActionInfo-only objects do not set these flags. No control or ActionInfo conveni
 不改变本客户端 TLS。两个派生 Bool 只说明对应动作 target 非空，不代表权限或可执行性。
 不会因动作声明自动请求 ActionInfo、访问映像、挂载或弹出。其余报告属性仍使用三态。
 详细范围及差分见[虚拟介质批次](gofish/READONLY-07.md)。
+
+
+## Action metadata (Unreleased) / 动作元数据（未发布）
+
+`resource.action_info()` reads Parameters with ten selected string/array/bool fields per
+parameter. `info.param_values(name, data_type)` returns the first matching parameter's
+AllowableValues without merging duplicates, falling back to later entries or applying defaults.
+For this lookup only, missing/null names map to empty and missing/null/empty DataType is a
+wildcard, matching the pinned GoFish search. The returned AllowableValues retains Field;
+no matching parameter raises InvalidResponse. Numeric bounds remain unmodeled raw data.
+
+`client.action_info(owner, "#ComputerSystem.Reset")` reads exactly the named Actions entry's
+`@Redfish.ActionInfo` string under existing path/time/byte limits. It never follows `target`
+or selects a different action. System/Manager reset and VirtualMedia insert metadata reads
+are compared. No EjectMediaActionInfo convenience mapping or defect exception is declared.
+
+ActionInfo 保留十个非数值参数属性与原 JSON；首次匹配查询按名称/类型选定一项，保留该项
+AllowableValues 三态，不合并、不回退、不应用默认值。只在查询比较时，缺失/null 名称按空
+字符串、缺失/null/空 DataType 按通配处理；未匹配报错。数值上下限仍在原 JSON。
+显式动作名注解读取复用既有边界，不读取 target、不替换动作、不调用控制。详情与差异见
+[批次 08](gofish/READONLY-08.md)，弹出链接疑点见[参考核验](gofish/ACTION-INFO-ROUTING-01.md)。

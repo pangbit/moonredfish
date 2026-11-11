@@ -228,6 +228,20 @@ partial-error and path behavior. See [batch 07](gofish/READONLY-07.md).
 30 个场景保留默认值、null、整对象/局部解码及集合差异；不把声明的动作当成执行能力，也不
 把服务端 VerifyCertificate 报告值应用于本地 TLS。官方数值差异仍沿用上一批未决结论。
 
+## Action metadata / 动作元数据
+
+`python3 tools/test_action_info.py` compares 32 metadata/query/annotation cases against
+GoFish: thirteen selected observations agree (including a common HTTP error), seven both
+reject with different categories and twelve differ. Parameter selection checks first-match
+order, type filtering, wildcard types, missing/null values and case sensitivity. Annotation
+reads compare System/Manager reset and VirtualMedia insert getters without executing actions.
+See [batch 08](gofish/READONLY-08.md). A separate opt-in [routing review](gofish/ACTION-INFO-ROUTING-01.md)
+executes two GoFish EjectMediaActionInfo cases and audits the pinned official source coverage;
+it does not pretend those source audits are official runtime comparisons.
+
+32 个场景涵盖参数元数据、查询和注解读取；两个弹出链接复现另行登记。官方审阅未建立
+可比较的选择器契约，例外门槛仍未满足；不重复运行已有数值探针，不执行任何动作。
+
 ## Official numeric reference checks / 官方数值参照核验
 
 `tools/test_official_numbers.py` is an opt-in harness requiring the exact clean DMTF

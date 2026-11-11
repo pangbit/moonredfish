@@ -151,6 +151,12 @@ func main() {
 		if os.Args[1] == "reject_tls" {
 			var untrusted x509.UnknownAuthorityError
 			result = map[string]bool{"tls_rejected": errors.As(err, &untrusted)}
+		} else if os.Args[1] == "action-info" {
+			must(err, "service root")
+			result = actionInfoInventory(c, "/redfish/v1/ActionInfoTests")
+		} else if os.Args[1] == "action-info-routing" {
+			must(err, "service root")
+			result = actionInfoInventory(c, "/redfish/v1/ActionInfoRoutingTests")
 		} else if os.Args[1] == "virtual-media" {
 			must(err, "service root")
 			result = virtualMediaInventory(c)
