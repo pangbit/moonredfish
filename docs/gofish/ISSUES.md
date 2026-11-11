@@ -44,6 +44,11 @@ Pinned source: [client TLS/dumps](https://github.com/stmcginnis/gofish/blob/4cc8
 [page walker](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/collection.go),
 [BuildQuery](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/odata.go).
 
+The user's subsequently confirmed [two-DMTF exception rule](EXCEPTIONS.md) governs
+suspected GoFish defects. The issue review alone does not satisfy that gate; both official
+runtime comparisons remain to be established. No exception is declared by this table.
+用户后续确认的双 DMTF 原则适用于疑似缺陷；issue/source 审阅本身不等于两参照运行核实。
+
 ## Recommendations awaiting decision / 待裁决建议
 
 Keep the existing strict/exact/error-reporting behavior while the user reviews the proposed

@@ -1,0 +1,5804 @@
+{
+  "reference": {
+    "module": "github.com/stmcginnis/gofish",
+    "version": "v0.27.0",
+    "commit": "4cc897fb5c172996e8f34a31a5d1012b45a287a7",
+    "module_sum": "h1:jyM2BlBhULXtHnayY+/wnkZYXKjIO0ZdR3oBXKl1VYs=",
+    "source_url_prefix": "https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/"
+  },
+  "subject_base_commit": "8c44573682abcb31159b66b01a81b64efaa735de",
+  "environment": {
+    "os": "Darwin",
+    "arch": "arm64",
+    "go": "go version go1.24.0 darwin/arm64",
+    "moon": "moon 0.1.20261104 (940aa18 2026-11-04) ~/.moon/bin/moon\nmoonc v0.10.20+65efd5b93 (2026-11-05) ~/.moon/bin/moonc\nmoonrun 0.1.20261104 (940aa18 2026-11-04) ~/.moon/bin/moonrun\n\nFeature flags enabled: rr_moon_mod,rr_moon_pkg"
+  },
+  "scope": "Selected TaskService/Task/Message reads and four bounded link APIs under existing Field/strict integer contracts. No compatibility decision, TaskMonitor polling, task start/cancel, resolution action, payload replay or physical BMC.",
+  "summary": {
+    "same_selected_observation": 9,
+    "known_difference": 22,
+    "both_reject": 4
+  },
+  "cases": [
+    {
+      "id": "task_full",
+      "kind": "task",
+      "uri": "/redfish/v1/TaskTests/Cases/task_full",
+      "input": {
+        "@odata.id": "/redfish/v1/TaskTests/Cases/task_full",
+        "Id": "task_full",
+        "Name": "Synthetic resource",
+        "EndTime": "2026-11-11T01:00:01Z",
+        "EstimatedDuration": "PT1S",
+        "StartTime": "2026-11-11T01:00:00Z",
+        "TaskMonitor": "/redfish/v1/MustNotMonitor",
+        "TaskState": "Completed",
+        "TaskStatus": "OK",
+        "HidePayload": true,
+        "PercentComplete": 100,
+        "Messages": [
+          {
+            "Message": "Synthetic task report",
+            "MessageId": "Synthetic.1.0.Task",
+            "MessageSeverity": "Critical",
+            "Resolution": "Synthetic recommendation only",
+            "Severity": "Warning",
+            "UserAuthenticationSource": "https://auth.example.invalid",
+            "Username": "synthetic-user",
+            "MessageArgs": [
+              "first",
+              "second",
+              "first"
+            ],
+            "RelatedProperties": [
+              "/Boot/BootNext"
+            ],
+            "ResolutionSteps": [
+              {
+                "ActionURI": "/redfish/v1/MustNotAct",
+                "ResolutionType": "Reset"
+              }
+            ],
+            "Oem": {
+              "Synthetic": true
+            }
+          }
+        ],
+        "Payload": {
+          "HttpOperation": "POST",
+          "TargetUri": "/redfish/v1/MustNotReplay",
+          "HttpHeaders": [
+            "X-Synthetic: never-send"
+          ],
+          "JsonBody": "{}"
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/TaskTests/Cases/task_full"
+        ],
+        "gofish": [
+          "/redfish/v1/TaskTests/Cases/task_full"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::Task",
+        "schemas::method::*Task.UnmarshalJSON",
+        "schemas::function::GetTask",
+        "schemas::field::Task.EndTime",
+        "schemas::field::Task.EstimatedDuration",
+        "schemas::field::Task.StartTime",
+        "schemas::field::Task.TaskMonitor",
+        "schemas::field::Task.TaskState",
+        "schemas::field::Task.TaskStatus",
+        "schemas::field::Task.HidePayload",
+        "schemas::field::Task.PercentComplete",
+        "schemas::field::Task.Messages",
+        "schemas::type::Message",
+        "schemas::field::Message.Message",
+        "schemas::field::Message.MessageID",
+        "schemas::field::Message.MessageSeverity",
+        "schemas::field::Message.Resolution",
+        "schemas::field::Message.Severity",
+        "schemas::field::Message.UserAuthenticationSource",
+        "schemas::field::Message.Username",
+        "schemas::field::Message.MessageArgs",
+        "schemas::field::Message.RelatedProperties"
+      ],
+      "relation": "same_selected_observation"
+    },
+    {
+      "id": "service_full",
+      "kind": "service",
+      "uri": "/redfish/v1/TaskTests/Cases/service_full",
+      "input": {
+        "@odata.id": "/redfish/v1/TaskTests/Cases/service_full",
+        "Id": "service_full",
+        "Name": "Synthetic resource",
+        "CompletedTaskOverWritePolicy": "Oldest",
+        "DateTime": "2026-11-11T01:00:00Z",
+        "LifeCycleEventOnTaskStateChange": true,
+        "ServiceEnabled": false,
+        "TaskAutoDeleteTimeoutMinutes": 0,
+        "TaskMonitorAutoExpirySeconds": 60,
+        "Status": {
+          "State": "Enabled",
+          "Health": "OK",
+          "HealthRollup": "Warning"
+        },
+        "Actions": {
+          "#TaskService.DeleteAllCompletedTasks": {
+            "target": "/redfish/v1/MustNotDelete"
+          }
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/TaskTests/Cases/service_full"
+        ],
+        "gofish": [
+          "/redfish/v1/TaskTests/Cases/service_full"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::TaskService",
+        "schemas::method::*TaskService.UnmarshalJSON",
+        "schemas::function::GetTaskService",
+        "schemas::field::TaskService.CompletedTaskOverWritePolicy",
+        "schemas::field::TaskService.DateTime",
+        "schemas::field::TaskService.LifeCycleEventOnTaskStateChange",
+        "schemas::field::TaskService.ServiceEnabled",
+        "schemas::field::TaskService.TaskAutoDeleteTimeoutMinutes",
+        "schemas::field::TaskService.TaskMonitorAutoExpirySeconds",
+        "schemas::field::TaskService.Status"
+      ],
+      "relation": "same_selected_observation"
+    },
+    {
+      "id": "task_missing",
+      "kind": "task",
+      "uri": "/redfish/v1/TaskTests/Cases/task_missing",
+      "input": {
+        "@odata.id": "/redfish/v1/TaskTests/Cases/task_missing",
+        "Id": "task_missing",
+        "Name": "Synthetic resource"
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/TaskTests/Cases/task_missing"
+        ],
+        "gofish": [
+          "/redfish/v1/TaskTests/Cases/task_missing"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::Task",
+        "schemas::method::*Task.UnmarshalJSON",
+        "schemas::function::GetTask",
+        "schemas::field::Task.EndTime",
+        "schemas::field::Task.EstimatedDuration",
+        "schemas::field::Task.StartTime",
+        "schemas::field::Task.TaskMonitor",
+        "schemas::field::Task.TaskState",
+        "schemas::field::Task.TaskStatus",
+        "schemas::field::Task.HidePayload",
+        "schemas::field::Task.PercentComplete",
+        "schemas::field::Task.Messages",
+        "schemas::type::Message",
+        "schemas::field::Message.Message",
+        "schemas::field::Message.MessageID",
+        "schemas::field::Message.MessageSeverity",
+        "schemas::field::Message.Resolution",
+        "schemas::field::Message.Severity",
+        "schemas::field::Message.UserAuthenticationSource",
+        "schemas::field::Message.Username",
+        "schemas::field::Message.MessageArgs",
+        "schemas::field::Message.RelatedProperties"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "task_null",
+      "kind": "task",
+      "uri": "/redfish/v1/TaskTests/Cases/task_null",
+      "input": {
+        "@odata.id": "/redfish/v1/TaskTests/Cases/task_null",
+        "Id": "task_null",
+        "Name": "Synthetic resource",
+        "EndTime": null,
+        "EstimatedDuration": null,
+        "StartTime": null,
+        "TaskMonitor": null,
+        "TaskState": null,
+        "TaskStatus": null,
+        "HidePayload": null,
+        "PercentComplete": null,
+        "Messages": null
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/TaskTests/Cases/task_null"
+        ],
+        "gofish": [
+          "/redfish/v1/TaskTests/Cases/task_null"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::Task",
+        "schemas::method::*Task.UnmarshalJSON",
+        "schemas::function::GetTask",
+        "schemas::field::Task.EndTime",
+        "schemas::field::Task.EstimatedDuration",
+        "schemas::field::Task.StartTime",
+        "schemas::field::Task.TaskMonitor",
+        "schemas::field::Task.TaskState",
+        "schemas::field::Task.TaskStatus",
+        "schemas::field::Task.HidePayload",
+        "schemas::field::Task.PercentComplete",
+        "schemas::field::Task.Messages",
+        "schemas::type::Message",
+        "schemas::field::Message.Message",
+        "schemas::field::Message.MessageID",
+        "schemas::field::Message.MessageSeverity",
+        "schemas::field::Message.Resolution",
+        "schemas::field::Message.Severity",
+        "schemas::field::Message.UserAuthenticationSource",
+        "schemas::field::Message.Username",
+        "schemas::field::Message.MessageArgs",
+        "schemas::field::Message.RelatedProperties"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "service_missing",
+      "kind": "service",
+      "uri": "/redfish/v1/TaskTests/Cases/service_missing",
+      "input": {
+        "@odata.id": "/redfish/v1/TaskTests/Cases/service_missing",
+        "Id": "service_missing",
+        "Name": "Synthetic resource"
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/TaskTests/Cases/service_missing"
+        ],
+        "gofish": [
+          "/redfish/v1/TaskTests/Cases/service_missing"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::TaskService",
+        "schemas::method::*TaskService.UnmarshalJSON",
+        "schemas::function::GetTaskService",
+        "schemas::field::TaskService.CompletedTaskOverWritePolicy",
+        "schemas::field::TaskService.DateTime",
+        "schemas::field::TaskService.LifeCycleEventOnTaskStateChange",
+        "schemas::field::TaskService.ServiceEnabled",
+        "schemas::field::TaskService.TaskAutoDeleteTimeoutMinutes",
+        "schemas::field::TaskService.TaskMonitorAutoExpirySeconds",
+        "schemas::field::TaskService.Status"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "service_null",
+      "kind": "service",
+      "uri": "/redfish/v1/TaskTests/Cases/service_null",
+      "input": {
+        "@odata.id": "/redfish/v1/TaskTests/Cases/service_null",
+        "Id": "service_null",
+        "Name": "Synthetic resource",
+        "CompletedTaskOverWritePolicy": null,
+        "DateTime": null,
+        "LifeCycleEventOnTaskStateChange": null,
+        "ServiceEnabled": null,
+        "TaskAutoDeleteTimeoutMinutes": null,
+        "TaskMonitorAutoExpirySeconds": null,
+        "Status": null
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/TaskTests/Cases/service_null"
+        ],
+        "gofish": [
+          "/redfish/v1/TaskTests/Cases/service_null"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::TaskService",
+        "schemas::method::*TaskService.UnmarshalJSON",
+        "schemas::function::GetTaskService",
+        "schemas::field::TaskService.CompletedTaskOverWritePolicy",
+        "schemas::field::TaskService.DateTime",
+        "schemas::field::TaskService.LifeCycleEventOnTaskStateChange",
+        "schemas::field::TaskService.ServiceEnabled",
+        "schemas::field::TaskService.TaskAutoDeleteTimeoutMinutes",
+        "schemas::field::TaskService.TaskMonitorAutoExpirySeconds",
+        "schemas::field::TaskService.Status"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "messages_empty",
+      "kind": "task",
+      "uri": "/redfish/v1/TaskTests/Cases/messages_empty",
+      "input": {
+        "@odata.id": "/redfish/v1/TaskTests/Cases/messages_empty",
+        "Id": "messages_empty",
+        "Name": "Synthetic resource",
+        "EndTime": "2026-11-11T01:00:01Z",
+        "EstimatedDuration": "PT1S",
+        "StartTime": "2026-11-11T01:00:00Z",
+        "TaskMonitor": "/redfish/v1/MustNotMonitor",
+        "TaskState": "Completed",
+        "TaskStatus": "OK",
+        "HidePayload": true,
+        "PercentComplete": 100,
+        "Messages": [],
+        "Payload": {
+          "HttpOperation": "POST",
+          "TargetUri": "/redfish/v1/MustNotReplay",
+          "HttpHeaders": [
+            "X-Synthetic: never-send"
+          ],
+          "JsonBody": "{}"
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/TaskTests/Cases/messages_empty"
+        ],
+        "gofish": [
+          "/redfish/v1/TaskTests/Cases/messages_empty"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::Task",
+        "schemas::method::*Task.UnmarshalJSON",
+        "schemas::function::GetTask",
+        "schemas::field::Task.EndTime",
+        "schemas::field::Task.EstimatedDuration",
+        "schemas::field::Task.StartTime",
+        "schemas::field::Task.TaskMonitor",
+        "schemas::field::Task.TaskState",
+        "schemas::field::Task.TaskStatus",
+        "schemas::field::Task.HidePayload",
+        "schemas::field::Task.PercentComplete",
+        "schemas::field::Task.Messages",
+        "schemas::type::Message",
+        "schemas::field::Message.Message",
+        "schemas::field::Message.MessageID",
+        "schemas::field::Message.MessageSeverity",
+        "schemas::field::Message.Resolution",
+        "schemas::field::Message.Severity",
+        "schemas::field::Message.UserAuthenticationSource",
+        "schemas::field::Message.Username",
+        "schemas::field::Message.MessageArgs",
+        "schemas::field::Message.RelatedProperties"
+      ],
+      "relation": "same_selected_observation"
+    },
+    {
+      "id": "messages_null",
+      "kind": "task",
+      "uri": "/redfish/v1/TaskTests/Cases/messages_null",
+      "input": {
+        "@odata.id": "/redfish/v1/TaskTests/Cases/messages_null",
+        "Id": "messages_null",
+        "Name": "Synthetic resource",
+        "EndTime": "2026-11-11T01:00:01Z",
+        "EstimatedDuration": "PT1S",
+        "StartTime": "2026-11-11T01:00:00Z",
+        "TaskMonitor": "/redfish/v1/MustNotMonitor",
+        "TaskState": "Completed",
+        "TaskStatus": "OK",
+        "HidePayload": true,
+        "PercentComplete": 100,
+        "Messages": null,
+        "Payload": {
+          "HttpOperation": "POST",
+          "TargetUri": "/redfish/v1/MustNotReplay",
+          "HttpHeaders": [
+            "X-Synthetic: never-send"
+          ],
+          "JsonBody": "{}"
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/TaskTests/Cases/messages_null"
+        ],
+        "gofish": [
+          "/redfish/v1/TaskTests/Cases/messages_null"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::Task",
+        "schemas::method::*Task.UnmarshalJSON",
+        "schemas::function::GetTask",
+        "schemas::field::Task.EndTime",
+        "schemas::field::Task.EstimatedDuration",
+        "schemas::field::Task.StartTime",
+        "schemas::field::Task.TaskMonitor",
+        "schemas::field::Task.TaskState",
+        "schemas::field::Task.TaskStatus",
+        "schemas::field::Task.HidePayload",
+        "schemas::field::Task.PercentComplete",
+        "schemas::field::Task.Messages",
+        "schemas::type::Message",
+        "schemas::field::Message.Message",
+        "schemas::field::Message.MessageID",
+        "schemas::field::Message.MessageSeverity",
+        "schemas::field::Message.Resolution",
+        "schemas::field::Message.Severity",
+        "schemas::field::Message.UserAuthenticationSource",
+        "schemas::field::Message.Username",
+        "schemas::field::Message.MessageArgs",
+        "schemas::field::Message.RelatedProperties"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "message_empty",
+      "kind": "task",
+      "uri": "/redfish/v1/TaskTests/Cases/message_empty",
+      "input": {
+        "@odata.id": "/redfish/v1/TaskTests/Cases/message_empty",
+        "Id": "message_empty",
+        "Name": "Synthetic resource",
+        "EndTime": "2026-11-11T01:00:01Z",
+        "EstimatedDuration": "PT1S",
+        "StartTime": "2026-11-11T01:00:00Z",
+        "TaskMonitor": "/redfish/v1/MustNotMonitor",
+        "TaskState": "Completed",
+        "TaskStatus": "OK",
+        "HidePayload": true,
+        "PercentComplete": 100,
+        "Messages": [
+          {}
+        ],
+        "Payload": {
+          "HttpOperation": "POST",
+          "TargetUri": "/redfish/v1/MustNotReplay",
+          "HttpHeaders": [
+            "X-Synthetic: never-send"
+          ],
+          "JsonBody": "{}"
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/TaskTests/Cases/message_empty"
+        ],
+        "gofish": [
+          "/redfish/v1/TaskTests/Cases/message_empty"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::Task",
+        "schemas::method::*Task.UnmarshalJSON",
+        "schemas::function::GetTask",
+        "schemas::field::Task.EndTime",
+        "schemas::field::Task.EstimatedDuration",
+        "schemas::field::Task.StartTime",
+        "schemas::field::Task.TaskMonitor",
+        "schemas::field::Task.TaskState",
+        "schemas::field::Task.TaskStatus",
+        "schemas::field::Task.HidePayload",
+        "schemas::field::Task.PercentComplete",
+        "schemas::field::Task.Messages",
+        "schemas::type::Message",
+        "schemas::field::Message.Message",
+        "schemas::field::Message.MessageID",
+        "schemas::field::Message.MessageSeverity",
+        "schemas::field::Message.Resolution",
+        "schemas::field::Message.Severity",
+        "schemas::field::Message.UserAuthenticationSource",
+        "schemas::field::Message.Username",
+        "schemas::field::Message.MessageArgs",
+        "schemas::field::Message.RelatedProperties"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "message_null_member",
+      "kind": "task",
+      "uri": "/redfish/v1/TaskTests/Cases/message_null_member",
+      "input": {
+        "@odata.id": "/redfish/v1/TaskTests/Cases/message_null_member",
+        "Id": "message_null_member",
+        "Name": "Synthetic resource",
+        "EndTime": "2026-11-11T01:00:01Z",
+        "EstimatedDuration": "PT1S",
+        "StartTime": "2026-11-11T01:00:00Z",
+        "TaskMonitor": "/redfish/v1/MustNotMonitor",
+        "TaskState": "Completed",
+        "TaskStatus": "OK",
+        "HidePayload": true,
+        "PercentComplete": 100,
+        "Messages": [
+          null
+        ],
+        "Payload": {
+          "HttpOperation": "POST",
+          "TargetUri": "/redfish/v1/MustNotReplay",
+          "HttpHeaders": [
+            "X-Synthetic: never-send"
+          ],
+          "JsonBody": "{}"
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/TaskTests/Cases/message_null_member"
+        ],
+        "gofish": [
+          "/redfish/v1/TaskTests/Cases/message_null_member"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::Task",
+        "schemas::method::*Task.UnmarshalJSON",
+        "schemas::function::GetTask",
+        "schemas::field::Task.EndTime",
+        "schemas::field::Task.EstimatedDuration",
+        "schemas::field::Task.StartTime",
+        "schemas::field::Task.TaskMonitor",
+        "schemas::field::Task.TaskState",
+        "schemas::field::Task.TaskStatus",
+        "schemas::field::Task.HidePayload",
+        "schemas::field::Task.PercentComplete",
+        "schemas::field::Task.Messages",
+        "schemas::type::Message",
+        "schemas::field::Message.Message",
+        "schemas::field::Message.MessageID",
+        "schemas::field::Message.MessageSeverity",
+        "schemas::field::Message.Resolution",
+        "schemas::field::Message.Severity",
+        "schemas::field::Message.UserAuthenticationSource",
+        "schemas::field::Message.Username",
+        "schemas::field::Message.MessageArgs",
+        "schemas::field::Message.RelatedProperties"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "message_args_null_member",
+      "kind": "task",
+      "uri": "/redfish/v1/TaskTests/Cases/message_args_null_member",
+      "input": {
+        "@odata.id": "/redfish/v1/TaskTests/Cases/message_args_null_member",
+        "Id": "message_args_null_member",
+        "Name": "Synthetic resource",
+        "EndTime": "2026-11-11T01:00:01Z",
+        "EstimatedDuration": "PT1S",
+        "StartTime": "2026-11-11T01:00:00Z",
+        "TaskMonitor": "/redfish/v1/MustNotMonitor",
+        "TaskState": "Completed",
+        "TaskStatus": "OK",
+        "HidePayload": true,
+        "PercentComplete": 100,
+        "Messages": [
+          {
+            "Message": "Synthetic task report",
+            "MessageId": "Synthetic.1.0.Task",
+            "MessageSeverity": "Critical",
+            "Resolution": "Synthetic recommendation only",
+            "Severity": "Warning",
+            "UserAuthenticationSource": "https://auth.example.invalid",
+            "Username": "synthetic-user",
+            "MessageArgs": [
+              null
+            ],
+            "RelatedProperties": [
+              "/Boot/BootNext"
+            ],
+            "ResolutionSteps": [
+              {
+                "ActionURI": "/redfish/v1/MustNotAct",
+                "ResolutionType": "Reset"
+              }
+            ],
+            "Oem": {
+              "Synthetic": true
+            }
+          }
+        ],
+        "Payload": {
+          "HttpOperation": "POST",
+          "TargetUri": "/redfish/v1/MustNotReplay",
+          "HttpHeaders": [
+            "X-Synthetic: never-send"
+          ],
+          "JsonBody": "{}"
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/TaskTests/Cases/message_args_null_member"
+        ],
+        "gofish": [
+          "/redfish/v1/TaskTests/Cases/message_args_null_member"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::Task",
+        "schemas::method::*Task.UnmarshalJSON",
+        "schemas::function::GetTask",
+        "schemas::field::Task.EndTime",
+        "schemas::field::Task.EstimatedDuration",
+        "schemas::field::Task.StartTime",
+        "schemas::field::Task.TaskMonitor",
+        "schemas::field::Task.TaskState",
+        "schemas::field::Task.TaskStatus",
+        "schemas::field::Task.HidePayload",
+        "schemas::field::Task.PercentComplete",
+        "schemas::field::Task.Messages",
+        "schemas::type::Message",
+        "schemas::field::Message.Message",
+        "schemas::field::Message.MessageID",
+        "schemas::field::Message.MessageSeverity",
+        "schemas::field::Message.Resolution",
+        "schemas::field::Message.Severity",
+        "schemas::field::Message.UserAuthenticationSource",
+        "schemas::field::Message.Username",
+        "schemas::field::Message.MessageArgs",
+        "schemas::field::Message.RelatedProperties"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "future_state_and_severity",
+      "kind": "task",
+      "uri": "/redfish/v1/TaskTests/Cases/future_state_and_severity",
+      "input": {
+        "@odata.id": "/redfish/v1/TaskTests/Cases/future_state_and_severity",
+        "Id": "future_state_and_severity",
+        "Name": "Synthetic resource",
+        "EndTime": "2026-11-11T01:00:01Z",
+        "EstimatedDuration": "PT1S",
+        "StartTime": "2026-11-11T01:00:00Z",
+        "TaskMonitor": "/redfish/v1/MustNotMonitor",
+        "TaskState": "FutureState",
+        "TaskStatus": "FutureHealth",
+        "HidePayload": true,
+        "PercentComplete": 100,
+        "Messages": [
+          {
+            "Message": "Synthetic task report",
+            "MessageId": "Synthetic.1.0.Task",
+            "MessageSeverity": "FutureSeverity",
+            "Resolution": "Synthetic recommendation only",
+            "Severity": "Warning",
+            "UserAuthenticationSource": "https://auth.example.invalid",
+            "Username": "synthetic-user",
+            "MessageArgs": [
+              "first",
+              "second",
+              "first"
+            ],
+            "RelatedProperties": [
+              "/Boot/BootNext"
+            ],
+            "ResolutionSteps": [
+              {
+                "ActionURI": "/redfish/v1/MustNotAct",
+                "ResolutionType": "Reset"
+              }
+            ],
+            "Oem": {
+              "Synthetic": true
+            }
+          }
+        ],
+        "Payload": {
+          "HttpOperation": "POST",
+          "TargetUri": "/redfish/v1/MustNotReplay",
+          "HttpHeaders": [
+            "X-Synthetic: never-send"
+          ],
+          "JsonBody": "{}"
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/TaskTests/Cases/future_state_and_severity"
+        ],
+        "gofish": [
+          "/redfish/v1/TaskTests/Cases/future_state_and_severity"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::Task",
+        "schemas::method::*Task.UnmarshalJSON",
+        "schemas::function::GetTask",
+        "schemas::field::Task.EndTime",
+        "schemas::field::Task.EstimatedDuration",
+        "schemas::field::Task.StartTime",
+        "schemas::field::Task.TaskMonitor",
+        "schemas::field::Task.TaskState",
+        "schemas::field::Task.TaskStatus",
+        "schemas::field::Task.HidePayload",
+        "schemas::field::Task.PercentComplete",
+        "schemas::field::Task.Messages",
+        "schemas::type::Message",
+        "schemas::field::Message.Message",
+        "schemas::field::Message.MessageID",
+        "schemas::field::Message.MessageSeverity",
+        "schemas::field::Message.Resolution",
+        "schemas::field::Message.Severity",
+        "schemas::field::Message.UserAuthenticationSource",
+        "schemas::field::Message.Username",
+        "schemas::field::Message.MessageArgs",
+        "schemas::field::Message.RelatedProperties"
+      ],
+      "relation": "same_selected_observation"
+    },
+    {
+      "id": "status_not_inferred_from_messages",
+      "kind": "task",
+      "uri": "/redfish/v1/TaskTests/Cases/status_not_inferred_from_messages",
+      "input": {
+        "@odata.id": "/redfish/v1/TaskTests/Cases/status_not_inferred_from_messages",
+        "Id": "status_not_inferred_from_messages",
+        "Name": "Synthetic resource",
+        "EndTime": "2026-11-11T01:00:01Z",
+        "EstimatedDuration": "PT1S",
+        "StartTime": "2026-11-11T01:00:00Z",
+        "TaskMonitor": "/redfish/v1/MustNotMonitor",
+        "TaskState": "Completed",
+        "HidePayload": true,
+        "PercentComplete": 100,
+        "Messages": [
+          {
+            "Message": "Synthetic task report",
+            "MessageId": "Synthetic.1.0.Task",
+            "MessageSeverity": "Critical",
+            "Resolution": "Synthetic recommendation only",
+            "Severity": "Warning",
+            "UserAuthenticationSource": "https://auth.example.invalid",
+            "Username": "synthetic-user",
+            "MessageArgs": [
+              "first",
+              "second",
+              "first"
+            ],
+            "RelatedProperties": [
+              "/Boot/BootNext"
+            ],
+            "ResolutionSteps": [
+              {
+                "ActionURI": "/redfish/v1/MustNotAct",
+                "ResolutionType": "Reset"
+              }
+            ],
+            "Oem": {
+              "Synthetic": true
+            }
+          }
+        ],
+        "Payload": {
+          "HttpOperation": "POST",
+          "TargetUri": "/redfish/v1/MustNotReplay",
+          "HttpHeaders": [
+            "X-Synthetic: never-send"
+          ],
+          "JsonBody": "{}"
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/TaskTests/Cases/status_not_inferred_from_messages"
+        ],
+        "gofish": [
+          "/redfish/v1/TaskTests/Cases/status_not_inferred_from_messages"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::Task",
+        "schemas::method::*Task.UnmarshalJSON",
+        "schemas::function::GetTask",
+        "schemas::field::Task.EndTime",
+        "schemas::field::Task.EstimatedDuration",
+        "schemas::field::Task.StartTime",
+        "schemas::field::Task.TaskMonitor",
+        "schemas::field::Task.TaskState",
+        "schemas::field::Task.TaskStatus",
+        "schemas::field::Task.HidePayload",
+        "schemas::field::Task.PercentComplete",
+        "schemas::field::Task.Messages",
+        "schemas::type::Message",
+        "schemas::field::Message.Message",
+        "schemas::field::Message.MessageID",
+        "schemas::field::Message.MessageSeverity",
+        "schemas::field::Message.Resolution",
+        "schemas::field::Message.Severity",
+        "schemas::field::Message.UserAuthenticationSource",
+        "schemas::field::Message.Username",
+        "schemas::field::Message.MessageArgs",
+        "schemas::field::Message.RelatedProperties"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "percent_string",
+      "kind": "task",
+      "uri": "/redfish/v1/TaskTests/Cases/percent_string",
+      "input": {
+        "@odata.id": "/redfish/v1/TaskTests/Cases/percent_string",
+        "Id": "percent_string",
+        "Name": "Synthetic resource",
+        "EndTime": "2026-11-11T01:00:01Z",
+        "EstimatedDuration": "PT1S",
+        "StartTime": "2026-11-11T01:00:00Z",
+        "TaskMonitor": "/redfish/v1/MustNotMonitor",
+        "TaskState": "Completed",
+        "TaskStatus": "OK",
+        "HidePayload": true,
+        "PercentComplete": "10",
+        "Messages": [
+          {
+            "Message": "Synthetic task report",
+            "MessageId": "Synthetic.1.0.Task",
+            "MessageSeverity": "Critical",
+            "Resolution": "Synthetic recommendation only",
+            "Severity": "Warning",
+            "UserAuthenticationSource": "https://auth.example.invalid",
+            "Username": "synthetic-user",
+            "MessageArgs": [
+              "first",
+              "second",
+              "first"
+            ],
+            "RelatedProperties": [
+              "/Boot/BootNext"
+            ],
+            "ResolutionSteps": [
+              {
+                "ActionURI": "/redfish/v1/MustNotAct",
+                "ResolutionType": "Reset"
+              }
+            ],
+            "Oem": {
+              "Synthetic": true
+            }
+          }
+        ],
+        "Payload": {
+          "HttpOperation": "POST",
+          "TargetUri": "/redfish/v1/MustNotReplay",
+          "HttpHeaders": [
+            "X-Synthetic: never-send"
+          ],
+          "JsonBody": "{}"
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/TaskTests/Cases/percent_string"
+        ],
+        "gofish": [
+          "/redfish/v1/TaskTests/Cases/percent_string"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::Task",
+        "schemas::method::*Task.UnmarshalJSON",
+        "schemas::function::GetTask",
+        "schemas::field::Task.EndTime",
+        "schemas::field::Task.EstimatedDuration",
+        "schemas::field::Task.StartTime",
+        "schemas::field::Task.TaskMonitor",
+        "schemas::field::Task.TaskState",
+        "schemas::field::Task.TaskStatus",
+        "schemas::field::Task.HidePayload",
+        "schemas::field::Task.PercentComplete",
+        "schemas::field::Task.Messages",
+        "schemas::type::Message",
+        "schemas::field::Message.Message",
+        "schemas::field::Message.MessageID",
+        "schemas::field::Message.MessageSeverity",
+        "schemas::field::Message.Resolution",
+        "schemas::field::Message.Severity",
+        "schemas::field::Message.UserAuthenticationSource",
+        "schemas::field::Message.Username",
+        "schemas::field::Message.MessageArgs",
+        "schemas::field::Message.RelatedProperties"
+      ],
+      "relation": "both_reject"
+    },
+    {
+      "id": "percent_negative",
+      "kind": "task",
+      "uri": "/redfish/v1/TaskTests/Cases/percent_negative",
+      "input": {
+        "@odata.id": "/redfish/v1/TaskTests/Cases/percent_negative",
+        "Id": "percent_negative",
+        "Name": "Synthetic resource",
+        "EndTime": "2026-11-11T01:00:01Z",
+        "EstimatedDuration": "PT1S",
+        "StartTime": "2026-11-11T01:00:00Z",
+        "TaskMonitor": "/redfish/v1/MustNotMonitor",
+        "TaskState": "Completed",
+        "TaskStatus": "OK",
+        "HidePayload": true,
+        "PercentComplete": -1,
+        "Messages": [
+          {
+            "Message": "Synthetic task report",
+            "MessageId": "Synthetic.1.0.Task",
+            "MessageSeverity": "Critical",
+            "Resolution": "Synthetic recommendation only",
+            "Severity": "Warning",
+            "UserAuthenticationSource": "https://auth.example.invalid",
+            "Username": "synthetic-user",
+            "MessageArgs": [
+              "first",
+              "second",
+              "first"
+            ],
+            "RelatedProperties": [
+              "/Boot/BootNext"
+            ],
+            "ResolutionSteps": [
+              {
+                "ActionURI": "/redfish/v1/MustNotAct",
+                "ResolutionType": "Reset"
+              }
+            ],
+            "Oem": {
+              "Synthetic": true
+            }
+          }
+        ],
+        "Payload": {
+          "HttpOperation": "POST",
+          "TargetUri": "/redfish/v1/MustNotReplay",
+          "HttpHeaders": [
+            "X-Synthetic: never-send"
+          ],
+          "JsonBody": "{}"
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/TaskTests/Cases/percent_negative"
+        ],
+        "gofish": [
+          "/redfish/v1/TaskTests/Cases/percent_negative"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::Task",
+        "schemas::method::*Task.UnmarshalJSON",
+        "schemas::function::GetTask",
+        "schemas::field::Task.EndTime",
+        "schemas::field::Task.EstimatedDuration",
+        "schemas::field::Task.StartTime",
+        "schemas::field::Task.TaskMonitor",
+        "schemas::field::Task.TaskState",
+        "schemas::field::Task.TaskStatus",
+        "schemas::field::Task.HidePayload",
+        "schemas::field::Task.PercentComplete",
+        "schemas::field::Task.Messages",
+        "schemas::type::Message",
+        "schemas::field::Message.Message",
+        "schemas::field::Message.MessageID",
+        "schemas::field::Message.MessageSeverity",
+        "schemas::field::Message.Resolution",
+        "schemas::field::Message.Severity",
+        "schemas::field::Message.UserAuthenticationSource",
+        "schemas::field::Message.Username",
+        "schemas::field::Message.MessageArgs",
+        "schemas::field::Message.RelatedProperties"
+      ],
+      "relation": "both_reject"
+    },
+    {
+      "id": "percent_fraction",
+      "kind": "task",
+      "uri": "/redfish/v1/TaskTests/Cases/percent_fraction",
+      "input": {
+        "@odata.id": "/redfish/v1/TaskTests/Cases/percent_fraction",
+        "Id": "percent_fraction",
+        "Name": "Synthetic resource",
+        "EndTime": "2026-11-11T01:00:01Z",
+        "EstimatedDuration": "PT1S",
+        "StartTime": "2026-11-11T01:00:00Z",
+        "TaskMonitor": "/redfish/v1/MustNotMonitor",
+        "TaskState": "Completed",
+        "TaskStatus": "OK",
+        "HidePayload": true,
+        "PercentComplete": 1.5,
+        "Messages": [
+          {
+            "Message": "Synthetic task report",
+            "MessageId": "Synthetic.1.0.Task",
+            "MessageSeverity": "Critical",
+            "Resolution": "Synthetic recommendation only",
+            "Severity": "Warning",
+            "UserAuthenticationSource": "https://auth.example.invalid",
+            "Username": "synthetic-user",
+            "MessageArgs": [
+              "first",
+              "second",
+              "first"
+            ],
+            "RelatedProperties": [
+              "/Boot/BootNext"
+            ],
+            "ResolutionSteps": [
+              {
+                "ActionURI": "/redfish/v1/MustNotAct",
+                "ResolutionType": "Reset"
+              }
+            ],
+            "Oem": {
+              "Synthetic": true
+            }
+          }
+        ],
+        "Payload": {
+          "HttpOperation": "POST",
+          "TargetUri": "/redfish/v1/MustNotReplay",
+          "HttpHeaders": [
+            "X-Synthetic: never-send"
+          ],
+          "JsonBody": "{}"
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/TaskTests/Cases/percent_fraction"
+        ],
+        "gofish": [
+          "/redfish/v1/TaskTests/Cases/percent_fraction"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::Task",
+        "schemas::method::*Task.UnmarshalJSON",
+        "schemas::function::GetTask",
+        "schemas::field::Task.EndTime",
+        "schemas::field::Task.EstimatedDuration",
+        "schemas::field::Task.StartTime",
+        "schemas::field::Task.TaskMonitor",
+        "schemas::field::Task.TaskState",
+        "schemas::field::Task.TaskStatus",
+        "schemas::field::Task.HidePayload",
+        "schemas::field::Task.PercentComplete",
+        "schemas::field::Task.Messages",
+        "schemas::type::Message",
+        "schemas::field::Message.Message",
+        "schemas::field::Message.MessageID",
+        "schemas::field::Message.MessageSeverity",
+        "schemas::field::Message.Resolution",
+        "schemas::field::Message.Severity",
+        "schemas::field::Message.UserAuthenticationSource",
+        "schemas::field::Message.Username",
+        "schemas::field::Message.MessageArgs",
+        "schemas::field::Message.RelatedProperties"
+      ],
+      "relation": "both_reject"
+    },
+    {
+      "id": "percent_decimal_integer",
+      "kind": "task",
+      "uri": "/redfish/v1/TaskTests/Cases/percent_decimal_integer",
+      "input": {
+        "@odata.id": "/redfish/v1/TaskTests/Cases/percent_decimal_integer",
+        "Id": "percent_decimal_integer",
+        "Name": "Synthetic resource",
+        "EndTime": "2026-11-11T01:00:01Z",
+        "EstimatedDuration": "PT1S",
+        "StartTime": "2026-11-11T01:00:00Z",
+        "TaskMonitor": "/redfish/v1/MustNotMonitor",
+        "TaskState": "Completed",
+        "TaskStatus": "OK",
+        "HidePayload": true,
+        "PercentComplete": 1.0,
+        "Messages": [
+          {
+            "Message": "Synthetic task report",
+            "MessageId": "Synthetic.1.0.Task",
+            "MessageSeverity": "Critical",
+            "Resolution": "Synthetic recommendation only",
+            "Severity": "Warning",
+            "UserAuthenticationSource": "https://auth.example.invalid",
+            "Username": "synthetic-user",
+            "MessageArgs": [
+              "first",
+              "second",
+              "first"
+            ],
+            "RelatedProperties": [
+              "/Boot/BootNext"
+            ],
+            "ResolutionSteps": [
+              {
+                "ActionURI": "/redfish/v1/MustNotAct",
+                "ResolutionType": "Reset"
+              }
+            ],
+            "Oem": {
+              "Synthetic": true
+            }
+          }
+        ],
+        "Payload": {
+          "HttpOperation": "POST",
+          "TargetUri": "/redfish/v1/MustNotReplay",
+          "HttpHeaders": [
+            "X-Synthetic: never-send"
+          ],
+          "JsonBody": "{}"
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/TaskTests/Cases/percent_decimal_integer"
+        ],
+        "gofish": [
+          "/redfish/v1/TaskTests/Cases/percent_decimal_integer"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::Task",
+        "schemas::method::*Task.UnmarshalJSON",
+        "schemas::function::GetTask",
+        "schemas::field::Task.EndTime",
+        "schemas::field::Task.EstimatedDuration",
+        "schemas::field::Task.StartTime",
+        "schemas::field::Task.TaskMonitor",
+        "schemas::field::Task.TaskState",
+        "schemas::field::Task.TaskStatus",
+        "schemas::field::Task.HidePayload",
+        "schemas::field::Task.PercentComplete",
+        "schemas::field::Task.Messages",
+        "schemas::type::Message",
+        "schemas::field::Message.Message",
+        "schemas::field::Message.MessageID",
+        "schemas::field::Message.MessageSeverity",
+        "schemas::field::Message.Resolution",
+        "schemas::field::Message.Severity",
+        "schemas::field::Message.UserAuthenticationSource",
+        "schemas::field::Message.Username",
+        "schemas::field::Message.MessageArgs",
+        "schemas::field::Message.RelatedProperties"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "percent_above_native_range",
+      "kind": "task",
+      "uri": "/redfish/v1/TaskTests/Cases/percent_above_native_range",
+      "input": {
+        "@odata.id": "/redfish/v1/TaskTests/Cases/percent_above_native_range",
+        "Id": "percent_above_native_range",
+        "Name": "Synthetic resource",
+        "EndTime": "2026-11-11T01:00:01Z",
+        "EstimatedDuration": "PT1S",
+        "StartTime": "2026-11-11T01:00:00Z",
+        "TaskMonitor": "/redfish/v1/MustNotMonitor",
+        "TaskState": "Completed",
+        "TaskStatus": "OK",
+        "HidePayload": true,
+        "PercentComplete": 2147483648,
+        "Messages": [
+          {
+            "Message": "Synthetic task report",
+            "MessageId": "Synthetic.1.0.Task",
+            "MessageSeverity": "Critical",
+            "Resolution": "Synthetic recommendation only",
+            "Severity": "Warning",
+            "UserAuthenticationSource": "https://auth.example.invalid",
+            "Username": "synthetic-user",
+            "MessageArgs": [
+              "first",
+              "second",
+              "first"
+            ],
+            "RelatedProperties": [
+              "/Boot/BootNext"
+            ],
+            "ResolutionSteps": [
+              {
+                "ActionURI": "/redfish/v1/MustNotAct",
+                "ResolutionType": "Reset"
+              }
+            ],
+            "Oem": {
+              "Synthetic": true
+            }
+          }
+        ],
+        "Payload": {
+          "HttpOperation": "POST",
+          "TargetUri": "/redfish/v1/MustNotReplay",
+          "HttpHeaders": [
+            "X-Synthetic: never-send"
+          ],
+          "JsonBody": "{}"
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/TaskTests/Cases/percent_above_native_range"
+        ],
+        "gofish": [
+          "/redfish/v1/TaskTests/Cases/percent_above_native_range"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::Task",
+        "schemas::method::*Task.UnmarshalJSON",
+        "schemas::function::GetTask",
+        "schemas::field::Task.EndTime",
+        "schemas::field::Task.EstimatedDuration",
+        "schemas::field::Task.StartTime",
+        "schemas::field::Task.TaskMonitor",
+        "schemas::field::Task.TaskState",
+        "schemas::field::Task.TaskStatus",
+        "schemas::field::Task.HidePayload",
+        "schemas::field::Task.PercentComplete",
+        "schemas::field::Task.Messages",
+        "schemas::type::Message",
+        "schemas::field::Message.Message",
+        "schemas::field::Message.MessageID",
+        "schemas::field::Message.MessageSeverity",
+        "schemas::field::Message.Resolution",
+        "schemas::field::Message.Severity",
+        "schemas::field::Message.UserAuthenticationSource",
+        "schemas::field::Message.Username",
+        "schemas::field::Message.MessageArgs",
+        "schemas::field::Message.RelatedProperties"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "percent_above_schema_range",
+      "kind": "task",
+      "uri": "/redfish/v1/TaskTests/Cases/percent_above_schema_range",
+      "input": {
+        "@odata.id": "/redfish/v1/TaskTests/Cases/percent_above_schema_range",
+        "Id": "percent_above_schema_range",
+        "Name": "Synthetic resource",
+        "EndTime": "2026-11-11T01:00:01Z",
+        "EstimatedDuration": "PT1S",
+        "StartTime": "2026-11-11T01:00:00Z",
+        "TaskMonitor": "/redfish/v1/MustNotMonitor",
+        "TaskState": "Completed",
+        "TaskStatus": "OK",
+        "HidePayload": true,
+        "PercentComplete": 101,
+        "Messages": [
+          {
+            "Message": "Synthetic task report",
+            "MessageId": "Synthetic.1.0.Task",
+            "MessageSeverity": "Critical",
+            "Resolution": "Synthetic recommendation only",
+            "Severity": "Warning",
+            "UserAuthenticationSource": "https://auth.example.invalid",
+            "Username": "synthetic-user",
+            "MessageArgs": [
+              "first",
+              "second",
+              "first"
+            ],
+            "RelatedProperties": [
+              "/Boot/BootNext"
+            ],
+            "ResolutionSteps": [
+              {
+                "ActionURI": "/redfish/v1/MustNotAct",
+                "ResolutionType": "Reset"
+              }
+            ],
+            "Oem": {
+              "Synthetic": true
+            }
+          }
+        ],
+        "Payload": {
+          "HttpOperation": "POST",
+          "TargetUri": "/redfish/v1/MustNotReplay",
+          "HttpHeaders": [
+            "X-Synthetic: never-send"
+          ],
+          "JsonBody": "{}"
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/TaskTests/Cases/percent_above_schema_range"
+        ],
+        "gofish": [
+          "/redfish/v1/TaskTests/Cases/percent_above_schema_range"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::Task",
+        "schemas::method::*Task.UnmarshalJSON",
+        "schemas::function::GetTask",
+        "schemas::field::Task.EndTime",
+        "schemas::field::Task.EstimatedDuration",
+        "schemas::field::Task.StartTime",
+        "schemas::field::Task.TaskMonitor",
+        "schemas::field::Task.TaskState",
+        "schemas::field::Task.TaskStatus",
+        "schemas::field::Task.HidePayload",
+        "schemas::field::Task.PercentComplete",
+        "schemas::field::Task.Messages",
+        "schemas::type::Message",
+        "schemas::field::Message.Message",
+        "schemas::field::Message.MessageID",
+        "schemas::field::Message.MessageSeverity",
+        "schemas::field::Message.Resolution",
+        "schemas::field::Message.Severity",
+        "schemas::field::Message.UserAuthenticationSource",
+        "schemas::field::Message.Username",
+        "schemas::field::Message.MessageArgs",
+        "schemas::field::Message.RelatedProperties"
+      ],
+      "relation": "same_selected_observation"
+    },
+    {
+      "id": "unselected_payload_wrong_type",
+      "kind": "task",
+      "uri": "/redfish/v1/TaskTests/Cases/unselected_payload_wrong_type",
+      "input": {
+        "@odata.id": "/redfish/v1/TaskTests/Cases/unselected_payload_wrong_type",
+        "Id": "unselected_payload_wrong_type",
+        "Name": "Synthetic resource",
+        "EndTime": "2026-11-11T01:00:01Z",
+        "EstimatedDuration": "PT1S",
+        "StartTime": "2026-11-11T01:00:00Z",
+        "TaskMonitor": "/redfish/v1/MustNotMonitor",
+        "TaskState": "Completed",
+        "TaskStatus": "OK",
+        "HidePayload": true,
+        "PercentComplete": 100,
+        "Messages": [
+          {
+            "Message": "Synthetic task report",
+            "MessageId": "Synthetic.1.0.Task",
+            "MessageSeverity": "Critical",
+            "Resolution": "Synthetic recommendation only",
+            "Severity": "Warning",
+            "UserAuthenticationSource": "https://auth.example.invalid",
+            "Username": "synthetic-user",
+            "MessageArgs": [
+              "first",
+              "second",
+              "first"
+            ],
+            "RelatedProperties": [
+              "/Boot/BootNext"
+            ],
+            "ResolutionSteps": [
+              {
+                "ActionURI": "/redfish/v1/MustNotAct",
+                "ResolutionType": "Reset"
+              }
+            ],
+            "Oem": {
+              "Synthetic": true
+            }
+          }
+        ],
+        "Payload": "not-an-object"
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/TaskTests/Cases/unselected_payload_wrong_type"
+        ],
+        "gofish": [
+          "/redfish/v1/TaskTests/Cases/unselected_payload_wrong_type"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::Task",
+        "schemas::method::*Task.UnmarshalJSON",
+        "schemas::function::GetTask",
+        "schemas::field::Task.EndTime",
+        "schemas::field::Task.EstimatedDuration",
+        "schemas::field::Task.StartTime",
+        "schemas::field::Task.TaskMonitor",
+        "schemas::field::Task.TaskState",
+        "schemas::field::Task.TaskStatus",
+        "schemas::field::Task.HidePayload",
+        "schemas::field::Task.PercentComplete",
+        "schemas::field::Task.Messages",
+        "schemas::type::Message",
+        "schemas::field::Message.Message",
+        "schemas::field::Message.MessageID",
+        "schemas::field::Message.MessageSeverity",
+        "schemas::field::Message.Resolution",
+        "schemas::field::Message.Severity",
+        "schemas::field::Message.UserAuthenticationSource",
+        "schemas::field::Message.Username",
+        "schemas::field::Message.MessageArgs",
+        "schemas::field::Message.RelatedProperties"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "service_wrong_boolean",
+      "kind": "service",
+      "uri": "/redfish/v1/TaskTests/Cases/service_wrong_boolean",
+      "input": {
+        "@odata.id": "/redfish/v1/TaskTests/Cases/service_wrong_boolean",
+        "Id": "service_wrong_boolean",
+        "Name": "Synthetic resource",
+        "CompletedTaskOverWritePolicy": "Oldest",
+        "DateTime": "2026-11-11T01:00:00Z",
+        "LifeCycleEventOnTaskStateChange": true,
+        "ServiceEnabled": "false",
+        "TaskAutoDeleteTimeoutMinutes": 0,
+        "TaskMonitorAutoExpirySeconds": 60,
+        "Status": {
+          "State": "Enabled",
+          "Health": "OK",
+          "HealthRollup": "Warning"
+        },
+        "Actions": {
+          "#TaskService.DeleteAllCompletedTasks": {
+            "target": "/redfish/v1/MustNotDelete"
+          }
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/TaskTests/Cases/service_wrong_boolean"
+        ],
+        "gofish": [
+          "/redfish/v1/TaskTests/Cases/service_wrong_boolean"
+        ]
+      },
+      "item_ids": [
+        "schemas::type::TaskService",
+        "schemas::method::*TaskService.UnmarshalJSON",
+        "schemas::function::GetTaskService",
+        "schemas::field::TaskService.CompletedTaskOverWritePolicy",
+        "schemas::field::TaskService.DateTime",
+        "schemas::field::TaskService.LifeCycleEventOnTaskStateChange",
+        "schemas::field::TaskService.ServiceEnabled",
+        "schemas::field::TaskService.TaskAutoDeleteTimeoutMinutes",
+        "schemas::field::TaskService.TaskMonitorAutoExpirySeconds",
+        "schemas::field::TaskService.Status"
+      ],
+      "relation": "both_reject"
+    },
+    {
+      "id": "root_task_service",
+      "kind": "task_service",
+      "uri": "/redfish/v1/TaskTests/Cases/root_task_service",
+      "input": {
+        "@odata.id": "/redfish/v1/TaskTests/Cases/root_task_service",
+        "Id": "root_task_service",
+        "Name": "Synthetic resource",
+        "Tasks": {
+          "@odata.id": "/redfish/v1/TaskTests/Objects/Service"
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/TaskTests/Cases/root_task_service",
+          "/redfish/v1/TaskTests/Objects/Service"
+        ],
+        "gofish": [
+          "/redfish/v1/TaskTests/Cases/root_task_service",
+          "/redfish/v1/TaskTests/Objects/Service"
+        ]
+      },
+      "item_ids": [
+        ".::method::*Service.Tasks"
+      ],
+      "relation": "same_selected_observation"
+    },
+    {
+      "id": "inline_task_service_differs",
+      "kind": "task_service",
+      "uri": "/redfish/v1/TaskTests/Cases/inline_task_service_differs",
+      "input": {
+        "@odata.id": "/redfish/v1/TaskTests/Cases/inline_task_service_differs",
+        "Id": "inline_task_service_differs",
+        "Name": "Synthetic resource",
+        "Tasks": {
+          "@odata.id": "/redfish/v1/TaskTests/Objects/Service",
+          "Id": "Service",
+          "Name": "Synthetic resource",
+          "CompletedTaskOverWritePolicy": "Oldest",
+          "DateTime": "2026-11-11T01:00:00Z",
+          "LifeCycleEventOnTaskStateChange": true,
+          "ServiceEnabled": true,
+          "TaskAutoDeleteTimeoutMinutes": 0,
+          "TaskMonitorAutoExpirySeconds": 60,
+          "Status": {
+            "State": "Enabled",
+            "Health": "OK",
+            "HealthRollup": "Warning"
+          },
+          "Actions": {
+            "#TaskService.DeleteAllCompletedTasks": {
+              "target": "/redfish/v1/MustNotDelete"
+            }
+          }
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/TaskTests/Cases/inline_task_service_differs",
+          "/redfish/v1/TaskTests/Objects/Service"
+        ],
+        "gofish": [
+          "/redfish/v1/TaskTests/Cases/inline_task_service_differs"
+        ]
+      },
+      "item_ids": [
+        ".::method::*Service.Tasks"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "tasks_paged",
+      "kind": "tasks",
+      "uri": "/redfish/v1/TaskTests/Cases/tasks_paged",
+      "input": {
+        "@odata.id": "/redfish/v1/TaskTests/Cases/tasks_paged",
+        "Id": "tasks_paged",
+        "Name": "Synthetic resource",
+        "CompletedTaskOverWritePolicy": "Oldest",
+        "DateTime": "2026-11-11T01:00:00Z",
+        "LifeCycleEventOnTaskStateChange": true,
+        "ServiceEnabled": false,
+        "TaskAutoDeleteTimeoutMinutes": 0,
+        "TaskMonitorAutoExpirySeconds": 60,
+        "Status": {
+          "State": "Enabled",
+          "Health": "OK",
+          "HealthRollup": "Warning"
+        },
+        "Actions": {
+          "#TaskService.DeleteAllCompletedTasks": {
+            "target": "/redfish/v1/MustNotDelete"
+          }
+        },
+        "Tasks": {
+          "@odata.id": "/redfish/v1/TaskTests/Pages/Tasks"
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/TaskTests/Cases/tasks_paged",
+          "/redfish/v1/TaskTests/Pages/Tasks",
+          "/redfish/v1/TaskTests/Pages/Tasks?$skip=1",
+          "/redfish/v1/TaskTests/Objects/T1",
+          "/redfish/v1/TaskTests/Objects/T0"
+        ],
+        "gofish": [
+          "/redfish/v1/TaskTests/Cases/tasks_paged",
+          "/redfish/v1/TaskTests/Pages/Tasks",
+          "/redfish/v1/TaskTests/Pages/Tasks?$skip=1",
+          "/redfish/v1/TaskTests/Objects/T1",
+          "/redfish/v1/TaskTests/Objects/T0"
+        ]
+      },
+      "item_ids": [
+        "schemas::method::*TaskService.Tasks"
+      ],
+      "relation": "same_selected_observation"
+    },
+    {
+      "id": "sub_tasks_paged",
+      "kind": "sub_tasks",
+      "uri": "/redfish/v1/TaskTests/Cases/sub_tasks_paged",
+      "input": {
+        "@odata.id": "/redfish/v1/TaskTests/Cases/sub_tasks_paged",
+        "Id": "sub_tasks_paged",
+        "Name": "Synthetic resource",
+        "EndTime": "2026-11-11T01:00:01Z",
+        "EstimatedDuration": "PT1S",
+        "StartTime": "2026-11-11T01:00:00Z",
+        "TaskMonitor": "/redfish/v1/MustNotMonitor",
+        "TaskState": "Completed",
+        "TaskStatus": "OK",
+        "HidePayload": true,
+        "PercentComplete": 100,
+        "Messages": [
+          {
+            "Message": "Synthetic task report",
+            "MessageId": "Synthetic.1.0.Task",
+            "MessageSeverity": "Critical",
+            "Resolution": "Synthetic recommendation only",
+            "Severity": "Warning",
+            "UserAuthenticationSource": "https://auth.example.invalid",
+            "Username": "synthetic-user",
+            "MessageArgs": [
+              "first",
+              "second",
+              "first"
+            ],
+            "RelatedProperties": [
+              "/Boot/BootNext"
+            ],
+            "ResolutionSteps": [
+              {
+                "ActionURI": "/redfish/v1/MustNotAct",
+                "ResolutionType": "Reset"
+              }
+            ],
+            "Oem": {
+              "Synthetic": true
+            }
+          }
+        ],
+        "Payload": {
+          "HttpOperation": "POST",
+          "TargetUri": "/redfish/v1/MustNotReplay",
+          "HttpHeaders": [
+            "X-Synthetic: never-send"
+          ],
+          "JsonBody": "{}"
+        },
+        "SubTasks": {
+          "@odata.id": "/redfish/v1/TaskTests/Pages/Tasks"
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/TaskTests/Cases/sub_tasks_paged",
+          "/redfish/v1/TaskTests/Pages/Tasks",
+          "/redfish/v1/TaskTests/Pages/Tasks?$skip=1",
+          "/redfish/v1/TaskTests/Objects/T1",
+          "/redfish/v1/TaskTests/Objects/T0"
+        ],
+        "gofish": [
+          "/redfish/v1/TaskTests/Cases/sub_tasks_paged",
+          "/redfish/v1/TaskTests/Pages/Tasks",
+          "/redfish/v1/TaskTests/Pages/Tasks?$skip=1",
+          "/redfish/v1/TaskTests/Objects/T1",
+          "/redfish/v1/TaskTests/Objects/T0"
+        ]
+      },
+      "item_ids": [
+        "schemas::method::*Task.SubTasks"
+      ],
+      "relation": "same_selected_observation"
+    },
+    {
+      "id": "created_resources_order",
+      "kind": "created",
+      "uri": "/redfish/v1/TaskTests/Cases/created_resources_order",
+      "input": {
+        "@odata.id": "/redfish/v1/TaskTests/Cases/created_resources_order",
+        "Id": "created_resources_order",
+        "Name": "Synthetic resource",
+        "EndTime": "2026-11-11T01:00:01Z",
+        "EstimatedDuration": "PT1S",
+        "StartTime": "2026-11-11T01:00:00Z",
+        "TaskMonitor": "/redfish/v1/MustNotMonitor",
+        "TaskState": "Completed",
+        "TaskStatus": "OK",
+        "HidePayload": true,
+        "PercentComplete": 100,
+        "Messages": [
+          {
+            "Message": "Synthetic task report",
+            "MessageId": "Synthetic.1.0.Task",
+            "MessageSeverity": "Critical",
+            "Resolution": "Synthetic recommendation only",
+            "Severity": "Warning",
+            "UserAuthenticationSource": "https://auth.example.invalid",
+            "Username": "synthetic-user",
+            "MessageArgs": [
+              "first",
+              "second",
+              "first"
+            ],
+            "RelatedProperties": [
+              "/Boot/BootNext"
+            ],
+            "ResolutionSteps": [
+              {
+                "ActionURI": "/redfish/v1/MustNotAct",
+                "ResolutionType": "Reset"
+              }
+            ],
+            "Oem": {
+              "Synthetic": true
+            }
+          }
+        ],
+        "Payload": {
+          "HttpOperation": "POST",
+          "TargetUri": "/redfish/v1/MustNotReplay",
+          "HttpHeaders": [
+            "X-Synthetic: never-send"
+          ],
+          "JsonBody": "{}"
+        },
+        "Links": {
+          "CreatedResources": [
+            {
+              "@odata.id": "/redfish/v1/TaskTests/Objects/E1"
+            },
+            {
+              "@odata.id": "/redfish/v1/TaskTests/Objects/E0"
+            }
+          ]
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/TaskTests/Cases/created_resources_order",
+          "/redfish/v1/TaskTests/Objects/E1",
+          "/redfish/v1/TaskTests/Objects/E0"
+        ],
+        "gofish": [
+          "/redfish/v1/TaskTests/Cases/created_resources_order",
+          "/redfish/v1/TaskTests/Objects/E1",
+          "/redfish/v1/TaskTests/Objects/E0"
+        ]
+      },
+      "item_ids": [
+        "schemas::method::*Task.CreatedResources"
+      ],
+      "relation": "same_selected_observation"
+    },
+    {
+      "id": "created_duplicates",
+      "kind": "created",
+      "uri": "/redfish/v1/TaskTests/Cases/created_duplicates",
+      "input": {
+        "@odata.id": "/redfish/v1/TaskTests/Cases/created_duplicates",
+        "Id": "created_duplicates",
+        "Name": "Synthetic resource",
+        "EndTime": "2026-11-11T01:00:01Z",
+        "EstimatedDuration": "PT1S",
+        "StartTime": "2026-11-11T01:00:00Z",
+        "TaskMonitor": "/redfish/v1/MustNotMonitor",
+        "TaskState": "Completed",
+        "TaskStatus": "OK",
+        "HidePayload": true,
+        "PercentComplete": 100,
+        "Messages": [
+          {
+            "Message": "Synthetic task report",
+            "MessageId": "Synthetic.1.0.Task",
+            "MessageSeverity": "Critical",
+            "Resolution": "Synthetic recommendation only",
+            "Severity": "Warning",
+            "UserAuthenticationSource": "https://auth.example.invalid",
+            "Username": "synthetic-user",
+            "MessageArgs": [
+              "first",
+              "second",
+              "first"
+            ],
+            "RelatedProperties": [
+              "/Boot/BootNext"
+            ],
+            "ResolutionSteps": [
+              {
+                "ActionURI": "/redfish/v1/MustNotAct",
+                "ResolutionType": "Reset"
+              }
+            ],
+            "Oem": {
+              "Synthetic": true
+            }
+          }
+        ],
+        "Payload": {
+          "HttpOperation": "POST",
+          "TargetUri": "/redfish/v1/MustNotReplay",
+          "HttpHeaders": [
+            "X-Synthetic: never-send"
+          ],
+          "JsonBody": "{}"
+        },
+        "Links": {
+          "CreatedResources": [
+            {
+              "@odata.id": "/redfish/v1/TaskTests/Objects/E0"
+            },
+            {
+              "@odata.id": "/redfish/v1/TaskTests/Objects/E0"
+            }
+          ]
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/TaskTests/Cases/created_duplicates",
+          "/redfish/v1/TaskTests/Objects/E0"
+        ],
+        "gofish": [
+          "/redfish/v1/TaskTests/Cases/created_duplicates",
+          "/redfish/v1/TaskTests/Objects/E0",
+          "/redfish/v1/TaskTests/Objects/E0"
+        ]
+      },
+      "item_ids": [
+        "schemas::method::*Task.CreatedResources"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "service_absent_link",
+      "kind": "task_service",
+      "uri": "/redfish/v1/TaskTests/Cases/service_absent_link",
+      "input": {
+        "@odata.id": "/redfish/v1/TaskTests/Cases/service_absent_link",
+        "Id": "service_absent_link",
+        "Name": "Synthetic resource"
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/TaskTests/Cases/service_absent_link"
+        ],
+        "gofish": [
+          "/redfish/v1/TaskTests/Cases/service_absent_link"
+        ]
+      },
+      "item_ids": [
+        ".::method::*Service.Tasks"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "service_null_link",
+      "kind": "task_service",
+      "uri": "/redfish/v1/TaskTests/Cases/service_null_link",
+      "input": {
+        "@odata.id": "/redfish/v1/TaskTests/Cases/service_null_link",
+        "Id": "service_null_link",
+        "Name": "Synthetic resource",
+        "Tasks": null
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/TaskTests/Cases/service_null_link"
+        ],
+        "gofish": [
+          "/redfish/v1/TaskTests/Cases/service_null_link"
+        ]
+      },
+      "item_ids": [
+        ".::method::*Service.Tasks"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "tasks_absent_link",
+      "kind": "tasks",
+      "uri": "/redfish/v1/TaskTests/Cases/tasks_absent_link",
+      "input": {
+        "@odata.id": "/redfish/v1/TaskTests/Cases/tasks_absent_link",
+        "Id": "tasks_absent_link",
+        "Name": "Synthetic resource",
+        "CompletedTaskOverWritePolicy": "Oldest",
+        "DateTime": "2026-11-11T01:00:00Z",
+        "LifeCycleEventOnTaskStateChange": true,
+        "ServiceEnabled": false,
+        "TaskAutoDeleteTimeoutMinutes": 0,
+        "TaskMonitorAutoExpirySeconds": 60,
+        "Status": {
+          "State": "Enabled",
+          "Health": "OK",
+          "HealthRollup": "Warning"
+        },
+        "Actions": {
+          "#TaskService.DeleteAllCompletedTasks": {
+            "target": "/redfish/v1/MustNotDelete"
+          }
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/TaskTests/Cases/tasks_absent_link"
+        ],
+        "gofish": [
+          "/redfish/v1/TaskTests/Cases/tasks_absent_link"
+        ]
+      },
+      "item_ids": [
+        "schemas::method::*TaskService.Tasks"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "sub_tasks_null_link",
+      "kind": "sub_tasks",
+      "uri": "/redfish/v1/TaskTests/Cases/sub_tasks_null_link",
+      "input": {
+        "@odata.id": "/redfish/v1/TaskTests/Cases/sub_tasks_null_link",
+        "Id": "sub_tasks_null_link",
+        "Name": "Synthetic resource",
+        "EndTime": "2026-11-11T01:00:01Z",
+        "EstimatedDuration": "PT1S",
+        "StartTime": "2026-11-11T01:00:00Z",
+        "TaskMonitor": "/redfish/v1/MustNotMonitor",
+        "TaskState": "Completed",
+        "TaskStatus": "OK",
+        "HidePayload": true,
+        "PercentComplete": 100,
+        "Messages": [
+          {
+            "Message": "Synthetic task report",
+            "MessageId": "Synthetic.1.0.Task",
+            "MessageSeverity": "Critical",
+            "Resolution": "Synthetic recommendation only",
+            "Severity": "Warning",
+            "UserAuthenticationSource": "https://auth.example.invalid",
+            "Username": "synthetic-user",
+            "MessageArgs": [
+              "first",
+              "second",
+              "first"
+            ],
+            "RelatedProperties": [
+              "/Boot/BootNext"
+            ],
+            "ResolutionSteps": [
+              {
+                "ActionURI": "/redfish/v1/MustNotAct",
+                "ResolutionType": "Reset"
+              }
+            ],
+            "Oem": {
+              "Synthetic": true
+            }
+          }
+        ],
+        "Payload": {
+          "HttpOperation": "POST",
+          "TargetUri": "/redfish/v1/MustNotReplay",
+          "HttpHeaders": [
+            "X-Synthetic: never-send"
+          ],
+          "JsonBody": "{}"
+        },
+        "SubTasks": null
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/TaskTests/Cases/sub_tasks_null_link"
+        ],
+        "gofish": [
+          "/redfish/v1/TaskTests/Cases/sub_tasks_null_link"
+        ]
+      },
+      "item_ids": [
+        "schemas::method::*Task.SubTasks"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "created_null_links",
+      "kind": "created",
+      "uri": "/redfish/v1/TaskTests/Cases/created_null_links",
+      "input": {
+        "@odata.id": "/redfish/v1/TaskTests/Cases/created_null_links",
+        "Id": "created_null_links",
+        "Name": "Synthetic resource",
+        "EndTime": "2026-11-11T01:00:01Z",
+        "EstimatedDuration": "PT1S",
+        "StartTime": "2026-11-11T01:00:00Z",
+        "TaskMonitor": "/redfish/v1/MustNotMonitor",
+        "TaskState": "Completed",
+        "TaskStatus": "OK",
+        "HidePayload": true,
+        "PercentComplete": 100,
+        "Messages": [
+          {
+            "Message": "Synthetic task report",
+            "MessageId": "Synthetic.1.0.Task",
+            "MessageSeverity": "Critical",
+            "Resolution": "Synthetic recommendation only",
+            "Severity": "Warning",
+            "UserAuthenticationSource": "https://auth.example.invalid",
+            "Username": "synthetic-user",
+            "MessageArgs": [
+              "first",
+              "second",
+              "first"
+            ],
+            "RelatedProperties": [
+              "/Boot/BootNext"
+            ],
+            "ResolutionSteps": [
+              {
+                "ActionURI": "/redfish/v1/MustNotAct",
+                "ResolutionType": "Reset"
+              }
+            ],
+            "Oem": {
+              "Synthetic": true
+            }
+          }
+        ],
+        "Payload": {
+          "HttpOperation": "POST",
+          "TargetUri": "/redfish/v1/MustNotReplay",
+          "HttpHeaders": [
+            "X-Synthetic: never-send"
+          ],
+          "JsonBody": "{}"
+        },
+        "Links": null
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/TaskTests/Cases/created_null_links"
+        ],
+        "gofish": [
+          "/redfish/v1/TaskTests/Cases/created_null_links"
+        ]
+      },
+      "item_ids": [
+        "schemas::method::*Task.CreatedResources"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "created_empty",
+      "kind": "created",
+      "uri": "/redfish/v1/TaskTests/Cases/created_empty",
+      "input": {
+        "@odata.id": "/redfish/v1/TaskTests/Cases/created_empty",
+        "Id": "created_empty",
+        "Name": "Synthetic resource",
+        "EndTime": "2026-11-11T01:00:01Z",
+        "EstimatedDuration": "PT1S",
+        "StartTime": "2026-11-11T01:00:00Z",
+        "TaskMonitor": "/redfish/v1/MustNotMonitor",
+        "TaskState": "Completed",
+        "TaskStatus": "OK",
+        "HidePayload": true,
+        "PercentComplete": 100,
+        "Messages": [
+          {
+            "Message": "Synthetic task report",
+            "MessageId": "Synthetic.1.0.Task",
+            "MessageSeverity": "Critical",
+            "Resolution": "Synthetic recommendation only",
+            "Severity": "Warning",
+            "UserAuthenticationSource": "https://auth.example.invalid",
+            "Username": "synthetic-user",
+            "MessageArgs": [
+              "first",
+              "second",
+              "first"
+            ],
+            "RelatedProperties": [
+              "/Boot/BootNext"
+            ],
+            "ResolutionSteps": [
+              {
+                "ActionURI": "/redfish/v1/MustNotAct",
+                "ResolutionType": "Reset"
+              }
+            ],
+            "Oem": {
+              "Synthetic": true
+            }
+          }
+        ],
+        "Payload": {
+          "HttpOperation": "POST",
+          "TargetUri": "/redfish/v1/MustNotReplay",
+          "HttpHeaders": [
+            "X-Synthetic: never-send"
+          ],
+          "JsonBody": "{}"
+        },
+        "Links": {
+          "CreatedResources": []
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/TaskTests/Cases/created_empty"
+        ],
+        "gofish": [
+          "/redfish/v1/TaskTests/Cases/created_empty"
+        ]
+      },
+      "item_ids": [
+        "schemas::method::*Task.CreatedResources"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "tasks_denied_member",
+      "kind": "tasks",
+      "uri": "/redfish/v1/TaskTests/Cases/tasks_denied_member",
+      "input": {
+        "@odata.id": "/redfish/v1/TaskTests/Cases/tasks_denied_member",
+        "Id": "tasks_denied_member",
+        "Name": "Synthetic resource",
+        "CompletedTaskOverWritePolicy": "Oldest",
+        "DateTime": "2026-11-11T01:00:00Z",
+        "LifeCycleEventOnTaskStateChange": true,
+        "ServiceEnabled": false,
+        "TaskAutoDeleteTimeoutMinutes": 0,
+        "TaskMonitorAutoExpirySeconds": 60,
+        "Status": {
+          "State": "Enabled",
+          "Health": "OK",
+          "HealthRollup": "Warning"
+        },
+        "Actions": {
+          "#TaskService.DeleteAllCompletedTasks": {
+            "target": "/redfish/v1/MustNotDelete"
+          }
+        },
+        "Tasks": {
+          "@odata.id": "/redfish/v1/TaskTests/Pages/Partial"
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/TaskTests/Cases/tasks_denied_member",
+          "/redfish/v1/TaskTests/Pages/Partial",
+          "/redfish/v1/TaskTests/Objects/T0",
+          "/redfish/v1/TaskTests/Denied"
+        ],
+        "gofish": [
+          "/redfish/v1/TaskTests/Cases/tasks_denied_member",
+          "/redfish/v1/TaskTests/Pages/Partial",
+          "/redfish/v1/TaskTests/Objects/T0",
+          "/redfish/v1/TaskTests/Denied"
+        ]
+      },
+      "item_ids": [
+        "schemas::method::*TaskService.Tasks"
+      ],
+      "relation": "known_difference"
+    },
+    {
+      "id": "created_invalid_later_path",
+      "kind": "created",
+      "uri": "/redfish/v1/TaskTests/Cases/created_invalid_later_path",
+      "input": {
+        "@odata.id": "/redfish/v1/TaskTests/Cases/created_invalid_later_path",
+        "Id": "created_invalid_later_path",
+        "Name": "Synthetic resource",
+        "EndTime": "2026-11-11T01:00:01Z",
+        "EstimatedDuration": "PT1S",
+        "StartTime": "2026-11-11T01:00:00Z",
+        "TaskMonitor": "/redfish/v1/MustNotMonitor",
+        "TaskState": "Completed",
+        "TaskStatus": "OK",
+        "HidePayload": true,
+        "PercentComplete": 100,
+        "Messages": [
+          {
+            "Message": "Synthetic task report",
+            "MessageId": "Synthetic.1.0.Task",
+            "MessageSeverity": "Critical",
+            "Resolution": "Synthetic recommendation only",
+            "Severity": "Warning",
+            "UserAuthenticationSource": "https://auth.example.invalid",
+            "Username": "synthetic-user",
+            "MessageArgs": [
+              "first",
+              "second",
+              "first"
+            ],
+            "RelatedProperties": [
+              "/Boot/BootNext"
+            ],
+            "ResolutionSteps": [
+              {
+                "ActionURI": "/redfish/v1/MustNotAct",
+                "ResolutionType": "Reset"
+              }
+            ],
+            "Oem": {
+              "Synthetic": true
+            }
+          }
+        ],
+        "Payload": {
+          "HttpOperation": "POST",
+          "TargetUri": "/redfish/v1/MustNotReplay",
+          "HttpHeaders": [
+            "X-Synthetic: never-send"
+          ],
+          "JsonBody": "{}"
+        },
+        "Links": {
+          "CreatedResources": [
+            {
+              "@odata.id": "/redfish/v1/TaskTests/Objects/E0"
+            },
+            {
+              "@odata.id": "/outside"
+            }
+          ]
+        }
+      },
+      "gets": {
+        "moonredfish": [
+          "/redfish/v1/TaskTests/Cases/created_invalid_later_path"
+        ],
+        "gofish": [
+          "/redfish/v1/TaskTests/Cases/created_invalid_later_path",
+          "/redfish/v1/TaskTests/Objects/E0",
+          "/outside"
+        ]
+      },
+      "item_ids": [
+        "schemas::method::*Task.CreatedResources"
+      ],
+      "relation": "known_difference"
+    }
+  ],
+  "adapters": {
+    "moonredfish": {
+      "observations": {
+        "task_full": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "uri": "/redfish/v1/TaskTests/Cases/task_full",
+            "id": "task_full",
+            "fields": {
+              "EndTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:01Z"
+              },
+              "EstimatedDuration": {
+                "state": "value",
+                "value": "PT1S"
+              },
+              "StartTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:00Z"
+              },
+              "TaskMonitor": {
+                "state": "value",
+                "value": "/redfish/v1/MustNotMonitor"
+              },
+              "TaskState": {
+                "state": "value",
+                "value": "Completed"
+              },
+              "TaskStatus": {
+                "state": "value",
+                "value": "OK"
+              },
+              "HidePayload": {
+                "state": "value",
+                "value": true
+              },
+              "PercentComplete": {
+                "state": "value",
+                "value": 100
+              },
+              "Messages": {
+                "state": "value",
+                "value": [
+                  {
+                    "Message": {
+                      "state": "value",
+                      "value": "Synthetic task report"
+                    },
+                    "MessageId": {
+                      "state": "value",
+                      "value": "Synthetic.1.0.Task"
+                    },
+                    "MessageSeverity": {
+                      "state": "value",
+                      "value": "Critical"
+                    },
+                    "Resolution": {
+                      "state": "value",
+                      "value": "Synthetic recommendation only"
+                    },
+                    "Severity": {
+                      "state": "value",
+                      "value": "Warning"
+                    },
+                    "UserAuthenticationSource": {
+                      "state": "value",
+                      "value": "https://auth.example.invalid"
+                    },
+                    "Username": {
+                      "state": "value",
+                      "value": "synthetic-user"
+                    },
+                    "MessageArgs": {
+                      "state": "value",
+                      "value": [
+                        "first",
+                        "second",
+                        "first"
+                      ]
+                    },
+                    "RelatedProperties": {
+                      "state": "value",
+                      "value": [
+                        "/Boot/BootNext"
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "service_full": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "uri": "/redfish/v1/TaskTests/Cases/service_full",
+            "id": "service_full",
+            "fields": {
+              "CompletedTaskOverWritePolicy": {
+                "state": "value",
+                "value": "Oldest"
+              },
+              "DateTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:00Z"
+              },
+              "LifeCycleEventOnTaskStateChange": {
+                "state": "value",
+                "value": true
+              },
+              "ServiceEnabled": {
+                "state": "value",
+                "value": false
+              },
+              "TaskAutoDeleteTimeoutMinutes": {
+                "state": "value",
+                "value": 0
+              },
+              "TaskMonitorAutoExpirySeconds": {
+                "state": "value",
+                "value": 60
+              },
+              "Status": {
+                "state": "value",
+                "value": {
+                  "State": {
+                    "state": "value",
+                    "value": "Enabled"
+                  },
+                  "Health": {
+                    "state": "value",
+                    "value": "OK"
+                  },
+                  "HealthRollup": {
+                    "state": "value",
+                    "value": "Warning"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "task_missing": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "uri": "/redfish/v1/TaskTests/Cases/task_missing",
+            "id": "task_missing",
+            "fields": {
+              "EndTime": {
+                "state": "missing"
+              },
+              "EstimatedDuration": {
+                "state": "missing"
+              },
+              "StartTime": {
+                "state": "missing"
+              },
+              "TaskMonitor": {
+                "state": "missing"
+              },
+              "TaskState": {
+                "state": "missing"
+              },
+              "TaskStatus": {
+                "state": "missing"
+              },
+              "HidePayload": {
+                "state": "missing"
+              },
+              "PercentComplete": {
+                "state": "missing"
+              },
+              "Messages": {
+                "state": "missing"
+              }
+            }
+          }
+        },
+        "task_null": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "uri": "/redfish/v1/TaskTests/Cases/task_null",
+            "id": "task_null",
+            "fields": {
+              "EndTime": {
+                "state": "null"
+              },
+              "EstimatedDuration": {
+                "state": "null"
+              },
+              "StartTime": {
+                "state": "null"
+              },
+              "TaskMonitor": {
+                "state": "null"
+              },
+              "TaskState": {
+                "state": "null"
+              },
+              "TaskStatus": {
+                "state": "null"
+              },
+              "HidePayload": {
+                "state": "null"
+              },
+              "PercentComplete": {
+                "state": "null"
+              },
+              "Messages": {
+                "state": "null"
+              }
+            }
+          }
+        },
+        "service_missing": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "uri": "/redfish/v1/TaskTests/Cases/service_missing",
+            "id": "service_missing",
+            "fields": {
+              "CompletedTaskOverWritePolicy": {
+                "state": "missing"
+              },
+              "DateTime": {
+                "state": "missing"
+              },
+              "LifeCycleEventOnTaskStateChange": {
+                "state": "missing"
+              },
+              "ServiceEnabled": {
+                "state": "missing"
+              },
+              "TaskAutoDeleteTimeoutMinutes": {
+                "state": "missing"
+              },
+              "TaskMonitorAutoExpirySeconds": {
+                "state": "missing"
+              },
+              "Status": {
+                "state": "missing"
+              }
+            }
+          }
+        },
+        "service_null": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "uri": "/redfish/v1/TaskTests/Cases/service_null",
+            "id": "service_null",
+            "fields": {
+              "CompletedTaskOverWritePolicy": {
+                "state": "null"
+              },
+              "DateTime": {
+                "state": "null"
+              },
+              "LifeCycleEventOnTaskStateChange": {
+                "state": "null"
+              },
+              "ServiceEnabled": {
+                "state": "null"
+              },
+              "TaskAutoDeleteTimeoutMinutes": {
+                "state": "null"
+              },
+              "TaskMonitorAutoExpirySeconds": {
+                "state": "null"
+              },
+              "Status": {
+                "state": "null"
+              }
+            }
+          }
+        },
+        "messages_empty": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "uri": "/redfish/v1/TaskTests/Cases/messages_empty",
+            "id": "messages_empty",
+            "fields": {
+              "EndTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:01Z"
+              },
+              "EstimatedDuration": {
+                "state": "value",
+                "value": "PT1S"
+              },
+              "StartTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:00Z"
+              },
+              "TaskMonitor": {
+                "state": "value",
+                "value": "/redfish/v1/MustNotMonitor"
+              },
+              "TaskState": {
+                "state": "value",
+                "value": "Completed"
+              },
+              "TaskStatus": {
+                "state": "value",
+                "value": "OK"
+              },
+              "HidePayload": {
+                "state": "value",
+                "value": true
+              },
+              "PercentComplete": {
+                "state": "value",
+                "value": 100
+              },
+              "Messages": {
+                "state": "value",
+                "value": []
+              }
+            }
+          }
+        },
+        "messages_null": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "uri": "/redfish/v1/TaskTests/Cases/messages_null",
+            "id": "messages_null",
+            "fields": {
+              "EndTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:01Z"
+              },
+              "EstimatedDuration": {
+                "state": "value",
+                "value": "PT1S"
+              },
+              "StartTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:00Z"
+              },
+              "TaskMonitor": {
+                "state": "value",
+                "value": "/redfish/v1/MustNotMonitor"
+              },
+              "TaskState": {
+                "state": "value",
+                "value": "Completed"
+              },
+              "TaskStatus": {
+                "state": "value",
+                "value": "OK"
+              },
+              "HidePayload": {
+                "state": "value",
+                "value": true
+              },
+              "PercentComplete": {
+                "state": "value",
+                "value": 100
+              },
+              "Messages": {
+                "state": "null"
+              }
+            }
+          }
+        },
+        "message_empty": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "uri": "/redfish/v1/TaskTests/Cases/message_empty",
+            "id": "message_empty",
+            "fields": {
+              "EndTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:01Z"
+              },
+              "EstimatedDuration": {
+                "state": "value",
+                "value": "PT1S"
+              },
+              "StartTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:00Z"
+              },
+              "TaskMonitor": {
+                "state": "value",
+                "value": "/redfish/v1/MustNotMonitor"
+              },
+              "TaskState": {
+                "state": "value",
+                "value": "Completed"
+              },
+              "TaskStatus": {
+                "state": "value",
+                "value": "OK"
+              },
+              "HidePayload": {
+                "state": "value",
+                "value": true
+              },
+              "PercentComplete": {
+                "state": "value",
+                "value": 100
+              },
+              "Messages": {
+                "state": "value",
+                "value": [
+                  {
+                    "Message": {
+                      "state": "missing"
+                    },
+                    "MessageId": {
+                      "state": "missing"
+                    },
+                    "MessageSeverity": {
+                      "state": "missing"
+                    },
+                    "Resolution": {
+                      "state": "missing"
+                    },
+                    "Severity": {
+                      "state": "missing"
+                    },
+                    "UserAuthenticationSource": {
+                      "state": "missing"
+                    },
+                    "Username": {
+                      "state": "missing"
+                    },
+                    "MessageArgs": {
+                      "state": "missing"
+                    },
+                    "RelatedProperties": {
+                      "state": "missing"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "message_null_member": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "message_args_null_member": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "future_state_and_severity": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "uri": "/redfish/v1/TaskTests/Cases/future_state_and_severity",
+            "id": "future_state_and_severity",
+            "fields": {
+              "EndTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:01Z"
+              },
+              "EstimatedDuration": {
+                "state": "value",
+                "value": "PT1S"
+              },
+              "StartTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:00Z"
+              },
+              "TaskMonitor": {
+                "state": "value",
+                "value": "/redfish/v1/MustNotMonitor"
+              },
+              "TaskState": {
+                "state": "value",
+                "value": "FutureState"
+              },
+              "TaskStatus": {
+                "state": "value",
+                "value": "FutureHealth"
+              },
+              "HidePayload": {
+                "state": "value",
+                "value": true
+              },
+              "PercentComplete": {
+                "state": "value",
+                "value": 100
+              },
+              "Messages": {
+                "state": "value",
+                "value": [
+                  {
+                    "Message": {
+                      "state": "value",
+                      "value": "Synthetic task report"
+                    },
+                    "MessageId": {
+                      "state": "value",
+                      "value": "Synthetic.1.0.Task"
+                    },
+                    "MessageSeverity": {
+                      "state": "value",
+                      "value": "FutureSeverity"
+                    },
+                    "Resolution": {
+                      "state": "value",
+                      "value": "Synthetic recommendation only"
+                    },
+                    "Severity": {
+                      "state": "value",
+                      "value": "Warning"
+                    },
+                    "UserAuthenticationSource": {
+                      "state": "value",
+                      "value": "https://auth.example.invalid"
+                    },
+                    "Username": {
+                      "state": "value",
+                      "value": "synthetic-user"
+                    },
+                    "MessageArgs": {
+                      "state": "value",
+                      "value": [
+                        "first",
+                        "second",
+                        "first"
+                      ]
+                    },
+                    "RelatedProperties": {
+                      "state": "value",
+                      "value": [
+                        "/Boot/BootNext"
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "status_not_inferred_from_messages": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "uri": "/redfish/v1/TaskTests/Cases/status_not_inferred_from_messages",
+            "id": "status_not_inferred_from_messages",
+            "fields": {
+              "EndTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:01Z"
+              },
+              "EstimatedDuration": {
+                "state": "value",
+                "value": "PT1S"
+              },
+              "StartTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:00Z"
+              },
+              "TaskMonitor": {
+                "state": "value",
+                "value": "/redfish/v1/MustNotMonitor"
+              },
+              "TaskState": {
+                "state": "value",
+                "value": "Completed"
+              },
+              "TaskStatus": {
+                "state": "missing"
+              },
+              "HidePayload": {
+                "state": "value",
+                "value": true
+              },
+              "PercentComplete": {
+                "state": "value",
+                "value": 100
+              },
+              "Messages": {
+                "state": "value",
+                "value": [
+                  {
+                    "Message": {
+                      "state": "value",
+                      "value": "Synthetic task report"
+                    },
+                    "MessageId": {
+                      "state": "value",
+                      "value": "Synthetic.1.0.Task"
+                    },
+                    "MessageSeverity": {
+                      "state": "value",
+                      "value": "Critical"
+                    },
+                    "Resolution": {
+                      "state": "value",
+                      "value": "Synthetic recommendation only"
+                    },
+                    "Severity": {
+                      "state": "value",
+                      "value": "Warning"
+                    },
+                    "UserAuthenticationSource": {
+                      "state": "value",
+                      "value": "https://auth.example.invalid"
+                    },
+                    "Username": {
+                      "state": "value",
+                      "value": "synthetic-user"
+                    },
+                    "MessageArgs": {
+                      "state": "value",
+                      "value": [
+                        "first",
+                        "second",
+                        "first"
+                      ]
+                    },
+                    "RelatedProperties": {
+                      "state": "value",
+                      "value": [
+                        "/Boot/BootNext"
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "percent_string": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "percent_negative": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "percent_fraction": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "percent_decimal_integer": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "uri": "/redfish/v1/TaskTests/Cases/percent_decimal_integer",
+            "id": "percent_decimal_integer",
+            "fields": {
+              "EndTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:01Z"
+              },
+              "EstimatedDuration": {
+                "state": "value",
+                "value": "PT1S"
+              },
+              "StartTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:00Z"
+              },
+              "TaskMonitor": {
+                "state": "value",
+                "value": "/redfish/v1/MustNotMonitor"
+              },
+              "TaskState": {
+                "state": "value",
+                "value": "Completed"
+              },
+              "TaskStatus": {
+                "state": "value",
+                "value": "OK"
+              },
+              "HidePayload": {
+                "state": "value",
+                "value": true
+              },
+              "PercentComplete": {
+                "state": "value",
+                "value": 1
+              },
+              "Messages": {
+                "state": "value",
+                "value": [
+                  {
+                    "Message": {
+                      "state": "value",
+                      "value": "Synthetic task report"
+                    },
+                    "MessageId": {
+                      "state": "value",
+                      "value": "Synthetic.1.0.Task"
+                    },
+                    "MessageSeverity": {
+                      "state": "value",
+                      "value": "Critical"
+                    },
+                    "Resolution": {
+                      "state": "value",
+                      "value": "Synthetic recommendation only"
+                    },
+                    "Severity": {
+                      "state": "value",
+                      "value": "Warning"
+                    },
+                    "UserAuthenticationSource": {
+                      "state": "value",
+                      "value": "https://auth.example.invalid"
+                    },
+                    "Username": {
+                      "state": "value",
+                      "value": "synthetic-user"
+                    },
+                    "MessageArgs": {
+                      "state": "value",
+                      "value": [
+                        "first",
+                        "second",
+                        "first"
+                      ]
+                    },
+                    "RelatedProperties": {
+                      "state": "value",
+                      "value": [
+                        "/Boot/BootNext"
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "percent_above_native_range": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "percent_above_schema_range": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "uri": "/redfish/v1/TaskTests/Cases/percent_above_schema_range",
+            "id": "percent_above_schema_range",
+            "fields": {
+              "EndTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:01Z"
+              },
+              "EstimatedDuration": {
+                "state": "value",
+                "value": "PT1S"
+              },
+              "StartTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:00Z"
+              },
+              "TaskMonitor": {
+                "state": "value",
+                "value": "/redfish/v1/MustNotMonitor"
+              },
+              "TaskState": {
+                "state": "value",
+                "value": "Completed"
+              },
+              "TaskStatus": {
+                "state": "value",
+                "value": "OK"
+              },
+              "HidePayload": {
+                "state": "value",
+                "value": true
+              },
+              "PercentComplete": {
+                "state": "value",
+                "value": 101
+              },
+              "Messages": {
+                "state": "value",
+                "value": [
+                  {
+                    "Message": {
+                      "state": "value",
+                      "value": "Synthetic task report"
+                    },
+                    "MessageId": {
+                      "state": "value",
+                      "value": "Synthetic.1.0.Task"
+                    },
+                    "MessageSeverity": {
+                      "state": "value",
+                      "value": "Critical"
+                    },
+                    "Resolution": {
+                      "state": "value",
+                      "value": "Synthetic recommendation only"
+                    },
+                    "Severity": {
+                      "state": "value",
+                      "value": "Warning"
+                    },
+                    "UserAuthenticationSource": {
+                      "state": "value",
+                      "value": "https://auth.example.invalid"
+                    },
+                    "Username": {
+                      "state": "value",
+                      "value": "synthetic-user"
+                    },
+                    "MessageArgs": {
+                      "state": "value",
+                      "value": [
+                        "first",
+                        "second",
+                        "first"
+                      ]
+                    },
+                    "RelatedProperties": {
+                      "state": "value",
+                      "value": [
+                        "/Boot/BootNext"
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "unselected_payload_wrong_type": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "uri": "/redfish/v1/TaskTests/Cases/unselected_payload_wrong_type",
+            "id": "unselected_payload_wrong_type",
+            "fields": {
+              "EndTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:01Z"
+              },
+              "EstimatedDuration": {
+                "state": "value",
+                "value": "PT1S"
+              },
+              "StartTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:00Z"
+              },
+              "TaskMonitor": {
+                "state": "value",
+                "value": "/redfish/v1/MustNotMonitor"
+              },
+              "TaskState": {
+                "state": "value",
+                "value": "Completed"
+              },
+              "TaskStatus": {
+                "state": "value",
+                "value": "OK"
+              },
+              "HidePayload": {
+                "state": "value",
+                "value": true
+              },
+              "PercentComplete": {
+                "state": "value",
+                "value": 100
+              },
+              "Messages": {
+                "state": "value",
+                "value": [
+                  {
+                    "Message": {
+                      "state": "value",
+                      "value": "Synthetic task report"
+                    },
+                    "MessageId": {
+                      "state": "value",
+                      "value": "Synthetic.1.0.Task"
+                    },
+                    "MessageSeverity": {
+                      "state": "value",
+                      "value": "Critical"
+                    },
+                    "Resolution": {
+                      "state": "value",
+                      "value": "Synthetic recommendation only"
+                    },
+                    "Severity": {
+                      "state": "value",
+                      "value": "Warning"
+                    },
+                    "UserAuthenticationSource": {
+                      "state": "value",
+                      "value": "https://auth.example.invalid"
+                    },
+                    "Username": {
+                      "state": "value",
+                      "value": "synthetic-user"
+                    },
+                    "MessageArgs": {
+                      "state": "value",
+                      "value": [
+                        "first",
+                        "second",
+                        "first"
+                      ]
+                    },
+                    "RelatedProperties": {
+                      "state": "value",
+                      "value": [
+                        "/Boot/BootNext"
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "service_wrong_boolean": {
+          "ok": false,
+          "error": "invalid_response",
+          "value": null
+        },
+        "root_task_service": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "value",
+            "value": {
+              "uri": "/redfish/v1/TaskTests/Objects/Service",
+              "id": "Service",
+              "fields": {
+                "CompletedTaskOverWritePolicy": {
+                  "state": "value",
+                  "value": "Oldest"
+                },
+                "DateTime": {
+                  "state": "value",
+                  "value": "2026-11-11T01:00:00Z"
+                },
+                "LifeCycleEventOnTaskStateChange": {
+                  "state": "value",
+                  "value": true
+                },
+                "ServiceEnabled": {
+                  "state": "value",
+                  "value": false
+                },
+                "TaskAutoDeleteTimeoutMinutes": {
+                  "state": "value",
+                  "value": 0
+                },
+                "TaskMonitorAutoExpirySeconds": {
+                  "state": "value",
+                  "value": 60
+                },
+                "Status": {
+                  "state": "value",
+                  "value": {
+                    "State": {
+                      "state": "value",
+                      "value": "Enabled"
+                    },
+                    "Health": {
+                      "state": "value",
+                      "value": "OK"
+                    },
+                    "HealthRollup": {
+                      "state": "value",
+                      "value": "Warning"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "inline_task_service_differs": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "value",
+            "value": {
+              "uri": "/redfish/v1/TaskTests/Objects/Service",
+              "id": "Service",
+              "fields": {
+                "CompletedTaskOverWritePolicy": {
+                  "state": "value",
+                  "value": "Oldest"
+                },
+                "DateTime": {
+                  "state": "value",
+                  "value": "2026-11-11T01:00:00Z"
+                },
+                "LifeCycleEventOnTaskStateChange": {
+                  "state": "value",
+                  "value": true
+                },
+                "ServiceEnabled": {
+                  "state": "value",
+                  "value": false
+                },
+                "TaskAutoDeleteTimeoutMinutes": {
+                  "state": "value",
+                  "value": 0
+                },
+                "TaskMonitorAutoExpirySeconds": {
+                  "state": "value",
+                  "value": 60
+                },
+                "Status": {
+                  "state": "value",
+                  "value": {
+                    "State": {
+                      "state": "value",
+                      "value": "Enabled"
+                    },
+                    "Health": {
+                      "state": "value",
+                      "value": "OK"
+                    },
+                    "HealthRollup": {
+                      "state": "value",
+                      "value": "Warning"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tasks_paged": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "value",
+            "value": [
+              {
+                "uri": "/redfish/v1/TaskTests/Objects/T1",
+                "id": "T1",
+                "fields": {
+                  "EndTime": {
+                    "state": "value",
+                    "value": "2026-11-11T01:00:01Z"
+                  },
+                  "EstimatedDuration": {
+                    "state": "value",
+                    "value": "PT1S"
+                  },
+                  "StartTime": {
+                    "state": "value",
+                    "value": "2026-11-11T01:00:00Z"
+                  },
+                  "TaskMonitor": {
+                    "state": "value",
+                    "value": "/redfish/v1/MustNotMonitor"
+                  },
+                  "TaskState": {
+                    "state": "value",
+                    "value": "Running"
+                  },
+                  "TaskStatus": {
+                    "state": "value",
+                    "value": "OK"
+                  },
+                  "HidePayload": {
+                    "state": "value",
+                    "value": true
+                  },
+                  "PercentComplete": {
+                    "state": "value",
+                    "value": 10
+                  },
+                  "Messages": {
+                    "state": "value",
+                    "value": [
+                      {
+                        "Message": {
+                          "state": "value",
+                          "value": "Synthetic task report"
+                        },
+                        "MessageId": {
+                          "state": "value",
+                          "value": "Synthetic.1.0.Task"
+                        },
+                        "MessageSeverity": {
+                          "state": "value",
+                          "value": "Critical"
+                        },
+                        "Resolution": {
+                          "state": "value",
+                          "value": "Synthetic recommendation only"
+                        },
+                        "Severity": {
+                          "state": "value",
+                          "value": "Warning"
+                        },
+                        "UserAuthenticationSource": {
+                          "state": "value",
+                          "value": "https://auth.example.invalid"
+                        },
+                        "Username": {
+                          "state": "value",
+                          "value": "synthetic-user"
+                        },
+                        "MessageArgs": {
+                          "state": "value",
+                          "value": [
+                            "first",
+                            "second",
+                            "first"
+                          ]
+                        },
+                        "RelatedProperties": {
+                          "state": "value",
+                          "value": [
+                            "/Boot/BootNext"
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "uri": "/redfish/v1/TaskTests/Objects/T0",
+                "id": "T0",
+                "fields": {
+                  "EndTime": {
+                    "state": "value",
+                    "value": "2026-11-11T01:00:01Z"
+                  },
+                  "EstimatedDuration": {
+                    "state": "value",
+                    "value": "PT1S"
+                  },
+                  "StartTime": {
+                    "state": "value",
+                    "value": "2026-11-11T01:00:00Z"
+                  },
+                  "TaskMonitor": {
+                    "state": "value",
+                    "value": "/redfish/v1/MustNotMonitor"
+                  },
+                  "TaskState": {
+                    "state": "value",
+                    "value": "Completed"
+                  },
+                  "TaskStatus": {
+                    "state": "value",
+                    "value": "OK"
+                  },
+                  "HidePayload": {
+                    "state": "value",
+                    "value": true
+                  },
+                  "PercentComplete": {
+                    "state": "value",
+                    "value": 100
+                  },
+                  "Messages": {
+                    "state": "value",
+                    "value": [
+                      {
+                        "Message": {
+                          "state": "value",
+                          "value": "Synthetic task report"
+                        },
+                        "MessageId": {
+                          "state": "value",
+                          "value": "Synthetic.1.0.Task"
+                        },
+                        "MessageSeverity": {
+                          "state": "value",
+                          "value": "Critical"
+                        },
+                        "Resolution": {
+                          "state": "value",
+                          "value": "Synthetic recommendation only"
+                        },
+                        "Severity": {
+                          "state": "value",
+                          "value": "Warning"
+                        },
+                        "UserAuthenticationSource": {
+                          "state": "value",
+                          "value": "https://auth.example.invalid"
+                        },
+                        "Username": {
+                          "state": "value",
+                          "value": "synthetic-user"
+                        },
+                        "MessageArgs": {
+                          "state": "value",
+                          "value": [
+                            "first",
+                            "second",
+                            "first"
+                          ]
+                        },
+                        "RelatedProperties": {
+                          "state": "value",
+                          "value": [
+                            "/Boot/BootNext"
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "sub_tasks_paged": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "value",
+            "value": [
+              {
+                "uri": "/redfish/v1/TaskTests/Objects/T1",
+                "id": "T1",
+                "fields": {
+                  "EndTime": {
+                    "state": "value",
+                    "value": "2026-11-11T01:00:01Z"
+                  },
+                  "EstimatedDuration": {
+                    "state": "value",
+                    "value": "PT1S"
+                  },
+                  "StartTime": {
+                    "state": "value",
+                    "value": "2026-11-11T01:00:00Z"
+                  },
+                  "TaskMonitor": {
+                    "state": "value",
+                    "value": "/redfish/v1/MustNotMonitor"
+                  },
+                  "TaskState": {
+                    "state": "value",
+                    "value": "Running"
+                  },
+                  "TaskStatus": {
+                    "state": "value",
+                    "value": "OK"
+                  },
+                  "HidePayload": {
+                    "state": "value",
+                    "value": true
+                  },
+                  "PercentComplete": {
+                    "state": "value",
+                    "value": 10
+                  },
+                  "Messages": {
+                    "state": "value",
+                    "value": [
+                      {
+                        "Message": {
+                          "state": "value",
+                          "value": "Synthetic task report"
+                        },
+                        "MessageId": {
+                          "state": "value",
+                          "value": "Synthetic.1.0.Task"
+                        },
+                        "MessageSeverity": {
+                          "state": "value",
+                          "value": "Critical"
+                        },
+                        "Resolution": {
+                          "state": "value",
+                          "value": "Synthetic recommendation only"
+                        },
+                        "Severity": {
+                          "state": "value",
+                          "value": "Warning"
+                        },
+                        "UserAuthenticationSource": {
+                          "state": "value",
+                          "value": "https://auth.example.invalid"
+                        },
+                        "Username": {
+                          "state": "value",
+                          "value": "synthetic-user"
+                        },
+                        "MessageArgs": {
+                          "state": "value",
+                          "value": [
+                            "first",
+                            "second",
+                            "first"
+                          ]
+                        },
+                        "RelatedProperties": {
+                          "state": "value",
+                          "value": [
+                            "/Boot/BootNext"
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "uri": "/redfish/v1/TaskTests/Objects/T0",
+                "id": "T0",
+                "fields": {
+                  "EndTime": {
+                    "state": "value",
+                    "value": "2026-11-11T01:00:01Z"
+                  },
+                  "EstimatedDuration": {
+                    "state": "value",
+                    "value": "PT1S"
+                  },
+                  "StartTime": {
+                    "state": "value",
+                    "value": "2026-11-11T01:00:00Z"
+                  },
+                  "TaskMonitor": {
+                    "state": "value",
+                    "value": "/redfish/v1/MustNotMonitor"
+                  },
+                  "TaskState": {
+                    "state": "value",
+                    "value": "Completed"
+                  },
+                  "TaskStatus": {
+                    "state": "value",
+                    "value": "OK"
+                  },
+                  "HidePayload": {
+                    "state": "value",
+                    "value": true
+                  },
+                  "PercentComplete": {
+                    "state": "value",
+                    "value": 100
+                  },
+                  "Messages": {
+                    "state": "value",
+                    "value": [
+                      {
+                        "Message": {
+                          "state": "value",
+                          "value": "Synthetic task report"
+                        },
+                        "MessageId": {
+                          "state": "value",
+                          "value": "Synthetic.1.0.Task"
+                        },
+                        "MessageSeverity": {
+                          "state": "value",
+                          "value": "Critical"
+                        },
+                        "Resolution": {
+                          "state": "value",
+                          "value": "Synthetic recommendation only"
+                        },
+                        "Severity": {
+                          "state": "value",
+                          "value": "Warning"
+                        },
+                        "UserAuthenticationSource": {
+                          "state": "value",
+                          "value": "https://auth.example.invalid"
+                        },
+                        "Username": {
+                          "state": "value",
+                          "value": "synthetic-user"
+                        },
+                        "MessageArgs": {
+                          "state": "value",
+                          "value": [
+                            "first",
+                            "second",
+                            "first"
+                          ]
+                        },
+                        "RelatedProperties": {
+                          "state": "value",
+                          "value": [
+                            "/Boot/BootNext"
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "created_resources_order": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "value",
+            "value": [
+              {
+                "uri": "/redfish/v1/TaskTests/Objects/E1",
+                "id": "E1",
+                "name": "Synthetic resource"
+              },
+              {
+                "uri": "/redfish/v1/TaskTests/Objects/E0",
+                "id": "E0",
+                "name": "Synthetic resource"
+              }
+            ]
+          }
+        },
+        "created_duplicates": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "value",
+            "value": [
+              {
+                "uri": "/redfish/v1/TaskTests/Objects/E0",
+                "id": "E0",
+                "name": "Synthetic resource"
+              }
+            ]
+          }
+        },
+        "service_absent_link": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "missing"
+          }
+        },
+        "service_null_link": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "null"
+          }
+        },
+        "tasks_absent_link": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "missing"
+          }
+        },
+        "sub_tasks_null_link": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "null"
+          }
+        },
+        "created_null_links": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "null"
+          }
+        },
+        "created_empty": {
+          "ok": true,
+          "error": "",
+          "value": {
+            "state": "value",
+            "value": []
+          }
+        },
+        "tasks_denied_member": {
+          "ok": false,
+          "error": "http",
+          "value": null
+        },
+        "created_invalid_later_path": {
+          "ok": false,
+          "error": "invalid_path",
+          "value": null
+        }
+      },
+      "request_sequences": {
+        "startup": [
+          "/redfish/v1/TaskTests"
+        ],
+        "task_full": [
+          "/redfish/v1/TaskTests/Cases/task_full"
+        ],
+        "service_full": [
+          "/redfish/v1/TaskTests/Cases/service_full"
+        ],
+        "task_missing": [
+          "/redfish/v1/TaskTests/Cases/task_missing"
+        ],
+        "task_null": [
+          "/redfish/v1/TaskTests/Cases/task_null"
+        ],
+        "service_missing": [
+          "/redfish/v1/TaskTests/Cases/service_missing"
+        ],
+        "service_null": [
+          "/redfish/v1/TaskTests/Cases/service_null"
+        ],
+        "messages_empty": [
+          "/redfish/v1/TaskTests/Cases/messages_empty"
+        ],
+        "messages_null": [
+          "/redfish/v1/TaskTests/Cases/messages_null"
+        ],
+        "message_empty": [
+          "/redfish/v1/TaskTests/Cases/message_empty"
+        ],
+        "message_null_member": [
+          "/redfish/v1/TaskTests/Cases/message_null_member"
+        ],
+        "message_args_null_member": [
+          "/redfish/v1/TaskTests/Cases/message_args_null_member"
+        ],
+        "future_state_and_severity": [
+          "/redfish/v1/TaskTests/Cases/future_state_and_severity"
+        ],
+        "status_not_inferred_from_messages": [
+          "/redfish/v1/TaskTests/Cases/status_not_inferred_from_messages"
+        ],
+        "percent_string": [
+          "/redfish/v1/TaskTests/Cases/percent_string"
+        ],
+        "percent_negative": [
+          "/redfish/v1/TaskTests/Cases/percent_negative"
+        ],
+        "percent_fraction": [
+          "/redfish/v1/TaskTests/Cases/percent_fraction"
+        ],
+        "percent_decimal_integer": [
+          "/redfish/v1/TaskTests/Cases/percent_decimal_integer"
+        ],
+        "percent_above_native_range": [
+          "/redfish/v1/TaskTests/Cases/percent_above_native_range"
+        ],
+        "percent_above_schema_range": [
+          "/redfish/v1/TaskTests/Cases/percent_above_schema_range"
+        ],
+        "unselected_payload_wrong_type": [
+          "/redfish/v1/TaskTests/Cases/unselected_payload_wrong_type"
+        ],
+        "service_wrong_boolean": [
+          "/redfish/v1/TaskTests/Cases/service_wrong_boolean"
+        ],
+        "root_task_service": [
+          "/redfish/v1/TaskTests/Cases/root_task_service",
+          "/redfish/v1/TaskTests/Objects/Service"
+        ],
+        "inline_task_service_differs": [
+          "/redfish/v1/TaskTests/Cases/inline_task_service_differs",
+          "/redfish/v1/TaskTests/Objects/Service"
+        ],
+        "tasks_paged": [
+          "/redfish/v1/TaskTests/Cases/tasks_paged",
+          "/redfish/v1/TaskTests/Pages/Tasks",
+          "/redfish/v1/TaskTests/Pages/Tasks?$skip=1",
+          "/redfish/v1/TaskTests/Objects/T1",
+          "/redfish/v1/TaskTests/Objects/T0"
+        ],
+        "sub_tasks_paged": [
+          "/redfish/v1/TaskTests/Cases/sub_tasks_paged",
+          "/redfish/v1/TaskTests/Pages/Tasks",
+          "/redfish/v1/TaskTests/Pages/Tasks?$skip=1",
+          "/redfish/v1/TaskTests/Objects/T1",
+          "/redfish/v1/TaskTests/Objects/T0"
+        ],
+        "created_resources_order": [
+          "/redfish/v1/TaskTests/Cases/created_resources_order",
+          "/redfish/v1/TaskTests/Objects/E1",
+          "/redfish/v1/TaskTests/Objects/E0"
+        ],
+        "created_duplicates": [
+          "/redfish/v1/TaskTests/Cases/created_duplicates",
+          "/redfish/v1/TaskTests/Objects/E0"
+        ],
+        "service_absent_link": [
+          "/redfish/v1/TaskTests/Cases/service_absent_link"
+        ],
+        "service_null_link": [
+          "/redfish/v1/TaskTests/Cases/service_null_link"
+        ],
+        "tasks_absent_link": [
+          "/redfish/v1/TaskTests/Cases/tasks_absent_link"
+        ],
+        "sub_tasks_null_link": [
+          "/redfish/v1/TaskTests/Cases/sub_tasks_null_link"
+        ],
+        "created_null_links": [
+          "/redfish/v1/TaskTests/Cases/created_null_links"
+        ],
+        "created_empty": [
+          "/redfish/v1/TaskTests/Cases/created_empty"
+        ],
+        "tasks_denied_member": [
+          "/redfish/v1/TaskTests/Cases/tasks_denied_member",
+          "/redfish/v1/TaskTests/Pages/Partial",
+          "/redfish/v1/TaskTests/Objects/T0",
+          "/redfish/v1/TaskTests/Denied"
+        ],
+        "created_invalid_later_path": [
+          "/redfish/v1/TaskTests/Cases/created_invalid_later_path"
+        ]
+      }
+    },
+    "gofish": {
+      "observations": {
+        "created_duplicates": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": [
+              {
+                "id": "E0",
+                "name": "Synthetic resource",
+                "uri": "/redfish/v1/TaskTests/Objects/E0"
+              },
+              {
+                "id": "E0",
+                "name": "Synthetic resource",
+                "uri": "/redfish/v1/TaskTests/Objects/E0"
+              }
+            ]
+          }
+        },
+        "created_empty": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "nil"
+          }
+        },
+        "created_invalid_later_path": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": [
+              {
+                "id": "E0",
+                "name": "Synthetic resource",
+                "uri": "/redfish/v1/TaskTests/Objects/E0"
+              },
+              {
+                "id": "outside",
+                "name": "Synthetic resource",
+                "uri": "/outside"
+              }
+            ]
+          }
+        },
+        "created_null_links": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "nil"
+          }
+        },
+        "created_resources_order": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": [
+              {
+                "id": "E1",
+                "name": "Synthetic resource",
+                "uri": "/redfish/v1/TaskTests/Objects/E1"
+              },
+              {
+                "id": "E0",
+                "name": "Synthetic resource",
+                "uri": "/redfish/v1/TaskTests/Objects/E0"
+              }
+            ]
+          }
+        },
+        "future_state_and_severity": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "fields": {
+              "EndTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:01Z"
+              },
+              "EstimatedDuration": {
+                "state": "value",
+                "value": "PT1S"
+              },
+              "HidePayload": {
+                "state": "value",
+                "value": true
+              },
+              "Messages": {
+                "state": "value",
+                "value": [
+                  {
+                    "Message": {
+                      "state": "value",
+                      "value": "Synthetic task report"
+                    },
+                    "MessageArgs": {
+                      "state": "value",
+                      "value": [
+                        "first",
+                        "second",
+                        "first"
+                      ]
+                    },
+                    "MessageId": {
+                      "state": "value",
+                      "value": "Synthetic.1.0.Task"
+                    },
+                    "MessageSeverity": {
+                      "state": "value",
+                      "value": "FutureSeverity"
+                    },
+                    "RelatedProperties": {
+                      "state": "value",
+                      "value": [
+                        "/Boot/BootNext"
+                      ]
+                    },
+                    "Resolution": {
+                      "state": "value",
+                      "value": "Synthetic recommendation only"
+                    },
+                    "Severity": {
+                      "state": "value",
+                      "value": "Warning"
+                    },
+                    "UserAuthenticationSource": {
+                      "state": "value",
+                      "value": "https://auth.example.invalid"
+                    },
+                    "Username": {
+                      "state": "value",
+                      "value": "synthetic-user"
+                    }
+                  }
+                ]
+              },
+              "PercentComplete": {
+                "state": "value",
+                "value": 100
+              },
+              "StartTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:00Z"
+              },
+              "TaskMonitor": {
+                "state": "value",
+                "value": "/redfish/v1/MustNotMonitor"
+              },
+              "TaskState": {
+                "state": "value",
+                "value": "FutureState"
+              },
+              "TaskStatus": {
+                "state": "value",
+                "value": "FutureHealth"
+              }
+            },
+            "id": "future_state_and_severity",
+            "uri": "/redfish/v1/TaskTests/Cases/future_state_and_severity"
+          }
+        },
+        "inline_task_service_differs": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": {
+              "fields": {
+                "CompletedTaskOverWritePolicy": {
+                  "state": "value",
+                  "value": "Oldest"
+                },
+                "DateTime": {
+                  "state": "value",
+                  "value": "2026-11-11T01:00:00Z"
+                },
+                "LifeCycleEventOnTaskStateChange": {
+                  "state": "value",
+                  "value": true
+                },
+                "ServiceEnabled": {
+                  "state": "value",
+                  "value": true
+                },
+                "Status": {
+                  "state": "value",
+                  "value": {
+                    "Health": {
+                      "state": "value",
+                      "value": "OK"
+                    },
+                    "HealthRollup": {
+                      "state": "value",
+                      "value": "Warning"
+                    },
+                    "State": {
+                      "state": "value",
+                      "value": "Enabled"
+                    }
+                  }
+                },
+                "TaskAutoDeleteTimeoutMinutes": {
+                  "state": "value",
+                  "value": 0
+                },
+                "TaskMonitorAutoExpirySeconds": {
+                  "state": "value",
+                  "value": 60
+                }
+              },
+              "id": "Service",
+              "uri": "/redfish/v1/TaskTests/Objects/Service"
+            }
+          }
+        },
+        "message_args_null_member": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "fields": {
+              "EndTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:01Z"
+              },
+              "EstimatedDuration": {
+                "state": "value",
+                "value": "PT1S"
+              },
+              "HidePayload": {
+                "state": "value",
+                "value": true
+              },
+              "Messages": {
+                "state": "value",
+                "value": [
+                  {
+                    "Message": {
+                      "state": "value",
+                      "value": "Synthetic task report"
+                    },
+                    "MessageArgs": {
+                      "state": "value",
+                      "value": [
+                        ""
+                      ]
+                    },
+                    "MessageId": {
+                      "state": "value",
+                      "value": "Synthetic.1.0.Task"
+                    },
+                    "MessageSeverity": {
+                      "state": "value",
+                      "value": "Critical"
+                    },
+                    "RelatedProperties": {
+                      "state": "value",
+                      "value": [
+                        "/Boot/BootNext"
+                      ]
+                    },
+                    "Resolution": {
+                      "state": "value",
+                      "value": "Synthetic recommendation only"
+                    },
+                    "Severity": {
+                      "state": "value",
+                      "value": "Warning"
+                    },
+                    "UserAuthenticationSource": {
+                      "state": "value",
+                      "value": "https://auth.example.invalid"
+                    },
+                    "Username": {
+                      "state": "value",
+                      "value": "synthetic-user"
+                    }
+                  }
+                ]
+              },
+              "PercentComplete": {
+                "state": "value",
+                "value": 100
+              },
+              "StartTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:00Z"
+              },
+              "TaskMonitor": {
+                "state": "value",
+                "value": "/redfish/v1/MustNotMonitor"
+              },
+              "TaskState": {
+                "state": "value",
+                "value": "Completed"
+              },
+              "TaskStatus": {
+                "state": "value",
+                "value": "OK"
+              }
+            },
+            "id": "message_args_null_member",
+            "uri": "/redfish/v1/TaskTests/Cases/message_args_null_member"
+          }
+        },
+        "message_empty": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "fields": {
+              "EndTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:01Z"
+              },
+              "EstimatedDuration": {
+                "state": "value",
+                "value": "PT1S"
+              },
+              "HidePayload": {
+                "state": "value",
+                "value": true
+              },
+              "Messages": {
+                "state": "value",
+                "value": [
+                  {
+                    "Message": {
+                      "state": "value",
+                      "value": ""
+                    },
+                    "MessageArgs": {
+                      "state": "nil"
+                    },
+                    "MessageId": {
+                      "state": "value",
+                      "value": ""
+                    },
+                    "MessageSeverity": {
+                      "state": "value",
+                      "value": ""
+                    },
+                    "RelatedProperties": {
+                      "state": "nil"
+                    },
+                    "Resolution": {
+                      "state": "value",
+                      "value": ""
+                    },
+                    "Severity": {
+                      "state": "value",
+                      "value": ""
+                    },
+                    "UserAuthenticationSource": {
+                      "state": "value",
+                      "value": ""
+                    },
+                    "Username": {
+                      "state": "value",
+                      "value": ""
+                    }
+                  }
+                ]
+              },
+              "PercentComplete": {
+                "state": "value",
+                "value": 100
+              },
+              "StartTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:00Z"
+              },
+              "TaskMonitor": {
+                "state": "value",
+                "value": "/redfish/v1/MustNotMonitor"
+              },
+              "TaskState": {
+                "state": "value",
+                "value": "Completed"
+              },
+              "TaskStatus": {
+                "state": "value",
+                "value": "OK"
+              }
+            },
+            "id": "message_empty",
+            "uri": "/redfish/v1/TaskTests/Cases/message_empty"
+          }
+        },
+        "message_null_member": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "fields": {
+              "EndTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:01Z"
+              },
+              "EstimatedDuration": {
+                "state": "value",
+                "value": "PT1S"
+              },
+              "HidePayload": {
+                "state": "value",
+                "value": true
+              },
+              "Messages": {
+                "state": "value",
+                "value": [
+                  {
+                    "Message": {
+                      "state": "value",
+                      "value": ""
+                    },
+                    "MessageArgs": {
+                      "state": "nil"
+                    },
+                    "MessageId": {
+                      "state": "value",
+                      "value": ""
+                    },
+                    "MessageSeverity": {
+                      "state": "value",
+                      "value": ""
+                    },
+                    "RelatedProperties": {
+                      "state": "nil"
+                    },
+                    "Resolution": {
+                      "state": "value",
+                      "value": ""
+                    },
+                    "Severity": {
+                      "state": "value",
+                      "value": ""
+                    },
+                    "UserAuthenticationSource": {
+                      "state": "value",
+                      "value": ""
+                    },
+                    "Username": {
+                      "state": "value",
+                      "value": ""
+                    }
+                  }
+                ]
+              },
+              "PercentComplete": {
+                "state": "value",
+                "value": 100
+              },
+              "StartTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:00Z"
+              },
+              "TaskMonitor": {
+                "state": "value",
+                "value": "/redfish/v1/MustNotMonitor"
+              },
+              "TaskState": {
+                "state": "value",
+                "value": "Completed"
+              },
+              "TaskStatus": {
+                "state": "value",
+                "value": "OK"
+              }
+            },
+            "id": "message_null_member",
+            "uri": "/redfish/v1/TaskTests/Cases/message_null_member"
+          }
+        },
+        "messages_empty": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "fields": {
+              "EndTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:01Z"
+              },
+              "EstimatedDuration": {
+                "state": "value",
+                "value": "PT1S"
+              },
+              "HidePayload": {
+                "state": "value",
+                "value": true
+              },
+              "Messages": {
+                "state": "value",
+                "value": []
+              },
+              "PercentComplete": {
+                "state": "value",
+                "value": 100
+              },
+              "StartTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:00Z"
+              },
+              "TaskMonitor": {
+                "state": "value",
+                "value": "/redfish/v1/MustNotMonitor"
+              },
+              "TaskState": {
+                "state": "value",
+                "value": "Completed"
+              },
+              "TaskStatus": {
+                "state": "value",
+                "value": "OK"
+              }
+            },
+            "id": "messages_empty",
+            "uri": "/redfish/v1/TaskTests/Cases/messages_empty"
+          }
+        },
+        "messages_null": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "fields": {
+              "EndTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:01Z"
+              },
+              "EstimatedDuration": {
+                "state": "value",
+                "value": "PT1S"
+              },
+              "HidePayload": {
+                "state": "value",
+                "value": true
+              },
+              "Messages": {
+                "state": "nil"
+              },
+              "PercentComplete": {
+                "state": "value",
+                "value": 100
+              },
+              "StartTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:00Z"
+              },
+              "TaskMonitor": {
+                "state": "value",
+                "value": "/redfish/v1/MustNotMonitor"
+              },
+              "TaskState": {
+                "state": "value",
+                "value": "Completed"
+              },
+              "TaskStatus": {
+                "state": "value",
+                "value": "OK"
+              }
+            },
+            "id": "messages_null",
+            "uri": "/redfish/v1/TaskTests/Cases/messages_null"
+          }
+        },
+        "percent_above_native_range": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "fields": {
+              "EndTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:01Z"
+              },
+              "EstimatedDuration": {
+                "state": "value",
+                "value": "PT1S"
+              },
+              "HidePayload": {
+                "state": "value",
+                "value": true
+              },
+              "Messages": {
+                "state": "value",
+                "value": [
+                  {
+                    "Message": {
+                      "state": "value",
+                      "value": "Synthetic task report"
+                    },
+                    "MessageArgs": {
+                      "state": "value",
+                      "value": [
+                        "first",
+                        "second",
+                        "first"
+                      ]
+                    },
+                    "MessageId": {
+                      "state": "value",
+                      "value": "Synthetic.1.0.Task"
+                    },
+                    "MessageSeverity": {
+                      "state": "value",
+                      "value": "Critical"
+                    },
+                    "RelatedProperties": {
+                      "state": "value",
+                      "value": [
+                        "/Boot/BootNext"
+                      ]
+                    },
+                    "Resolution": {
+                      "state": "value",
+                      "value": "Synthetic recommendation only"
+                    },
+                    "Severity": {
+                      "state": "value",
+                      "value": "Warning"
+                    },
+                    "UserAuthenticationSource": {
+                      "state": "value",
+                      "value": "https://auth.example.invalid"
+                    },
+                    "Username": {
+                      "state": "value",
+                      "value": "synthetic-user"
+                    }
+                  }
+                ]
+              },
+              "PercentComplete": {
+                "state": "value",
+                "value": 2147483648
+              },
+              "StartTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:00Z"
+              },
+              "TaskMonitor": {
+                "state": "value",
+                "value": "/redfish/v1/MustNotMonitor"
+              },
+              "TaskState": {
+                "state": "value",
+                "value": "Completed"
+              },
+              "TaskStatus": {
+                "state": "value",
+                "value": "OK"
+              }
+            },
+            "id": "percent_above_native_range",
+            "uri": "/redfish/v1/TaskTests/Cases/percent_above_native_range"
+          }
+        },
+        "percent_above_schema_range": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "fields": {
+              "EndTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:01Z"
+              },
+              "EstimatedDuration": {
+                "state": "value",
+                "value": "PT1S"
+              },
+              "HidePayload": {
+                "state": "value",
+                "value": true
+              },
+              "Messages": {
+                "state": "value",
+                "value": [
+                  {
+                    "Message": {
+                      "state": "value",
+                      "value": "Synthetic task report"
+                    },
+                    "MessageArgs": {
+                      "state": "value",
+                      "value": [
+                        "first",
+                        "second",
+                        "first"
+                      ]
+                    },
+                    "MessageId": {
+                      "state": "value",
+                      "value": "Synthetic.1.0.Task"
+                    },
+                    "MessageSeverity": {
+                      "state": "value",
+                      "value": "Critical"
+                    },
+                    "RelatedProperties": {
+                      "state": "value",
+                      "value": [
+                        "/Boot/BootNext"
+                      ]
+                    },
+                    "Resolution": {
+                      "state": "value",
+                      "value": "Synthetic recommendation only"
+                    },
+                    "Severity": {
+                      "state": "value",
+                      "value": "Warning"
+                    },
+                    "UserAuthenticationSource": {
+                      "state": "value",
+                      "value": "https://auth.example.invalid"
+                    },
+                    "Username": {
+                      "state": "value",
+                      "value": "synthetic-user"
+                    }
+                  }
+                ]
+              },
+              "PercentComplete": {
+                "state": "value",
+                "value": 101
+              },
+              "StartTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:00Z"
+              },
+              "TaskMonitor": {
+                "state": "value",
+                "value": "/redfish/v1/MustNotMonitor"
+              },
+              "TaskState": {
+                "state": "value",
+                "value": "Completed"
+              },
+              "TaskStatus": {
+                "state": "value",
+                "value": "OK"
+              }
+            },
+            "id": "percent_above_schema_range",
+            "uri": "/redfish/v1/TaskTests/Cases/percent_above_schema_range"
+          }
+        },
+        "percent_decimal_integer": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "percent_fraction": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "percent_negative": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "percent_string": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "root_task_service": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": {
+              "fields": {
+                "CompletedTaskOverWritePolicy": {
+                  "state": "value",
+                  "value": "Oldest"
+                },
+                "DateTime": {
+                  "state": "value",
+                  "value": "2026-11-11T01:00:00Z"
+                },
+                "LifeCycleEventOnTaskStateChange": {
+                  "state": "value",
+                  "value": true
+                },
+                "ServiceEnabled": {
+                  "state": "value",
+                  "value": false
+                },
+                "Status": {
+                  "state": "value",
+                  "value": {
+                    "Health": {
+                      "state": "value",
+                      "value": "OK"
+                    },
+                    "HealthRollup": {
+                      "state": "value",
+                      "value": "Warning"
+                    },
+                    "State": {
+                      "state": "value",
+                      "value": "Enabled"
+                    }
+                  }
+                },
+                "TaskAutoDeleteTimeoutMinutes": {
+                  "state": "value",
+                  "value": 0
+                },
+                "TaskMonitorAutoExpirySeconds": {
+                  "state": "value",
+                  "value": 60
+                }
+              },
+              "id": "Service",
+              "uri": "/redfish/v1/TaskTests/Objects/Service"
+            }
+          }
+        },
+        "service_absent_link": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "nil"
+          }
+        },
+        "service_full": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "fields": {
+              "CompletedTaskOverWritePolicy": {
+                "state": "value",
+                "value": "Oldest"
+              },
+              "DateTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:00Z"
+              },
+              "LifeCycleEventOnTaskStateChange": {
+                "state": "value",
+                "value": true
+              },
+              "ServiceEnabled": {
+                "state": "value",
+                "value": false
+              },
+              "Status": {
+                "state": "value",
+                "value": {
+                  "Health": {
+                    "state": "value",
+                    "value": "OK"
+                  },
+                  "HealthRollup": {
+                    "state": "value",
+                    "value": "Warning"
+                  },
+                  "State": {
+                    "state": "value",
+                    "value": "Enabled"
+                  }
+                }
+              },
+              "TaskAutoDeleteTimeoutMinutes": {
+                "state": "value",
+                "value": 0
+              },
+              "TaskMonitorAutoExpirySeconds": {
+                "state": "value",
+                "value": 60
+              }
+            },
+            "id": "service_full",
+            "uri": "/redfish/v1/TaskTests/Cases/service_full"
+          }
+        },
+        "service_missing": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "fields": {
+              "CompletedTaskOverWritePolicy": {
+                "state": "value",
+                "value": ""
+              },
+              "DateTime": {
+                "state": "value",
+                "value": ""
+              },
+              "LifeCycleEventOnTaskStateChange": {
+                "state": "value",
+                "value": false
+              },
+              "ServiceEnabled": {
+                "state": "value",
+                "value": false
+              },
+              "Status": {
+                "state": "value",
+                "value": {
+                  "Health": {
+                    "state": "value",
+                    "value": ""
+                  },
+                  "HealthRollup": {
+                    "state": "value",
+                    "value": ""
+                  },
+                  "State": {
+                    "state": "value",
+                    "value": ""
+                  }
+                }
+              },
+              "TaskAutoDeleteTimeoutMinutes": {
+                "state": "value",
+                "value": 0
+              },
+              "TaskMonitorAutoExpirySeconds": {
+                "state": "nil"
+              }
+            },
+            "id": "service_missing",
+            "uri": "/redfish/v1/TaskTests/Cases/service_missing"
+          }
+        },
+        "service_null": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "fields": {
+              "CompletedTaskOverWritePolicy": {
+                "state": "value",
+                "value": ""
+              },
+              "DateTime": {
+                "state": "value",
+                "value": ""
+              },
+              "LifeCycleEventOnTaskStateChange": {
+                "state": "value",
+                "value": false
+              },
+              "ServiceEnabled": {
+                "state": "value",
+                "value": false
+              },
+              "Status": {
+                "state": "value",
+                "value": {
+                  "Health": {
+                    "state": "value",
+                    "value": ""
+                  },
+                  "HealthRollup": {
+                    "state": "value",
+                    "value": ""
+                  },
+                  "State": {
+                    "state": "value",
+                    "value": ""
+                  }
+                }
+              },
+              "TaskAutoDeleteTimeoutMinutes": {
+                "state": "value",
+                "value": 0
+              },
+              "TaskMonitorAutoExpirySeconds": {
+                "state": "nil"
+              }
+            },
+            "id": "service_null",
+            "uri": "/redfish/v1/TaskTests/Cases/service_null"
+          }
+        },
+        "service_null_link": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "nil"
+          }
+        },
+        "service_wrong_boolean": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        },
+        "status_not_inferred_from_messages": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "fields": {
+              "EndTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:01Z"
+              },
+              "EstimatedDuration": {
+                "state": "value",
+                "value": "PT1S"
+              },
+              "HidePayload": {
+                "state": "value",
+                "value": true
+              },
+              "Messages": {
+                "state": "value",
+                "value": [
+                  {
+                    "Message": {
+                      "state": "value",
+                      "value": "Synthetic task report"
+                    },
+                    "MessageArgs": {
+                      "state": "value",
+                      "value": [
+                        "first",
+                        "second",
+                        "first"
+                      ]
+                    },
+                    "MessageId": {
+                      "state": "value",
+                      "value": "Synthetic.1.0.Task"
+                    },
+                    "MessageSeverity": {
+                      "state": "value",
+                      "value": "Critical"
+                    },
+                    "RelatedProperties": {
+                      "state": "value",
+                      "value": [
+                        "/Boot/BootNext"
+                      ]
+                    },
+                    "Resolution": {
+                      "state": "value",
+                      "value": "Synthetic recommendation only"
+                    },
+                    "Severity": {
+                      "state": "value",
+                      "value": "Warning"
+                    },
+                    "UserAuthenticationSource": {
+                      "state": "value",
+                      "value": "https://auth.example.invalid"
+                    },
+                    "Username": {
+                      "state": "value",
+                      "value": "synthetic-user"
+                    }
+                  }
+                ]
+              },
+              "PercentComplete": {
+                "state": "value",
+                "value": 100
+              },
+              "StartTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:00Z"
+              },
+              "TaskMonitor": {
+                "state": "value",
+                "value": "/redfish/v1/MustNotMonitor"
+              },
+              "TaskState": {
+                "state": "value",
+                "value": "Completed"
+              },
+              "TaskStatus": {
+                "state": "value",
+                "value": ""
+              }
+            },
+            "id": "status_not_inferred_from_messages",
+            "uri": "/redfish/v1/TaskTests/Cases/status_not_inferred_from_messages"
+          }
+        },
+        "sub_tasks_null_link": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "nil"
+          }
+        },
+        "sub_tasks_paged": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": [
+              {
+                "fields": {
+                  "EndTime": {
+                    "state": "value",
+                    "value": "2026-11-11T01:00:01Z"
+                  },
+                  "EstimatedDuration": {
+                    "state": "value",
+                    "value": "PT1S"
+                  },
+                  "HidePayload": {
+                    "state": "value",
+                    "value": true
+                  },
+                  "Messages": {
+                    "state": "value",
+                    "value": [
+                      {
+                        "Message": {
+                          "state": "value",
+                          "value": "Synthetic task report"
+                        },
+                        "MessageArgs": {
+                          "state": "value",
+                          "value": [
+                            "first",
+                            "second",
+                            "first"
+                          ]
+                        },
+                        "MessageId": {
+                          "state": "value",
+                          "value": "Synthetic.1.0.Task"
+                        },
+                        "MessageSeverity": {
+                          "state": "value",
+                          "value": "Critical"
+                        },
+                        "RelatedProperties": {
+                          "state": "value",
+                          "value": [
+                            "/Boot/BootNext"
+                          ]
+                        },
+                        "Resolution": {
+                          "state": "value",
+                          "value": "Synthetic recommendation only"
+                        },
+                        "Severity": {
+                          "state": "value",
+                          "value": "Warning"
+                        },
+                        "UserAuthenticationSource": {
+                          "state": "value",
+                          "value": "https://auth.example.invalid"
+                        },
+                        "Username": {
+                          "state": "value",
+                          "value": "synthetic-user"
+                        }
+                      }
+                    ]
+                  },
+                  "PercentComplete": {
+                    "state": "value",
+                    "value": 10
+                  },
+                  "StartTime": {
+                    "state": "value",
+                    "value": "2026-11-11T01:00:00Z"
+                  },
+                  "TaskMonitor": {
+                    "state": "value",
+                    "value": "/redfish/v1/MustNotMonitor"
+                  },
+                  "TaskState": {
+                    "state": "value",
+                    "value": "Running"
+                  },
+                  "TaskStatus": {
+                    "state": "value",
+                    "value": "OK"
+                  }
+                },
+                "id": "T1",
+                "uri": "/redfish/v1/TaskTests/Objects/T1"
+              },
+              {
+                "fields": {
+                  "EndTime": {
+                    "state": "value",
+                    "value": "2026-11-11T01:00:01Z"
+                  },
+                  "EstimatedDuration": {
+                    "state": "value",
+                    "value": "PT1S"
+                  },
+                  "HidePayload": {
+                    "state": "value",
+                    "value": true
+                  },
+                  "Messages": {
+                    "state": "value",
+                    "value": [
+                      {
+                        "Message": {
+                          "state": "value",
+                          "value": "Synthetic task report"
+                        },
+                        "MessageArgs": {
+                          "state": "value",
+                          "value": [
+                            "first",
+                            "second",
+                            "first"
+                          ]
+                        },
+                        "MessageId": {
+                          "state": "value",
+                          "value": "Synthetic.1.0.Task"
+                        },
+                        "MessageSeverity": {
+                          "state": "value",
+                          "value": "Critical"
+                        },
+                        "RelatedProperties": {
+                          "state": "value",
+                          "value": [
+                            "/Boot/BootNext"
+                          ]
+                        },
+                        "Resolution": {
+                          "state": "value",
+                          "value": "Synthetic recommendation only"
+                        },
+                        "Severity": {
+                          "state": "value",
+                          "value": "Warning"
+                        },
+                        "UserAuthenticationSource": {
+                          "state": "value",
+                          "value": "https://auth.example.invalid"
+                        },
+                        "Username": {
+                          "state": "value",
+                          "value": "synthetic-user"
+                        }
+                      }
+                    ]
+                  },
+                  "PercentComplete": {
+                    "state": "value",
+                    "value": 100
+                  },
+                  "StartTime": {
+                    "state": "value",
+                    "value": "2026-11-11T01:00:00Z"
+                  },
+                  "TaskMonitor": {
+                    "state": "value",
+                    "value": "/redfish/v1/MustNotMonitor"
+                  },
+                  "TaskState": {
+                    "state": "value",
+                    "value": "Completed"
+                  },
+                  "TaskStatus": {
+                    "state": "value",
+                    "value": "OK"
+                  }
+                },
+                "id": "T0",
+                "uri": "/redfish/v1/TaskTests/Objects/T0"
+              }
+            ]
+          }
+        },
+        "task_full": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "fields": {
+              "EndTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:01Z"
+              },
+              "EstimatedDuration": {
+                "state": "value",
+                "value": "PT1S"
+              },
+              "HidePayload": {
+                "state": "value",
+                "value": true
+              },
+              "Messages": {
+                "state": "value",
+                "value": [
+                  {
+                    "Message": {
+                      "state": "value",
+                      "value": "Synthetic task report"
+                    },
+                    "MessageArgs": {
+                      "state": "value",
+                      "value": [
+                        "first",
+                        "second",
+                        "first"
+                      ]
+                    },
+                    "MessageId": {
+                      "state": "value",
+                      "value": "Synthetic.1.0.Task"
+                    },
+                    "MessageSeverity": {
+                      "state": "value",
+                      "value": "Critical"
+                    },
+                    "RelatedProperties": {
+                      "state": "value",
+                      "value": [
+                        "/Boot/BootNext"
+                      ]
+                    },
+                    "Resolution": {
+                      "state": "value",
+                      "value": "Synthetic recommendation only"
+                    },
+                    "Severity": {
+                      "state": "value",
+                      "value": "Warning"
+                    },
+                    "UserAuthenticationSource": {
+                      "state": "value",
+                      "value": "https://auth.example.invalid"
+                    },
+                    "Username": {
+                      "state": "value",
+                      "value": "synthetic-user"
+                    }
+                  }
+                ]
+              },
+              "PercentComplete": {
+                "state": "value",
+                "value": 100
+              },
+              "StartTime": {
+                "state": "value",
+                "value": "2026-11-11T01:00:00Z"
+              },
+              "TaskMonitor": {
+                "state": "value",
+                "value": "/redfish/v1/MustNotMonitor"
+              },
+              "TaskState": {
+                "state": "value",
+                "value": "Completed"
+              },
+              "TaskStatus": {
+                "state": "value",
+                "value": "OK"
+              }
+            },
+            "id": "task_full",
+            "uri": "/redfish/v1/TaskTests/Cases/task_full"
+          }
+        },
+        "task_missing": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "fields": {
+              "EndTime": {
+                "state": "value",
+                "value": ""
+              },
+              "EstimatedDuration": {
+                "state": "value",
+                "value": ""
+              },
+              "HidePayload": {
+                "state": "value",
+                "value": false
+              },
+              "Messages": {
+                "state": "nil"
+              },
+              "PercentComplete": {
+                "state": "nil"
+              },
+              "StartTime": {
+                "state": "value",
+                "value": ""
+              },
+              "TaskMonitor": {
+                "state": "value",
+                "value": ""
+              },
+              "TaskState": {
+                "state": "value",
+                "value": ""
+              },
+              "TaskStatus": {
+                "state": "value",
+                "value": ""
+              }
+            },
+            "id": "task_missing",
+            "uri": "/redfish/v1/TaskTests/Cases/task_missing"
+          }
+        },
+        "task_null": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "fields": {
+              "EndTime": {
+                "state": "value",
+                "value": ""
+              },
+              "EstimatedDuration": {
+                "state": "value",
+                "value": ""
+              },
+              "HidePayload": {
+                "state": "value",
+                "value": false
+              },
+              "Messages": {
+                "state": "nil"
+              },
+              "PercentComplete": {
+                "state": "nil"
+              },
+              "StartTime": {
+                "state": "value",
+                "value": ""
+              },
+              "TaskMonitor": {
+                "state": "value",
+                "value": ""
+              },
+              "TaskState": {
+                "state": "value",
+                "value": ""
+              },
+              "TaskStatus": {
+                "state": "value",
+                "value": ""
+              }
+            },
+            "id": "task_null",
+            "uri": "/redfish/v1/TaskTests/Cases/task_null"
+          }
+        },
+        "tasks_absent_link": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "nil"
+          }
+        },
+        "tasks_denied_member": {
+          "error": "collection",
+          "ok": false,
+          "value": {
+            "state": "value",
+            "value": [
+              {
+                "fields": {
+                  "EndTime": {
+                    "state": "value",
+                    "value": "2026-11-11T01:00:01Z"
+                  },
+                  "EstimatedDuration": {
+                    "state": "value",
+                    "value": "PT1S"
+                  },
+                  "HidePayload": {
+                    "state": "value",
+                    "value": true
+                  },
+                  "Messages": {
+                    "state": "value",
+                    "value": [
+                      {
+                        "Message": {
+                          "state": "value",
+                          "value": "Synthetic task report"
+                        },
+                        "MessageArgs": {
+                          "state": "value",
+                          "value": [
+                            "first",
+                            "second",
+                            "first"
+                          ]
+                        },
+                        "MessageId": {
+                          "state": "value",
+                          "value": "Synthetic.1.0.Task"
+                        },
+                        "MessageSeverity": {
+                          "state": "value",
+                          "value": "Critical"
+                        },
+                        "RelatedProperties": {
+                          "state": "value",
+                          "value": [
+                            "/Boot/BootNext"
+                          ]
+                        },
+                        "Resolution": {
+                          "state": "value",
+                          "value": "Synthetic recommendation only"
+                        },
+                        "Severity": {
+                          "state": "value",
+                          "value": "Warning"
+                        },
+                        "UserAuthenticationSource": {
+                          "state": "value",
+                          "value": "https://auth.example.invalid"
+                        },
+                        "Username": {
+                          "state": "value",
+                          "value": "synthetic-user"
+                        }
+                      }
+                    ]
+                  },
+                  "PercentComplete": {
+                    "state": "value",
+                    "value": 100
+                  },
+                  "StartTime": {
+                    "state": "value",
+                    "value": "2026-11-11T01:00:00Z"
+                  },
+                  "TaskMonitor": {
+                    "state": "value",
+                    "value": "/redfish/v1/MustNotMonitor"
+                  },
+                  "TaskState": {
+                    "state": "value",
+                    "value": "Completed"
+                  },
+                  "TaskStatus": {
+                    "state": "value",
+                    "value": "OK"
+                  }
+                },
+                "id": "T0",
+                "uri": "/redfish/v1/TaskTests/Objects/T0"
+              }
+            ]
+          }
+        },
+        "tasks_paged": {
+          "error": "",
+          "ok": true,
+          "value": {
+            "state": "value",
+            "value": [
+              {
+                "fields": {
+                  "EndTime": {
+                    "state": "value",
+                    "value": "2026-11-11T01:00:01Z"
+                  },
+                  "EstimatedDuration": {
+                    "state": "value",
+                    "value": "PT1S"
+                  },
+                  "HidePayload": {
+                    "state": "value",
+                    "value": true
+                  },
+                  "Messages": {
+                    "state": "value",
+                    "value": [
+                      {
+                        "Message": {
+                          "state": "value",
+                          "value": "Synthetic task report"
+                        },
+                        "MessageArgs": {
+                          "state": "value",
+                          "value": [
+                            "first",
+                            "second",
+                            "first"
+                          ]
+                        },
+                        "MessageId": {
+                          "state": "value",
+                          "value": "Synthetic.1.0.Task"
+                        },
+                        "MessageSeverity": {
+                          "state": "value",
+                          "value": "Critical"
+                        },
+                        "RelatedProperties": {
+                          "state": "value",
+                          "value": [
+                            "/Boot/BootNext"
+                          ]
+                        },
+                        "Resolution": {
+                          "state": "value",
+                          "value": "Synthetic recommendation only"
+                        },
+                        "Severity": {
+                          "state": "value",
+                          "value": "Warning"
+                        },
+                        "UserAuthenticationSource": {
+                          "state": "value",
+                          "value": "https://auth.example.invalid"
+                        },
+                        "Username": {
+                          "state": "value",
+                          "value": "synthetic-user"
+                        }
+                      }
+                    ]
+                  },
+                  "PercentComplete": {
+                    "state": "value",
+                    "value": 10
+                  },
+                  "StartTime": {
+                    "state": "value",
+                    "value": "2026-11-11T01:00:00Z"
+                  },
+                  "TaskMonitor": {
+                    "state": "value",
+                    "value": "/redfish/v1/MustNotMonitor"
+                  },
+                  "TaskState": {
+                    "state": "value",
+                    "value": "Running"
+                  },
+                  "TaskStatus": {
+                    "state": "value",
+                    "value": "OK"
+                  }
+                },
+                "id": "T1",
+                "uri": "/redfish/v1/TaskTests/Objects/T1"
+              },
+              {
+                "fields": {
+                  "EndTime": {
+                    "state": "value",
+                    "value": "2026-11-11T01:00:01Z"
+                  },
+                  "EstimatedDuration": {
+                    "state": "value",
+                    "value": "PT1S"
+                  },
+                  "HidePayload": {
+                    "state": "value",
+                    "value": true
+                  },
+                  "Messages": {
+                    "state": "value",
+                    "value": [
+                      {
+                        "Message": {
+                          "state": "value",
+                          "value": "Synthetic task report"
+                        },
+                        "MessageArgs": {
+                          "state": "value",
+                          "value": [
+                            "first",
+                            "second",
+                            "first"
+                          ]
+                        },
+                        "MessageId": {
+                          "state": "value",
+                          "value": "Synthetic.1.0.Task"
+                        },
+                        "MessageSeverity": {
+                          "state": "value",
+                          "value": "Critical"
+                        },
+                        "RelatedProperties": {
+                          "state": "value",
+                          "value": [
+                            "/Boot/BootNext"
+                          ]
+                        },
+                        "Resolution": {
+                          "state": "value",
+                          "value": "Synthetic recommendation only"
+                        },
+                        "Severity": {
+                          "state": "value",
+                          "value": "Warning"
+                        },
+                        "UserAuthenticationSource": {
+                          "state": "value",
+                          "value": "https://auth.example.invalid"
+                        },
+                        "Username": {
+                          "state": "value",
+                          "value": "synthetic-user"
+                        }
+                      }
+                    ]
+                  },
+                  "PercentComplete": {
+                    "state": "value",
+                    "value": 100
+                  },
+                  "StartTime": {
+                    "state": "value",
+                    "value": "2026-11-11T01:00:00Z"
+                  },
+                  "TaskMonitor": {
+                    "state": "value",
+                    "value": "/redfish/v1/MustNotMonitor"
+                  },
+                  "TaskState": {
+                    "state": "value",
+                    "value": "Completed"
+                  },
+                  "TaskStatus": {
+                    "state": "value",
+                    "value": "OK"
+                  }
+                },
+                "id": "T0",
+                "uri": "/redfish/v1/TaskTests/Objects/T0"
+              }
+            ]
+          }
+        },
+        "unselected_payload_wrong_type": {
+          "error": "json_type",
+          "ok": false,
+          "value": null
+        }
+      },
+      "request_sequences": {
+        "startup": [
+          "/redfish/v1/",
+          "/redfish/v1/TaskTests"
+        ],
+        "task_full": [
+          "/redfish/v1/TaskTests/Cases/task_full"
+        ],
+        "service_full": [
+          "/redfish/v1/TaskTests/Cases/service_full"
+        ],
+        "task_missing": [
+          "/redfish/v1/TaskTests/Cases/task_missing"
+        ],
+        "task_null": [
+          "/redfish/v1/TaskTests/Cases/task_null"
+        ],
+        "service_missing": [
+          "/redfish/v1/TaskTests/Cases/service_missing"
+        ],
+        "service_null": [
+          "/redfish/v1/TaskTests/Cases/service_null"
+        ],
+        "messages_empty": [
+          "/redfish/v1/TaskTests/Cases/messages_empty"
+        ],
+        "messages_null": [
+          "/redfish/v1/TaskTests/Cases/messages_null"
+        ],
+        "message_empty": [
+          "/redfish/v1/TaskTests/Cases/message_empty"
+        ],
+        "message_null_member": [
+          "/redfish/v1/TaskTests/Cases/message_null_member"
+        ],
+        "message_args_null_member": [
+          "/redfish/v1/TaskTests/Cases/message_args_null_member"
+        ],
+        "future_state_and_severity": [
+          "/redfish/v1/TaskTests/Cases/future_state_and_severity"
+        ],
+        "status_not_inferred_from_messages": [
+          "/redfish/v1/TaskTests/Cases/status_not_inferred_from_messages"
+        ],
+        "percent_string": [
+          "/redfish/v1/TaskTests/Cases/percent_string"
+        ],
+        "percent_negative": [
+          "/redfish/v1/TaskTests/Cases/percent_negative"
+        ],
+        "percent_fraction": [
+          "/redfish/v1/TaskTests/Cases/percent_fraction"
+        ],
+        "percent_decimal_integer": [
+          "/redfish/v1/TaskTests/Cases/percent_decimal_integer"
+        ],
+        "percent_above_native_range": [
+          "/redfish/v1/TaskTests/Cases/percent_above_native_range"
+        ],
+        "percent_above_schema_range": [
+          "/redfish/v1/TaskTests/Cases/percent_above_schema_range"
+        ],
+        "unselected_payload_wrong_type": [
+          "/redfish/v1/TaskTests/Cases/unselected_payload_wrong_type"
+        ],
+        "service_wrong_boolean": [
+          "/redfish/v1/TaskTests/Cases/service_wrong_boolean"
+        ],
+        "root_task_service": [
+          "/redfish/v1/TaskTests/Cases/root_task_service",
+          "/redfish/v1/TaskTests/Objects/Service"
+        ],
+        "inline_task_service_differs": [
+          "/redfish/v1/TaskTests/Cases/inline_task_service_differs"
+        ],
+        "tasks_paged": [
+          "/redfish/v1/TaskTests/Cases/tasks_paged",
+          "/redfish/v1/TaskTests/Pages/Tasks",
+          "/redfish/v1/TaskTests/Pages/Tasks?$skip=1",
+          "/redfish/v1/TaskTests/Objects/T1",
+          "/redfish/v1/TaskTests/Objects/T0"
+        ],
+        "sub_tasks_paged": [
+          "/redfish/v1/TaskTests/Cases/sub_tasks_paged",
+          "/redfish/v1/TaskTests/Pages/Tasks",
+          "/redfish/v1/TaskTests/Pages/Tasks?$skip=1",
+          "/redfish/v1/TaskTests/Objects/T0",
+          "/redfish/v1/TaskTests/Objects/T1"
+        ],
+        "created_resources_order": [
+          "/redfish/v1/TaskTests/Cases/created_resources_order",
+          "/redfish/v1/TaskTests/Objects/E1",
+          "/redfish/v1/TaskTests/Objects/E0"
+        ],
+        "created_duplicates": [
+          "/redfish/v1/TaskTests/Cases/created_duplicates",
+          "/redfish/v1/TaskTests/Objects/E0",
+          "/redfish/v1/TaskTests/Objects/E0"
+        ],
+        "service_absent_link": [
+          "/redfish/v1/TaskTests/Cases/service_absent_link"
+        ],
+        "service_null_link": [
+          "/redfish/v1/TaskTests/Cases/service_null_link"
+        ],
+        "tasks_absent_link": [
+          "/redfish/v1/TaskTests/Cases/tasks_absent_link"
+        ],
+        "sub_tasks_null_link": [
+          "/redfish/v1/TaskTests/Cases/sub_tasks_null_link"
+        ],
+        "created_null_links": [
+          "/redfish/v1/TaskTests/Cases/created_null_links"
+        ],
+        "created_empty": [
+          "/redfish/v1/TaskTests/Cases/created_empty"
+        ],
+        "tasks_denied_member": [
+          "/redfish/v1/TaskTests/Cases/tasks_denied_member",
+          "/redfish/v1/TaskTests/Pages/Partial",
+          "/redfish/v1/TaskTests/Denied",
+          "/redfish/v1/TaskTests/Objects/T0"
+        ],
+        "created_invalid_later_path": [
+          "/redfish/v1/TaskTests/Cases/created_invalid_later_path",
+          "/outside",
+          "/redfish/v1/TaskTests/Objects/E0"
+        ]
+      }
+    }
+  },
+  "fixtures_sha256": {
+    "/redfish/v1/": "edb32320f6648d6d9de357a9ac6489c43f3476817c91de7612f6d52ee9c00a9a",
+    "/redfish/v1/TaskTests/Cases/task_full": "923f95265963c1285a89a25000f2adb92168baa0c463b2377adeecf985ffb370",
+    "/redfish/v1/TaskTests/Cases/service_full": "3f05903fe2edc3db77c962de0637f2d29dc2be4cf886085e7bde1de9c428fb2b",
+    "/redfish/v1/TaskTests/Cases/task_missing": "317167cde27064300e30005e89c306c2cccbb2d5565583fa961485e63a4d62ba",
+    "/redfish/v1/TaskTests/Cases/task_null": "716c3476fe1649c07381542e14c8f6527d69f9a4896df7e4a087118208308faa",
+    "/redfish/v1/TaskTests/Cases/service_missing": "648085d808747c613c15d594feb2b1b26d1654e06c26dcb8b60f2b0a302fe2c3",
+    "/redfish/v1/TaskTests/Cases/service_null": "10b5fd1b8580ebc4addcae567a3cf31140f9769a6a6da136783f6305b31e0782",
+    "/redfish/v1/TaskTests/Cases/messages_empty": "8dd6b716fc404fd37739d52d4632f4bfdf97a0c933ee9c52bd1f618ab7dffa92",
+    "/redfish/v1/TaskTests/Cases/messages_null": "c6d32ce8205fbbc53df15ea743b30ea215dbde21bb6cf8c4987668e4cca542e2",
+    "/redfish/v1/TaskTests/Cases/message_empty": "f93ef6c2587db5bb500d7de8652e3b11f027959c8ff1fafb84692a0448725e61",
+    "/redfish/v1/TaskTests/Cases/message_null_member": "2241d62dc4b89820ffe172d18190caab447a9954d5b83428dce45d597d2b733f",
+    "/redfish/v1/TaskTests/Cases/message_args_null_member": "5e5203cdddcf7a95cef556b43f0b639646137d8c926f6e4619a8ee8e724c5740",
+    "/redfish/v1/TaskTests/Cases/future_state_and_severity": "203961ff26a8dc5386a3d023702778b78ee55f122ddc19270c86c6beda1c6aa7",
+    "/redfish/v1/TaskTests/Cases/status_not_inferred_from_messages": "d8c70d8bdeeb6ab4dafa70e4a5661b27430e341cb647cd9b082b2e0ae33a4168",
+    "/redfish/v1/TaskTests/Cases/percent_string": "cca4d1a41e00f694e9f0c7408721927eaf957aa2c87d26cbcc1f3ca39621db15",
+    "/redfish/v1/TaskTests/Cases/percent_negative": "b5e6d68331957dddfcb76d002ab1387c62077ee34ac0427023d6af8e8f821ba2",
+    "/redfish/v1/TaskTests/Cases/percent_fraction": "75d27660f54549f0e761821cb9d48a61fd0a6863ab77866cf9dfbc9922c9a5bb",
+    "/redfish/v1/TaskTests/Cases/percent_decimal_integer": "2501d8274a0a5d6896ed15beb60962f1fc76d7c7d55a38a13eb32bc31e3b9887",
+    "/redfish/v1/TaskTests/Cases/percent_above_native_range": "c9a1a62c0082d11877723432d5a212505d71111c73796c74aacfc1ae2e683687",
+    "/redfish/v1/TaskTests/Cases/percent_above_schema_range": "4fd94bf6f90f43b45432208e3873dbf999ac83406f3cab0fd658f3d3f346376d",
+    "/redfish/v1/TaskTests/Cases/unselected_payload_wrong_type": "db8169101ec49328e278c0cf33dc1f5e054fd7b089c909c0ebb52688f4a7f2dd",
+    "/redfish/v1/TaskTests/Cases/service_wrong_boolean": "b93968a5f147c15c83659a52da10fb1024c0ab1c5fdcffa2171dd13603cc7aaa",
+    "/redfish/v1/TaskTests/Objects/Service": "32ac7691e0ef2d02c77ca375bcab02b2fff5dacb237df1a752fd16ba74d547b7",
+    "/redfish/v1/TaskTests/Objects/T0": "fd424a6d3c37c32b408a94b802843a675904d09a2f0d165b1d30bb86951bb798",
+    "/redfish/v1/TaskTests/Objects/T1": "d6865bb4361babcd1a21011a02b048db1fd3bc9d0dcabfdee67ebc5f28bbcdc3",
+    "/redfish/v1/TaskTests/Objects/E0": "eb4ab11ac4d357b841cdcdac7c1d7a930e5a35ea16516bc659decce2c6405606",
+    "/redfish/v1/TaskTests/Objects/E1": "499a8f95af826f08ad1f73740f532fabd7c5555ff922d0560d2c54e3098c79f2",
+    "/redfish/v1/TaskTests/Cases/root_task_service": "86b23a7d56557c216f2a899f13467806534de511581bddae8353b97b1258c605",
+    "/redfish/v1/TaskTests/Cases/inline_task_service_differs": "b8d36842993f61c5b330fe803528fff110505f6635489aeee7d493fc8930f54c",
+    "/redfish/v1/TaskTests/Pages/Tasks": "8f24b6fb93dde188604c9756678cf49f6fe29f70af6729823f0c9551692cf498",
+    "/redfish/v1/TaskTests/Pages/Tasks?$skip=1": "d7b9625185bc14f504dea1d19374df42737f7be758612406d67914fe7e225282",
+    "/redfish/v1/TaskTests/Cases/tasks_paged": "4044ca83e9105385e326d1ec9e548b04b4ce6130def10c82b774706103145579",
+    "/redfish/v1/TaskTests/Cases/sub_tasks_paged": "db5b63ed1d8ef1b499cda842ac15a83c15cd60164cf16b55bdc3a86baf83ee29",
+    "/redfish/v1/TaskTests/Cases/created_resources_order": "25aabd8225c7d425da4c16922ef6f3de375cbef103d3f7334417627440226784",
+    "/redfish/v1/TaskTests/Cases/created_duplicates": "56ad49bd44b88ac9c9162e8973259d831db0f4c9c31db53f30fb451c85a790f0",
+    "/redfish/v1/TaskTests/Cases/service_absent_link": "33493d6e1e6fb0b4f1e761cf655b897873052286a192bd5b705b0ee30aa5b983",
+    "/redfish/v1/TaskTests/Cases/service_null_link": "90f91d4dad866598e1fadbd6e564a8db51aff970045c3796bdc9f534b6b3e6a5",
+    "/redfish/v1/TaskTests/Cases/tasks_absent_link": "f94f9b4bdc41d16a061830cde194c054570282e5827825884ba67909b314df9b",
+    "/redfish/v1/TaskTests/Cases/sub_tasks_null_link": "1771f25f90b5a5b02950b9ec94d2e7f4c561f48de8cde08a79519eb1184d27af",
+    "/redfish/v1/TaskTests/Cases/created_null_links": "16f39c80c61d9f0aed71a93c330a22e1a3d225ac0f79168f5ce267f34c455d8b",
+    "/redfish/v1/TaskTests/Cases/created_empty": "58c425df0e675934657e9b3f79aaeadc085f25b4a117cc97b5d1aa22031bf906",
+    "/redfish/v1/TaskTests/Denied": "03c7f183f926259354c0a65639c02d5385efebfd630708420dd0793f67ecae55",
+    "/redfish/v1/TaskTests/Pages/Partial": "cbf27c704e960df30fafa841339caf6a341fbee372f060c074e82cf34b26b5d2",
+    "/redfish/v1/TaskTests/Cases/tasks_denied_member": "d4366fcdc275f9fed431b1f92171fadfebea70a91ee57b3fd8577a3e8175b348",
+    "/outside": "7156be75a40bcb9a0b8fe67dc00e3ed86acfbbc7b2a77f09f2d74e7bb9244cda",
+    "/redfish/v1/TaskTests/Cases/created_invalid_later_path": "78c22dcee9eada12bc3092bedfbb827c14e4adb3fdb2caee928d87925961b4ed",
+    "/redfish/v1/TaskTests": "3f68a5dbeb7697eeacf1b5ca3f9eb3c59521cbaa2467e1b59ba3f93b995c5e55"
+  },
+  "source_sha256": {
+    "task_inventory.mbt": "d9583c7f5e4cbd9c2effe8e82814fe87312d6633281b88eee864579d1898156f",
+    "task_links.mbt": "19d4344c0d815904b004c366296a13180e4d47c91db0c2f213bc860834e7b05a",
+    "inventory_fields.mbt": "2a04b44d9ef3dfb9891c6e6584896a3e1c3d9a54d250c0d12f861b663a25e184",
+    "inventory_links.mbt": "5033a1acf1b8c4ed4fa05ae7d71e2e7faf1d92d1f0d7d04ccc8f56dda0fe9aad",
+    "moonredfish.mbt": "58a0ff8bcfcbabe1fdfc7054737488ff12ee117d0090038e7d6751aecebdb272",
+    "examples/compare/task.mbt": "1482a22a503ab8f95c2c9ebe2970dafcd02ca0b0f1c56afb3032028cdfcecc47",
+    "examples/compare/pcie.mbt": "b455ea0853854312d71e4dadce6d27b8ad8f3023eeac1e9cc877407403aa6aee",
+    "examples/compare/main.mbt": "c7dff73506b90398c42903b405356fc1788c39a7d7aefcb1c959a523188d27ea",
+    "tools/gofish/task.go": "f6f9e38f00da60399e9d26d78f10ce75229e273ccdfd32553508ef7cd533243c",
+    "tools/gofish/boot.go": "8bbb12f3ec0aa9854fc28756ad7152bb923edb41b2452ad5128fbb31155ea585",
+    "tools/gofish/pcie.go": "46459883acad971d245521c666b6ff6a5c069f6963f6786e1c0ca626886b34b7",
+    "tools/gofish/main.go": "d71daf65bc19391cfe2c53b86d3ded8198cb7ab14ead1222c25f93ab53cd3157",
+    "tools/test_task.py": "e9fb5e8f1297339ab3d04398c5609823fa95b3a785935f881bde3756dffb259d",
+    "tools/test_gofish.py": "ac27ec92a4820582f32c133442ba5adfaeaecdc206b6ee32c77fdad320ff9a11",
+    "tools/test_parity.py": "fe78100a5820b1601924f2e84c9dbddae8b93a2c892ba5e95926b10fd10a05dc"
+  }
+}

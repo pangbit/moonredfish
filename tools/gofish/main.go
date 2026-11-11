@@ -151,6 +151,9 @@ func main() {
 		if os.Args[1] == "reject_tls" {
 			var untrusted x509.UnknownAuthorityError
 			result = map[string]bool{"tls_rejected": errors.As(err, &untrusted)}
+		} else if os.Args[1] == "task" {
+			must(err, "service root")
+			result = taskInventory(c)
 		} else if os.Args[1] == "boot" {
 			must(err, "service root")
 			result = bootInventory(c)

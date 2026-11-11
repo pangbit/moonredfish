@@ -6,8 +6,9 @@ This table aggregates all 253 scanned files; it is not a table of passed tests.
 [Read-only batch 01](READONLY-01.md) attaches measured cases to item IDs.
 [Batch 02](READONLY-02.md) adds 29 candidate mappings for implemented network reads.
 [Batch 03](READONLY-03.md) adds 48 PCIe candidates.
-[Batch 04](READONLY-04.md) adds 42 boot/Secure Boot candidates. Current totals:
-353 P / 11,227 U / 0 V; candidate mapping is not verified equivalence.
+[Batch 04](READONLY-04.md) adds 42 boot/Secure Boot candidates.
+[Batch 05](READONLY-05.md) adds 34 task/message candidates. Current totals:
+387 P / 11,193 U / 0 V; candidate mapping is not verified equivalence.
 待审核；逐项矩阵列出全部公开声明、签名、源码行、初始状态与验收模板。本表按 253 个文件汇总，不表示测试通过。
 
 `P` = overlapping subset/candidate; `U` = unmapped gap/unverified. No `V` (verified parity) rows exist.
@@ -162,7 +163,7 @@ Phase is model/read/support allocation; all mutations require the P4/P5/P6 gate,
 | [schemas/memorydomain.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/memorydomain.go) | Redfish | 2 | 10 | 13 | 1 | U | P3 |
 | [schemas/memorymetrics.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/memorymetrics.go) | Redfish | 7 | 4 | 43 | 1 | U | P3 |
 | [schemas/memoryregion.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/memoryregion.go) | Redfish | 4 | 6 | 24 | 1 | U | P3 |
-| [schemas/message.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/message.go) | Redfish | 1 | 0 | 11 | 0 | U | P3 |
+| [schemas/message.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/message.go) | Redfish | 1 | 0 | 11 | 0 | P | P3 |
 | [schemas/messageregistry.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/messageregistry.go) | Redfish | 5 | 5 | 32 | 1 | U | P3 |
 | [schemas/messageregistryfile.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/messageregistryfile.go) | Redfish | 2 | 2 | 11 | 1 | U | P3 |
 | [schemas/metricdefinition.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/metricdefinition.go) | Redfish | 8 | 4 | 54 | 1 | U | P3 |
@@ -243,9 +244,9 @@ Phase is model/read/support allocation; all mutations require the P4/P5/P6 gate,
 | [schemas/switch.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/switch.go) | Redfish | 5 | 17 | 46 | 1 | U | P3 |
 | [schemas/switchmetrics.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/switchmetrics.go) | Redfish | 4 | 4 | 12 | 1 | U | P3 |
 | [schemas/targetendpointgroup.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/targetendpointgroup.go) | Swordfish | 1 | 4 | 8 | 1 | U | P3 |
-| [schemas/task.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/task.go) | Redfish | 3 | 5 | 30 | 1 | U | P3 |
+| [schemas/task.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/task.go) | Redfish | 3 | 5 | 30 | 1 | P | P3 |
 | [schemas/task_monitor.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/task_monitor.go) | Core/support | 1 | 8 | 3 | 0 | U | P3 |
-| [schemas/taskservice.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/taskservice.go) | Redfish | 2 | 6 | 13 | 1 | U | P3 |
+| [schemas/taskservice.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/taskservice.go) | Redfish | 2 | 6 | 13 | 1 | P | P3 |
 | [schemas/telemetrydata.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/telemetrydata.go) | Redfish | 2 | 2 | 10 | 1 | U | P3 |
 | [schemas/telemetryservice.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/telemetryservice.go) | Redfish | 4 | 20 | 19 | 1 | U | P3 |
 | [schemas/testclient.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/testclient.go) | Core/support | 2 | 15 | 6 | 0 | U | P1 |

@@ -110,9 +110,13 @@ pub async fn Client::sensors(Self, Resource) -> Field[Array[Sensor]]
 pub async fn Client::service_root(Self) -> Resource
 pub async fn Client::signatures(Self, Resource) -> Field[Array[Signature]]
 pub async fn Client::storage(Self, Resource) -> Field[Array[Storage]]
+pub async fn Client::sub_tasks(Self, Resource) -> Field[Array[Task]]
 pub async fn Client::system_pcie_devices(Self, Resource) -> Field[Array[PCIeDevice]]
 pub async fn Client::system_pcie_functions(Self, Resource) -> Field[Array[PCIeFunction]]
 pub async fn Client::systems(Self) -> Array[Resource]
+pub async fn Client::task_created_resources(Self, Resource) -> Field[Array[Resource]]
+pub async fn Client::task_service(Self, Resource) -> Field[TaskService]
+pub async fn Client::tasks(Self, Resource) -> Field[Array[Task]]
 pub async fn Client::thermal(Self, Resource) -> Field[Thermal]
 pub async fn Client::thermal_subsystem(Self, Resource) -> Field[Resource]
 pub async fn Client::update_service(Self, Resource) -> Field[Resource]
@@ -261,6 +265,19 @@ pub struct Memory {
   status : Field[Health]
 }
 
+pub struct Message {
+  json : @json.Json
+  message : Field[String]
+  message_id : Field[String]
+  message_severity : Field[String]
+  resolution : Field[String]
+  severity : Field[String]
+  user_authentication_source : Field[String]
+  username : Field[String]
+  message_args : Field[Array[String]]
+  related_properties : Field[Array[String]]
+}
+
 pub struct NetworkAdapter {
   resource : Resource
   manufacturer : Field[String]
@@ -398,6 +415,8 @@ pub fn Resource::software_inventory(Self) -> SoftwareInventory raise RedfishErro
 pub fn Resource::storage(Self) -> Storage raise RedfishError
 pub fn Resource::string(Self, String) -> String?
 pub fn Resource::system_info(Self) -> SystemInfo raise RedfishError
+pub fn Resource::task(Self) -> Task raise RedfishError
+pub fn Resource::task_service(Self) -> TaskService raise RedfishError
 pub fn Resource::thermal(Self) -> Thermal raise RedfishError
 pub fn Resource::volume(Self) -> Volume raise RedfishError
 
@@ -469,6 +488,30 @@ pub struct SystemInfo {
   status : Field[Health]
   processor_count : Field[Int32]
   total_memory_gib : Field[Double]
+}
+
+pub struct Task {
+  resource : Resource
+  end_time : Field[String]
+  estimated_duration : Field[String]
+  start_time : Field[String]
+  task_monitor : Field[String]
+  task_state : Field[String]
+  task_status : Field[String]
+  hide_payload : Field[Bool]
+  percent_complete : Field[Int32]
+  messages : Field[Array[Message]]
+}
+
+pub struct TaskService {
+  resource : Resource
+  completed_task_overwrite_policy : Field[String]
+  date_time : Field[String]
+  life_cycle_event_on_task_state_change : Field[Bool]
+  service_enabled : Field[Bool]
+  task_auto_delete_timeout_minutes : Field[Int32]
+  task_monitor_auto_expiry_seconds : Field[Int32]
+  status : Field[Health]
 }
 
 pub struct Temperature {

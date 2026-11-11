@@ -105,6 +105,13 @@ async fn main {
     println(
       "offline synthetic Secure Boot: current=\{presence(secure.secure_boot_current_boot)}, next=\{presence(secure.secure_boot_enable)}",
     )
+    let task = @moonredfish.parse_resource(
+      "/redfish/v1/TaskService/Tasks/demo",
+      { "TaskState": "Running", "PercentComplete": 0, "Messages": [] },
+    ).task()
+    println(
+      "offline synthetic task: state=\{presence(task.task_state)}, progress=\{presence(task.percent_complete)}, messages=\{count(task.messages)}",
+    )
     let bios = @moonredfish.parse_resource("/redfish/v1/Systems/demo/Bios", {
       "Attributes": null,
     }).bios()

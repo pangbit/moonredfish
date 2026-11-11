@@ -197,6 +197,19 @@ for exact results and [upstream issue review](gofish/ISSUES.md) for pinned-versi
 14 个选定观测相同，4 个两端拒绝但错误不同，17 个有差异；不把原始数据保留或普通分页
 通过当作类型化注解、自动 expand 或全量 GoFish 一致。兼容模式建议仍待用户决定。
 
+## Task comparison / 任务对照
+
+`python3 tools/test_task.py` checks 35 synthetic cases for TaskService, Task and nested
+Message reads plus explicit service/tasks/subtasks/created-resource navigation. It verifies
+pagination/result order and GET multiplicities, including no implicit monitor, action,
+payload or recursive child requests. Nine selected observations agree, four both reject
+with different categories and 22 remain different; see [batch 05](gofish/READONLY-05.md).
+
+35 场景对照任务状态/进度/消息、三态、数值边界、整对象解码、内嵌选择、重复和部分结果。
+不把普通 JSON 保留、部分相同或测试数量当作完整一致。用户确认的
+[两份 DMTF 参照例外门槛](gofish/EXCEPTIONS.md)已记录；当前只有官方入口源码审阅，尚未
+完成相同输入的双参照运行核实，也未宣布任何缺陷例外。
+
 ## Safety / 安全
 
 Adapters accept only numeric loopback endpoints. The runner permits only reads plus

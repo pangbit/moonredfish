@@ -330,3 +330,21 @@ at a time. SecureBootCurrentBoot and SecureBootEnable are separate current/next 
 See [exact fields, limits and differential evidence](gofish/READONLY-04.md) and
 [the related upstream issues](gofish/ISSUES.md). Full models and compatibility decisions
 remain open; raw annotation retention does not imply a typed ExtendedInfo API.
+
+
+## Task inventory (Unreleased) / 任务清单（未发布）
+
+Read `client.task_service(client.service_root())`, then `client.tasks(service.resource)`
+when the service is present. `resource.task_service()` and `.task()` decode the selected
+views. Task.messages contains typed Message values with raw JSON. Call
+`client.sub_tasks(task.resource)` or `client.task_created_resources(task.resource)`
+explicitly to inspect linked children or already-created resources. The latter returns
+Resource because created objects can have different types.
+
+任务服务发现沿 ServiceRoot.Tasks；任务状态、进度和消息分别保留，不从严重程度推导
+TaskStatus。子任务不递归，已创建资源不猜类型。数量字段沿用非负 Int32，未做 0–100
+schema 范围或交叉字段校验，不轮询 monitor、不回放 Payload、不执行解决步骤。
+See [field scope and differential evidence](gofish/READONLY-05.md). Generic per-property
+ExtendedInfo and TaskMonitor/control lifecycle remain unimplemented. Message and task
+raw data remain caller-owned and may contain private values; the offline example prints
+only synthetic presence/counts.

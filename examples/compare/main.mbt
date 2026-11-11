@@ -112,6 +112,7 @@ async fn main {
     "network-config" => network_config(c)
     "pcie" => pcie(c)
     "boot" => boot_inventory(c)
+    "task" => task_inventory(c)
     "protocol" => protocol(c)
     "reject_tls" => {
       let rejected = try {

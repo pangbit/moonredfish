@@ -13,7 +13,8 @@
     "note": "Original inventory baseline. Subsequent mapping changes are versioned by evidence_batches and their source hashes."
   },
   "scope": "All non-test Go files in importable module packages; examples/main programs and hidden tooling excluded. Exported declarations plus embedded relationships; promoted members resolve through embed rows. Public test helpers are included.",
-  "evidence_batches": {"readonly-01": {"report": "readonly-01.json", "review": "READONLY-01.md", "scope": "39 selected synthetic read observations; states unchanged, no full item equivalence"}, "readonly-02": {"report": "readonly-02.json", "review": "READONLY-02.md", "scope": "Additive DHCP/DNS/SLAAC/policy read fields; 29 new mapping candidates, no full item equivalence"}, "readonly-03": {"report": "readonly-03.json", "review": "READONLY-03.md", "scope": "PCIe device/function/interface read models and five topology readers; 48 new candidates; defaults, strict decoding and partial results differ"}, "readonly-04": {"report": "readonly-04.json", "review": "READONLY-04.md", "scope": "Boot configuration/options, Secure Boot/database/signature reads; 42 new candidates; presence, inline and error differences retained; no compatibility-mode decision assumed"}},
+  "evidence_batches": {"readonly-01": {"report": "readonly-01.json", "review": "READONLY-01.md", "scope": "39 selected synthetic read observations; states unchanged, no full item equivalence"}, "readonly-02": {"report": "readonly-02.json", "review": "READONLY-02.md", "scope": "Additive DHCP/DNS/SLAAC/policy read fields; 29 new mapping candidates, no full item equivalence"}, "readonly-03": {"report": "readonly-03.json", "review": "READONLY-03.md", "scope": "PCIe device/function/interface read models and five topology readers; 48 new candidates; defaults, strict decoding and partial results differ"}, "readonly-04": {"report": "readonly-04.json", "review": "READONLY-04.md", "scope": "Boot configuration/options, Secure Boot/database/signature reads; 42 new candidates; presence, inline and error differences retained; no compatibility-mode decision assumed"}, "readonly-05": {"report": "readonly-05.json", "review": "READONLY-05.md", "scope": "TaskService/Task/Message reads and four explicit navigations; 34 new candidates; existing numeric, presence, eager decoding and partial-result differences retained; no polling or controls"}},
+  "defect_exception_policy": {"review": "EXCEPTIONS.md", "state": "conditional_user_authorization_after_both_DMTF_references_verify_a_GoFish_defect", "verified_exceptions": 0, "redfishtool_commit": "8c46f567aa9c960851108e43bf23fd6a64c37897", "libredfish_commit": "f9a23c33d46afe15f09b604160c09a320f1c769c", "evidence_status": "source entry points reviewed only; no official runtime comparison yet"},
   "row_id": "package + :: + kind + :: + name; row line belongs to file.path",
   "states": {
     "U": "No reviewed full API mapping; gap/unverified, never assumed equivalent. Raw JSON access alone does not close it.",
@@ -36,8 +37,8 @@
       "interface_method": 20
     },
     "states": {
-      "U": 11227,
-      "P": 353
+      "U": 11193,
+      "P": 387
     }
   },
   "files": [
@@ -6451,19 +6452,19 @@
       {"kind": "type", "name": "RegionType", "signature": "string", "line": 14, "state": "U", "acceptance": "A-API,A-DATA"},
       {"kind": "const", "name": "StaticRegionType", "signature": "RegionType = \"Static\"", "line": 19, "state": "U", "acceptance": "A-API,A-DATA"}
     ]},
-    {"path": "schemas/message.go", "package": "schemas", "sha256": "3d374d7241730d515174695a7d983fa67fd500131cb1949050c328eb6f2f32bd", "schema": "http://redfish.dmtf.org/schemas/v1/Message.v1_3_0.json", "release": "2024.3", "phase": "P3", "track": "Redfish", "state": "U", "symbols": [
-      {"kind": "type", "name": "Message", "signature": "struct", "line": 16, "state": "U", "acceptance": "A-API,A-DATA"},
-      {"kind": "field", "name": "Message.Message", "signature": "string", "line": 18, "state": "U", "acceptance": "A-API,A-DATA"},
-      {"kind": "field", "name": "Message.MessageArgs", "signature": "[]string", "line": 25, "state": "U", "acceptance": "A-API,A-DATA"},
-      {"kind": "field", "name": "Message.MessageID", "signature": "string `json:\"MessageId\"`", "line": 28, "state": "U", "acceptance": "A-API,A-DATA"},
-      {"kind": "field", "name": "Message.MessageSeverity", "signature": "Health", "line": 34, "state": "U", "acceptance": "A-API,A-DATA"},
+    {"path": "schemas/message.go", "package": "schemas", "sha256": "3d374d7241730d515174695a7d983fa67fd500131cb1949050c328eb6f2f32bd", "schema": "http://redfish.dmtf.org/schemas/v1/Message.v1_3_0.json", "release": "2024.3", "phase": "P3", "track": "Redfish", "state": "P", "symbols": [
+      {"kind": "type", "name": "Message", "signature": "struct", "line": 16, "state": "P", "acceptance": "A-API,A-DATA", "moonredfish": "Message", "evidence": "readonly-05"},
+      {"kind": "field", "name": "Message.Message", "signature": "string", "line": 18, "state": "P", "acceptance": "A-API,A-DATA", "moonredfish": "Message.message", "evidence": "readonly-05"},
+      {"kind": "field", "name": "Message.MessageArgs", "signature": "[]string", "line": 25, "state": "P", "acceptance": "A-API,A-DATA", "moonredfish": "Message.message_args", "evidence": "readonly-05"},
+      {"kind": "field", "name": "Message.MessageID", "signature": "string `json:\"MessageId\"`", "line": 28, "state": "P", "acceptance": "A-API,A-DATA", "moonredfish": "Message.message_id", "evidence": "readonly-05"},
+      {"kind": "field", "name": "Message.MessageSeverity", "signature": "Health", "line": 34, "state": "P", "acceptance": "A-API,A-DATA", "moonredfish": "Message.message_severity", "evidence": "readonly-05"},
       {"kind": "field", "name": "Message.OEM", "signature": "json.RawMessage `json:\"Oem\"`", "line": 38, "state": "U", "acceptance": "A-API,A-DATA"},
-      {"kind": "field", "name": "Message.RelatedProperties", "signature": "[]string", "line": 42, "state": "U", "acceptance": "A-API,A-DATA"},
-      {"kind": "field", "name": "Message.Resolution", "signature": "string", "line": 46, "state": "U", "acceptance": "A-API,A-DATA"},
+      {"kind": "field", "name": "Message.RelatedProperties", "signature": "[]string", "line": 42, "state": "P", "acceptance": "A-API,A-DATA", "moonredfish": "Message.related_properties", "evidence": "readonly-05"},
+      {"kind": "field", "name": "Message.Resolution", "signature": "string", "line": 46, "state": "P", "acceptance": "A-API,A-DATA", "moonredfish": "Message.resolution", "evidence": "readonly-05"},
       {"kind": "field", "name": "Message.ResolutionSteps", "signature": "[]ResolutionStep", "line": 52, "state": "U", "acceptance": "A-API,A-DATA"},
-      {"kind": "field", "name": "Message.Severity", "signature": "string", "line": 62, "state": "U", "acceptance": "A-API,A-DATA"},
-      {"kind": "field", "name": "Message.UserAuthenticationSource", "signature": "string", "line": 68, "state": "U", "acceptance": "A-API,A-DATA"},
-      {"kind": "field", "name": "Message.Username", "signature": "string", "line": 73, "state": "U", "acceptance": "A-API,A-DATA"}
+      {"kind": "field", "name": "Message.Severity", "signature": "string", "line": 62, "state": "P", "acceptance": "A-API,A-DATA", "moonredfish": "Message.severity", "evidence": "readonly-05"},
+      {"kind": "field", "name": "Message.UserAuthenticationSource", "signature": "string", "line": 68, "state": "P", "acceptance": "A-API,A-DATA", "moonredfish": "Message.user_authentication_source", "evidence": "readonly-05"},
+      {"kind": "field", "name": "Message.Username", "signature": "string", "line": 73, "state": "P", "acceptance": "A-API,A-DATA", "moonredfish": "Message.username", "evidence": "readonly-05"}
     ]},
     {"path": "schemas/messageregistry.go", "package": "schemas", "sha256": "a5b85c7375d987c4f7e336b064210769d2a8796d0c8864614c2a6ee6d0c53a19", "schema": "http://redfish.dmtf.org/schemas/v1/MessageRegistry.v1_7_0.json", "release": "2025.3", "phase": "P3", "track": "Redfish", "state": "U", "symbols": [
       {"kind": "type", "name": "ClearingLogic", "signature": "struct", "line": 248, "state": "U", "acceptance": "A-API,A-DATA"},
@@ -11017,10 +11018,10 @@
       {"kind": "field", "name": "TargetEndpointGroup.RawData", "signature": "[]byte", "line": 35, "state": "U", "acceptance": "A-API,A-DATA"},
       {"kind": "field", "name": "TargetEndpointGroup.TargetEndpointGroupIdentifier", "signature": "*float64 `json:\",omitempty\"`", "line": 33, "state": "U", "acceptance": "A-API,A-DATA"}
     ]},
-    {"path": "schemas/task.go", "package": "schemas", "sha256": "634a7203e91d3b4aee37c0bb53a7c34e6d33cdf04c8d8e3fff90125b1979d18f", "schema": "http://redfish.dmtf.org/schemas/v1/Task.v1_7_4.json", "release": "2022.3", "phase": "P3", "track": "Redfish", "state": "U", "symbols": [
-      {"kind": "method", "name": "*Task.CreatedResources", "signature": "func() ([]*Entity, error)", "line": 168, "state": "U", "acceptance": "A-API,A-CALL,A-ERROR"},
-      {"kind": "method", "name": "*Task.SubTasks", "signature": "func() ([]*Task, error)", "line": 173, "state": "U", "acceptance": "A-API,A-CALL,A-ERROR"},
-      {"kind": "method", "name": "*Task.UnmarshalJSON", "signature": "func(b []byte) error", "line": 131, "state": "U", "acceptance": "A-API,A-CALL,A-ERROR"},
+    {"path": "schemas/task.go", "package": "schemas", "sha256": "634a7203e91d3b4aee37c0bb53a7c34e6d33cdf04c8d8e3fff90125b1979d18f", "schema": "http://redfish.dmtf.org/schemas/v1/Task.v1_7_4.json", "release": "2022.3", "phase": "P3", "track": "Redfish", "state": "P", "symbols": [
+      {"kind": "method", "name": "*Task.CreatedResources", "signature": "func() ([]*Entity, error)", "line": 168, "state": "P", "acceptance": "A-API,A-CALL,A-ERROR", "moonredfish": "Client::task_created_resources", "evidence": "readonly-05"},
+      {"kind": "method", "name": "*Task.SubTasks", "signature": "func() ([]*Task, error)", "line": 173, "state": "P", "acceptance": "A-API,A-CALL,A-ERROR", "moonredfish": "Client::sub_tasks", "evidence": "readonly-05"},
+      {"kind": "method", "name": "*Task.UnmarshalJSON", "signature": "func(b []byte) error", "line": 131, "state": "P", "acceptance": "A-API,A-CALL,A-ERROR", "moonredfish": "Resource::task selected-field decoding; strict validation retained", "evidence": "readonly-05"},
       {"kind": "const", "name": "CancelledTaskState", "signature": "TaskState = \"Cancelled\"", "line": 53, "state": "U", "acceptance": "A-API,A-DATA"},
       {"kind": "const", "name": "CancellingTaskState", "signature": "TaskState = \"Cancelling\"", "line": 49, "state": "U", "acceptance": "A-API,A-DATA"},
       {"kind": "const", "name": "CompletedTaskState", "signature": "TaskState = \"Completed\"", "line": 38, "state": "U", "acceptance": "A-API,A-DATA"},
@@ -11041,21 +11042,21 @@
       {"kind": "const", "name": "StartingTaskState", "signature": "TaskState = \"Starting\"", "line": 21, "state": "U", "acceptance": "A-API,A-DATA"},
       {"kind": "const", "name": "StoppingTaskState", "signature": "TaskState = \"Stopping\"", "line": 35, "state": "U", "acceptance": "A-API,A-DATA"},
       {"kind": "const", "name": "SuspendedTaskState", "signature": "TaskState = \"Suspended\"", "line": 26, "state": "U", "acceptance": "A-API,A-DATA"},
-      {"kind": "type", "name": "Task", "signature": "struct", "line": 57, "state": "U", "acceptance": "A-API,A-DATA"},
-      {"kind": "field", "name": "Task.EndTime", "signature": "string", "line": 63, "state": "U", "acceptance": "A-API,A-DATA"},
+      {"kind": "type", "name": "Task", "signature": "struct", "line": 57, "state": "P", "acceptance": "A-API,A-DATA", "moonredfish": "Task", "evidence": "readonly-05"},
+      {"kind": "field", "name": "Task.EndTime", "signature": "string", "line": 63, "state": "P", "acceptance": "A-API,A-DATA", "moonredfish": "Task.end_time", "evidence": "readonly-05"},
       {"kind": "embed", "name": "Task.Entity", "signature": "Entity", "line": 58, "state": "U", "acceptance": "A-API,A-EMBED"},
-      {"kind": "field", "name": "Task.EstimatedDuration", "signature": "string", "line": 71, "state": "U", "acceptance": "A-API,A-DATA"},
-      {"kind": "field", "name": "Task.HidePayload", "signature": "bool", "line": 80, "state": "U", "acceptance": "A-API,A-DATA"},
-      {"kind": "field", "name": "Task.Messages", "signature": "[]Message", "line": 82, "state": "U", "acceptance": "A-API,A-DATA"},
+      {"kind": "field", "name": "Task.EstimatedDuration", "signature": "string", "line": 71, "state": "P", "acceptance": "A-API,A-DATA", "moonredfish": "Task.estimated_duration", "evidence": "readonly-05"},
+      {"kind": "field", "name": "Task.HidePayload", "signature": "bool", "line": 80, "state": "P", "acceptance": "A-API,A-DATA", "moonredfish": "Task.hide_payload", "evidence": "readonly-05"},
+      {"kind": "field", "name": "Task.Messages", "signature": "[]Message", "line": 82, "state": "P", "acceptance": "A-API,A-DATA", "moonredfish": "Task.messages", "evidence": "readonly-05"},
       {"kind": "field", "name": "Task.ODataContext", "signature": "string `json:\"@odata.context\"`", "line": 84, "state": "U", "acceptance": "A-API,A-DATA"},
       {"kind": "field", "name": "Task.ODataType", "signature": "string `json:\"@odata.type\"`", "line": 86, "state": "U", "acceptance": "A-API,A-DATA"},
       {"kind": "field", "name": "Task.OEM", "signature": "json.RawMessage `json:\"Oem\"`", "line": 90, "state": "U", "acceptance": "A-API,A-DATA"},
       {"kind": "field", "name": "Task.Payload", "signature": "Payload", "line": 96, "state": "U", "acceptance": "A-API,A-DATA"},
-      {"kind": "field", "name": "Task.PercentComplete", "signature": "*uint `json:\",omitempty\"`", "line": 102, "state": "U", "acceptance": "A-API,A-DATA"},
-      {"kind": "field", "name": "Task.StartTime", "signature": "string", "line": 104, "state": "U", "acceptance": "A-API,A-DATA"},
-      {"kind": "field", "name": "Task.TaskMonitor", "signature": "string", "line": 115, "state": "U", "acceptance": "A-API,A-DATA"},
-      {"kind": "field", "name": "Task.TaskState", "signature": "TaskState", "line": 117, "state": "U", "acceptance": "A-API,A-DATA"},
-      {"kind": "field", "name": "Task.TaskStatus", "signature": "Health", "line": 125, "state": "U", "acceptance": "A-API,A-DATA"},
+      {"kind": "field", "name": "Task.PercentComplete", "signature": "*uint `json:\",omitempty\"`", "line": 102, "state": "P", "acceptance": "A-API,A-DATA", "moonredfish": "Task.percent_complete", "evidence": "readonly-05"},
+      {"kind": "field", "name": "Task.StartTime", "signature": "string", "line": 104, "state": "P", "acceptance": "A-API,A-DATA", "moonredfish": "Task.start_time", "evidence": "readonly-05"},
+      {"kind": "field", "name": "Task.TaskMonitor", "signature": "string", "line": 115, "state": "P", "acceptance": "A-API,A-DATA", "moonredfish": "Task.task_monitor", "evidence": "readonly-05"},
+      {"kind": "field", "name": "Task.TaskState", "signature": "TaskState", "line": 117, "state": "P", "acceptance": "A-API,A-DATA", "moonredfish": "Task.task_state", "evidence": "readonly-05"},
+      {"kind": "field", "name": "Task.TaskStatus", "signature": "Health", "line": 125, "state": "P", "acceptance": "A-API,A-DATA", "moonredfish": "Task.task_status", "evidence": "readonly-05"},
       {"kind": "type", "name": "TaskState", "signature": "string", "line": 14, "state": "U", "acceptance": "A-API,A-DATA"}
     ]},
     {"path": "schemas/task_monitor.go", "package": "schemas", "sha256": "2c95e2cf436b4d94e3eae7c6b598990938a294f37cb1d1879389f38ed68efc5d", "phase": "P3", "track": "Core/support", "state": "U", "symbols": [
@@ -11072,28 +11073,28 @@
       {"kind": "function", "name": "WaitForTaskMonitor", "signature": "func(ctx context.Context, c Client, defaultPollRate time.Duration, taskMonitor *TaskMonitorInfo, taskChan chan<- *Task) (*http.Response, error)", "line": 138, "state": "U", "acceptance": "A-API,A-CALL,A-ERROR"},
       {"kind": "function", "name": "WaitForTaskMonitorObject", "signature": "func[T any, PT GenericSchemaObjectPointer[T], ](ctx context.Context, c Client, defaultPollRate time.Duration, taskMonitor *TaskMonitorInfo, taskChan chan<- *Task) (*T, http.Header, error)", "line": 199, "state": "U", "acceptance": "A-API,A-CALL,A-ERROR"}
     ]},
-    {"path": "schemas/taskservice.go", "package": "schemas", "sha256": "b7dae6ec791c2b9ca8c725df87f157c7a6af742eeb36467ae0c12244152e71e2", "schema": "http://redfish.dmtf.org/schemas/v1/TaskService.v1_3_0.json", "release": "2025.4", "phase": "P3", "track": "Redfish", "state": "U", "symbols": [
+    {"path": "schemas/taskservice.go", "package": "schemas", "sha256": "b7dae6ec791c2b9ca8c725df87f157c7a6af742eeb36467ae0c12244152e71e2", "schema": "http://redfish.dmtf.org/schemas/v1/TaskService.v1_3_0.json", "release": "2025.4", "phase": "P3", "track": "Redfish", "state": "P", "symbols": [
       {"kind": "method", "name": "*TaskService.DeleteAllCompletedTasks", "signature": "func() (*TaskMonitorInfo, error)", "line": 127, "state": "U", "acceptance": "A-API,A-CALL,A-ERROR"},
-      {"kind": "method", "name": "*TaskService.Tasks", "signature": "func() ([]*Task, error)", "line": 136, "state": "U", "acceptance": "A-API,A-CALL,A-ERROR"},
-      {"kind": "method", "name": "*TaskService.UnmarshalJSON", "signature": "func(b []byte) error", "line": 73, "state": "U", "acceptance": "A-API,A-CALL,A-ERROR"},
+      {"kind": "method", "name": "*TaskService.Tasks", "signature": "func() ([]*Task, error)", "line": 136, "state": "P", "acceptance": "A-API,A-CALL,A-ERROR", "moonredfish": "Client::tasks", "evidence": "readonly-05"},
+      {"kind": "method", "name": "*TaskService.UnmarshalJSON", "signature": "func(b []byte) error", "line": 73, "state": "P", "acceptance": "A-API,A-CALL,A-ERROR", "moonredfish": "Resource::task_service selected-field decoding; strict validation retained", "evidence": "readonly-05"},
       {"kind": "method", "name": "*TaskService.Update", "signature": "func() error", "line": 102, "state": "U", "acceptance": "A-API,A-CALL,A-ERROR"},
       {"kind": "function", "name": "GetTaskService", "signature": "func(c Client, uri string) (*TaskService, error)", "line": 113, "state": "U", "acceptance": "A-API,A-CALL,A-ERROR"},
       {"kind": "function", "name": "ListReferencedTaskServices", "signature": "func(c Client, link string) ([]*TaskService, error)", "line": 119, "state": "U", "acceptance": "A-API,A-CALL,A-ERROR"},
       {"kind": "const", "name": "ManualTaskServiceOverWritePolicy", "signature": "TaskServiceOverWritePolicy = \"Manual\"", "line": 18, "state": "U", "acceptance": "A-API,A-DATA"},
       {"kind": "const", "name": "OldestTaskServiceOverWritePolicy", "signature": "TaskServiceOverWritePolicy = \"Oldest\"", "line": 20, "state": "U", "acceptance": "A-API,A-DATA"},
-      {"kind": "type", "name": "TaskService", "signature": "struct", "line": 25, "state": "U", "acceptance": "A-API,A-DATA"},
-      {"kind": "field", "name": "TaskService.CompletedTaskOverWritePolicy", "signature": "TaskServiceOverWritePolicy", "line": 30, "state": "U", "acceptance": "A-API,A-DATA"},
-      {"kind": "field", "name": "TaskService.DateTime", "signature": "string", "line": 33, "state": "U", "acceptance": "A-API,A-DATA"},
+      {"kind": "type", "name": "TaskService", "signature": "struct", "line": 25, "state": "P", "acceptance": "A-API,A-DATA", "moonredfish": "TaskService", "evidence": "readonly-05"},
+      {"kind": "field", "name": "TaskService.CompletedTaskOverWritePolicy", "signature": "TaskServiceOverWritePolicy", "line": 30, "state": "P", "acceptance": "A-API,A-DATA", "moonredfish": "TaskService.completed_task_overwrite_policy", "evidence": "readonly-05"},
+      {"kind": "field", "name": "TaskService.DateTime", "signature": "string", "line": 33, "state": "P", "acceptance": "A-API,A-DATA", "moonredfish": "TaskService.date_time", "evidence": "readonly-05"},
       {"kind": "embed", "name": "TaskService.Entity", "signature": "Entity", "line": 26, "state": "U", "acceptance": "A-API,A-EMBED"},
-      {"kind": "field", "name": "TaskService.LifeCycleEventOnTaskStateChange", "signature": "bool", "line": 37, "state": "U", "acceptance": "A-API,A-DATA"},
+      {"kind": "field", "name": "TaskService.LifeCycleEventOnTaskStateChange", "signature": "bool", "line": 37, "state": "P", "acceptance": "A-API,A-DATA", "moonredfish": "TaskService.life_cycle_event_on_task_state_change", "evidence": "readonly-05"},
       {"kind": "field", "name": "TaskService.ODataContext", "signature": "string `json:\"@odata.context\"`", "line": 39, "state": "U", "acceptance": "A-API,A-DATA"},
       {"kind": "field", "name": "TaskService.ODataType", "signature": "string `json:\"@odata.type\"`", "line": 41, "state": "U", "acceptance": "A-API,A-DATA"},
       {"kind": "field", "name": "TaskService.OEM", "signature": "json.RawMessage `json:\"Oem\"`", "line": 45, "state": "U", "acceptance": "A-API,A-DATA"},
       {"kind": "field", "name": "TaskService.RawData", "signature": "[]byte", "line": 69, "state": "U", "acceptance": "A-API,A-DATA"},
-      {"kind": "field", "name": "TaskService.ServiceEnabled", "signature": "bool", "line": 47, "state": "U", "acceptance": "A-API,A-DATA"},
-      {"kind": "field", "name": "TaskService.Status", "signature": "Status", "line": 49, "state": "U", "acceptance": "A-API,A-DATA"},
-      {"kind": "field", "name": "TaskService.TaskAutoDeleteTimeoutMinutes", "signature": "uint", "line": 55, "state": "U", "acceptance": "A-API,A-DATA"},
-      {"kind": "field", "name": "TaskService.TaskMonitorAutoExpirySeconds", "signature": "*uint `json:\",omitempty\"`", "line": 62, "state": "U", "acceptance": "A-API,A-DATA"},
+      {"kind": "field", "name": "TaskService.ServiceEnabled", "signature": "bool", "line": 47, "state": "P", "acceptance": "A-API,A-DATA", "moonredfish": "TaskService.service_enabled", "evidence": "readonly-05"},
+      {"kind": "field", "name": "TaskService.Status", "signature": "Status", "line": 49, "state": "P", "acceptance": "A-API,A-DATA", "moonredfish": "TaskService.status", "evidence": "readonly-05"},
+      {"kind": "field", "name": "TaskService.TaskAutoDeleteTimeoutMinutes", "signature": "uint", "line": 55, "state": "P", "acceptance": "A-API,A-DATA", "moonredfish": "TaskService.task_auto_delete_timeout_minutes", "evidence": "readonly-05"},
+      {"kind": "field", "name": "TaskService.TaskMonitorAutoExpirySeconds", "signature": "*uint `json:\",omitempty\"`", "line": 62, "state": "P", "acceptance": "A-API,A-DATA", "moonredfish": "TaskService.task_monitor_auto_expiry_seconds", "evidence": "readonly-05"},
       {"kind": "type", "name": "TaskServiceOverWritePolicy", "signature": "string", "line": 14, "state": "U", "acceptance": "A-API,A-DATA"}
     ]},
     {"path": "schemas/telemetrydata.go", "package": "schemas", "sha256": "6dfc5ff6a7b03c981bad5f3138702f23affffbb03141f178f2dfae01de846ed6", "schema": "http://redfish.dmtf.org/schemas/v1/TelemetryData.v1_0_0.json", "release": "2025.2", "phase": "P3", "track": "Redfish", "state": "U", "symbols": [
@@ -12084,7 +12085,7 @@
       {"kind": "method", "name": "*Service.StorageServices", "signature": "func() ([]*schemas.StorageService, error)", "line": 524, "state": "U", "acceptance": "A-API,A-CALL,A-ERROR"},
       {"kind": "method", "name": "*Service.StorageSystems", "signature": "func() ([]*schemas.ComputerSystem, error)", "line": 532, "state": "U", "acceptance": "A-API,A-CALL,A-ERROR"},
       {"kind": "method", "name": "*Service.Systems", "signature": "func() ([]*schemas.ComputerSystem, error)", "line": 540, "state": "P", "acceptance": "A-API,A-CALL,A-ERROR", "moonredfish": "Client::systems"},
-      {"kind": "method", "name": "*Service.Tasks", "signature": "func() (*schemas.TaskService, error)", "line": 548, "state": "U", "acceptance": "A-API,A-CALL,A-ERROR"},
+      {"kind": "method", "name": "*Service.Tasks", "signature": "func() (*schemas.TaskService, error)", "line": 548, "state": "P", "acceptance": "A-API,A-CALL,A-ERROR", "moonredfish": "Client::task_service", "evidence": "readonly-05"},
       {"kind": "method", "name": "*Service.TelemetryService", "signature": "func() (*schemas.TelemetryService, error)", "line": 553, "state": "U", "acceptance": "A-API,A-CALL,A-ERROR"},
       {"kind": "method", "name": "*Service.ThermalEquipment", "signature": "func() (*schemas.ThermalEquipment, error)", "line": 558, "state": "U", "acceptance": "A-API,A-CALL,A-ERROR"},
       {"kind": "method", "name": "*Service.UnmarshalJSON", "signature": "func(b []byte) error", "line": 229, "state": "U", "acceptance": "A-API,A-CALL,A-ERROR"},

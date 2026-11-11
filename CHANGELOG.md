@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- Add read-only TaskService/Task/Message views and four bounded navigation APIs, with
+  task state/progress/message and request-trace comparisons. Retain defaults, uint range,
+  eager-decoding and partial-result differences; no task monitor polling or controls.
+  Record the user-approved two-DMTF defect exception gate; no verified exception yet.
+- 新增任务服务、任务和消息只读视图及四条有界导航，对照状态/进度/消息和请求轨迹；
+  保留默认值、整数范围、整对象解码和部分结果差异，不轮询或控制任务。
+  记录用户确认的双 DMTF 缺陷例外门槛，目前尚无已核实例外。
+
 - Add read-only Boot, BootOption, SecureBoot, SecureBootDatabase and Signature views
   with four bounded navigation APIs. Compare both GoFish BootOptions entry points;
   retain presence, strictness and inline-data differences. Review upstream issues and
