@@ -24,19 +24,20 @@ control development, real-device operations or Mooncakes publication.
 ## Fixed comparison inputs / 固定参照
 
 The requested repositories resolve to the following canonical DMTF repositories. These
-are source snapshots selected for future reproducible checks, not claims of released
-package versions or completed runtime verification:
+are fixed source snapshots, not substitute release-package version claims.
+[Eight same-input numeric observations](OFFICIAL-NUMBERS-01.md) now provide runtime evidence
+for the listed generic entry points, with typed-field coverage limits:
 
 | Reference | Commit checked on 2026-11-11 | Evidence currently available |
 | --- | --- | --- |
 | [GoFish v0.27.0](https://github.com/stmcginnis/gofish/tree/4cc897fb5c172996e8f34a31a5d1012b45a287a7) | `4cc897fb5c172996e8f34a31a5d1012b45a287a7` | Existing typed loopback differential reports |
-| [DMTF/Redfishtool](https://github.com/DMTF/Redfishtool/tree/8c46f567aa9c960851108e43bf23fd6a64c37897) | `8c46f567aa9c960851108e43bf23fd6a64c37897` | README and transport source reviewed; not executed against these fixtures |
-| [DMTF/libredfish](https://github.com/DMTF/libredfish/tree/f9a23c33d46afe15f09b604160c09a320f1c769c) | `f9a23c33d46afe15f09b604160c09a320f1c769c` | README, payload implementation/header reviewed; not built/executed for these fixtures |
+| [DMTF/Redfishtool](https://github.com/DMTF/Redfishtool/tree/8c46f567aa9c960851108e43bf23fd6a64c37897) | `8c46f567aa9c960851108e43bf23fd6a64c37897` | Real CLI raw GET on eight exact numeric fixtures; generic JSON results recorded |
+| [DMTF/libredfish](https://github.com/DMTF/libredfish/tree/f9a23c33d46afe15f09b604160c09a320f1c769c) | `f9a23c33d46afe15f09b604160c09a320f1c769c` | Unmodified shared library built and executed: eight same-byte payload/accessor probes, without HTTP |
 
 Redfishtool's reviewed response path uses json.loads on response text. libredfish's
 reviewed payload entry uses Jansson json_loads and offers distinct integer/long-long/double
 accessors. Those generic entry points do not by themselves choose a GoFish typed field's
-range, coercion, default or failure contract. A run must record the exact entry point,
+range, coercion, default or failure contract. The numeric report records the exact entry points; further runs must record their
 dependency/runtime versions and returned type/value/error; do not infer agreement from
 similar names or replace one official library with a hand-written imitation.
 
@@ -63,8 +64,8 @@ and distinguish approved-exception conformance from literal GoFish equivalence.
 
 | Candidate, not established / 尚未成立的候选 | Existing observation | Missing evidence / 待补证据 | Next recommendation / 后续建议 |
 | --- | --- | --- | --- |
-| PCIe LanesInUse `16777217` | Go 16777216; native exact 16777217 (batch 03) | Both official runtime reads and applicable field semantics / 两端实测与字段语义依据 | Prioritize exact-value preservation verification; do not copy float32 loss before the gate / 优先核实精度，不先复制损失 |
-| PCIe lane `"not-a-number"`, true, or 1.5 | Go 0/0/1; native errors (batch 03) | Whether both references validate/coerce this field; a raw decoder may leave it untouched / 两参照是否验证或转换该字段 | Separate vendor coercion from transport/raw reads; retain D-VENDOR-NUM / 区分厂商转换与通用读取 |
+| PCIe LanesInUse `16777217` | Go 16777216; native exact 16777217 (batch 03) | Both generic paths now retain 16777217; comparable typed-field/domain validation is unestablished / 通用保留已测，同形字段与语义域仍未核实 | Prioritize exact-value preservation verification; do not copy float32 loss before the gate / 优先核实精度，不先复制损失 |
+| PCIe lane `"not-a-number"`, true, or 1.5 | Go 0/0/1; native errors (batch 03) | Both generic paths retain original type/value; getters differ. Typed vendor validation/coercion is unestablished / 通用路径保留原值，getter 不同，厂商字段转换未覆盖 | Separate vendor coercion from transport/raw reads; retain D-VENDOR-NUM / 区分厂商转换与通用读取 |
 | Missing/null/default and null list elements | Recorded in batches 01–05 | Comparable typed contracts may be absent; untested / 是否有可比较的类型化契约仍未核实 | Do not treat generic JSON preservation as mandatory scalar-default behavior / 不由 JSON 保留推导标量默认值 |
-| Task Payload wrong type, PercentComplete range/spelling | Exact batch 05 cases | Both DMTF results and field-validation relevance / 双方结果及字段验证适用性 | Separate selected-field parsing from whole-model validation and API representation / 区分局部解析、全模型验证与类型表示 |
+| Task Payload wrong type, PercentComplete range/spelling | Exact batch 05 cases | PercentComplete generic reads/accessors measured; field validation and Payload malformed-type behavior remain unverified / 进度通用读取已测，字段校验及 Payload 类型错误仍未核实 | Separate selected-field parsing from whole-model validation and API representation / 区分局部解析、全模型验证与类型表示 |
 | #516 ETag/Boot target and #582/#583 expansion | Source review in ISSUES.md | Mutation behavior is outside authorized read-only work; expand is untested / 控制未授权，expand 未测 | Keep source findings and version boundaries; no unsafe reproduction or silent baseline change / 保留版本事实，不越界复现 |

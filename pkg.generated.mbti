@@ -66,6 +66,40 @@ pub struct BootOption {
   boot_option_enabled : Field[Bool]
 }
 
+pub struct Certificate {
+  resource : Resource
+  certificate_string : Field[String]
+  certificate_type : Field[String]
+  fingerprint : Field[String]
+  fingerprint_hash_algorithm : Field[String]
+  serial_number : Field[String]
+  signature_algorithm : Field[String]
+  uefi_signature_owner : Field[String]
+  valid_not_after : Field[String]
+  valid_not_before : Field[String]
+  certificate_usage_types : Field[Array[String]]
+  key_usage : Field[Array[String]]
+  issuer : Field[CertificateIdentifier]
+  subject : Field[CertificateIdentifier]
+  status : Field[Health]
+}
+
+pub struct CertificateIdentifier {
+  json : @json.Json
+  city : Field[String]
+  common_name : Field[String]
+  country : Field[String]
+  display_string : Field[String]
+  email : Field[String]
+  organization : Field[String]
+  organizational_unit : Field[String]
+  state : Field[String]
+  additional_common_names : Field[Array[String]]
+  additional_organizational_units : Field[Array[String]]
+  alternative_names : Field[Array[String]]
+  domain_components : Field[Array[String]]
+}
+
 pub struct ChassisInfo {
   resource : Resource
   manufacturer : Field[String]
@@ -81,7 +115,13 @@ pub struct ChassisInfo {
 
 type Client
 pub async fn Client::bios(Self, Resource) -> Field[Bios]
+pub async fn Client::boot_certificates(Self, Resource) -> Field[Array[Certificate]]
 pub async fn Client::boot_options(Self, Resource) -> Field[Array[BootOption]]
+pub async fn Client::certificate_location_certificates(Self, Resource) -> Field[Array[Certificate]]
+pub async fn Client::certificate_locations(Self, Resource) -> Field[Resource]
+pub async fn Client::certificate_service(Self, Resource) -> Field[Resource]
+pub async fn Client::certificate_subjects(Self, Resource) -> Field[Array[Certificate]]
+pub async fn Client::certificates(Self, Resource) -> Field[Array[Certificate]]
 pub async fn Client::chassis(Self) -> Array[Resource]
 pub async fn Client::chassis_pcie_devices(Self, Resource) -> Field[Array[PCIeDevice]]
 pub async fn Client::drives(Self, Resource) -> Field[Array[Drive]]
@@ -392,6 +432,7 @@ pub struct Resource {
 pub fn Resource::bios(Self) -> Bios raise RedfishError
 pub fn Resource::boot(Self) -> Field[Boot] raise RedfishError
 pub fn Resource::boot_option(Self) -> BootOption raise RedfishError
+pub fn Resource::certificate(Self) -> Certificate raise RedfishError
 pub fn Resource::chassis_info(Self) -> ChassisInfo raise RedfishError
 pub fn Resource::drive(Self) -> Drive raise RedfishError
 pub fn Resource::ethernet_interface(Self) -> EthernetInterface raise RedfishError

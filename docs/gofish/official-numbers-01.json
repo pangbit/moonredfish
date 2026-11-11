@@ -1,0 +1,1874 @@
+{
+  "subject_base_commit": "03aa8bf37b08c1ce584e1f1198836bed21277a81",
+  "reference_pins": {
+    "gofish": "4cc897fb5c172996e8f34a31a5d1012b45a287a7",
+    "redfishtool": "8c46f567aa9c960851108e43bf23fd6a64c37897",
+    "libredfish": "f9a23c33d46afe15f09b604160c09a320f1c769c",
+    "jansson": "684e18c927e89615c2d501737e90018f4930d6c5"
+  },
+  "environment": {
+    "os": "Darwin",
+    "arch": "arm64",
+    "python": "Python 3.9.6",
+    "python_dependencies": [
+      "certifi==2026.10.23",
+      "charset-normalizer==3.5.2",
+      "idna==3.20",
+      "python-dateutil==2.9.0.post0",
+      "requests==2.32.5",
+      "six==1.17.0",
+      "urllib3==2.6.3"
+    ],
+    "go": "go version go1.24.0 darwin/arm64",
+    "compiler": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+    "cmake": "cmake version 4.2.3"
+  },
+  "entry_points": {
+    "redfishtool": "CLI raw GET; anonymous numeric loopback HTTP, no proxy/debug/polling",
+    "libredfish": "createRedfishPayloadFromString + getPayloadByNodeNameNoNetwork + public numeric accessors; service=NULL, no network"
+  },
+  "scope": "Eight exact synthetic numeric inputs through real pinned implementations. No complete typed-property contract equivalence or verified GoFish defect exception; no real hardware, credentials, writes or publication.",
+  "cases": [
+    {
+      "id": "lane_string",
+      "mode": "pcie",
+      "property_path": [
+        "PCIeInterface",
+        "LanesInUse"
+      ],
+      "wire_utf8": "{\"@odata.id\": \"/redfish/v1/PCIeTests/Cases/lane_string\", \"Id\": \"lane_string\", \"AssetTag\": \"synthetic-AssetTag\", \"DeviceType\": \"MultiFunction\", \"FirmwareVersion\": \"synthetic-FirmwareVersion\", \"Manufacturer\": \"synthetic-Manufacturer\", \"Model\": \"synthetic-Model\", \"PartNumber\": \"synthetic-PartNumber\", \"SKU\": \"synthetic-SKU\", \"SerialNumber\": \"synthetic-SerialNumber\", \"SparePartNumber\": \"synthetic-SparePartNumber\", \"StagedVersion\": \"synthetic-StagedVersion\", \"UUID\": \"synthetic-UUID\", \"LocationIndicatorActive\": false, \"ReadyToRemove\": false, \"PCIeInterface\": {\"LanesInUse\": \"8\", \"MaxLanes\": 16, \"MaxPCIeType\": \"Gen5\", \"PCIeType\": \"Gen4\"}, \"Status\": {\"State\": \"Enabled\", \"Health\": \"OK\", \"HealthRollup\": \"OK\"}}",
+      "wire_sha256": "08c6bcd0c61e2062ea89e47c13f2ec8765afd29eff1eef0237dc9a4168a38137",
+      "input": {
+        "json_type": "string",
+        "value": "8"
+      },
+      "moonredfish": {
+        "ok": false,
+        "error": "invalid_response",
+        "value": null
+      },
+      "gofish": {
+        "error": "",
+        "ok": true,
+        "value": {
+          "fields": {
+            "AssetTag": {
+              "state": "value",
+              "value": "synthetic-AssetTag"
+            },
+            "DeviceType": {
+              "state": "value",
+              "value": "MultiFunction"
+            },
+            "FirmwareVersion": {
+              "state": "value",
+              "value": "synthetic-FirmwareVersion"
+            },
+            "LocationIndicatorActive": {
+              "state": "value",
+              "value": false
+            },
+            "Manufacturer": {
+              "state": "value",
+              "value": "synthetic-Manufacturer"
+            },
+            "Model": {
+              "state": "value",
+              "value": "synthetic-Model"
+            },
+            "PCIeInterface": {
+              "state": "value",
+              "value": {
+                "LanesInUse": {
+                  "state": "value",
+                  "value": 8
+                },
+                "MaxLanes": {
+                  "state": "value",
+                  "value": 16
+                },
+                "MaxPCIeType": {
+                  "state": "value",
+                  "value": "Gen5"
+                },
+                "PCIeType": {
+                  "state": "value",
+                  "value": "Gen4"
+                }
+              }
+            },
+            "PartNumber": {
+              "state": "value",
+              "value": "synthetic-PartNumber"
+            },
+            "ReadyToRemove": {
+              "state": "value",
+              "value": false
+            },
+            "SKU": {
+              "state": "value",
+              "value": "synthetic-SKU"
+            },
+            "SerialNumber": {
+              "state": "value",
+              "value": "synthetic-SerialNumber"
+            },
+            "SparePartNumber": {
+              "state": "value",
+              "value": "synthetic-SparePartNumber"
+            },
+            "StagedVersion": {
+              "state": "value",
+              "value": "synthetic-StagedVersion"
+            },
+            "Status": {
+              "state": "value",
+              "value": {
+                "Health": {
+                  "state": "value",
+                  "value": "OK"
+                },
+                "HealthRollup": {
+                  "state": "value",
+                  "value": "OK"
+                },
+                "State": {
+                  "state": "value",
+                  "value": "Enabled"
+                }
+              }
+            },
+            "UUID": {
+              "state": "value",
+              "value": "synthetic-UUID"
+            }
+          },
+          "id": "lane_string",
+          "uri": "/redfish/v1/PCIeTests/Cases/lane_string"
+        }
+      },
+      "redfishtool_raw_get": {
+        "json_type": "string",
+        "value": "8"
+      },
+      "libredfish_payload": {
+        "parsed": {
+          "json_type": "string",
+          "value": "8"
+        },
+        "accessors": {
+          "int": 0,
+          "long_long": 0,
+          "double": 0.0,
+          "is_double": false,
+          "boolean": false,
+          "is_boolean": false
+        }
+      },
+      "classification": "generic official read observed; typed PCIe/Task validation/coercion coverage not established; exception unresolved",
+      "request_sequences_for_group": {
+        "moonredfish": [
+          [
+            "GET",
+            "/redfish/v1/PCIeTests"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_string"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_invalid_string"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_bool"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_fraction"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_float32_rounding"
+          ]
+        ],
+        "gofish": [
+          [
+            "GET",
+            "/redfish/v1/"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_string"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_invalid_string"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_bool"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_fraction"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_float32_rounding"
+          ]
+        ],
+        "redfishtool": [
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_string"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_invalid_string"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_bool"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_fraction"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_float32_rounding"
+          ]
+        ],
+        "libredfish": []
+      }
+    },
+    {
+      "id": "lane_invalid_string",
+      "mode": "pcie",
+      "property_path": [
+        "PCIeInterface",
+        "LanesInUse"
+      ],
+      "wire_utf8": "{\"@odata.id\": \"/redfish/v1/PCIeTests/Cases/lane_invalid_string\", \"Id\": \"lane_invalid_string\", \"AssetTag\": \"synthetic-AssetTag\", \"DeviceType\": \"MultiFunction\", \"FirmwareVersion\": \"synthetic-FirmwareVersion\", \"Manufacturer\": \"synthetic-Manufacturer\", \"Model\": \"synthetic-Model\", \"PartNumber\": \"synthetic-PartNumber\", \"SKU\": \"synthetic-SKU\", \"SerialNumber\": \"synthetic-SerialNumber\", \"SparePartNumber\": \"synthetic-SparePartNumber\", \"StagedVersion\": \"synthetic-StagedVersion\", \"UUID\": \"synthetic-UUID\", \"LocationIndicatorActive\": false, \"ReadyToRemove\": false, \"PCIeInterface\": {\"LanesInUse\": \"not-a-number\", \"MaxLanes\": 16, \"MaxPCIeType\": \"Gen5\", \"PCIeType\": \"Gen4\"}, \"Status\": {\"State\": \"Enabled\", \"Health\": \"OK\", \"HealthRollup\": \"OK\"}}",
+      "wire_sha256": "11c6957aa31cbe263a1ee1c82cd9e6b8e2d081cd0fb3c9a641e6ef5e855e946f",
+      "input": {
+        "json_type": "string",
+        "value": "not-a-number"
+      },
+      "moonredfish": {
+        "ok": false,
+        "error": "invalid_response",
+        "value": null
+      },
+      "gofish": {
+        "error": "",
+        "ok": true,
+        "value": {
+          "fields": {
+            "AssetTag": {
+              "state": "value",
+              "value": "synthetic-AssetTag"
+            },
+            "DeviceType": {
+              "state": "value",
+              "value": "MultiFunction"
+            },
+            "FirmwareVersion": {
+              "state": "value",
+              "value": "synthetic-FirmwareVersion"
+            },
+            "LocationIndicatorActive": {
+              "state": "value",
+              "value": false
+            },
+            "Manufacturer": {
+              "state": "value",
+              "value": "synthetic-Manufacturer"
+            },
+            "Model": {
+              "state": "value",
+              "value": "synthetic-Model"
+            },
+            "PCIeInterface": {
+              "state": "value",
+              "value": {
+                "LanesInUse": {
+                  "state": "value",
+                  "value": 0
+                },
+                "MaxLanes": {
+                  "state": "value",
+                  "value": 16
+                },
+                "MaxPCIeType": {
+                  "state": "value",
+                  "value": "Gen5"
+                },
+                "PCIeType": {
+                  "state": "value",
+                  "value": "Gen4"
+                }
+              }
+            },
+            "PartNumber": {
+              "state": "value",
+              "value": "synthetic-PartNumber"
+            },
+            "ReadyToRemove": {
+              "state": "value",
+              "value": false
+            },
+            "SKU": {
+              "state": "value",
+              "value": "synthetic-SKU"
+            },
+            "SerialNumber": {
+              "state": "value",
+              "value": "synthetic-SerialNumber"
+            },
+            "SparePartNumber": {
+              "state": "value",
+              "value": "synthetic-SparePartNumber"
+            },
+            "StagedVersion": {
+              "state": "value",
+              "value": "synthetic-StagedVersion"
+            },
+            "Status": {
+              "state": "value",
+              "value": {
+                "Health": {
+                  "state": "value",
+                  "value": "OK"
+                },
+                "HealthRollup": {
+                  "state": "value",
+                  "value": "OK"
+                },
+                "State": {
+                  "state": "value",
+                  "value": "Enabled"
+                }
+              }
+            },
+            "UUID": {
+              "state": "value",
+              "value": "synthetic-UUID"
+            }
+          },
+          "id": "lane_invalid_string",
+          "uri": "/redfish/v1/PCIeTests/Cases/lane_invalid_string"
+        }
+      },
+      "redfishtool_raw_get": {
+        "json_type": "string",
+        "value": "not-a-number"
+      },
+      "libredfish_payload": {
+        "parsed": {
+          "json_type": "string",
+          "value": "not-a-number"
+        },
+        "accessors": {
+          "int": 0,
+          "long_long": 0,
+          "double": 0.0,
+          "is_double": false,
+          "boolean": false,
+          "is_boolean": false
+        }
+      },
+      "classification": "generic official read observed; typed PCIe/Task validation/coercion coverage not established; exception unresolved",
+      "request_sequences_for_group": {
+        "moonredfish": [
+          [
+            "GET",
+            "/redfish/v1/PCIeTests"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_string"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_invalid_string"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_bool"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_fraction"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_float32_rounding"
+          ]
+        ],
+        "gofish": [
+          [
+            "GET",
+            "/redfish/v1/"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_string"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_invalid_string"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_bool"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_fraction"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_float32_rounding"
+          ]
+        ],
+        "redfishtool": [
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_string"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_invalid_string"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_bool"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_fraction"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_float32_rounding"
+          ]
+        ],
+        "libredfish": []
+      }
+    },
+    {
+      "id": "lane_bool",
+      "mode": "pcie",
+      "property_path": [
+        "PCIeInterface",
+        "LanesInUse"
+      ],
+      "wire_utf8": "{\"@odata.id\": \"/redfish/v1/PCIeTests/Cases/lane_bool\", \"Id\": \"lane_bool\", \"AssetTag\": \"synthetic-AssetTag\", \"DeviceType\": \"MultiFunction\", \"FirmwareVersion\": \"synthetic-FirmwareVersion\", \"Manufacturer\": \"synthetic-Manufacturer\", \"Model\": \"synthetic-Model\", \"PartNumber\": \"synthetic-PartNumber\", \"SKU\": \"synthetic-SKU\", \"SerialNumber\": \"synthetic-SerialNumber\", \"SparePartNumber\": \"synthetic-SparePartNumber\", \"StagedVersion\": \"synthetic-StagedVersion\", \"UUID\": \"synthetic-UUID\", \"LocationIndicatorActive\": false, \"ReadyToRemove\": false, \"PCIeInterface\": {\"LanesInUse\": true, \"MaxLanes\": 16, \"MaxPCIeType\": \"Gen5\", \"PCIeType\": \"Gen4\"}, \"Status\": {\"State\": \"Enabled\", \"Health\": \"OK\", \"HealthRollup\": \"OK\"}}",
+      "wire_sha256": "2f24bd83abf3b376838c81ca2cb0ff90114f92f2c444ec0d6e200c1f07fa66aa",
+      "input": {
+        "json_type": "boolean",
+        "value": true
+      },
+      "moonredfish": {
+        "ok": false,
+        "error": "invalid_response",
+        "value": null
+      },
+      "gofish": {
+        "error": "",
+        "ok": true,
+        "value": {
+          "fields": {
+            "AssetTag": {
+              "state": "value",
+              "value": "synthetic-AssetTag"
+            },
+            "DeviceType": {
+              "state": "value",
+              "value": "MultiFunction"
+            },
+            "FirmwareVersion": {
+              "state": "value",
+              "value": "synthetic-FirmwareVersion"
+            },
+            "LocationIndicatorActive": {
+              "state": "value",
+              "value": false
+            },
+            "Manufacturer": {
+              "state": "value",
+              "value": "synthetic-Manufacturer"
+            },
+            "Model": {
+              "state": "value",
+              "value": "synthetic-Model"
+            },
+            "PCIeInterface": {
+              "state": "value",
+              "value": {
+                "LanesInUse": {
+                  "state": "value",
+                  "value": 0
+                },
+                "MaxLanes": {
+                  "state": "value",
+                  "value": 16
+                },
+                "MaxPCIeType": {
+                  "state": "value",
+                  "value": "Gen5"
+                },
+                "PCIeType": {
+                  "state": "value",
+                  "value": "Gen4"
+                }
+              }
+            },
+            "PartNumber": {
+              "state": "value",
+              "value": "synthetic-PartNumber"
+            },
+            "ReadyToRemove": {
+              "state": "value",
+              "value": false
+            },
+            "SKU": {
+              "state": "value",
+              "value": "synthetic-SKU"
+            },
+            "SerialNumber": {
+              "state": "value",
+              "value": "synthetic-SerialNumber"
+            },
+            "SparePartNumber": {
+              "state": "value",
+              "value": "synthetic-SparePartNumber"
+            },
+            "StagedVersion": {
+              "state": "value",
+              "value": "synthetic-StagedVersion"
+            },
+            "Status": {
+              "state": "value",
+              "value": {
+                "Health": {
+                  "state": "value",
+                  "value": "OK"
+                },
+                "HealthRollup": {
+                  "state": "value",
+                  "value": "OK"
+                },
+                "State": {
+                  "state": "value",
+                  "value": "Enabled"
+                }
+              }
+            },
+            "UUID": {
+              "state": "value",
+              "value": "synthetic-UUID"
+            }
+          },
+          "id": "lane_bool",
+          "uri": "/redfish/v1/PCIeTests/Cases/lane_bool"
+        }
+      },
+      "redfishtool_raw_get": {
+        "json_type": "boolean",
+        "value": true
+      },
+      "libredfish_payload": {
+        "parsed": {
+          "json_type": "boolean",
+          "value": true
+        },
+        "accessors": {
+          "int": 0,
+          "long_long": 0,
+          "double": 0.0,
+          "is_double": false,
+          "boolean": true,
+          "is_boolean": true
+        }
+      },
+      "classification": "generic official read observed; typed PCIe/Task validation/coercion coverage not established; exception unresolved",
+      "request_sequences_for_group": {
+        "moonredfish": [
+          [
+            "GET",
+            "/redfish/v1/PCIeTests"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_string"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_invalid_string"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_bool"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_fraction"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_float32_rounding"
+          ]
+        ],
+        "gofish": [
+          [
+            "GET",
+            "/redfish/v1/"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_string"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_invalid_string"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_bool"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_fraction"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_float32_rounding"
+          ]
+        ],
+        "redfishtool": [
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_string"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_invalid_string"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_bool"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_fraction"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_float32_rounding"
+          ]
+        ],
+        "libredfish": []
+      }
+    },
+    {
+      "id": "lane_fraction",
+      "mode": "pcie",
+      "property_path": [
+        "PCIeInterface",
+        "LanesInUse"
+      ],
+      "wire_utf8": "{\"@odata.id\": \"/redfish/v1/PCIeTests/Cases/lane_fraction\", \"Id\": \"lane_fraction\", \"AssetTag\": \"synthetic-AssetTag\", \"DeviceType\": \"MultiFunction\", \"FirmwareVersion\": \"synthetic-FirmwareVersion\", \"Manufacturer\": \"synthetic-Manufacturer\", \"Model\": \"synthetic-Model\", \"PartNumber\": \"synthetic-PartNumber\", \"SKU\": \"synthetic-SKU\", \"SerialNumber\": \"synthetic-SerialNumber\", \"SparePartNumber\": \"synthetic-SparePartNumber\", \"StagedVersion\": \"synthetic-StagedVersion\", \"UUID\": \"synthetic-UUID\", \"LocationIndicatorActive\": false, \"ReadyToRemove\": false, \"PCIeInterface\": {\"LanesInUse\": 1.5, \"MaxLanes\": 16, \"MaxPCIeType\": \"Gen5\", \"PCIeType\": \"Gen4\"}, \"Status\": {\"State\": \"Enabled\", \"Health\": \"OK\", \"HealthRollup\": \"OK\"}}",
+      "wire_sha256": "c6f3d4f619fb6c08760c1f40f63b28a8958125f9c031597cf4b3aa48aad04d07",
+      "input": {
+        "json_type": "real",
+        "value": 1.5
+      },
+      "moonredfish": {
+        "ok": false,
+        "error": "invalid_response",
+        "value": null
+      },
+      "gofish": {
+        "error": "",
+        "ok": true,
+        "value": {
+          "fields": {
+            "AssetTag": {
+              "state": "value",
+              "value": "synthetic-AssetTag"
+            },
+            "DeviceType": {
+              "state": "value",
+              "value": "MultiFunction"
+            },
+            "FirmwareVersion": {
+              "state": "value",
+              "value": "synthetic-FirmwareVersion"
+            },
+            "LocationIndicatorActive": {
+              "state": "value",
+              "value": false
+            },
+            "Manufacturer": {
+              "state": "value",
+              "value": "synthetic-Manufacturer"
+            },
+            "Model": {
+              "state": "value",
+              "value": "synthetic-Model"
+            },
+            "PCIeInterface": {
+              "state": "value",
+              "value": {
+                "LanesInUse": {
+                  "state": "value",
+                  "value": 1
+                },
+                "MaxLanes": {
+                  "state": "value",
+                  "value": 16
+                },
+                "MaxPCIeType": {
+                  "state": "value",
+                  "value": "Gen5"
+                },
+                "PCIeType": {
+                  "state": "value",
+                  "value": "Gen4"
+                }
+              }
+            },
+            "PartNumber": {
+              "state": "value",
+              "value": "synthetic-PartNumber"
+            },
+            "ReadyToRemove": {
+              "state": "value",
+              "value": false
+            },
+            "SKU": {
+              "state": "value",
+              "value": "synthetic-SKU"
+            },
+            "SerialNumber": {
+              "state": "value",
+              "value": "synthetic-SerialNumber"
+            },
+            "SparePartNumber": {
+              "state": "value",
+              "value": "synthetic-SparePartNumber"
+            },
+            "StagedVersion": {
+              "state": "value",
+              "value": "synthetic-StagedVersion"
+            },
+            "Status": {
+              "state": "value",
+              "value": {
+                "Health": {
+                  "state": "value",
+                  "value": "OK"
+                },
+                "HealthRollup": {
+                  "state": "value",
+                  "value": "OK"
+                },
+                "State": {
+                  "state": "value",
+                  "value": "Enabled"
+                }
+              }
+            },
+            "UUID": {
+              "state": "value",
+              "value": "synthetic-UUID"
+            }
+          },
+          "id": "lane_fraction",
+          "uri": "/redfish/v1/PCIeTests/Cases/lane_fraction"
+        }
+      },
+      "redfishtool_raw_get": {
+        "json_type": "real",
+        "value": 1.5
+      },
+      "libredfish_payload": {
+        "parsed": {
+          "json_type": "real",
+          "value": 1.5
+        },
+        "accessors": {
+          "int": 0,
+          "long_long": 0,
+          "double": 1.5,
+          "is_double": true,
+          "boolean": false,
+          "is_boolean": false
+        }
+      },
+      "classification": "generic official read observed; typed PCIe/Task validation/coercion coverage not established; exception unresolved",
+      "request_sequences_for_group": {
+        "moonredfish": [
+          [
+            "GET",
+            "/redfish/v1/PCIeTests"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_string"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_invalid_string"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_bool"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_fraction"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_float32_rounding"
+          ]
+        ],
+        "gofish": [
+          [
+            "GET",
+            "/redfish/v1/"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_string"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_invalid_string"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_bool"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_fraction"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_float32_rounding"
+          ]
+        ],
+        "redfishtool": [
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_string"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_invalid_string"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_bool"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_fraction"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_float32_rounding"
+          ]
+        ],
+        "libredfish": []
+      }
+    },
+    {
+      "id": "lane_float32_rounding",
+      "mode": "pcie",
+      "property_path": [
+        "PCIeInterface",
+        "LanesInUse"
+      ],
+      "wire_utf8": "{\"@odata.id\": \"/redfish/v1/PCIeTests/Cases/lane_float32_rounding\", \"Id\": \"lane_float32_rounding\", \"AssetTag\": \"synthetic-AssetTag\", \"DeviceType\": \"MultiFunction\", \"FirmwareVersion\": \"synthetic-FirmwareVersion\", \"Manufacturer\": \"synthetic-Manufacturer\", \"Model\": \"synthetic-Model\", \"PartNumber\": \"synthetic-PartNumber\", \"SKU\": \"synthetic-SKU\", \"SerialNumber\": \"synthetic-SerialNumber\", \"SparePartNumber\": \"synthetic-SparePartNumber\", \"StagedVersion\": \"synthetic-StagedVersion\", \"UUID\": \"synthetic-UUID\", \"LocationIndicatorActive\": false, \"ReadyToRemove\": false, \"PCIeInterface\": {\"LanesInUse\": 16777217, \"MaxLanes\": 16, \"MaxPCIeType\": \"Gen5\", \"PCIeType\": \"Gen4\"}, \"Status\": {\"State\": \"Enabled\", \"Health\": \"OK\", \"HealthRollup\": \"OK\"}}",
+      "wire_sha256": "bbc5d49b7831af542d8cdbaeaadfddf7cd16e56ec5421f7b7890294dd9c66e8b",
+      "input": {
+        "json_type": "integer",
+        "value": 16777217
+      },
+      "moonredfish": {
+        "ok": true,
+        "error": "",
+        "value": {
+          "uri": "/redfish/v1/PCIeTests/Cases/lane_float32_rounding",
+          "id": "lane_float32_rounding",
+          "fields": {
+            "AssetTag": {
+              "state": "value",
+              "value": "synthetic-AssetTag"
+            },
+            "DeviceType": {
+              "state": "value",
+              "value": "MultiFunction"
+            },
+            "FirmwareVersion": {
+              "state": "value",
+              "value": "synthetic-FirmwareVersion"
+            },
+            "Manufacturer": {
+              "state": "value",
+              "value": "synthetic-Manufacturer"
+            },
+            "Model": {
+              "state": "value",
+              "value": "synthetic-Model"
+            },
+            "PartNumber": {
+              "state": "value",
+              "value": "synthetic-PartNumber"
+            },
+            "SKU": {
+              "state": "value",
+              "value": "synthetic-SKU"
+            },
+            "SerialNumber": {
+              "state": "value",
+              "value": "synthetic-SerialNumber"
+            },
+            "SparePartNumber": {
+              "state": "value",
+              "value": "synthetic-SparePartNumber"
+            },
+            "StagedVersion": {
+              "state": "value",
+              "value": "synthetic-StagedVersion"
+            },
+            "UUID": {
+              "state": "value",
+              "value": "synthetic-UUID"
+            },
+            "LocationIndicatorActive": {
+              "state": "value",
+              "value": false
+            },
+            "ReadyToRemove": {
+              "state": "value",
+              "value": false
+            },
+            "PCIeInterface": {
+              "state": "value",
+              "value": {
+                "LanesInUse": {
+                  "state": "value",
+                  "value": 16777217
+                },
+                "MaxLanes": {
+                  "state": "value",
+                  "value": 16
+                },
+                "MaxPCIeType": {
+                  "state": "value",
+                  "value": "Gen5"
+                },
+                "PCIeType": {
+                  "state": "value",
+                  "value": "Gen4"
+                }
+              }
+            },
+            "Status": {
+              "state": "value",
+              "value": {
+                "State": {
+                  "state": "value",
+                  "value": "Enabled"
+                },
+                "Health": {
+                  "state": "value",
+                  "value": "OK"
+                },
+                "HealthRollup": {
+                  "state": "value",
+                  "value": "OK"
+                }
+              }
+            }
+          }
+        }
+      },
+      "gofish": {
+        "error": "",
+        "ok": true,
+        "value": {
+          "fields": {
+            "AssetTag": {
+              "state": "value",
+              "value": "synthetic-AssetTag"
+            },
+            "DeviceType": {
+              "state": "value",
+              "value": "MultiFunction"
+            },
+            "FirmwareVersion": {
+              "state": "value",
+              "value": "synthetic-FirmwareVersion"
+            },
+            "LocationIndicatorActive": {
+              "state": "value",
+              "value": false
+            },
+            "Manufacturer": {
+              "state": "value",
+              "value": "synthetic-Manufacturer"
+            },
+            "Model": {
+              "state": "value",
+              "value": "synthetic-Model"
+            },
+            "PCIeInterface": {
+              "state": "value",
+              "value": {
+                "LanesInUse": {
+                  "state": "value",
+                  "value": 16777216
+                },
+                "MaxLanes": {
+                  "state": "value",
+                  "value": 16
+                },
+                "MaxPCIeType": {
+                  "state": "value",
+                  "value": "Gen5"
+                },
+                "PCIeType": {
+                  "state": "value",
+                  "value": "Gen4"
+                }
+              }
+            },
+            "PartNumber": {
+              "state": "value",
+              "value": "synthetic-PartNumber"
+            },
+            "ReadyToRemove": {
+              "state": "value",
+              "value": false
+            },
+            "SKU": {
+              "state": "value",
+              "value": "synthetic-SKU"
+            },
+            "SerialNumber": {
+              "state": "value",
+              "value": "synthetic-SerialNumber"
+            },
+            "SparePartNumber": {
+              "state": "value",
+              "value": "synthetic-SparePartNumber"
+            },
+            "StagedVersion": {
+              "state": "value",
+              "value": "synthetic-StagedVersion"
+            },
+            "Status": {
+              "state": "value",
+              "value": {
+                "Health": {
+                  "state": "value",
+                  "value": "OK"
+                },
+                "HealthRollup": {
+                  "state": "value",
+                  "value": "OK"
+                },
+                "State": {
+                  "state": "value",
+                  "value": "Enabled"
+                }
+              }
+            },
+            "UUID": {
+              "state": "value",
+              "value": "synthetic-UUID"
+            }
+          },
+          "id": "lane_float32_rounding",
+          "uri": "/redfish/v1/PCIeTests/Cases/lane_float32_rounding"
+        }
+      },
+      "redfishtool_raw_get": {
+        "json_type": "integer",
+        "value": 16777217
+      },
+      "libredfish_payload": {
+        "parsed": {
+          "json_type": "integer",
+          "value": 16777217
+        },
+        "accessors": {
+          "int": 16777217,
+          "long_long": 16777217,
+          "double": 0.0,
+          "is_double": false,
+          "boolean": false,
+          "is_boolean": false
+        }
+      },
+      "classification": "generic official read observed; typed PCIe/Task validation/coercion coverage not established; exception unresolved",
+      "request_sequences_for_group": {
+        "moonredfish": [
+          [
+            "GET",
+            "/redfish/v1/PCIeTests"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_string"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_invalid_string"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_bool"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_fraction"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_float32_rounding"
+          ]
+        ],
+        "gofish": [
+          [
+            "GET",
+            "/redfish/v1/"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_string"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_invalid_string"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_bool"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_fraction"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_float32_rounding"
+          ]
+        ],
+        "redfishtool": [
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_string"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_invalid_string"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_bool"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_fraction"
+          ],
+          [
+            "GET",
+            "/redfish/v1/PCIeTests/Cases/lane_float32_rounding"
+          ]
+        ],
+        "libredfish": []
+      }
+    },
+    {
+      "id": "percent_decimal_integer",
+      "mode": "task",
+      "property_path": [
+        "PercentComplete"
+      ],
+      "wire_utf8": "{\"@odata.id\": \"/redfish/v1/TaskTests/Cases/percent_decimal_integer\", \"Id\": \"percent_decimal_integer\", \"Name\": \"Synthetic resource\", \"EndTime\": \"2026-11-11T01:00:01Z\", \"EstimatedDuration\": \"PT1S\", \"StartTime\": \"2026-11-11T01:00:00Z\", \"TaskMonitor\": \"/redfish/v1/MustNotMonitor\", \"TaskState\": \"Completed\", \"TaskStatus\": \"OK\", \"HidePayload\": true, \"PercentComplete\": 1.0, \"Messages\": [{\"Message\": \"Synthetic task report\", \"MessageId\": \"Synthetic.1.0.Task\", \"MessageSeverity\": \"Critical\", \"Resolution\": \"Synthetic recommendation only\", \"Severity\": \"Warning\", \"UserAuthenticationSource\": \"https://auth.example.invalid\", \"Username\": \"synthetic-user\", \"MessageArgs\": [\"first\", \"second\", \"first\"], \"RelatedProperties\": [\"/Boot/BootNext\"], \"ResolutionSteps\": [{\"ActionURI\": \"/redfish/v1/MustNotAct\", \"ResolutionType\": \"Reset\"}], \"Oem\": {\"Synthetic\": true}}], \"Payload\": {\"HttpOperation\": \"POST\", \"TargetUri\": \"/redfish/v1/MustNotReplay\", \"HttpHeaders\": [\"X-Synthetic: never-send\"], \"JsonBody\": \"{}\"}}",
+      "wire_sha256": "2501d8274a0a5d6896ed15beb60962f1fc76d7c7d55a38a13eb32bc31e3b9887",
+      "input": {
+        "json_type": "real",
+        "value": 1.0
+      },
+      "moonredfish": {
+        "ok": true,
+        "error": "",
+        "value": {
+          "uri": "/redfish/v1/TaskTests/Cases/percent_decimal_integer",
+          "id": "percent_decimal_integer",
+          "fields": {
+            "EndTime": {
+              "state": "value",
+              "value": "2026-11-11T01:00:01Z"
+            },
+            "EstimatedDuration": {
+              "state": "value",
+              "value": "PT1S"
+            },
+            "StartTime": {
+              "state": "value",
+              "value": "2026-11-11T01:00:00Z"
+            },
+            "TaskMonitor": {
+              "state": "value",
+              "value": "/redfish/v1/MustNotMonitor"
+            },
+            "TaskState": {
+              "state": "value",
+              "value": "Completed"
+            },
+            "TaskStatus": {
+              "state": "value",
+              "value": "OK"
+            },
+            "HidePayload": {
+              "state": "value",
+              "value": true
+            },
+            "PercentComplete": {
+              "state": "value",
+              "value": 1
+            },
+            "Messages": {
+              "state": "value",
+              "value": [
+                {
+                  "Message": {
+                    "state": "value",
+                    "value": "Synthetic task report"
+                  },
+                  "MessageId": {
+                    "state": "value",
+                    "value": "Synthetic.1.0.Task"
+                  },
+                  "MessageSeverity": {
+                    "state": "value",
+                    "value": "Critical"
+                  },
+                  "Resolution": {
+                    "state": "value",
+                    "value": "Synthetic recommendation only"
+                  },
+                  "Severity": {
+                    "state": "value",
+                    "value": "Warning"
+                  },
+                  "UserAuthenticationSource": {
+                    "state": "value",
+                    "value": "https://auth.example.invalid"
+                  },
+                  "Username": {
+                    "state": "value",
+                    "value": "synthetic-user"
+                  },
+                  "MessageArgs": {
+                    "state": "value",
+                    "value": [
+                      "first",
+                      "second",
+                      "first"
+                    ]
+                  },
+                  "RelatedProperties": {
+                    "state": "value",
+                    "value": [
+                      "/Boot/BootNext"
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "gofish": {
+        "error": "json_type",
+        "ok": false,
+        "value": null
+      },
+      "redfishtool_raw_get": {
+        "json_type": "real",
+        "value": 1.0
+      },
+      "libredfish_payload": {
+        "parsed": {
+          "json_type": "real",
+          "value": 1.0
+        },
+        "accessors": {
+          "int": 0,
+          "long_long": 0,
+          "double": 1.0,
+          "is_double": true,
+          "boolean": false,
+          "is_boolean": false
+        }
+      },
+      "classification": "generic official read observed; typed PCIe/Task validation/coercion coverage not established; exception unresolved",
+      "request_sequences_for_group": {
+        "moonredfish": [
+          [
+            "GET",
+            "/redfish/v1/TaskTests"
+          ],
+          [
+            "GET",
+            "/redfish/v1/TaskTests/Cases/percent_decimal_integer"
+          ],
+          [
+            "GET",
+            "/redfish/v1/TaskTests/Cases/percent_above_native_range"
+          ],
+          [
+            "GET",
+            "/redfish/v1/TaskTests/Cases/percent_above_schema_range"
+          ]
+        ],
+        "gofish": [
+          [
+            "GET",
+            "/redfish/v1/"
+          ],
+          [
+            "GET",
+            "/redfish/v1/TaskTests"
+          ],
+          [
+            "GET",
+            "/redfish/v1/TaskTests/Cases/percent_decimal_integer"
+          ],
+          [
+            "GET",
+            "/redfish/v1/TaskTests/Cases/percent_above_native_range"
+          ],
+          [
+            "GET",
+            "/redfish/v1/TaskTests/Cases/percent_above_schema_range"
+          ]
+        ],
+        "redfishtool": [
+          [
+            "GET",
+            "/redfish/v1/TaskTests/Cases/percent_decimal_integer"
+          ],
+          [
+            "GET",
+            "/redfish/v1/TaskTests/Cases/percent_above_native_range"
+          ],
+          [
+            "GET",
+            "/redfish/v1/TaskTests/Cases/percent_above_schema_range"
+          ]
+        ],
+        "libredfish": []
+      }
+    },
+    {
+      "id": "percent_above_native_range",
+      "mode": "task",
+      "property_path": [
+        "PercentComplete"
+      ],
+      "wire_utf8": "{\"@odata.id\": \"/redfish/v1/TaskTests/Cases/percent_above_native_range\", \"Id\": \"percent_above_native_range\", \"Name\": \"Synthetic resource\", \"EndTime\": \"2026-11-11T01:00:01Z\", \"EstimatedDuration\": \"PT1S\", \"StartTime\": \"2026-11-11T01:00:00Z\", \"TaskMonitor\": \"/redfish/v1/MustNotMonitor\", \"TaskState\": \"Completed\", \"TaskStatus\": \"OK\", \"HidePayload\": true, \"PercentComplete\": 2147483648, \"Messages\": [{\"Message\": \"Synthetic task report\", \"MessageId\": \"Synthetic.1.0.Task\", \"MessageSeverity\": \"Critical\", \"Resolution\": \"Synthetic recommendation only\", \"Severity\": \"Warning\", \"UserAuthenticationSource\": \"https://auth.example.invalid\", \"Username\": \"synthetic-user\", \"MessageArgs\": [\"first\", \"second\", \"first\"], \"RelatedProperties\": [\"/Boot/BootNext\"], \"ResolutionSteps\": [{\"ActionURI\": \"/redfish/v1/MustNotAct\", \"ResolutionType\": \"Reset\"}], \"Oem\": {\"Synthetic\": true}}], \"Payload\": {\"HttpOperation\": \"POST\", \"TargetUri\": \"/redfish/v1/MustNotReplay\", \"HttpHeaders\": [\"X-Synthetic: never-send\"], \"JsonBody\": \"{}\"}}",
+      "wire_sha256": "c9a1a62c0082d11877723432d5a212505d71111c73796c74aacfc1ae2e683687",
+      "input": {
+        "json_type": "integer",
+        "value": 2147483648
+      },
+      "moonredfish": {
+        "ok": false,
+        "error": "invalid_response",
+        "value": null
+      },
+      "gofish": {
+        "error": "",
+        "ok": true,
+        "value": {
+          "fields": {
+            "EndTime": {
+              "state": "value",
+              "value": "2026-11-11T01:00:01Z"
+            },
+            "EstimatedDuration": {
+              "state": "value",
+              "value": "PT1S"
+            },
+            "HidePayload": {
+              "state": "value",
+              "value": true
+            },
+            "Messages": {
+              "state": "value",
+              "value": [
+                {
+                  "Message": {
+                    "state": "value",
+                    "value": "Synthetic task report"
+                  },
+                  "MessageArgs": {
+                    "state": "value",
+                    "value": [
+                      "first",
+                      "second",
+                      "first"
+                    ]
+                  },
+                  "MessageId": {
+                    "state": "value",
+                    "value": "Synthetic.1.0.Task"
+                  },
+                  "MessageSeverity": {
+                    "state": "value",
+                    "value": "Critical"
+                  },
+                  "RelatedProperties": {
+                    "state": "value",
+                    "value": [
+                      "/Boot/BootNext"
+                    ]
+                  },
+                  "Resolution": {
+                    "state": "value",
+                    "value": "Synthetic recommendation only"
+                  },
+                  "Severity": {
+                    "state": "value",
+                    "value": "Warning"
+                  },
+                  "UserAuthenticationSource": {
+                    "state": "value",
+                    "value": "https://auth.example.invalid"
+                  },
+                  "Username": {
+                    "state": "value",
+                    "value": "synthetic-user"
+                  }
+                }
+              ]
+            },
+            "PercentComplete": {
+              "state": "value",
+              "value": 2147483648
+            },
+            "StartTime": {
+              "state": "value",
+              "value": "2026-11-11T01:00:00Z"
+            },
+            "TaskMonitor": {
+              "state": "value",
+              "value": "/redfish/v1/MustNotMonitor"
+            },
+            "TaskState": {
+              "state": "value",
+              "value": "Completed"
+            },
+            "TaskStatus": {
+              "state": "value",
+              "value": "OK"
+            }
+          },
+          "id": "percent_above_native_range",
+          "uri": "/redfish/v1/TaskTests/Cases/percent_above_native_range"
+        }
+      },
+      "redfishtool_raw_get": {
+        "json_type": "integer",
+        "value": 2147483648
+      },
+      "libredfish_payload": {
+        "parsed": {
+          "json_type": "integer",
+          "value": 2147483648
+        },
+        "accessors": {
+          "int": -2147483648,
+          "long_long": 2147483648,
+          "double": 0.0,
+          "is_double": false,
+          "boolean": false,
+          "is_boolean": false
+        }
+      },
+      "classification": "generic official read observed; typed PCIe/Task validation/coercion coverage not established; exception unresolved",
+      "request_sequences_for_group": {
+        "moonredfish": [
+          [
+            "GET",
+            "/redfish/v1/TaskTests"
+          ],
+          [
+            "GET",
+            "/redfish/v1/TaskTests/Cases/percent_decimal_integer"
+          ],
+          [
+            "GET",
+            "/redfish/v1/TaskTests/Cases/percent_above_native_range"
+          ],
+          [
+            "GET",
+            "/redfish/v1/TaskTests/Cases/percent_above_schema_range"
+          ]
+        ],
+        "gofish": [
+          [
+            "GET",
+            "/redfish/v1/"
+          ],
+          [
+            "GET",
+            "/redfish/v1/TaskTests"
+          ],
+          [
+            "GET",
+            "/redfish/v1/TaskTests/Cases/percent_decimal_integer"
+          ],
+          [
+            "GET",
+            "/redfish/v1/TaskTests/Cases/percent_above_native_range"
+          ],
+          [
+            "GET",
+            "/redfish/v1/TaskTests/Cases/percent_above_schema_range"
+          ]
+        ],
+        "redfishtool": [
+          [
+            "GET",
+            "/redfish/v1/TaskTests/Cases/percent_decimal_integer"
+          ],
+          [
+            "GET",
+            "/redfish/v1/TaskTests/Cases/percent_above_native_range"
+          ],
+          [
+            "GET",
+            "/redfish/v1/TaskTests/Cases/percent_above_schema_range"
+          ]
+        ],
+        "libredfish": []
+      }
+    },
+    {
+      "id": "percent_above_schema_range",
+      "mode": "task",
+      "property_path": [
+        "PercentComplete"
+      ],
+      "wire_utf8": "{\"@odata.id\": \"/redfish/v1/TaskTests/Cases/percent_above_schema_range\", \"Id\": \"percent_above_schema_range\", \"Name\": \"Synthetic resource\", \"EndTime\": \"2026-11-11T01:00:01Z\", \"EstimatedDuration\": \"PT1S\", \"StartTime\": \"2026-11-11T01:00:00Z\", \"TaskMonitor\": \"/redfish/v1/MustNotMonitor\", \"TaskState\": \"Completed\", \"TaskStatus\": \"OK\", \"HidePayload\": true, \"PercentComplete\": 101, \"Messages\": [{\"Message\": \"Synthetic task report\", \"MessageId\": \"Synthetic.1.0.Task\", \"MessageSeverity\": \"Critical\", \"Resolution\": \"Synthetic recommendation only\", \"Severity\": \"Warning\", \"UserAuthenticationSource\": \"https://auth.example.invalid\", \"Username\": \"synthetic-user\", \"MessageArgs\": [\"first\", \"second\", \"first\"], \"RelatedProperties\": [\"/Boot/BootNext\"], \"ResolutionSteps\": [{\"ActionURI\": \"/redfish/v1/MustNotAct\", \"ResolutionType\": \"Reset\"}], \"Oem\": {\"Synthetic\": true}}], \"Payload\": {\"HttpOperation\": \"POST\", \"TargetUri\": \"/redfish/v1/MustNotReplay\", \"HttpHeaders\": [\"X-Synthetic: never-send\"], \"JsonBody\": \"{}\"}}",
+      "wire_sha256": "4fd94bf6f90f43b45432208e3873dbf999ac83406f3cab0fd658f3d3f346376d",
+      "input": {
+        "json_type": "integer",
+        "value": 101
+      },
+      "moonredfish": {
+        "ok": true,
+        "error": "",
+        "value": {
+          "uri": "/redfish/v1/TaskTests/Cases/percent_above_schema_range",
+          "id": "percent_above_schema_range",
+          "fields": {
+            "EndTime": {
+              "state": "value",
+              "value": "2026-11-11T01:00:01Z"
+            },
+            "EstimatedDuration": {
+              "state": "value",
+              "value": "PT1S"
+            },
+            "StartTime": {
+              "state": "value",
+              "value": "2026-11-11T01:00:00Z"
+            },
+            "TaskMonitor": {
+              "state": "value",
+              "value": "/redfish/v1/MustNotMonitor"
+            },
+            "TaskState": {
+              "state": "value",
+              "value": "Completed"
+            },
+            "TaskStatus": {
+              "state": "value",
+              "value": "OK"
+            },
+            "HidePayload": {
+              "state": "value",
+              "value": true
+            },
+            "PercentComplete": {
+              "state": "value",
+              "value": 101
+            },
+            "Messages": {
+              "state": "value",
+              "value": [
+                {
+                  "Message": {
+                    "state": "value",
+                    "value": "Synthetic task report"
+                  },
+                  "MessageId": {
+                    "state": "value",
+                    "value": "Synthetic.1.0.Task"
+                  },
+                  "MessageSeverity": {
+                    "state": "value",
+                    "value": "Critical"
+                  },
+                  "Resolution": {
+                    "state": "value",
+                    "value": "Synthetic recommendation only"
+                  },
+                  "Severity": {
+                    "state": "value",
+                    "value": "Warning"
+                  },
+                  "UserAuthenticationSource": {
+                    "state": "value",
+                    "value": "https://auth.example.invalid"
+                  },
+                  "Username": {
+                    "state": "value",
+                    "value": "synthetic-user"
+                  },
+                  "MessageArgs": {
+                    "state": "value",
+                    "value": [
+                      "first",
+                      "second",
+                      "first"
+                    ]
+                  },
+                  "RelatedProperties": {
+                    "state": "value",
+                    "value": [
+                      "/Boot/BootNext"
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "gofish": {
+        "error": "",
+        "ok": true,
+        "value": {
+          "fields": {
+            "EndTime": {
+              "state": "value",
+              "value": "2026-11-11T01:00:01Z"
+            },
+            "EstimatedDuration": {
+              "state": "value",
+              "value": "PT1S"
+            },
+            "HidePayload": {
+              "state": "value",
+              "value": true
+            },
+            "Messages": {
+              "state": "value",
+              "value": [
+                {
+                  "Message": {
+                    "state": "value",
+                    "value": "Synthetic task report"
+                  },
+                  "MessageArgs": {
+                    "state": "value",
+                    "value": [
+                      "first",
+                      "second",
+                      "first"
+                    ]
+                  },
+                  "MessageId": {
+                    "state": "value",
+                    "value": "Synthetic.1.0.Task"
+                  },
+                  "MessageSeverity": {
+                    "state": "value",
+                    "value": "Critical"
+                  },
+                  "RelatedProperties": {
+                    "state": "value",
+                    "value": [
+                      "/Boot/BootNext"
+                    ]
+                  },
+                  "Resolution": {
+                    "state": "value",
+                    "value": "Synthetic recommendation only"
+                  },
+                  "Severity": {
+                    "state": "value",
+                    "value": "Warning"
+                  },
+                  "UserAuthenticationSource": {
+                    "state": "value",
+                    "value": "https://auth.example.invalid"
+                  },
+                  "Username": {
+                    "state": "value",
+                    "value": "synthetic-user"
+                  }
+                }
+              ]
+            },
+            "PercentComplete": {
+              "state": "value",
+              "value": 101
+            },
+            "StartTime": {
+              "state": "value",
+              "value": "2026-11-11T01:00:00Z"
+            },
+            "TaskMonitor": {
+              "state": "value",
+              "value": "/redfish/v1/MustNotMonitor"
+            },
+            "TaskState": {
+              "state": "value",
+              "value": "Completed"
+            },
+            "TaskStatus": {
+              "state": "value",
+              "value": "OK"
+            }
+          },
+          "id": "percent_above_schema_range",
+          "uri": "/redfish/v1/TaskTests/Cases/percent_above_schema_range"
+        }
+      },
+      "redfishtool_raw_get": {
+        "json_type": "integer",
+        "value": 101
+      },
+      "libredfish_payload": {
+        "parsed": {
+          "json_type": "integer",
+          "value": 101
+        },
+        "accessors": {
+          "int": 101,
+          "long_long": 101,
+          "double": 0.0,
+          "is_double": false,
+          "boolean": false,
+          "is_boolean": false
+        }
+      },
+      "classification": "generic official read observed; typed PCIe/Task validation/coercion coverage not established; exception unresolved",
+      "request_sequences_for_group": {
+        "moonredfish": [
+          [
+            "GET",
+            "/redfish/v1/TaskTests"
+          ],
+          [
+            "GET",
+            "/redfish/v1/TaskTests/Cases/percent_decimal_integer"
+          ],
+          [
+            "GET",
+            "/redfish/v1/TaskTests/Cases/percent_above_native_range"
+          ],
+          [
+            "GET",
+            "/redfish/v1/TaskTests/Cases/percent_above_schema_range"
+          ]
+        ],
+        "gofish": [
+          [
+            "GET",
+            "/redfish/v1/"
+          ],
+          [
+            "GET",
+            "/redfish/v1/TaskTests"
+          ],
+          [
+            "GET",
+            "/redfish/v1/TaskTests/Cases/percent_decimal_integer"
+          ],
+          [
+            "GET",
+            "/redfish/v1/TaskTests/Cases/percent_above_native_range"
+          ],
+          [
+            "GET",
+            "/redfish/v1/TaskTests/Cases/percent_above_schema_range"
+          ]
+        ],
+        "redfishtool": [
+          [
+            "GET",
+            "/redfish/v1/TaskTests/Cases/percent_decimal_integer"
+          ],
+          [
+            "GET",
+            "/redfish/v1/TaskTests/Cases/percent_above_native_range"
+          ],
+          [
+            "GET",
+            "/redfish/v1/TaskTests/Cases/percent_above_schema_range"
+          ]
+        ],
+        "libredfish": []
+      }
+    }
+  ],
+  "verified_exceptions": 0,
+  "libredfish_binary_sha256": "bc9dd8927c7f8003150ec911ae263018304bf6b3366f60676ceeaafab08f4e39",
+  "source_sha256": {
+    "tools/test_official_numbers.py": "f311d15857bbda8c810da375460bbaef3723d38bc0781c16ec625253f0cca06c",
+    "tools/test_pcie.py": "f3afea701d8871d0b267edff723b57080b88d887ebbdf91e4168b3b71b4464e5",
+    "tools/test_task.py": "e9fb5e8f1297339ab3d04398c5609823fa95b3a785935f881bde3756dffb259d",
+    "tools/test_gofish.py": "ac27ec92a4820582f32c133442ba5adfaeaecdc206b6ee32c77fdad320ff9a11",
+    "tools/gofish/main.go": "02bddaa39f957f33ffae03c815c9c3ab97de849544a175107ca00964d06d61b9",
+    "examples/compare/main.mbt": "75f17b14c8c002f6903639fffc2b533cf21dc4e30fb30cdd3bf3a265148d5ebf"
+  }
+}

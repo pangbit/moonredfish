@@ -207,8 +207,28 @@ with different categories and 22 remain different; see [batch 05](gofish/READONL
 
 35 场景对照任务状态/进度/消息、三态、数值边界、整对象解码、内嵌选择、重复和部分结果。
 不把普通 JSON 保留、部分相同或测试数量当作完整一致。用户确认的
-[两份 DMTF 参照例外门槛](gofish/EXCEPTIONS.md)已记录；当前只有官方入口源码审阅，尚未
-完成相同输入的双参照运行核实，也未宣布任何缺陷例外。
+[两份 DMTF 参照例外门槛](gofish/EXCEPTIONS.md)已记录；现已补充下述八个通用入口同输入运行；类型化字段校验未覆盖，也未宣布缺陷例外。
+
+## Certificate comparison / 证书对照
+
+`python3 tools/test_certificate.py` checks 30 synthetic cases across certificate/identity
+fields and six navigation APIs. Eleven selected observations agree, three both reject with
+different error categories and sixteen differ. See [batch 06](gofish/READONLY-06.md).
+证书对照包含三态、未知值、身份数组、分页、系统/Boot 来源区分、内嵌、重复及部分结果；
+读取证书字符串不证明其密码学或信任有效性。
+
+## Official numeric reference checks / 官方数值参照核验
+
+`tools/test_official_numbers.py` is an opt-in harness requiring the exact clean DMTF
+reference checkouts and a built libredfish. Eight identical byte inputs were executed on
+macOS arm64 through Redfishtool raw GET, real libredfish payload/accessors and the existing
+typed adapters. See [commands, observations and limits](gofish/OFFICIAL-NUMBERS-01.md).
+The official generic paths retain original type/value, but typed PCIe/Task validation and
+coercion equivalence are unestablished. This is not part of normal Linux CI and declares
+zero verified exceptions.
+
+官方同输入核验已实际完成八个探针；通用读取与 getter 的结果逐项记录，不将其冒充同形
+字段校验或已核实例外。外部源码和构建仅作为按需测试依赖，不进入库运行时。
 
 ## Safety / 安全
 

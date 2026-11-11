@@ -23,7 +23,7 @@ no-differences target unmet; passing selected examples does not close whole API 
 目标为固定 GoFish 版本全部公开能力。建议确认跨语言一对一可观察语义映射；字面 Go 源码/
 ABI 兼容需要另一种架构。任何保留的例外都意味着原零差异目标未完成，不能改写验收口径。
 
-Evidence: [batch 01](READONLY-01.md), [batch 02](READONLY-02.md), [batch 03](READONLY-03.md), [batch 04](READONLY-04.md), [batch 05](READONLY-05.md).
+Evidence: [batch 01](READONLY-01.md), [batch 02](READONLY-02.md), [batch 03](READONLY-03.md), [batch 04](READONLY-04.md), [batch 05](READONLY-05.md), [batch 06](READONLY-06.md).
 [Upstream issue review](ISSUES.md) separates open reports from pinned behavior and later fixes.
 Each JSON report has exact inputs, observed states, source hashes and environment. Cases
 below are measurements unless marked **source only**. No authentication downgrade or
@@ -60,6 +60,17 @@ message values. Task messages do not authorize registry lookups, actions or payl
 
 batch 05 的整数拼写/范围、null 消息与未选定 Payload 类型错误，进入既有待决项；不由
 这些差异判定 GoFish 错误。两端均接受 101 并保留矛盾报告值，不推导状态或执行解决步骤。
+
+Batch 06 extends the same presence, null-element, inline and partial-result decisions to
+certificate reads. Separate [official numeric execution](OFFICIAL-NUMBERS-01.md) now
+shows both generic DMTF paths retaining 16777217, original strings/bools/reals and 64-bit
+integer values. libredfish's int getter wraps 2147483648 on this build while its long-long
+getter preserves it; wrong primitive types can produce zero. These are actual observations,
+not an approved replacement typed-field contract or verified exception. Payload/default
+and other uncovered cases remain unresolved; do not choose a getter to manufacture agreement.
+
+证书批次沿用既有待决项。八个官方数值实测已完成，但通用 JSON 保留与不同 getter 的
+结果不能代替字段校验契约，也不构成已核实例外；未覆盖部分仍未决，不挑选 getter 拼出一致。
 
 D-PLATFORM, D-HARDWARE and D-CONTROL from the [full plan](../GOFISH_PARITY.md) remain open.
 Current evidence is native Linux x86_64 CI and macOS arm64 local/CI; it does not establish

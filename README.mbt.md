@@ -18,7 +18,9 @@ now include DHCPv4/DHCPv6, SLAAC, DNS and interface policies under the existing 
 [PCIe inventory](docs/gofish/READONLY-03.md) adds device/function reads and explicit topology
 navigation. [Boot/Secure Boot reads](docs/gofish/READONLY-04.md) add boot configuration,
 options, current/next Secure Boot state, databases and signatures. [Task reads](docs/gofish/READONLY-05.md)
-add service discovery, status/progress/messages and explicit subtask/created-resource links. Open compatibility choices are in the [combined review](docs/gofish/DECISIONS.md).
+add service discovery, status/progress/messages and explicit subtask/created-resource links.
+[Certificate reads](docs/gofish/READONLY-06.md) add metadata/identities and service/location,
+System/Boot/database and subject navigation. Open compatibility choices are in the [combined review](docs/gofish/DECISIONS.md).
 
 ## Scope
 

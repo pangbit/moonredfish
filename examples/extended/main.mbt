@@ -112,6 +112,17 @@ async fn main {
     println(
       "offline synthetic task: state=\{presence(task.task_state)}, progress=\{presence(task.percent_complete)}, messages=\{count(task.messages)}",
     )
+    let certificate = @moonredfish.parse_resource(
+      "/redfish/v1/Certificates/demo",
+      {
+        "CertificateType": "PEM",
+        "Subject": { "CommonName": "synthetic.example.invalid" },
+        "KeyUsage": [],
+      },
+    ).certificate()
+    println(
+      "offline synthetic certificate: subject=\{presence(certificate.subject)}, key usages=\{count(certificate.key_usage)}",
+    )
     let bios = @moonredfish.parse_resource("/redfish/v1/Systems/demo/Bios", {
       "Attributes": null,
     }).bios()

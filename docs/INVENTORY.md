@@ -348,3 +348,17 @@ See [field scope and differential evidence](gofish/READONLY-05.md). Generic per-
 ExtendedInfo and TaskMonitor/control lifecycle remain unimplemented. Message and task
 raw data remain caller-owned and may contain private values; the offline example prints
 only synthetic presence/counts.
+
+
+## Certificate inventory (Unreleased) / 证书清单（未发布）
+
+`resource.certificate()` exposes selected metadata and Field[CertificateIdentifier]
+issuer/subject values. Discover `client.certificate_service(root)`, then
+`certificate_locations(service)` and `certificate_location_certificates(locations)`;
+the first two return Resource. `client.certificates(owner)` reads top-level collections,
+`boot_certificates(system)` reads only Boot.Certificates, and
+`certificate_subjects(certificate.resource)` follows Links.Subjects once.
+
+证书视图保留正文、格式、用途、指纹、身份和有效期字符串；不进行密码学或信任判定。
+顶层与 Boot 集合不混用，导航不递归，未引入登记、续期、替换或信任安装。所有字段保留
+三态与原始 JSON；详细属性、版本和差分见[证书批次](gofish/READONLY-06.md)。

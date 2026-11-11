@@ -7,8 +7,9 @@ This table aggregates all 253 scanned files; it is not a table of passed tests.
 [Batch 02](READONLY-02.md) adds 29 candidate mappings for implemented network reads.
 [Batch 03](READONLY-03.md) adds 48 PCIe candidates.
 [Batch 04](READONLY-04.md) adds 42 boot/Secure Boot candidates.
-[Batch 05](READONLY-05.md) adds 34 task/message candidates. Current totals:
-387 P / 11,193 U / 0 V; candidate mapping is not verified equivalence.
+[Batch 05](READONLY-05.md) adds 34 task/message candidates.
+[Batch 06](READONLY-06.md) adds 36 certificate candidates. Current totals:
+423 P / 11,157 U / 0 V; candidate mapping is not verified equivalence.
 待审核；逐项矩阵列出全部公开声明、签名、源码行、初始状态与验收模板。本表按 253 个文件汇总，不表示测试通过。
 
 `P` = overlapping subset/candidate; `U` = unmapped gap/unverified. No `V` (verified parity) rows exist.
@@ -75,10 +76,10 @@ Phase is model/read/support allocation; all mutations require the P4/P5/P6 gate,
 | [schemas/bootoption.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/bootoption.go) | Redfish | 1 | 5 | 10 | 1 | P | P3 |
 | [schemas/cable.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/cable.go) | Redfish | 4 | 11 | 59 | 1 | U | P3 |
 | [schemas/capacity.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/capacity.go) | Swordfish | 3 | 8 | 13 | 1 | U | P3 |
-| [schemas/certificate.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/certificate.go) | Redfish | 9 | 12 | 69 | 1 | U | P3 |
+| [schemas/certificate.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/certificate.go) | Redfish | 9 | 12 | 69 | 1 | P | P3 |
 | [schemas/certificateenrollment.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/certificateenrollment.go) | Redfish | 9 | 7 | 50 | 1 | U | P3 |
-| [schemas/certificatelocations.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/certificatelocations.go) | Redfish | 1 | 4 | 3 | 1 | U | P3 |
-| [schemas/certificateservice.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/certificateservice.go) | Redfish | 5 | 10 | 31 | 1 | U | P3 |
+| [schemas/certificatelocations.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/certificatelocations.go) | Redfish | 1 | 4 | 3 | 1 | P | P3 |
+| [schemas/certificateservice.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/certificateservice.go) | Redfish | 5 | 10 | 31 | 1 | P | P3 |
 | [schemas/chassis.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/chassis.go) | Redfish | 11 | 47 | 99 | 1 | P | P2 |
 | [schemas/circuit.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/circuit.go) | Redfish | 10 | 12 | 137 | 1 | U | P3 |
 | [schemas/classofservice.go](https://github.com/stmcginnis/gofish/blob/4cc897fb5c172996e8f34a31a5d1012b45a287a7/schemas/classofservice.go) | Swordfish | 1 | 9 | 11 | 1 | U | P3 |

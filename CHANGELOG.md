@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+- Add selected Certificate/CertificateIdentifier reads and six bounded navigation APIs,
+  including separate System/Boot collections and Secure Boot database certificates.
+  Run eight same-input numeric probes through both pinned DMTF implementations and
+  existing typed adapters; publish generic-reader/accessor coverage limits, with no
+  verified typed-behavior exception or numeric-contract change.
+- 新增证书与身份读取及六条有界导航，区分系统与 Boot 集合并接通安全启动数据库。
+  八个数值输入已在两个固定 DMTF 实现和既有类型化适配器实际运行；公开通用读取及
+  getter 的覆盖限制，不宣布类型化行为例外，不修改数值契约。
+
 - Add read-only TaskService/Task/Message views and four bounded navigation APIs, with
   task state/progress/message and request-trace comparisons. Retain defaults, uint range,
   eager-decoding and partial-result differences; no task monitor polling or controls.

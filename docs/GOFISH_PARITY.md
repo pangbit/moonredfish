@@ -6,12 +6,15 @@
 [Read-only batch 01 / 只读证据 01](gofish/READONLY-01.md): 39 measured cases,
 22 known differences, one integer-validation defect fixed.
 [Read-only batch 02 / 只读实现 02](gofish/READONLY-02.md) adds DHCP/DNS/SLAAC/policy
-read fields. Current mappings after [task/message batch 05](gofish/READONLY-05.md):
-387 P / 11,193 U / 0 V. [Consolidated decisions](gofish/DECISIONS.md) collect the open
+read fields. Current mappings after [certificate batch 06](gofish/READONLY-06.md):
+423 P / 11,157 U / 0 V. [Consolidated decisions](gofish/DECISIONS.md) collect the open
 default, strict-decoder, vendor-coercion, collection and safety choices.
 [Confirmed-defect exceptions](gofish/EXCEPTIONS.md) now follow the user-approved two-DMTF
 verification rule; no exception is established yet. Normal functionality still targets GoFish.
 用户已确认双 DMTF 核实后的缺陷例外原则，当前尚无已核实例外；普通功能仍以 GoFish 为准。
+[Eight same-input official numeric observations](gofish/OFFICIAL-NUMBERS-01.md) now exist;
+generic reader results do not establish typed-field validation equivalence.
+已补充八个官方同输入实测，但通用读取不等于同形字段校验一致。
 
 The target is every public capability of the fixed GoFish version, including Redfish,
 Swordfish, OEM extensions and support APIs. Current moonredfish is a selected read-only
@@ -97,7 +100,7 @@ or mapping candidate; `V` = verified under an approved contract. Initial invento
 234 `P` and 11,346 `U` rows, including embeds, and **zero `V`**. A `P` field may have a
 selected-value test, but is not equivalent across null/default/error/serialization cases.
 Initial statuses refer to the subject baseline; later candidate mappings are versioned
-by the evidence batches. Current totals are 387 P / 11,193 U / 0 V after batch 05.
+by the evidence batches. Current totals are 423 P / 11,157 U / 0 V after batch 06.
 They are not a claim about untested behavior or future work.
 
 `U` 是未映射差距/未验证，`P` 是已有子集或映射候选，`V` 才表示按已批准契约验证。
@@ -112,7 +115,7 @@ They are not a claim about untested behavior or future work.
 | Query and entity / 查询与对象 | `$expand`/levels/fallback, skip/top helpers, embedded resolution, collection concurrency/partial errors, ETag/304 Reload/Refresh, update diff/allowed fields | Pagination/deduplication and bounded link traversal; no query/ETag cache API; raw JSON is not equivalent | P1, P4 |
 | Current inventory families / 已有模型 | Full ComputerSystem/Chassis/Manager, Processor/Memory, Thermal/Power, Sensor/Fan/PowerSupply, Storage/Drive/Volume, network, logs, firmware and Bios types/links/actions | Selected fields and selected reads only; remaining properties, links, enums, serialization and actions are gaps | P2, P4/P5 |
 | Remaining Redfish / 其余 Redfish | PCIe/CXL/NVMe, fabrics/ports/zones, memory domains, processors/metrics, facilities/cooling/power distribution, batteries, assembly, OS/containers/VM, aggregation/composition/automation, all remaining listed files | Selected PCIeDevice/PCIeFunction/PCIeInterface and Boot/BootOption/SecureBoot/database/signature reads now exist; all remaining fields/models/actions remain gaps | P3; actions P4/P5 |
-| Schema/registry/security / 模型注册表与安全 | JSON schemas, message/attribute/privilege/feature registries, accounts/roles/external providers, certificates/enrollment, secure boot, keys, licenses, component integrity | Selected SecureBoot/database/signature reads; remaining typed models and control contracts are gaps | P3, P5 |
+| Schema/registry/security / 模型注册表与安全 | JSON schemas, message/attribute/privilege/feature registries, accounts/roles/external providers, certificates/enrollment, secure boot, keys, licenses, component integrity | Selected SecureBoot/database/signature and certificate/identity reads with service/location navigation; remaining typed models and controls are gaps | P3, P5 |
 | Tasks/jobs/events/telemetry / 任务、作业、事件、遥测 | Task monitor and Retry-After, asynchronous results/channels, job lifecycle, subscriptions and event models, reports/definitions/triggers | Selected TaskService/Task/Message reads and explicit links; monitor/polling/jobs/events/telemetry and all controls remain gaps | P3 reads; P4/P5 mutations |
 | BIOS/boot/media / BIOS、启动、介质 | Settings/apply times, password/reset operations, boot updates, virtual-media insert/eject | Current BIOS attributes and selected Boot/BootOption reads; settings/control remain gaps | P3 reads; P4/P5 mutations |
 | Firmware and diagnostics / 固件与诊断 | SimpleUpdate/start/activate, uploads/multipart, image stores, raw log download, diagnostic actions, clear log | Firmware metadata and log entries only | P3 downloads; P5 mutations |

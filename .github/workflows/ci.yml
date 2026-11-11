@@ -45,6 +45,7 @@ jobs:
           python3 tools/test_pcie.py
           python3 tools/test_boot.py
           python3 tools/test_task.py
+          python3 tools/test_certificate.py
       - run: moon info --target native
       - run: moon fmt --check
       - run: git diff --exit-code

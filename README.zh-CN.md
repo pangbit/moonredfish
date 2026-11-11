@@ -15,6 +15,7 @@ GoFish 完整对齐的[计划与逐项矩阵](docs/GOFISH_PARITY.md)已形成待
 沿用现有 Field API，不应用网络配置。新增 [PCIe 设备/功能及显式拓扑读取](docs/gofish/READONLY-03.md)，
 新增[启动配置、启动选项与 Secure Boot/数据库/签名读取](docs/gofish/READONLY-04.md)。
 新增[任务服务、状态/进度/消息及子任务/已创建资源读取](docs/gofish/READONLY-05.md)。
+新增[证书元数据/身份、服务/位置及系统/Boot/数据库/主体导航](docs/gofish/READONLY-06.md)。
 默认值、严格解码等差异统一汇入[合并决策审阅](docs/gofish/DECISIONS.md)。
 
 ## 类型化硬件清单（Unreleased）
