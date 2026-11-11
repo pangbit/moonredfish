@@ -18,12 +18,43 @@ personally maintained Apache-2.0 project, not a DMTF certification or a GoFish p
 - Collection pagination, duplicate suppression, cycle detection and page limits.
 - Per-request timeouts and bounded response bodies. No redirects or automatic retries.
 - Original JSON retained for optional/OEM properties instead of a large generated schema.
+- Unreleased typed System/Chassis/Manager summaries, Processor/Memory inventory, legacy
+  Thermal/Power and modern Sensor/Fan/PowerSupply reads. Missing, null and zero stay distinct.
 
 **Boundary:** inventory reads plus authentication lifecycle only. There are no APIs for
 power reset, firmware updates, account changes, PATCH, or arbitrary POST/DELETE. No
 Swordfish, subscriptions, task polling, Basic authentication, or vendor compatibility
 claim. Tests use synthetic local HTTP/HTTPS services, not physical BMCs. Creating a
 session changes server state, even though inventory operations are read-only.
+
+## Typed hardware inventory (Unreleased)
+
+Use `resource.system_info()`, `.chassis_info()` and `.manager_info()` for common
+asset/health fields. `client.processors(system)`, `memory(system)`, `thermal(chassis)`,
+`power(chassis)` and `sensors(chassis)` follow advertised links. Modern subsystem
+readers expose Fans and PowerSupplies without guessing paths or swallowing 403/404.
+All selected properties use `Field[T]` (`Missing`, `Null`, `Value`), retain original
+JSON, and preserve unknown status strings. There is no full schema generation.
+
+```mbt check
+///|
+test "typed hardware keeps zero distinct from unavailable" {
+  let system = @moonredfish.parse_resource("/redfish/v1/Systems/demo", {
+    "Model": null,
+    "ProcessorSummary": { "Count": 0 },
+  }).system_info()
+  assert_true(system.model is Null)
+  assert_true(system.serial_number is Missing)
+  assert_eq(system.processor_count.value(), Some(0))
+}
+```
+
+Run `moon run examples/hardware --target native` for a safe offline example, or
+pass an authorized HTTPS endpoint for count-only inventory. Optional authentication
+uses the same protected environment variables as `session_inventory`. See the
+[typed inventory guide](docs/INVENTORY.md) for units, link semantics, modern-resource
+limits and the runnable workflow. Raw inventory can contain private identifiers;
+review and redact it before sharing.
 
 ## Install and examples
 

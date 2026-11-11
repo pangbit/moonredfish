@@ -88,6 +88,18 @@ class Handler(BaseHTTPRequestHandler):
             return self.respond(200, {"Members": [{"@odata.id": p + "/1"}]})
         if p in [ROOT + "/" + kind + "/" + ident for kind in ("Systems", "Chassis", "Managers") for ident in ("1", "2")]:
             return self.respond(200, {"Id": p.rsplit("/", 1)[1], "Name": "Synthetic resource"})
+        if p == ROOT + "/Inventory/Processors":
+            return self.respond(200, {"Members": [{"@odata.id": ROOT + "/Inventory/Processors/0"}], "Members@odata.nextLink": ROOT + "/Inventory/Processors?$skip=1"})
+        if p == ROOT + "/Inventory/Processors?$skip=1":
+            return self.respond(200, {"Members": [{"@odata.id": ROOT + "/Inventory/Processors/0"}, {"@odata.id": ROOT + "/Inventory/Processors/1"}]})
+        if p in (ROOT + "/Inventory/Processors/0", ROOT + "/Inventory/Processors/1"):
+            return self.respond(200, {"Id": p.rsplit("/", 1)[1], "TotalCores": 0, "Model": "Synthetic CPU"})
+        if p == ROOT + "/Inventory/Empty":
+            return self.respond(200, {"Members": []})
+        if p == ROOT + "/Inventory/Broken":
+            return self.respond(200, {"Members": [{"@odata.id": ROOT + "/Inventory/Processors/0"}, {"@odata.id": ROOT + "/Inventory/Missing"}]})
+        if p == ROOT + "/Inventory/Missing":
+            return self.respond(404, {})
         if p == ROOT + "/Forbidden":
             return self.respond(403, {"error": {"code": "Base.1.0.GeneralError", "message": "synthetic private body", "@Message.ExtendedInfo": [{"MessageId": "Base.1.0.InsufficientPrivilege", "MessageArgs": ["synthetic-password"]}]}})
         if p == ROOT + "/Redirect":
@@ -136,6 +148,10 @@ def main():
                 success = subprocess.run(command, cwd=Path(__file__).resolve().parents[1], env=environment, capture_output=True, text=True, timeout=120)
                 assert success.returncode == 0, success.stderr
                 assert "inventory: systems=2, chassis=1, managers=1" in success.stdout
+                hardware = subprocess.run(["moon", "run", "examples/hardware", "--target", "native", "--", f"https://127.0.0.1:{tls_server.server_port}"], cwd=Path(__file__).resolve().parents[1], env=environment, capture_output=True, text=True, timeout=120)
+                assert hardware.returncode == 0, "hardware HTTPS example failed"
+                assert "processor_count=missing, processors=missing, memory=missing" in hardware.stdout
+                assert "thermal subsystem: missing" in hardware.stdout
                 STATE["fail_systems"] = True
                 try:
                     failure = subprocess.run(command, cwd=Path(__file__).resolve().parents[1], env=environment, capture_output=True, text=True, timeout=120)
@@ -144,7 +160,7 @@ def main():
                     STATE["require_auth"] = False
                 assert failure.returncode != 0, "expected the inventory read to fail"
                 assert "HTTP 403" in failure.stdout + failure.stderr, "expected an HTTP permission failure"
-                combined = success.stdout + success.stderr + failure.stdout + failure.stderr
+                combined = success.stdout + success.stderr + failure.stdout + failure.stderr + hardware.stdout + hardware.stderr
                 for secret in ("synthetic-password", TOKEN, "synthetic private body"):
                     assert secret not in combined, "application output leaked sensitive input"
                 before_login = STATE["login"]
@@ -155,7 +171,7 @@ def main():
                     STATE["unsafe_session_target"] = False
                 assert blocked.returncode != 0 and "InvalidResponse" in blocked.stderr + blocked.stdout
                 assert STATE["login"] == before_login, "unsafe session discovery sent a POST"
-                assert STATE["login"] == STATE["logout"] == 9, STATE
+                assert STATE["login"] == STATE["logout"] == 10, STATE
                 assert STATE["authenticated"] > 0, STATE
                 assert not STATE["unexpected"], STATE
                 print("mock server: authenticated example, success/error cleanup, redaction and expected paths verified")

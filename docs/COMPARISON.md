@@ -7,17 +7,17 @@ python3 tools/test_gofish.py
 ```
 
 Requires the README's native toolchain, Python 3.9+, OpenSSL and Go 1.21+ (verified with
-Go 1.24.0). First use downloads GoFish through Go modules and seven public DMTF JSON
+Go 1.24.0). First use downloads GoFish through Go modules and eighteen public DMTF JSON
 files from GitHub. Linux CI runs this test; Go is not a library/runtime dependency.
 
 需要 README 所列 native 工具链、Python 3.9+、OpenSSL 和 Go 1.21+（已验证 Go 1.24.0）。
-首次运行通过 Go modules 下载 GoFish，并从 GitHub 下载 7 份公开 DMTF JSON。
+首次运行通过 Go modules 下载 GoFish，并从 GitHub 下载 18 份公开 DMTF JSON。
 Linux CI 执行该测试；MoonBit 库本身不依赖 Go。
 
 - Reference client: [GoFish v0.27.0](https://github.com/stmcginnis/gofish/tree/v0.27.0),
   commit `4cc897fb5c172996e8f34a31a5d1012b45a287a7`, BSD-3-Clause. Version and module
   checksums are pinned in `tools/gofish/go.mod` and `go.sum`; no upstream code is vendored.
-- Inputs: the seven unchanged, SHA-256-pinned [DMTF mockups](REFERENCE.md), commit
+- Inputs: eighteen unchanged, SHA-256-pinned [DMTF mockups](REFERENCE.md), commit
   `23d21f9a3610f6b6fbb71ffc941296b159a524d2`, plus explicitly synthetic responses.
 - Subject: this checkout, not automatically the published Mooncakes 0.1.0 package.
   Use the exact tested Git commit or CI run to identify the source under review.
@@ -51,6 +51,43 @@ GoFish uses its typed resource APIs, with automatic `$expand` disabled. Both use
 两端使用相同字节和各自全新服务实例，数组按 URI 比较，不比较偶然请求顺序。清单预期
 由 Python 从固定输入独立提取，合成预期明确写出。GoFish 使用类型化资源 API，不启用
 自动 `$expand`。请求时限均为 10 秒，但这不是性能或请求数量基准。
+
+## Typed hardware comparison / 类型化硬件对照
+
+The hardware mode uses 18 hash-pinned DMTF files for System/Chassis/Manager asset and
+health summaries, 3 Processors, 4 Memory modules, 3 temperatures, 2 fans, 1 power supply
+and 1 power-control entry. A separate 13-route synthetic graph covers a modern Sensor,
+ThermalSubsystem/Fan and PowerSubsystem/PowerSupply. See [INVENTORY.md](INVENTORY.md)
+for exact public API scope. The synthetic graph is not a DMTF sample or real hardware.
+
+硬件模式使用 18 个固定哈希的 DMTF 文件，对照资产/健康摘要和上述组件；独立 13 路由
+合成图覆盖现代 Sensor、Fan 和 PowerSupply 链接路径。公开 API 范围见类型化指南，
+合成图不冒称 DMTF 样例或真实硬件。
+
+The runner checks exact collection sizes and resource URIs, then every selected defined,
+non-null property against the original fixture. It also compares UUID, socket and
+architecture when defined. GoFish scalar defaults cannot distinguish missing/null, so
+extra absent-property defaults are ignored in this comparison only. MoonBit's three-state
+contract is tested separately. A missing adapter field that exists in the fixture fails.
+No sensor values or units are inferred from another field.
+
+runner 检查精确数量和资源 URI，再把所有选定且非 null 的有值字段分别对照原输入，
+包含存在时的 UUID、插槽和架构。GoFish 标量默认值不能区分缺失/null，因此仅此对照忽略
+缺失属性多出的默认值。MoonBit 三态契约由独立测试验证；适配器遗漏样例已有字段会失败，
+不从其他字段推导或伪造测量值、单位。
+
+In GoFish v0.27.0, subsystem accessors return legacy fan/supply types. The test adapter
+follows those links, then reads each URI using GoFish's modern `GetFan` or
+`GetPowerSupplyUnit`, so SpeedPercent and modern assets are actually decoded by the
+modern typed API. The extra GET is intentional, not a request-count comparison.
+The bounded public graph exercises traditional Thermal/Power; only the separate modern
+graph omits both legacy links and exercises subsystem paths. Production APIs do not
+impose that either/or restriction.
+
+固定 GoFish 版本的子系统访问器返回旧风扇/电源类型，测试适配器先跟随这些链接，再以
+现代类型化 API 读取同一 URI，真正验证 SpeedPercent 和现代资产字段。额外 GET 是有意
+的，不是请求数量竞赛。公开图验证传统路径，独立现代图省略两种旧链接后验证新路径；
+生产 API 不要求新旧资源二选一。
 
 ## Intentional differences / 刻意保留的差异
 

@@ -10,7 +10,8 @@ from contextlib import contextmanager
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
-from test_reference import COMMIT, load_routes
+from test_reference import COMMIT, FILES, HARDWARE_FILES, load_routes
+from hardware_fixtures import assert_hardware, hardware_expected, modern_routes
 
 REPO = Path(__file__).resolve().parents[1]
 ROOT = "/redfish/v1"
@@ -138,7 +139,10 @@ def run_adapter(name, command, mode, endpoint, ca="-"):
 
 
 def main():
-    routes = load_routes()
+    expanded = load_routes(expanded=True)
+    # Reuse already verified bytes without refetching the baseline.
+    routes = {uri: data for uri, data in expanded.items() if uri == ROOT + "/" or uri.removeprefix(ROOT + "/") + "/index.json" in FILES}
+    modern = modern_routes()
     expected = {"root": project(json.loads(routes[ROOT + "/"]))}
     for kind in KINDS:
         collection = json.loads(routes[ROOT + "/" + kind.capitalize()])
@@ -179,6 +183,10 @@ def main():
             with fixture(routes) as (endpoint, state):
                 assert run_adapter(name, command, "inventory", endpoint) == expected, f"{name}: public field mismatch"
                 assert state["visited"] == set(routes) and not state["unexpected"]
+            for hardware_routes in (expanded, modern):
+                with fixture(hardware_routes) as (endpoint, state):
+                    assert_hardware(run_adapter(name, command, "hardware", endpoint), hardware_expected(hardware_routes), name)
+                    assert state["visited"] == set(hardware_routes) and not state["unexpected"]
             with fixture(synthetic, protocol=True, tls=tls) as (endpoint, state):
                 assert run_adapter(name, command, "protocol", endpoint, cert) == protocol_expected, f"{name}: protocol mismatch"
                 assert state["login"] == state["logout"] == state["wrong"] == 1 and not state["active"]
@@ -187,8 +195,8 @@ def main():
             with fixture(synthetic, protocol=True, tls=tls) as (endpoint, state):
                 assert run_adapter(name, command, "reject_tls", endpoint) == {"tls_rejected": True}
                 assert not state["visited"] and state["login"] == 0
-            print(f"{name}: pinned inventory fields, pagination, 201 session cleanup, HTTP errors, JSON and TLS passed")
-        print(f"comparison source: DMTF mockups@{COMMIT}; 7 hashes verified; no physical BMC or performance claim")
+            print(f"{name}: pinned inventory and hardware fields, synthetic modern hardware, pagination, 201 session cleanup, HTTP errors, JSON and TLS passed")
+        print(f"comparison source: DMTF mockups@{COMMIT}; {len(FILES) + len(HARDWARE_FILES)} hashes verified; defined non-null hardware fields only; no physical BMC or performance claim")
 
 
 if __name__ == "__main__":

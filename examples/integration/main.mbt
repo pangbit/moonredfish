@@ -3,6 +3,7 @@ async fn main {
   let args = @env.args()
   guard args.length() == 5 else { fail("run via python3 tools/test_mock.py") }
   let endpoint = args[1]
+  check_inventory(endpoint)
   let c = @moonredfish.Client::new(endpoint, allow_loopback_http=true)
   let wrong_password = try {
     c.login("synthetic-user", "synthetic-wrong")

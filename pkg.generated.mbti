@@ -33,21 +33,70 @@ pub suberror RedfishError {
 pub fn RedfishError::to_repr(Self) -> @debug.Repr
 
 // Types and methods
+pub struct ChassisInfo {
+  resource : Resource
+  manufacturer : Field[String]
+  model : Field[String]
+  serial_number : Field[String]
+  uuid : Field[String]
+  part_number : Field[String]
+  asset_tag : Field[String]
+  chassis_type : Field[String]
+  power_state : Field[String]
+  status : Field[Health]
+}
+
 type Client
 pub async fn Client::chassis(Self) -> Array[Resource]
+pub async fn Client::fans(Self, Resource) -> Field[Array[Fan]]
 pub async fn Client::get(Self, String) -> Resource
 pub async fn Client::login(Self, String, String) -> Unit
 pub async fn Client::logout(Self) -> Unit
 pub async fn Client::managers(Self) -> Array[Resource]
 pub async fn Client::members(Self, String) -> Array[String]
+pub async fn Client::memory(Self, Resource) -> Field[Array[Memory]]
 pub fn Client::new(String, ca_file? : String, allow_loopback_http? : Bool, timeout_ms? : Int32, max_response_bytes? : Int32, max_pages? : Int32, detailed_errors? : Bool, max_members? : Int32, max_total_response_bytes? : Int32, operation_timeout_ms? : Int32) -> Self raise RedfishError
+pub async fn Client::power(Self, Resource) -> Field[Power]
+pub async fn Client::power_subsystem(Self, Resource) -> Field[Resource]
+pub async fn Client::power_supplies(Self, Resource) -> Field[Array[PowerSupply]]
+pub async fn Client::processors(Self, Resource) -> Field[Array[Processor]]
+pub async fn Client::sensors(Self, Resource) -> Field[Array[Sensor]]
 pub async fn Client::service_root(Self) -> Resource
 pub async fn Client::systems(Self) -> Array[Resource]
+pub async fn Client::thermal(Self, Resource) -> Field[Thermal]
+pub async fn Client::thermal_subsystem(Self, Resource) -> Field[Resource]
 pub async fn[T] Client::with_session(Self, String, String, async (Self) -> T) -> T
 
 pub struct Collection {
   members : Array[String]
   next_link : String?
+}
+
+pub struct Fan {
+  json : @json.Json
+  resource : Resource?
+  uri : Field[String]
+  id : Field[String]
+  member_id : Field[String]
+  name : Field[String]
+  reading : Field[Double]
+  reading_units : Field[String]
+  speed_percent : Field[SensorReading]
+  status : Field[Health]
+}
+
+pub enum Field[T] {
+  Missing
+  Null
+  Value(T)
+}
+pub fn[T] Field::value(Self[T]) -> T?
+
+pub struct Health {
+  json : @json.Json
+  state : Field[String]
+  health : Field[String]
+  health_rollup : Field[String]
 }
 
 #derive(@debug.Debug)
@@ -58,6 +107,76 @@ pub struct HttpDiagnostic {
 }
 pub fn HttpDiagnostic::to_repr(Self) -> @debug.Repr
 
+pub struct ManagerInfo {
+  resource : Resource
+  manufacturer : Field[String]
+  model : Field[String]
+  serial_number : Field[String]
+  uuid : Field[String]
+  manager_type : Field[String]
+  firmware_version : Field[String]
+  power_state : Field[String]
+  status : Field[Health]
+}
+
+pub struct Memory {
+  resource : Resource
+  manufacturer : Field[String]
+  serial_number : Field[String]
+  part_number : Field[String]
+  device_locator : Field[String]
+  memory_device_type : Field[String]
+  capacity_mib : Field[Double]
+  operating_speed_mhz : Field[Double]
+  status : Field[Health]
+}
+
+pub struct Power {
+  resource : Resource
+  power_supplies : Field[Array[PowerSupply]]
+  power_control : Field[Array[PowerControl]]
+}
+
+pub struct PowerControl {
+  json : @json.Json
+  member_id : Field[String]
+  name : Field[String]
+  power_consumed_watts : Field[Double]
+  power_capacity_watts : Field[Double]
+  status : Field[Health]
+}
+
+pub struct PowerSupply {
+  json : @json.Json
+  resource : Resource?
+  uri : Field[String]
+  id : Field[String]
+  member_id : Field[String]
+  name : Field[String]
+  manufacturer : Field[String]
+  model : Field[String]
+  serial_number : Field[String]
+  part_number : Field[String]
+  line_input_voltage : Field[Double]
+  power_capacity_watts : Field[Double]
+  last_power_output_watts : Field[Double]
+  status : Field[Health]
+}
+
+pub struct Processor {
+  resource : Resource
+  socket : Field[String]
+  manufacturer : Field[String]
+  model : Field[String]
+  processor_type : Field[String]
+  instruction_set : Field[String]
+  architecture : Field[String]
+  total_cores : Field[Int32]
+  total_threads : Field[Int32]
+  max_speed_mhz : Field[Double]
+  status : Field[Health]
+}
+
 pub struct Resource {
   uri : String
   id : String?
@@ -65,8 +184,63 @@ pub struct Resource {
   resource_type : String?
   json : @json.Json
 }
+pub fn Resource::chassis_info(Self) -> ChassisInfo raise RedfishError
+pub fn Resource::fan(Self) -> Fan raise RedfishError
 pub fn Resource::link(Self, String) -> String? raise RedfishError
+pub fn Resource::manager_info(Self) -> ManagerInfo raise RedfishError
+pub fn Resource::memory(Self) -> Memory raise RedfishError
+pub fn Resource::power(Self) -> Power raise RedfishError
+pub fn Resource::power_supply(Self) -> PowerSupply raise RedfishError
+pub fn Resource::processor(Self) -> Processor raise RedfishError
+pub fn Resource::sensor(Self) -> Sensor raise RedfishError
 pub fn Resource::string(Self, String) -> String?
+pub fn Resource::system_info(Self) -> SystemInfo raise RedfishError
+pub fn Resource::thermal(Self) -> Thermal raise RedfishError
+
+pub struct Sensor {
+  resource : Resource
+  reading : Field[Double]
+  reading_units : Field[String]
+  reading_type : Field[String]
+  status : Field[Health]
+}
+
+pub struct SensorReading {
+  json : @json.Json
+  reading : Field[Double]
+}
+
+pub struct SystemInfo {
+  resource : Resource
+  manufacturer : Field[String]
+  model : Field[String]
+  serial_number : Field[String]
+  uuid : Field[String]
+  part_number : Field[String]
+  asset_tag : Field[String]
+  hostname : Field[String]
+  bios_version : Field[String]
+  power_state : Field[String]
+  status : Field[Health]
+  processor_count : Field[Int32]
+  total_memory_gib : Field[Double]
+}
+
+pub struct Temperature {
+  json : @json.Json
+  member_id : Field[String]
+  name : Field[String]
+  reading_celsius : Field[Double]
+  upper_threshold_non_critical : Field[Double]
+  upper_threshold_critical : Field[Double]
+  status : Field[Health]
+}
+
+pub struct Thermal {
+  resource : Resource
+  temperatures : Field[Array[Temperature]]
+  fans : Field[Array[Fan]]
+}
 
 // Type aliases
 

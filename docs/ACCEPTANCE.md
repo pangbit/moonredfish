@@ -194,3 +194,15 @@ it does not treat either client as the sole oracle. See [COMPARISON.md](COMPARIS
 - Published 0.1.0 and source changes under Unreleased are distinct. Only the maintainer
   publishes subsequent versions manually.
   已发布的 0.1.0 与 Unreleased 源码改动须区分；后续版本仅由维护者手动发布。
+
+## Typed hardware extension / 类型化硬件扩展
+
+The Unreleased [inventory guide](INVENTORY.md) lists exact fields, units and modern
+resource boundaries. Run `moon run examples/hardware --target native` offline. Native
+unit tests and `tools/test_mock.py` cover Missing/Null/Value, wrong types, unknown status,
+linked collections, errors and shared limits. `tools/test_gofish.py` additionally checks
+18 pinned DMTF files and a minimal synthetic modern graph through both typed clients.
+
+具体字段、单位和现代资源边界见上述指南。离线硬件示例、原生单测和本机集成覆盖三态值、
+错误类型、未知状态、链接集合、错误及共享限制；GoFish 对照另覆盖 18 个固定 DMTF 文件
+与最小现代资源合成图。未进行真实 BMC 验证，也未发布 Mooncakes。

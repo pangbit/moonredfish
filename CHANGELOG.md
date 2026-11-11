@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+- Add typed System/Chassis/Manager, Processor/Memory, legacy Thermal/Power and modern
+  Sensor/Fan/PowerSupply inventory views with raw JSON, explicit Missing/Null/Value
+  semantics and bounded advertised-link traversal. / 新增类型化资产/健康视图，保留原始
+  JSON，明确三态值，并以受限请求跟随显式链接。
+- Add an offline/HTTPS hardware example, focused value/link regression tests, expanded
+  pinned DMTF/GoFish comparison and bilingual inventory guide. / 新增硬件示例、聚焦回归、
+  扩展固定参考对照及双语说明。仍未验证真实 BMC；未发布到 Mooncakes。
+
+
 - Add a pinned GoFish comparison for selected DMTF inventory fields and shared synthetic HTTPS/session/error behavior.
 - 新增固定版本 GoFish 同场对照，验证选定 DMTF 清单字段和共同的合成 HTTPS、会话及错误行为。
 

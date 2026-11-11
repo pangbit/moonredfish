@@ -9,6 +9,30 @@ Unreleased 新 API 与示例；安装 0.1.0 不会获得这些新增内容，具
 面向 **MoonBit native** 应用的小型 Redfish 资产清单客户端。个人维护，Apache-2.0
 许可；不是 DMTF 认证产品，也不是 GoFish 的移植版。
 
+## 类型化硬件清单（Unreleased）
+
+使用 `resource.system_info()`、`.chassis_info()`、`.manager_info()` 获取常用资产与健康字段。
+`client.processors(system)`、`memory(system)`、`thermal(chassis)`、`power(chassis)`、
+`sensors(chassis)` 按显式链接读取。现代子系统接口还可读取 Fans 和 PowerSupplies，
+不猜测路径、不吞掉 403/404。所有选定属性使用 `Field[T]` 的 `Missing`、`Null`、`Value`
+三态，缺失/null/零值可区分，未知状态字符串和完整原始 JSON 保留，不生成全量 schema。
+
+```mbt
+let system = @moonredfish.parse_resource("/redfish/v1/Systems/demo", {
+  "Model": null,
+  "ProcessorSummary": { "Count": 0 },
+}).system_info()
+assert_true(system.model is Null)
+assert_true(system.serial_number is Missing)
+assert_eq(system.processor_count.value(), Some(0))
+```
+
+运行 `moon run examples/hardware --target native` 可执行安全的离线示例；传入已授权的
+HTTPS 目标可读取只输出数量的清单。可选认证使用与 session_inventory 相同的受保护环境
+变量。单位、链接语义、现代资源范围及完整运行方式见[类型化清单指南](docs/INVENTORY.md)。
+原始清单可能含私密硬件标识，共享前应审查和脱敏。上述能力仅存在于未发布源码，
+不属于 Mooncakes 0.1.0。
+
 ## 已实现范围
 
 - 使用系统根证书或调用方指定的 CA 文件验证 HTTPS。

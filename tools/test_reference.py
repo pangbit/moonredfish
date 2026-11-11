@@ -26,10 +26,26 @@ FILES = {
 }
 
 
-def load_routes():
-    """Load unchanged hash-checked inputs for either independent client check."""
+# Explicit bounded extension; the original seven-route smoke check is unchanged.
+HARDWARE_FILES = {
+    "Systems/437XR1138R2/Processors/index.json": "6e0d2f3922ccc23de9ebd9bcdf75f6b8b64b01dee95e7432800971e1c7f40090",
+    "Systems/437XR1138R2/Processors/CPU1/index.json": "9e36fe2d129b2534c7b33dcfeea9143cb582404dfb5bccb01f2c4801241e4975",
+    "Systems/437XR1138R2/Processors/CPU2/index.json": "be797833f47b92b2ee59ac14f6e3992366c363ee95a9dca89523c5a3802ca971",
+    "Systems/437XR1138R2/Processors/FPGA1/index.json": "be58bcd1666c5c21018bf51a73ce0abea1b29a96b09bdd3f4f3e8fdc5e4813e5",
+    "Systems/437XR1138R2/Memory/index.json": "9c4c62f38603d5509f956f414bd10c03506bc0c7860b6ac31f53db889139d75d",
+    "Systems/437XR1138R2/Memory/DIMM1/index.json": "b5188536e9eb8aaafbeb29c2adfcfcc111f8a1edadba2fc5de0d3f4ccc9e0cdf",
+    "Systems/437XR1138R2/Memory/DIMM2/index.json": "9c25e78847fa81729ff6b663f6b8418925fb00398f8647504d8cc663ccc32315",
+    "Systems/437XR1138R2/Memory/DIMM3/index.json": "713cc8f2e0fc520c7ba2d6f172cba28dbe41dad6e7cf74e30a7574037a30229a",
+    "Systems/437XR1138R2/Memory/DIMM4/index.json": "3fa60ef801d5312e782cdaa5082a1527621eb0fb6fa455698fb17f70b6adeedc",
+    "Chassis/1U/Thermal/index.json": "6af45ed3fd256fe9008f178ebc8ed301685ec6c9472680200c974edba1a491bd",
+    "Chassis/1U/Power/index.json": "e6c2ec95e06cabc5c2bccb12579b64f62c2958dc0fcde7ad243768461a290298",
+}
+
+
+def load_routes(expanded=False):
+    """Load 7 baseline inputs, or 18 with bounded hardware coverage, in memory."""
     routes = {}
-    for name, digest in FILES.items():
+    for name, digest in (FILES | HARDWARE_FILES if expanded else FILES).items():
         with urllib.request.urlopen(BASE + name, timeout=20) as response:
             data = response.read(65537)
         if len(data) > 65536 or hashlib.sha256(data).hexdigest() != digest:

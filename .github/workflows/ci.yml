@@ -26,6 +26,7 @@ jobs:
       - run: moon test --target native --deny-warn
       - run: moon build --target native --release --deny-warn
       - run: moon run examples/offline --target native
+      - run: moon run examples/hardware --target native
       - run: python3 tools/test_mock.py
       - uses: actions/setup-go@v6
         if: runner.os == 'Linux'
@@ -35,7 +36,7 @@ jobs:
       - name: Compare the common read-only subset with pinned GoFish
         if: runner.os == 'Linux'
         run: |
-          test -z "$(gofmt -l tools/gofish/main.go)"
+          test -z "$(gofmt -l tools/gofish/*.go)"
           python3 tools/test_gofish.py
       - run: moon info --target native
       - run: moon fmt --check

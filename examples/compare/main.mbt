@@ -106,6 +106,7 @@ async fn main {
         "chassis": @json.to_json(c.chassis().map(project)),
         "managers": @json.to_json(c.managers().map(project)),
       }
+    "hardware" => hardware(c)
     "protocol" => protocol(c)
     "reject_tls" => {
       let rejected = try {
