@@ -76,3 +76,20 @@ The same in-memory copyright and integrity rules above apply.
 1 个电源和 1 个功耗条目。这些是公开 mockup，不表示用户环境拥有这些设备。现代资源
 使用独立原创的 13 路由合成样例，不冒称新增 DMTF 样例证据。仍遵守上述内存驻留、版权
 保留及完整性校验规则。
+
+## Extended inventory inputs / 扩展清单输入
+
+`tools/test_extended.py` uses the seven discovery files and 23 additional unchanged
+files pinned in `tools/extended_reference.py`, all from the same DMTF commit. These
+cover System/Manager EthernetInterfaces, System/Manager LogServices and entries,
+UpdateService/FirmwareInventory and current Bios. Only collection-referenced resources
+are included; the upstream AC-RoT0 firmware file is not referenced. Storage and
+NetworkAdapters are covered by the separate synthetic graph, not these public files.
+The same hash, size, in-memory and attribution rules apply. See [COMPARISON.md](COMPARISON.md)
+for the log adapter behavior and the precise scope of the comparison.
+
+扩展对照使用 7 个基础发现文件和 `tools/extended_reference.py` 中固定的 23 个未修改文件，
+均来自相同 DMTF 提交，覆盖系统/管理控制器网络接口、日志服务及条目、更新服务/固件和
+当前 BIOS。只纳入集合引用的资源；AC-RoT0 未被集合引用。Storage 和 NetworkAdapters
+使用独立合成图验证，不冒称公开文件覆盖。仍按上述哈希、大小、内存驻留及归属规则处理；
+日志适配器行为和对照边界见对照文档。

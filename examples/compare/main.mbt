@@ -107,6 +107,7 @@ async fn main {
         "managers": @json.to_json(c.managers().map(project)),
       }
     "hardware" => hardware(c)
+    "extended" => extended(c)
     "protocol" => protocol(c)
     "reject_tls" => {
       let rejected = try {

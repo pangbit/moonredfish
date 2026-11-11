@@ -79,3 +79,31 @@ fn[T] read_array(
     items.map(decode)
   })
 }
+
+///|
+fn bool_value(value : Json) -> Bool raise RedfishError {
+  match value {
+    True => true
+    False => false
+    _ => raise InvalidResponse("expected inventory boolean")
+  }
+}
+
+///|
+fn object_value(value : Json) -> Json raise RedfishError {
+  require_object(value)
+  value
+}
+
+///|
+/// JSON numbers beyond the exact Double integer range must not silently round.
+/// Original JSON remains available for applications requiring a wider integer range.
+fn safe_integer_value(value : Json) -> Double raise RedfishError {
+  let number = number_value(value)
+  guard number >= 0.0 &&
+    number <= 9007199254740991.0 &&
+    number == number.to_int64().to_double() else {
+    raise InvalidResponse("expected nonnegative exact inventory integer")
+  }
+  number
+}

@@ -17,8 +17,10 @@ moon check --target native --deny-warn
 moon test --target native --deny-warn
 python3 tools/test_mock.py
 moon run examples/hardware --target native
+moon run examples/extended --target native
 # Optional locally; required on Linux CI / 本地可选，Linux CI 必跑
 python3 tools/test_gofish.py
+python3 tools/test_extended.py
 moon info --target native
 moon fmt --check
 moon package --list

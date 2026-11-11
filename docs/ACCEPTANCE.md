@@ -206,3 +206,28 @@ linked collections, errors and shared limits. `tools/test_gofish.py` additionall
 具体字段、单位和现代资源边界见上述指南。离线硬件示例、原生单测和本机集成覆盖三态值、
 错误类型、未知状态、链接集合、错误及共享限制；GoFish 对照另覆盖 18 个固定 DMTF 文件
 与最小现代资源合成图。未进行真实 BMC 验证，也未发布 Mooncakes。
+
+## Extended inventory acceptance / 扩展清单验收
+
+Run `moon run examples/extended --target native` for the offline count/presence example.
+The existing native tests and mock runner additionally cover selected storage, network,
+log, firmware and BIOS fields; missing/null/empty links; drive deduplication and
+prevalidation; and shared byte, member, page and time limits. With Go installed,
+`python3 tools/test_extended.py` checks both typed clients against 30 unchanged,
+hash-pinned DMTF inputs and a separate 26-route synthetic graph. Linux CI runs this
+comparison; both native CI platforms run the unit tests, example and mocks.
+
+运行上述扩展示例可查看离线的数量/存在状态输出。现有原生测试与 mock 另覆盖新增字段、
+链接缺失/null/空值、磁盘去重与预校验，以及共享字节、成员、页数和时间限制。安装 Go 后
+运行 `python3 tools/test_extended.py`，用 30 个固定哈希的未修改 DMTF 输入和独立的
+26 路由合成图分别检查两个类型化客户端。Linux CI 执行该对照，两种 native CI 平台均执行
+单测、示例和 mock。具体选定字段及日志读取差异见 [COMPARISON.md](COMPARISON.md)。
+
+The 2026-11-11 local macOS arm64 run passed all 31 native tests, the mock runner and
+both GoFish comparison commands. These are selected-field results, not complete
+GoFish parity or physical BMC validation; consult the exact commit's CI for remote
+platform results. No Mooncakes publication is part of acceptance.
+
+2026-11-11 本机 macOS arm64 验证通过全部 31 项原生测试、mock 及两项 GoFish 对照。
+这只证明选定字段结果，不代表与 GoFish 完整对等或真实 BMC 验证；远端平台结果以具体
+提交的 CI 为准。验收不包含 Mooncakes 发布。

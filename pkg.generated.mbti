@@ -33,6 +33,12 @@ pub suberror RedfishError {
 pub fn RedfishError::to_repr(Self) -> @debug.Repr
 
 // Types and methods
+pub struct Bios {
+  resource : Resource
+  attribute_registry : Field[String]
+  attributes : Field[@json.Json]
+}
+
 pub struct ChassisInfo {
   resource : Resource
   manufacturer : Field[String]
@@ -47,14 +53,21 @@ pub struct ChassisInfo {
 }
 
 type Client
+pub async fn Client::bios(Self, Resource) -> Field[Bios]
 pub async fn Client::chassis(Self) -> Array[Resource]
+pub async fn Client::drives(Self, Resource) -> Field[Array[Drive]]
+pub async fn Client::ethernet_interfaces(Self, Resource) -> Field[Array[EthernetInterface]]
 pub async fn Client::fans(Self, Resource) -> Field[Array[Fan]]
+pub async fn Client::firmware_inventory(Self, Resource) -> Field[Array[SoftwareInventory]]
 pub async fn Client::get(Self, String) -> Resource
+pub async fn Client::log_entries(Self, Resource) -> Field[Array[LogEntry]]
+pub async fn Client::log_services(Self, Resource) -> Field[Array[LogService]]
 pub async fn Client::login(Self, String, String) -> Unit
 pub async fn Client::logout(Self) -> Unit
 pub async fn Client::managers(Self) -> Array[Resource]
 pub async fn Client::members(Self, String) -> Array[String]
 pub async fn Client::memory(Self, Resource) -> Field[Array[Memory]]
+pub async fn Client::network_adapters(Self, Resource) -> Field[Array[NetworkAdapter]]
 pub fn Client::new(String, ca_file? : String, allow_loopback_http? : Bool, timeout_ms? : Int32, max_response_bytes? : Int32, max_pages? : Int32, detailed_errors? : Bool, max_members? : Int32, max_total_response_bytes? : Int32, operation_timeout_ms? : Int32) -> Self raise RedfishError
 pub async fn Client::power(Self, Resource) -> Field[Power]
 pub async fn Client::power_subsystem(Self, Resource) -> Field[Resource]
@@ -62,14 +75,44 @@ pub async fn Client::power_supplies(Self, Resource) -> Field[Array[PowerSupply]]
 pub async fn Client::processors(Self, Resource) -> Field[Array[Processor]]
 pub async fn Client::sensors(Self, Resource) -> Field[Array[Sensor]]
 pub async fn Client::service_root(Self) -> Resource
+pub async fn Client::storage(Self, Resource) -> Field[Array[Storage]]
 pub async fn Client::systems(Self) -> Array[Resource]
 pub async fn Client::thermal(Self, Resource) -> Field[Thermal]
 pub async fn Client::thermal_subsystem(Self, Resource) -> Field[Resource]
+pub async fn Client::update_service(Self, Resource) -> Field[Resource]
+pub async fn Client::volumes(Self, Resource) -> Field[Array[Volume]]
 pub async fn[T] Client::with_session(Self, String, String, async (Self) -> T) -> T
 
 pub struct Collection {
   members : Array[String]
   next_link : String?
+}
+
+pub struct Drive {
+  resource : Resource
+  manufacturer : Field[String]
+  model : Field[String]
+  serial_number : Field[String]
+  part_number : Field[String]
+  revision : Field[String]
+  protocol : Field[String]
+  media_type : Field[String]
+  capacity_bytes : Field[Double]
+  failure_predicted : Field[Bool]
+  status : Field[Health]
+}
+
+pub struct EthernetInterface {
+  resource : Resource
+  mac_address : Field[String]
+  permanent_mac_address : Field[String]
+  hostname : Field[String]
+  fqdn : Field[String]
+  interface_enabled : Field[Bool]
+  speed_mbps : Field[Double]
+  full_duplex : Field[Bool]
+  link_status : Field[String]
+  status : Field[Health]
 }
 
 pub struct Fan {
@@ -107,6 +150,25 @@ pub struct HttpDiagnostic {
 }
 pub fn HttpDiagnostic::to_repr(Self) -> @debug.Repr
 
+pub struct LogEntry {
+  resource : Resource
+  entry_type : Field[String]
+  severity : Field[String]
+  created : Field[String]
+  message : Field[String]
+  message_id : Field[String]
+  message_args : Field[Array[String]]
+}
+
+pub struct LogService {
+  resource : Resource
+  date_time : Field[String]
+  service_enabled : Field[Bool]
+  max_number_of_records : Field[Double]
+  over_write_policy : Field[String]
+  status : Field[Health]
+}
+
 pub struct ManagerInfo {
   resource : Resource
   manufacturer : Field[String]
@@ -128,6 +190,15 @@ pub struct Memory {
   memory_device_type : Field[String]
   capacity_mib : Field[Double]
   operating_speed_mhz : Field[Double]
+  status : Field[Health]
+}
+
+pub struct NetworkAdapter {
+  resource : Resource
+  manufacturer : Field[String]
+  model : Field[String]
+  serial_number : Field[String]
+  part_number : Field[String]
   status : Field[Health]
 }
 
@@ -184,18 +255,27 @@ pub struct Resource {
   resource_type : String?
   json : @json.Json
 }
+pub fn Resource::bios(Self) -> Bios raise RedfishError
 pub fn Resource::chassis_info(Self) -> ChassisInfo raise RedfishError
+pub fn Resource::drive(Self) -> Drive raise RedfishError
+pub fn Resource::ethernet_interface(Self) -> EthernetInterface raise RedfishError
 pub fn Resource::fan(Self) -> Fan raise RedfishError
 pub fn Resource::link(Self, String) -> String? raise RedfishError
+pub fn Resource::log_entry(Self) -> LogEntry raise RedfishError
+pub fn Resource::log_service(Self) -> LogService raise RedfishError
 pub fn Resource::manager_info(Self) -> ManagerInfo raise RedfishError
 pub fn Resource::memory(Self) -> Memory raise RedfishError
+pub fn Resource::network_adapter(Self) -> NetworkAdapter raise RedfishError
 pub fn Resource::power(Self) -> Power raise RedfishError
 pub fn Resource::power_supply(Self) -> PowerSupply raise RedfishError
 pub fn Resource::processor(Self) -> Processor raise RedfishError
 pub fn Resource::sensor(Self) -> Sensor raise RedfishError
+pub fn Resource::software_inventory(Self) -> SoftwareInventory raise RedfishError
+pub fn Resource::storage(Self) -> Storage raise RedfishError
 pub fn Resource::string(Self, String) -> String?
 pub fn Resource::system_info(Self) -> SystemInfo raise RedfishError
 pub fn Resource::thermal(Self) -> Thermal raise RedfishError
+pub fn Resource::volume(Self) -> Volume raise RedfishError
 
 pub struct Sensor {
   resource : Resource
@@ -208,6 +288,21 @@ pub struct Sensor {
 pub struct SensorReading {
   json : @json.Json
   reading : Field[Double]
+}
+
+pub struct SoftwareInventory {
+  resource : Resource
+  version : Field[String]
+  software_id : Field[String]
+  manufacturer : Field[String]
+  lowest_supported_version : Field[String]
+  updateable : Field[Bool]
+  status : Field[Health]
+}
+
+pub struct Storage {
+  resource : Resource
+  status : Field[Health]
 }
 
 pub struct SystemInfo {
@@ -240,6 +335,14 @@ pub struct Thermal {
   resource : Resource
   temperatures : Field[Array[Temperature]]
   fans : Field[Array[Fan]]
+}
+
+pub struct Volume {
+  resource : Resource
+  capacity_bytes : Field[Double]
+  volume_type : Field[String]
+  raid_type : Field[String]
+  status : Field[Health]
 }
 
 // Type aliases

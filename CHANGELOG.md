@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Added bounded read-only Storage/Drive/Volume, EthernetInterface/NetworkAdapter,
+  LogService/LogEntry, SoftwareInventory and current BIOS attribute views and explicit
+  link readers. Added a count-only example, three-state/budget regression checks and
+  pinned DMTF/GoFish comparisons. No device-control APIs or registry publication.
+- 新增有界的存储/磁盘/卷、网络、日志、固件和当前 BIOS 属性只读视图及显式链接 API；
+  补充仅输出数量的示例、三态/预算回归及 DMTF/GoFish 对照，无设备控制或 registry 发布。
+
 - Add typed System/Chassis/Manager, Processor/Memory, legacy Thermal/Power and modern
   Sensor/Fan/PowerSupply inventory views with raw JSON, explicit Missing/Null/Value
   semantics and bounded advertised-link traversal. / 新增类型化资产/健康视图，保留原始

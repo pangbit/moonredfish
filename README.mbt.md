@@ -56,6 +56,16 @@ uses the same protected environment variables as `session_inventory`. See the
 limits and the runnable workflow. Raw inventory can contain private identifiers;
 review and redact it before sharing.
 
+## Extended inventory (Unreleased)
+
+Storage/Drive/Volume, EthernetInterface/NetworkAdapter, LogService/LogEntry,
+SoftwareInventory and current BIOS Attributes now have selected read-only views.
+Explicit link methods retain three-state fields and per-operation traversal budgets.
+There is no firmware update, BIOS write, log clearing or network control.
+Run `moon run examples/extended --target native` for the safe offline example.
+See the [extended inventory contract](docs/INVENTORY.md#extended-read-only-inventory-unreleased--扩展只读清单未发布)
+for numeric bounds, API links, privacy and deliberate model limits.
+
 ## Install and examples
 
 Requires native MoonBit and `moonbitlang/async` 0.22.1. The verified compiler is
@@ -216,7 +226,8 @@ For a small side-by-side check, run `python3 tools/test_gofish.py` with Go 1.21+
 (verified with Go 1.24.0). It compares selected inventory fields against GoFish v0.27.0
 and the pinned source data, then checks shared pagination, error, session and TLS behavior
 on a synthetic loopback service. GoFish is a test-only dependency, not part of the MoonBit
-library. Linux CI runs this comparison. See [docs/COMPARISON.md](docs/COMPARISON.md) for
+library. Run `python3 tools/test_extended.py` for the storage, network, logs, firmware
+and BIOS comparison. Linux CI runs both commands. See [docs/COMPARISON.md](docs/COMPARISON.md) for
 the result, intentional differences and limitations.
 
 For a concise reproducible review, see [docs/ACCEPTANCE.md](docs/ACCEPTANCE.md).

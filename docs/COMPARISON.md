@@ -89,6 +89,41 @@ impose that either/or restriction.
 的，不是请求数量竞赛。公开图验证传统路径，独立现代图省略两种旧链接后验证新路径；
 生产 API 不要求新旧资源二选一。
 
+## Extended inventory comparison / 扩展清单对照
+
+```sh
+python3 tools/test_extended.py
+```
+
+This command uses the same GoFish v0.27.0 and DMTF commit, with 23 additional
+hash-pinned files plus the seven discovery files (30 total). It compares selected
+defined fields for Ethernet interfaces, logs, firmware and current BIOS attributes.
+A separate 26-route synthetic graph covers all nine new resource families, including
+Storage/Drives/Volumes, NetworkAdapters, false/zero values and paginated log entries.
+Exact resource counts, URIs, defined-field values and advertised route coverage are
+checked for both clients. See [INVENTORY.md](INVENTORY.md#extended-read-only-inventory-unreleased--扩展只读清单未发布)
+for the public API and model limits.
+
+该命令使用相同的 GoFish v0.27.0 和 DMTF 提交，新增 23 个固定哈希文件，连同 7 个基础
+发现文件共 30 个，对照网络接口、日志、固件及当前 BIOS 属性的选定有值字段。独立的
+26 路由合成图覆盖九类新增资源，包括存储/磁盘/卷、物理网卡、false/零值及日志分页。
+两端均检查精确资源数量、URI、有值字段及显式链接路由覆盖；API 和模型边界见类型化指南。
+
+The DMTF log collections embed full entries. GoFish can decode those entries without
+member GETs; the comparison adapter deliberately reads each advertised entry URI with
+`schemas.GetLogEntry` so both clients decode the same standalone resource bytes.
+This extra read is test-only and is not evidence of identical request counts. The
+public log sample is not pagination evidence; pagination uses the separate synthetic
+`Members@odata.nextLink` graph. The unreferenced upstream AC-RoT0 sample is excluded.
+Missing/null semantics and traversal limits remain moonredfish-specific regression
+checks, not GoFish equivalence claims. No physical BMC has been tested.
+
+DMTF 日志集合内嵌完整条目，GoFish 可以直接解析而不发成员 GET；对照适配器有意使用
+`schemas.GetLogEntry` 读取已发现的条目 URI，使两端解码相同独立资源字节。额外读取仅用于
+测试，不说明请求次数相同。公开日志样例不作为分页证据，分页使用独立合成图中的
+`Members@odata.nextLink`。未被集合引用的 AC-RoT0 不纳入夹具。缺失/null 及遍历预算由
+moonredfish 自身回归验证，不宣称与 GoFish 等价。尚未进行真实 BMC 测试。
+
 ## Intentional differences / 刻意保留的差异
 
 GoFish is a comparison implementation, not the specification. Its error strings can

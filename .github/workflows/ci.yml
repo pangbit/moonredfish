@@ -27,6 +27,7 @@ jobs:
       - run: moon build --target native --release --deny-warn
       - run: moon run examples/offline --target native
       - run: moon run examples/hardware --target native
+      - run: moon run examples/extended --target native
       - run: python3 tools/test_mock.py
       - uses: actions/setup-go@v6
         if: runner.os == 'Linux'
@@ -38,6 +39,7 @@ jobs:
         run: |
           test -z "$(gofmt -l tools/gofish/*.go)"
           python3 tools/test_gofish.py
+          python3 tools/test_extended.py
       - run: moon info --target native
       - run: moon fmt --check
       - run: git diff --exit-code

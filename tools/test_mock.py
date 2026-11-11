@@ -88,6 +88,10 @@ class Handler(BaseHTTPRequestHandler):
             return self.respond(200, {"Members": [{"@odata.id": p + "/1"}]})
         if p in [ROOT + "/" + kind + "/" + ident for kind in ("Systems", "Chassis", "Managers") for ident in ("1", "2")]:
             return self.respond(200, {"Id": p.rsplit("/", 1)[1], "Name": "Synthetic resource"})
+        if p in [ROOT + "/Extended/" + kind + str(i) for kind in ("Drive", "SlowDrive") for i in range(2)]:
+            if "SlowDrive" in p:
+                time.sleep(0.06)
+            return self.respond(200, {"Id": p.rsplit("/", 1)[1], "CapacityBytes": 0, "FailurePredicted": False})
         if p == ROOT + "/Inventory/Processors":
             return self.respond(200, {"Members": [{"@odata.id": ROOT + "/Inventory/Processors/0"}], "Members@odata.nextLink": ROOT + "/Inventory/Processors?$skip=1"})
         if p == ROOT + "/Inventory/Processors?$skip=1":

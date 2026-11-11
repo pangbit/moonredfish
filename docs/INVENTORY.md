@@ -160,3 +160,109 @@ BMC, vendor, complete Redfish/Swordfish or firmware compatibility certification.
 
 来源、对照和验收边界见以上文档。这是选定子集互通证据，不是真实 BMC、厂商、完整
 Redfish/Swordfish 或固件兼容性认证。
+
+## Extended read-only inventory (Unreleased) / 扩展只读清单（未发布）
+
+The second increment adds selected views, not a full schema graph:
+第二批增加以下选定视图，不引入完整 schema 图或自动递归扫描：
+
+| View / 视图 | Selected data / 选定字段 |
+| --- | --- |
+| `Storage`, `Drive`, `Volume` | Storage status; drive identity, protocol, media, capacity bytes, predicted failure; volume bytes, VolumeType and RAIDType / 存储状态；磁盘资产、协议、介质、字节容量、故障预测；卷容量及两个独立类型字段 |
+| `EthernetInterface` | MAC addresses, hostname/FQDN, enabled, speed Mbps, duplex and link state / MAC、主机名、启用状态、Mbps 速率、双工和链路状态 |
+| `NetworkAdapter` | Physical adapter manufacturer, model, serial/part and status / 物理适配器厂商、型号、序列号/部件号及状态 |
+| `LogService`, `LogEntry` | Service status/capacity/overwrite metadata; entry type, severity, timestamp, message ID/text/arguments / 日志服务状态、容量及覆盖策略；条目类型、等级、时间、消息标识/正文/参数 |
+| `SoftwareInventory` | Firmware version, software ID, manufacturer, minimum version, Updateable and status / 固件版本、软件标识、厂商、最低版本、可更新标记及状态 |
+| `Bios` | AttributeRegistry string and current Attributes object / 属性注册表标识及当前属性对象 |
+
+All views retain `resource` and raw JSON. `Field` preserves false, zero, empty arrays
+and empty BIOS objects. Unknown enum strings remain unchanged. Boolean fields must
+be JSON booleans, BIOS Attributes must be an object, and MessageArgs must be an array
+of strings. BIOS attributes are not coerced to strings or classified as writable.
+The number fields added here use nonnegative integral `Double` values capped at
+9,007,199,254,740,991 (2^53−1); larger values fail instead of being exposed as a
+rounded typed integer. This is a deliberately bounded selected-field decoder, not
+full Redfish numeric/schema validation. Original parsed JSON is available for wider
+application-specific handling. Units are bytes and Mbps, with no conversion.
+
+所有视图保留原资源及 JSON；false、零、空数组和空属性对象均是有效值。未知枚举原样保留。
+布尔字段须为 JSON 布尔值，BIOS Attributes 须为对象，MessageArgs 须为字符串数组；
+不把 BIOS 属性强制转换为字符串，也不推断写权限。新增数字字段使用非负整数 Double，
+上限为 2^53−1；超过范围报错，不作为已四舍五入的类型化整数返回。这是有界字段解码，
+不是完整数值或 schema 验证。更大数值可由应用检查原始解析后 JSON。单位为字节和 Mbps。
+
+| Client method / 方法 | Explicit owner link / 显式来源链接 |
+| --- | --- |
+| `storage(system)` | ComputerSystem.Storage collection |
+| `drives(storage.resource)` | Storage.Drives **array of links**, not a collection / 链接数组，不是集合 |
+| `volumes(storage.resource)` | Storage.Volumes collection |
+| `ethernet_interfaces(owner)` | ComputerSystem or Manager.EthernetInterfaces collection |
+| `network_adapters(chassis)` | Chassis.NetworkAdapters collection |
+| `log_services(owner)` | ComputerSystem, Chassis or Manager.LogServices collection |
+| `log_entries(service.resource)` | LogService.Entries collection |
+| `update_service(root)` | ServiceRoot.UpdateService resource |
+| `firmware_inventory(update)` | UpdateService.FirmwareInventory collection |
+| `bios(system)` | ComputerSystem.Bios resource |
+
+Each method returns `Field` around its result. Collection methods return arrays of
+matching views. `update_service` returns a Resource; `bios` returns a Bios view.
+An advertised link is followed even if its path is unconventional. Missing/null
+links do not trigger a guessed URI, a fallback to a different model, or a request.
+Malformed links, 403/404 and failed member GETs fail the whole method.
+
+各方法在结果外保留三态；集合返回对应视图数组，update_service 返回 Resource，bios
+返回 Bios。遵循显式链接而非惯例路径；缺失/null 不猜路径、不切换模型、不发请求。
+畸形链接、403/404、任一成员读取失败均使整个方法失败。
+
+`drives` validates all supplied links, deduplicates them in first-seen order, and
+checks `max_members` before any GET. Its member reads share one total-byte budget
+and operation timeout. Collections such as log entries share those budgets across
+all pages and member GETs, with page and unique-member limits. These APIs deliberately
+do not fetch child collections recursively. A separate explicit method call starts
+a new budget, just like the first-phase APIs; an application's entire multi-call
+scan needs its own outer deadline/collection policy. No partial result is returned.
+
+磁盘链接先全部验证、按首次出现顺序去重并检查成员上限，再开始 GET；所有成员共用累计
+字节预算和操作时限。日志等集合的全部分页与成员 GET 也共享预算，同时受页数及唯一成员
+上限约束。API 不自动递归读取子集合。与第一阶段相同，新的显式方法调用有独立预算；
+应用若串联整次资产扫描，应另设外层截止时间及采集策略。单次方法不返回部分结果。
+
+Storage and SimpleStorage are not merged. The latter, embedded storage controllers,
+network ports/functions, IP address/VLAN models, update actions, BIOS SettingsObject
+and attribute registries remain raw/unmodeled. `Updateable`, `InterfaceEnabled` and
+log capability fields describe reported state, not authorization. Firmware update,
+BIOS PATCH, log clearing, network changes and other controls are not implemented.
+
+Storage 不与 SimpleStorage 合并；SimpleStorage、嵌入控制器、网络端口/功能、IP/VLAN
+模型、更新动作、BIOS SettingsObject 和属性注册表尚无专用解析。Updateable 等标志是
+设备报告状态，不代表当前账户权限。不实现固件更新、BIOS PATCH、清日志或网络修改。
+
+```sh
+moon run examples/extended --target native
+# Authorized target only; same optional session environment as examples/hardware
+# 仅限已授权目标；可选认证环境与 hardware 示例相同
+moon run examples/extended --target native -- https://authorized-bmc.example.invalid
+python3 tools/test_extended.py
+```
+
+The example defaults to offline synthetic resources. Its live mode prints counts
+and missing/null/present markers only: never log messages, arguments, MACs, serials,
+BIOS attributes or raw JSON. It reads current BIOS attributes, not pending settings.
+Protect raw resources and log text as private data before sharing them.
+示例默认离线；联网模式仅输出数量及缺失/null/存在状态，不输出日志正文、参数、MAC、
+序列号、BIOS 属性或 JSON。只读当前 BIOS，不读待应用设置。分享前须审查和脱敏原始数据。
+
+The comparison adds 23 hash-pinned, unchanged DMTF rack-mount files (30 including
+baseline discovery) for Ethernet interfaces, logs, firmware and BIOS. The pinned
+sample advertises SimpleStorage, not Storage, and lacks NetworkAdapters; a separate
+26-route synthetic graph covers Storage/Drives/Volumes, NetworkAdapters, defined
+fields in every new family and paginated logs. Each client is checked independently
+against fields extracted from the original inputs. GoFish defaults do not prove
+Missing/Null equivalence. Local mocks additionally test absent/null/empty links,
+drive deduplication, malformed/unsafe links, 403/404 and shared traversal limits.
+
+对照新增 23 个固定哈希、未修改的 DMTF 文件，连同基础发现共 30 个，覆盖网络接口、日志、
+固件和 BIOS。该样例只有 SimpleStorage 而无 Storage，也没有 NetworkAdapters；独立的
+26 路由合成图覆盖存储/磁盘/卷、适配器、所有新增资源的选定字段及日志分页。两个客户端
+分别对照原始输入提取的字段，不以 GoFish 默认值证明三态语义等价。本机 mock 另测链接
+三态/空值、磁盘去重、畸形/危险链接、403/404 及共享遍历预算。尚无真实 BMC 验证。

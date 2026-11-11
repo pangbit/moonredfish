@@ -33,6 +33,13 @@ HTTPS 目标可读取只输出数量的清单。可选认证使用与 session_in
 原始清单可能含私密硬件标识，共享前应审查和脱敏。上述能力仅存在于未发布源码，
 不属于 Mooncakes 0.1.0。
 
+## 扩展清单（未发布）
+
+新增存储/磁盘/卷、以太网接口/物理网卡、日志服务/条目、固件清单及当前 BIOS Attributes
+的选定只读视图。显式链接方法继续保留三态字段和每次操作的遍历预算；不加入固件更新、
+BIOS 写入、日志清除或网络控制。运行 `moon run examples/extended --target native`
+可看默认离线示例。具体 API、数值范围、隐私及模型边界见[类型化清单指南](docs/INVENTORY.md)。
+
 ## 已实现范围
 
 - 使用系统根证书或调用方指定的 CA 文件验证 HTTPS。
@@ -175,7 +182,8 @@ DMTF 公开 mockup，在本机回环服务上测试。该步骤本地可选、�
 小范围同场对照可运行 `python3 tools/test_gofish.py`，需要 Go 1.21+（已验证 Go 1.24.0）。
 它将选定资产字段同时对照 GoFish v0.27.0 和固定原始样例，再在合成回环服务上验证共同的
 分页、错误、会话与 TLS 行为。GoFish 仅是测试依赖，不是 MoonBit 库的运行时依赖。
-Linux CI 运行该检查；结果、刻意保留的差异和局限见 [docs/COMPARISON.md](docs/COMPARISON.md)。
+第二阶段另运行 `python3 tools/test_extended.py`，对照存储、网络、日志、固件和 BIOS 字段。
+Linux CI 执行两项对照；结果、刻意保留的差异和局限见 [docs/COMPARISON.md](docs/COMPARISON.md)。
 
 精简的可复现审阅步骤见 [docs/ACCEPTANCE.md](docs/ACCEPTANCE.md)。
 

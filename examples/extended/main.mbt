@@ -1,0 +1,105 @@
+///|
+fn[T] count(field : @moonredfish.Field[Array[T]]) -> String {
+  match field {
+    Missing => "missing"
+    Null => "null"
+    Value(items) => items.length().to_string()
+  }
+}
+
+///|
+fn[T] presence(field : @moonredfish.Field[T]) -> String {
+  match field {
+    Missing => "missing"
+    Null => "null"
+    Value(_) => "present"
+  }
+}
+
+///|
+async fn logs(
+  client : @moonredfish.Client,
+  owner : @moonredfish.Resource,
+) -> Unit {
+  let services = client.log_services(owner)
+  println("log services: \{count(services)}")
+  if services is Value(items) {
+    for service in items {
+      // Log messages, arguments and identifiers are intentionally not printed.
+      println("log entries: \{count(client.log_entries(service.resource))}")
+    }
+  }
+}
+
+///|
+async fn inventory(client : @moonredfish.Client) -> Unit {
+  for system in client.systems() {
+    let storage = client.storage(system)
+    println("storage: \{count(storage)}")
+    if storage is Value(items) {
+      for item in items {
+        println("drives: \{count(client.drives(item.resource))}")
+        println("volumes: \{count(client.volumes(item.resource))}")
+      }
+    }
+    println("system interfaces: \{count(client.ethernet_interfaces(system))}")
+    let bios = client.bios(system)
+    println("BIOS: \{presence(bios)}")
+    if bios is Value(bios) {
+      println("BIOS attributes: \{presence(bios.attributes)}")
+    }
+    logs(client, system)
+  }
+  for chassis in client.chassis() {
+    println("network adapters: \{count(client.network_adapters(chassis))}")
+    logs(client, chassis)
+  }
+  for manager in client.managers() {
+    println("manager interfaces: \{count(client.ethernet_interfaces(manager))}")
+    logs(client, manager)
+  }
+  let update = client.update_service(client.service_root())
+  println("update service: \{presence(update)}")
+  if update is Value(service) {
+    println("firmware inventory: \{count(client.firmware_inventory(service))}")
+  }
+}
+
+///|
+async fn main {
+  let args = @env.args()
+  if args.length() == 1 {
+    // Safe offline default. No real device, credentials or private attributes.
+    let drive = @moonredfish.parse_resource("/redfish/v1/Drives/demo", {
+      "CapacityBytes": 0,
+      "FailurePredicted": false,
+    }).drive()
+    println(
+      "offline synthetic drive: capacity=\{presence(drive.capacity_bytes)}, failure_predicted=\{presence(drive.failure_predicted)}",
+    )
+    let bios = @moonredfish.parse_resource("/redfish/v1/Systems/demo/Bios", {
+      "Attributes": null,
+    }).bios()
+    println("offline synthetic BIOS attributes: \{presence(bios.attributes)}")
+  } else {
+    guard args.length() == 2 else {
+      fail("usage: extended [https://authorized-bmc.example.invalid]")
+    }
+    let ca_file = @env.get_env_var("REDFISH_CA_FILE")
+    let client = @moonredfish.Client::new(args[1], ca_file?)
+    match
+      (
+        @env.get_env_var("REDFISH_USERNAME"),
+        @env.get_env_var("REDFISH_PASSWORD"),
+      ) {
+      (None, None) => inventory(client)
+      (Some(username), Some(password)) if !username.is_empty() &&
+        !password.is_empty() =>
+        client.with_session(username, password, inventory)
+      _ =>
+        fail(
+          "supply both nonempty REDFISH_USERNAME and REDFISH_PASSWORD, or neither",
+        )
+    }
+  }
+}
